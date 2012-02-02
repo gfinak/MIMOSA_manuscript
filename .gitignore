@@ -1,1 +1,4 @@
+*.bbl
+*.log
+*.blg
 .DS*
