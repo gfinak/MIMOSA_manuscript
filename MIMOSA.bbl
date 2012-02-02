@@ -1,0 +1,71 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Horton et~al.(2007)Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu,
+  McElrath, and De~Rosa]{Horton:2007tsa}
+H~Horton, EP~Thomas, JA~Stucky, I~Frank, Z~Moodie, Y~Huang, YL~Chiu,
+  MJ~McElrath, and SC~De~Rosa.
+\newblock Optimization and validation of an 8-color intracellular cytokine
+  staining (ics) assay to quantify antigen-specific t cells induced by
+  vaccination.
+\newblock \emph{Journal of immunological methods}, 323\penalty0 (1):\penalty0
+  39--54, 2007.
+
+\bibitem[De~Rosa et~al.(2004)De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans,
+  Koup, Miller, and Roederer]{DeRosa:2004wp}
+Stephen~C De~Rosa, Fabien~X Lu, Joanne Yu, Stephen~P Perfetto, Judith Falloon,
+  Susan Moser, Thomas~G Evans, Richard Koup, Christopher~J Miller, and Mario
+  Roederer.
+\newblock Vaccination in humans generates broad t cell cytokine responses.
+\newblock \emph{J Immunol}, 173\penalty0 (9):\penalty0 5372--5380, November
+  2004.
+
+\bibitem[Betts et~al.(2006)Betts, Nason, West, De~Rosa, Migueles, Abraham,
+  Lederman, Benito, Goepfert, Connors, Roederer, and Koup]{Betts:2006dw}
+Michael~R Betts, Martha~C Nason, Sadie~M West, Stephen~C De~Rosa, Stephen~A
+  Migueles, Jonathan Abraham, Michael~M Lederman, Jose~M Benito, Paul~A
+  Goepfert, Mark Connors, Mario Roederer, and Richard~A Koup.
+\newblock Hiv nonprogressors preferentially maintain highly functional
+  hiv-specific cd8+ t cells.
+\newblock \emph{Blood}, 107\penalty0 (12):\penalty0 4781--4789, June 2006.
+
+\bibitem[Plotkin(2010)]{Plotkin:2010ve}
+S~Plotkin.
+\newblock Correlates of protection induced by vaccination.
+\newblock \emph{Clinical and Vaccine Immunology}, 2010.
+
+\bibitem[Kim et~al.(2010)Kim, Rerks-Ngarm, Excler, and Michael]{Kim:2010fw}
+Jerome~H Kim, Supachai Rerks-Ngarm, Jean-Louis Excler, and Nelson~L Michael.
+\newblock Hiv vaccines: lessons learned and the way forward.
+\newblock \emph{Current opinion in HIV and AIDS}, 5\penalty0 (5):\penalty0
+  428--434, September 2010.
+
+\bibitem[Peiperl et~al.(2010)Peiperl, Morgan, Moodie, Li, Russell, Graham,
+  Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
+  Network}]{Peiperl:2010ej}
+Laurence Peiperl, Cecilia Morgan, Zoe Moodie, Hongli Li, Nina Russell, Barney~S
+  Graham, Georgia~D Tomaras, Stephen~C De~Rosa, M~Juliana McElrath, and {the
+  NIAID HIV Vaccine Trials Network}.
+\newblock Safety and immunogenicity of a replication-defective adenovirus type
+  5 hiv vaccine in ad5-seronegative persons: A randomized clinical trial (hvtn
+  054).
+\newblock \emph{PLoS ONE}, 5\penalty0 (10):\penalty0 e13579, October 2010.
+
+\bibitem[Hahne et~al.(2009)Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar,
+  Spidlen, Strain, and Gentleman]{Hahne:2009vv}
+F~Hahne, N~LeMeur, RR~Brinkman, B~Ellis, P~Haaland, D~Sarkar, J~Spidlen,
+  E~Strain, and R~Gentleman.
+\newblock flowcore: a bioconductor package for high throughput flow cytometry.
+\newblock \emph{BMC Bioinformatics}, 10\penalty0 (1):\penalty0 106, 2009.
+
+\bibitem[Dempster et~al.(1977)Dempster, Laird, and Rubin]{Dempster:1977ul}
+A.P. Dempster, N.M. Laird, and D.B. Rubin.
+\newblock Maximum likelihood from incomplete data via the em algorithm.
+\newblock \emph{Journal of the Royal Statistical Society. Series B
+  (Methodological)}, pages 1--38, 1977.
+
+\end{thebibliography}

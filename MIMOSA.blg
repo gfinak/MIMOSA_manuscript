@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: MIMOSA.aux
+The style file: unsrtnat.bst
+Database file #1: MIMOSA.bib
+You've used 8 entries,
+            2481 wiz_defined-function locations,
+            609 strings with 6632 characters,
+and the built_in function-call counts, 4091 in all, are:
+= -- 266
+> -- 370
+< -- 2
++ -- 132
+- -- 116
+* -- 413
+:= -- 721
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 16
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 156
+empty$ -- 292
+format.name$ -- 124
+if$ -- 803
+int.to.chr$ -- 1
+int.to.str$ -- 9
+missing$ -- 8
+newline$ -- 48
+num.names$ -- 24
+pop$ -- 60
+preamble$ -- 1
+purify$ -- 8
+quote$ -- 0
+skip$ -- 84
+stack$ -- 0
+substring$ -- 168
+swap$ -- 25
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 56
+warning$ -- 0
+while$ -- 29
+width$ -- 0
+write$ -- 110
