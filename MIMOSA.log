@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  2 FEB 2012 10:18
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  6 FEB 2012 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -947,6 +947,9 @@ t).
 
 LaTeX Warning: Label `fig:simulations' multiply defined.
 
+
+LaTeX Warning: Label `fig:simulations' multiply defined.
+
 )
 \openout1 = `MIMOSA.aux'.
 
@@ -1082,32 +1085,34 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 ] [2]
-Overfull \hbox (5.06525pt too wide) in paragraph at lines 81--82
+Overfull \hbox (5.06525pt too wide) in paragraph at lines 65--66
 []\EU1/TimesNewRoman(0)/m/n/10.95 . In order to have comparable response rates,
  we reanalyzed the ICS data using Fisher’s one–sided
  []
 
 [3]
-Overfull \hbox (23.82278pt too wide) in paragraph at lines 141--141
+Overfull \hbox (23.82278pt too wide) in paragraph at lines 125--125
 [] 
  []
 
 [4] [5] [6]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 234--234
+Overfull \hbox (1.82501pt too wide) in paragraph at lines 218--218
 [][] [] 
  []
 
 [7]
 File: Figures/simulations.pdf Graphic file (type QTm)
- <use  "Figures/simulations.pdf" > [8]
+ <use  "Figures/simulations.pdf" >
+File: Figures/simulations_negt.pdf Graphic file (type QTm)
+ <use  "Figures/simulations_negt.pdf" >
 File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
 
 <use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 295--296
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 286--287
  [][] 
  []
 
-[9] [10] [11] (./MIMOSA.bbl) [12
+[8] [9] [10] [11] [12] (./MIMOSA.bbl) [13
 
 ] (./MIMOSA.aux)
 
@@ -1115,12 +1120,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 21206 strings out of 494522
- 388567 string characters out of 3156642
- 463701 words of memory out of 3000000
- 24050 multiletter control sequences out of 15000+200000
+ 21208 strings out of 494522
+ 388615 string characters out of 3156642
+ 469702 words of memory out of 3000000
+ 24051 multiletter control sequences out of 15000+200000
  12827 words of font info for 75 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,22n,78p,1890b,574s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,22n,78p,2963b,574s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (12 pages).
+Output written on MIMOSA.pdf (13 pages).
