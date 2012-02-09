@@ -264,8 +264,15 @@ $\bullet$&$\bullet$&$\bullet$&0\\
 }
 \end{table}
 
+\subsection{Simulations}
+We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p_s \ne p_u$) beta--binomial mixture models via simulations. Using hyper parameters estimated from the model fit of the constrained model to data from Gag1 stimulated CD4--positive, IL2 expressing T--cells on day 28 from the HVTN054 data set, we simulated data from the constrained model with 500 observations, a response rate of 40\%, an $N$ of 10K, 20K, 30K, 50K, 75K, 100K, and 150K events, and ten independent realizations for each $N$. The constrained model was fit to this data and the sensitivity and specificity of the model to correctly identify observations from the ``responder'' and ``non--responder'' components was evaluated ROC curve analysis and compared against Fisher's exact test. (Figure~\ref{fig:simulations}). The nominal vs observed false discovery rate was also examined for the model and for Fisher's exact test, as well as the accuracy of the hyper--parameters estimated by the model. In order to assess whether the unconstrained model could be used in place of the constrained model in order to benefit from faster computations using an exact closed form expression for the posterior, an identical analysis was performed after fitting the unconstrained model to data simulated from the constrained model (Figure~\ref{fig:simulations_negt}.
+
 \section*{Results}
 \subsection*{Simulations}
+We ran simulation studies to assess the performance of the constrained mode as described in the Methods. We found that the constrained model out--performed Fisher's exact test with respect to sensitivity and specificity at all values of $N$, and that the false discovery rate observed for the mixture model more closely reflected the nominal false discovery rate than Fisher's exact test (Figure~\ref{fig:simulations}). Furthermore, the model gave reasonable estimates of the true hyper--parameters, such that the estimated and true prior distributions closely resembled each other (Figure~\ref{fig:simulations}).
+
+Since the constrained model relies on Monte--Carlo integration, which can be computationally costly, to estimate the normalizing constant in the likelihood calculation, we examined whether the unconstrained model could be used to accurately fit data generated from the constrained model. We found that the unconstrained model performed as well as the constrained model when fitting data generated from the constrained model (Figure~\ref{fig:simulations_negt}).
+
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
    \includegraphics[width=4in]{Figures/simulations} 
@@ -277,7 +284,7 @@ $\bullet$&$\bullet$&$\bullet$&0\\
    \centering
    \includegraphics[width=4in]{Figures/simulations_negt} 
    \caption{Performance of the unconstrained Beta-binomial mixture (unconstrained model) vs Fisher's exact test in simulated data from a constrained model. Data were simulated from a constrained model with hyper--parameters estimated from day 28, Gag1 stimulated, CD4+, IL2 expressing T--cells in the HVTN054 data set. We simulated 500 observations, with a response rate of 40\%, and increasing numbers of cells, ten times each. The performance, measured by the AUC, of the unconstrained beta--binomial mixture compared to Fisher's exact test is shown in the first panel, as a function of increasing number of events. The estimated and true prior distributions are shown in the second panel for one simulated data set, with N=150,000 events. The ROC curve for Fisher's exact test and the unconstrained Beta--binomial model for the same simulated data set are shown in the third panel. The observed vs expected false discovery rate for Fisher's exact test and the Beta--binomial model are shown for the same data set in the fourth panel.}
-   \label{fig:simulations}
+   \label{fig:simulations_negt}
 \end{figure}
 
 \subsection*{HVTN054 ICS Data}
@@ -285,7 +292,7 @@ $\bullet$&$\bullet$&$\bullet$&0\\
    \centering
    \includegraphics[width=6in]{Figures/HVTN054LikelihoodAndVolcanoplots} 
    \caption{Likelihood surface and volcano plot for IFNg producing, CD4+ T-cells in Gag2 stimulated vs control samples on day 28. A significant difference between control and stimulated samples is called at the 1\% FDR threshold (red) for the Beta--binomial model, and at 1\% for FDR adjusted p--values from Fisher's exact test (green). The likelihood surface shows the observed counts from stimulated and unstimulated samples. The volcano plot shows the difference between the proportion of cytokine positive cells in the stimulated and unstimulated samples, for the maximum likelihood estimates of the proportions (triangles) and for the MAP estimates (crosses)}
-   \label{fig:simulations}
+   \label{fig:icsdata}
 \end{figure}
 
 \section*{Discussion}
