@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  6 FEB 2012 11:13
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  16 FEB 2012 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1075,55 +1075,67 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 38.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
+Overfull \hbox (17.03381pt too wide) in paragraph at lines 40--41
+\EU1/TimesNewRoman(0)/m/n/10 face proteins, or mRNA expression levels of genes 
+in single cells from specific cell sub–populations.
+ []
 
-] [2]
-Overfull \hbox (5.06525pt too wide) in paragraph at lines 65--66
+[1
+
+] [2] [3]
+Overfull \hbox (5.06525pt too wide) in paragraph at lines 66--67
 []\EU1/TimesNewRoman(0)/m/n/10.95 . In order to have comparable response rates,
  we reanalyzed the ICS data using Fisher’s one–sided
  []
 
-[3]
-Overfull \hbox (23.82278pt too wide) in paragraph at lines 125--125
+[4]
+Overfull \hbox (23.82278pt too wide) in paragraph at lines 126--126
 [] 
  []
 
-[4] [5] [6]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 218--218
+[5] [6] [7]
+Overfull \hbox (1.82501pt too wide) in paragraph at lines 224--224
 [][] [] 
  []
 
-[7]
-Overfull \hbox (14.02559pt too wide) in paragraph at lines 268--269
+[8]
+Overfull \hbox (14.02559pt too wide) in paragraph at lines 274--275
 \EU1/TimesNewRoman(0)/m/n/10.95 We examined the performance of the constrained 
 ($\OML/cmm/m/it/10.95 p[] > p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) and unconstra
 ined ($\OML/cmm/m/it/10.95 p[] \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/c
 mm/m/it/10.95 p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) beta–binomial
  []
 
-[8] [9]
-File: Figures/simulations.pdf Graphic file (type QTm)
- <use  "Figures/simulations.pdf" >
-File: Figures/simulations_negt.pdf Graphic file (type QTm)
+[9] [10]
+File: Figures/simulations_all.pdf Graphic file (type QTm)
+ <use  "Figures/simulations_all.pdf" >
+File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
 
-<use  "Figures/simulations_negt.pdf" >
-File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
+<use  "Figures/simulations_violatedmodel.pdf" >
+File: Figures/PositivityRates.pdf Graphic file (type QTm)
 
-<use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 293--294
+<use  "Figures/PositivityRates.pdf" >
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 311--312
  [][] 
  []
 
-[10] [11] [12] [13] (./MIMOSA.bbl) [14
+File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
+<use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 318--319
+ [][] 
+ []
 
-] (./MIMOSA.aux) ) 
+[11] [12] [13] [14] [15] (./MIMOSA.bbl [16
+
+]) [17] (./MIMOSA.aux) ) 
 Here is how much of TeX's memory you used:
- 21210 strings out of 494522
- 388650 string characters out of 3156642
- 467680 words of memory out of 3000000
- 24053 multiletter control sequences out of 15000+200000
+ 21219 strings out of 494522
+ 388861 string characters out of 3156642
+ 463931 words of memory out of 3000000
+ 24061 multiletter control sequences out of 15000+200000
  12827 words of font info for 75 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,22n,78p,2963b,574s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,22n,78p,2619b,574s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (14 pages).
+Output written on MIMOSA.pdf (17 pages).
