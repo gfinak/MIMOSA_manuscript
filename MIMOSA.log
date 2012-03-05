@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  16 FEB 2012 12:01
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  1 MAR 2012 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1116,13 +1116,13 @@ File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
 File: Figures/PositivityRates.pdf Graphic file (type QTm)
 
 <use  "Figures/PositivityRates.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 311--312
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 310--311
  [][] 
  []
 
 File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
 <use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 318--319
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 317--318
  [][] 
  []
 
