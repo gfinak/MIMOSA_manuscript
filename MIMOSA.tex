@@ -236,7 +236,7 @@ with Dirichlet priors on the proportions:
 
 For the null component, where $\bar{p}_{s}=\bar{p}_{u}$ the marginal likelihood is given by: 
 \begin{align}
-\mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u) &= \prod_{i=0}^P\frac{ \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\\
+\mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u) &= \prod_{i=0}^P\frac{ \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{NRmd}
 \end{align}
 Where $\mathrm{B_j}$ is the $\mathrm{j}$--dimensional Beta function: $\frac{\prod_{j=1}^J\Gamma(\alpha_j)}{\Gamma(\sum\alpha_j)}$.
 
@@ -246,6 +246,43 @@ The marginal likelihood for a component where $p_{sj} \ne p_{uj}$ for all $j$, i
 \end{align}
 
 Without loss of generality, if only some $p_j$ are different between stimulated and unstimulated samples, the appropriate components of $\alpha_j$  can be substituted in the calculation of the likelihood eq~\eqref{eq:postmult}.
+
+
+The marginal likelihood of the non--responding component, given in eq~\eqref{NRmd} can be rewritten as:
+\begin{align}
+\begin{split}
+l(\bar{\alpha}_u|D)=\sum_i \left[ \log \Gamma (\sum_j \alpha_{uj}) - \log \Gamma (\sum_j \alpha_{uj}+n_{uij}+n_{sij})+ \sum_j (\log \Gamma(\alpha_{uj}+n_{uij}+n_{sij}) \right.\\ \left. -\log\Gamma(\alpha_{uj}))+ \log\Gamma(N_{si}+1) +\log\Gamma(N_{ui}+1)-\right.\\ \left.\left[\sum_j(\log\Gamma(n_{sij}+1)+\log\Gamma(n_{uij}+1))\right]\right]\label{mdloglike}
+\end{split}
+\end{align}
+
+The gradient is given by:
+\begin{align}
+\frac{\partial l}{ \partial \alpha_{uj}} = \sum_i \Psi(\sum_j \alpha_{uj}) - \Psi (\sum_j \alpha_{uj}+n_{uij}+n_{sij}) + \Psi(\alpha_{uj}+n_{uij}+n_{sij}) - \Psi(\alpha_{uj})\label{mdgrad}
+\end{align}
+
+and the Hessian is:
+\begin{align}
+j&\ne k; &\frac{\partial^2 l}{\partial \alpha_{uj}\alpha_{uk}} & = \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})\\
+j&=k;&\frac{\partial^2l}{\partial \alpha_{uj}^2} &= \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})+\Psi'(\alpha_{uj}+n_{uij}+n_{sij})-\Psi'(\alpha_{iuj})
+\end{align}
+
+The marginal likelihood of the responding component in eq~\ref{eq:postmult} can be rewritten as:
+\begin{align}
+\begin{split}
+\sum_i\bigg[\sum_j \big[ \log\Gamma(\alpha_{uj}+n_{uij})+\log\Gamma(\alpha_{sj}+n_{sij}) -\log\Gamma(\alpha_{uj}) -\log\Gamma(\alpha_{sj})\\
+-\log\Gamma(n_{sij}+1)-\log\Gamma(n_{uij}+1)\big]+\log\Gamma(\sum_j\alpha_{sj})+\log\Gamma(\sum_j\alpha_{uj})\\
+-\log\Gamma(\sum_j\alpha_{uj}+n_{uij})-\log\Gamma(\sum_j\alpha_{sj}+n_{sij})+\log\Gamma(N_{si}+1)+\log\Gamma(N_{ui}+1)\bigg]
+\end{split}
+\end{align}
+with gradient:
+\begin{align}
+\frac{\partial l}{\partial\alpha_{\phi j}} = \sum_i \Psi(\alpha_{\phi j}+n_{\phi ij})-\Psi(\alpha_{\phi j})+\Psi(\sum_j \alpha_{\phi j}) - \Psi(\sum_j \alpha_{\phi j}+n_{\phi ij}): (\phi \in {s,u})
+\end{align}
+and Hessian:
+\begin{align}
+\frac{\partial^2l}{\partial \alpha_{\phi j}\alpha_{\phi k}}& \overset {k=j}{=}\sum_i \Psi'(\alpha_{\phi j}) - \Psi'(\alpha_{\phi j}) + \Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})\\
+\frac{\partial^2l}{\partial \alpha_{\phi j}^2}&=\Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})
+\end{align}
 
 \subsubsection*{Mixture Model Complexity}
 We may wish to detect any of $2^3 = 8$ different possible scenarios where the proportion of events in corresponding cells of the contingency tables are either equal or unequal between stimulated and unstimulated conditions. Such a model would have 8 components and 55 parameters. However, if we recognize that the models can be nested, i.e. that parameters can be shared across components with similar outcomes, then the number of parameters can be reduced to 19, and further to 15 if we only consider components where any one cell of the tables differs between stimulated and unstimulated conditions. This is outlined in Table~\ref{tab:nesting}.
