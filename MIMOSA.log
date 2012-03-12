@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  9 MAR 2012 15:01
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  10 MAR 2012 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1100,7 +1100,7 @@ Overfull \hbox (1.82501pt too wide) in paragraph at lines 224--224
  []
 
 [8]
-Overfull \hbox (32.95036pt too wide) in paragraph at lines 267--267
+Overfull \hbox (30.05641pt too wide) in paragraph at lines 267--267
 [] 
  []
 
@@ -1137,7 +1137,7 @@ Overfull \hbox (3.61537pt too wide) in paragraph at lines 354--355
 Here is how much of TeX's memory you used:
  21222 strings out of 494522
  388886 string characters out of 3156642
- 466958 words of memory out of 3000000
+ 465958 words of memory out of 3000000
  24064 multiletter control sequences out of 15000+200000
  12827 words of font info for 75 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191

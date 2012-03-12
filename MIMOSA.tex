@@ -263,7 +263,7 @@ The gradient is given by:
 and the Hessian is:
 \begin{align}
 j&\ne k; &\frac{\partial^2 l}{\partial \alpha_{uj}\alpha_{uk}} & = \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})\\
-j&=k;&\frac{\partial^2l}{\partial \alpha_{uj}^2} &= \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})+\Psi'(\alpha_{uj}+n_{uij}+n_{sij})-\Psi'(\alpha_{iuj})
+j&=k;&\frac{\partial^2l}{\partial \alpha_{uj}^2} &= \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})+\Psi'(\alpha_{uj}+n_{uij}+n_{sij})-\Psi'(\alpha_{uj})
 \end{align}
 
 The marginal likelihood of the responding component in eq~\ref{eq:postmult} can be rewritten as:
@@ -280,8 +280,8 @@ with gradient:
 \end{align}
 and Hessian:
 \begin{align}
-\frac{\partial^2l}{\partial \alpha_{\phi j}\alpha_{\phi k}}& \overset {k=j}{=}\sum_i \Psi'(\alpha_{\phi j}) - \Psi'(\alpha_{\phi j}) + \Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})\\
-\frac{\partial^2l}{\partial \alpha_{\phi j}^2}&=\Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})
+\frac{\partial^2l}{\partial \alpha_{\phi j}^2}& \overset {k=j}{=}\sum_i \Psi'(\alpha_{\phi j}+n_{\phi ij}) - \Psi'(\alpha_{\phi j}) + \Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})\\
+\frac{\partial^2l}{\partial \alpha_{\phi j}\alpha_{\phi k}}&\overset{k\ne j}{=}\sum_i\Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})
 \end{align}
 
 \subsubsection*{Mixture Model Complexity}
