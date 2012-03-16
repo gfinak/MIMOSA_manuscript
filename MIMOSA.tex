@@ -15,6 +15,7 @@
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{booktabs}
 
 % Will Robertson's fontspec.sty can be used to simplify font choices.
 % To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
@@ -28,10 +29,11 @@
 
 \title{Mixture Models for Single Cell Assays}
 \author[1]{Greg Finak}
-\author[1]{\ldots Others \ldots}
+\author[2]{SC De Rosa}
 \author[1]{Raphael Gottardo}
 
 \affil[1]{Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA}
+\affil[2]{HIV Vaccine Trials Network, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, Wa}
 \date{\today}                                       
 
 \begin{document}
@@ -63,7 +65,7 @@ The methodology for statistical analysis and calling responders and non--respond
 
 
 \subsection{Statistical Analysis of Responder and Non--responder Calls for Direct Comparison Against the Bayesian Mixture Model Approach}
-Positivity calls for vaccine responders and non--responders depend upon the selection of an appropriate threshold. Therefore, to compare different methods of analysis, comparable thresholds for positivity must be selected for the methods. Our mixture modelling approach is fit within each stimulation, and we make positivity calls based on a false discovery rate calculated across individuals, within each stimulation, whereas the originally published analysis makes multiple testing adjustments within individuals, across cytokines \todo[inline]{IS THIS CORRECT, OR IS IT WITHIN INDIVIDUALS ACROSS STIMULATIONS?}. In order to have comparable response rates, we reanalyzed the ICS data using Fisher's one--sided exact test (as described in the original publication) but made positivity calls based on the false discovery rate computed across individuals within each stimulation.
+Positivity calls for vaccine responders and non--responders depend upon the selection of an appropriate threshold. Therefore, to compare different methods of analysis, comparable thresholds for positivity must be selected for the methods. Our mixture modelling approach is fit within each stimulation, and we make positivity calls based on a false discovery rate calculated across individuals, within each stimulation, whereas the originally published analysis makes multiple testing adjustments within individuals, across cytokines. In order to have comparable response rates, we reanalyzed the ICS data using Fisher's one--sided exact test (as described in the original publication) but made positivity calls based on the false discovery rate computed across individuals within each stimulation.
 
 \subsection{Two Competing Beta--Binomial Models}
 Our approach to modelling an individual's response to vaccine using ICS data takes a Bayesian approach. We model all observations (individuals) simultaneously for each combination of cytokine and stimulation (including the unstimulated samples). For a given cytokine, we let $n_s$ be the number of cytokine--positive cells in the stimulated sample, $N_s$ the total number of cells in the stimulated sample, and $n_u, N_u$, the number of cytokine--positive and total number of cells in the unstimulated sample, respectively. Note that usually, $N_u \ne N_s$. The observed count data $\mathbf{y}$ is a matrix of size $4 \times P$, where $P$ is the number of participants. For the $i$'th individual $\mathbf{y}_i = \left<N_{si},n_{si},N_{ui},n_{ui}\right>$, and can be represented as the following contingency table: 
@@ -326,6 +328,58 @@ In order to assess the sensitivity of the model to deviations from model assumpt
 We tested our method on ICS data from HVTN054, a safety and immunogenicity vaccine trial for a replication defective Adenovirus vector HIV vaccine. The data set consisted of 48 individuals who received two doses of vaccine or placebo, and ICS time points for these individuals were available at day 0 and day 28 after vaccination. Responders for each cytokine and stimulation combination were classified using Fisher's exact test and the constrained MIMOSA model at the 1\% FDR level, then the response rate within the control and treatment groups were calculated for both methods. Figure~\ref{fig:positivityrates} shows the response rates for a subset of the ICS data (Gag2 and Pol2 stimulations, for the IL2 and IFNg cytokines, at days 0 and 28, in both CD4 and CD8 T--cell subpopulations). On day 0, we found that the response rates from the MIMOSA model were zero, and equal to response rates computed from Fisher's exact test across all treatment and control groups. The same was true for the response rate in the control groups at day 28. In the treatment groups, at day 28, the response rates for the MIMOSA model were  generally higher or equal to those for Fisher's exact test, demonstrating the increased sensitivity and specificity of our method.
 
 The MIMOSA framework generates predictions for individual samples. To better understand the differences between the predictions from the MIMOSA model and Fisher's exact test, we examined the model fit from Gag2 stimulated CD4+ T--cells at day 28 producing IFNg (Figure~\ref{fig:icsdata}). We see that two individuals are predicted as responders by the MIMOSA model which are not detected by Fisher's exact test. Both individuals have a larger proportion of IFNg producing antigen specific T--cells in antigen stimulated than unstimulated samples, as measure by the MAP or ML estimates of the proportions (Figure~\ref{fig:icsdata}). 
+
+\subsection*{Detecting coexpression via the Multinomial-Dirichlet model}
+We applied the Multinomial--Dirichlet extension of MIMOSA to the HVTN054 trial data to identify observations with cells expressing polyfunctional cytokine profiles. As a proof of principle we limited the model to the two--component case (Figure~\ref{tab:nesting}), with one component for the null model with no difference between stimulations, and one component for the alternative model with a difference between stimulations. We fit the model to the IL4 and TNFa cytokines for Env1 stimulated CD4 T--cells from the day 28 time point. The classification of responder and non--responder individuals was compared between the multivariate MIMOSA model, univariate MIMOSA models applied to each cytokine combination, and Fisher's exact test applied to each cytokine combination. 
+
+The multivariate MIMOSA model detected two additional responders than Fisher's exact test at the 1\% FDR level (Table~\ref{tab:MDFisher, top left.}. The univariate MIMOSA model applied to each cytokine combination individually also outperformed Fisher's exact test, detecting one more responder for the IL4 and TNFa combination (Table~\ref{tab:MDFisher} bottom right), and two more responders for the TNFa and not IL4 cytokine combination (Table~\ref{tab:MDFisher} bottom left).  In the multivariate case, the two responders detected by MIMOSA that were missed by Fisher's exact test had a  2.4--fold and 2.5--fold increase in the proportion of TNFa+/IL4- cells in the stimulated samples than the unstimulated samples. These are the same two samples detected by the univariate MIMOSA model for TNFa+/IL4- cells, one of which also exhibits a 1.7--fold increase in IL4+/TNFa- expression between stimulated and unstimulated samples that was detected by univariate MIMOSA, but not detected by Fisher's exact test.
+
+\begin{table}[ht]
+\begin{center}
+\begin{minipage}{0.9\linewidth}
+\caption{Confusion matrices comparing responders and non--responders identified by the MIMOSA models and Fisher's exact test. Top left: Fisher's exact test vs the multivariate MIMOSA model for any combination of cytokines.Top right: Fisher's exact test vs MIMOSA for the univariate combination of IL4 and not TNFa. Bottom left: Fisher's exact test vs univariate MIMOSA for TNFa and not IL4. Bottom right: Fisher's exact test vs univariate MIMOSA for IL4 and TNFa. False discovery rate thresholds were set at 1\% for each cytokine combination (except in the multivariate model, where it was 1\% for each observation). }\label{tab:MDFisher}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\center\begin{tabular}{rrr}
+  \hline
+  \multicolumn{3}{c}{Any Combination}\\
+  \hline
+&\multicolumn{2}{c}{MIMOSA}\\
+\cmidrule(r){2-3} & NR & R \\ 
+\cmidrule(r){1-1}
+Fisher's Exact Test&&\\  \hlineNR &  32 &   2 \\   R &   0 &   4 \\    \hline\end{tabular}\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\center\begin{tabular}{rrr}
+\hline
+\multicolumn{3}{c}{IL4 and not TNFa}\\
+  \hline
+&\multicolumn{2}{c}{MIMOSA}\\
+\cmidrule(r){2-3} & NR & R \\ 
+\cmidrule(r){1-1}
+Fisher's Exact Test&&\\  \hlineNR &  38 &   0 \\   R &   0 &   0 \\    \hline\end{tabular}\end{minipage}
+
+\begin{minipage}{0.49\linewidth}
+\center
+\begin{tabular}{rrr}
+  \hline
+  \multicolumn{3}{c}{TNFa and not IL4}\\
+  \hline
+&\multicolumn{2}{c}{MIMOSA}\\
+\cmidrule(r){2-3} & NR & R \\ 
+\cmidrule(r){1-1}
+Fisher's Exact Test&&\\  \hlineNR &  36 &   2 \\   R &   0 &   0 \\    \hline\end{tabular}\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\center
+\begin{tabular}{rrr}
+  \hline
+  \multicolumn{3}{c}{IL4 and TNFa}\\
+  \hline
+&\multicolumn{2}{c}{MIMOSA}\\
+\cmidrule(r){2-3} & NR & R \\ 
+\cmidrule(r){1-1}
+Fisher's Exact Test&&\\  \hlineNR &  33 &   1 \\   R &   0 &   4 \\    \hline\end{tabular}\end{minipage}
+\end{center}\end{table}
+
 
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering

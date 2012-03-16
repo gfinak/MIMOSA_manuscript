@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  10 MAR 2012 10:36
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  16 MAR 2012 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -522,6 +522,26 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
+(/usr/local/texlive/2010/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen175
+\lightrulewidth=\dimen176
+\cmidrulewidth=\dimen177
+\belowrulesep=\dimen178
+\belowbottomsep=\dimen179
+\aboverulesep=\dimen180
+\abovetopsep=\dimen181
+\cmidrulesep=\dimen182
+\cmidrulekern=\dimen183
+\defaultaddspace=\dimen184
+\@cmidla=\count139
+\@cmidlb=\count140
+\@aboverulesep=\dimen185
+\@belowrulesep=\dimen186
+\@thisruleclass=\count141
+\@lastruleclass=\count142
+\@thisrulewidth=\dimen187
+)
 (/usr/local/texlive/2010/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2011/02/26 v2.1f Advanced font selection for XeLaTeX/LuaLaTeX
 
@@ -535,7 +555,7 @@ Package: expl3 2011/04/09 v2222 L3 Experimental code bundle wrapper
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count139
+\et@xins=\count143
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3basics.sty
 Package: l3basics 2011/04/23 v2246 L3 Experimental basic definitions
@@ -548,21 +568,21 @@ Package: l3tl 2011/04/09 v2223 L3 Experimental Token Lists
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3int.sty
 Package: l3int 2011/04/11 v2229 L3 Experimental Integer module
-\l_tmpa_int=\count140
-\l_tmpb_int=\count141
-\l_tmpc_int=\count142
-\g_tmpa_int=\count143
-\g_tmpb_int=\count144
-\c_max_int=\count145
-\g_tl_inline_level_int=\count146
-\g_prg_inline_level_int=\count147
+\l_tmpa_int=\count144
+\l_tmpb_int=\count145
+\l_tmpc_int=\count146
+\g_tmpa_int=\count147
+\g_tmpb_int=\count148
+\c_max_int=\count149
+\g_tl_inline_level_int=\count150
+\g_prg_inline_level_int=\count151
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3quark.sty
 Package: l3quark 2011/04/14 v2234 L3 Experimental Quark Commands
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3seq.sty
 Package: l3seq 2011/04/21 v2245 The LaTeX3 kernel: sequences and stacks
-\g_seq_nesting_depth_int=\count148
+\g_seq_nesting_depth_int=\count152
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3toks.sty
 Package: l3toks 2011/04/09 v2223 L3 Experimental Token Registers
@@ -579,7 +599,7 @@ Package: l3prg 2011/04/09 v2223 L3 Experimental control structures
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3clist.sty
 Package: l3clist 2011/04/09 v2223 L3 Experimental comma separated lists
-\g_clist_map_inline_int=\count149
+\g_clist_map_inline_int=\count153
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3token.sty
 Package: l3token 2011/04/09 v2223 L3 Experimental token investigation and manip
@@ -587,7 +607,7 @@ ulation
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3prop.sty
 Package: l3prop 2011/04/09 v2223 L3 Experimental Property Lists
-\g_prop_inline_level_int=\count150
+\g_prop_inline_level_int=\count154
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3msg.sty
 Package: l3msg 2010/10/02 v2052 L3 Experimental LaTeX Messages module
@@ -605,7 +625,7 @@ Package: l3msg 2010/10/02 v2052 L3 Experimental LaTeX Messages module
 Package: l3io 2010/10/03 v2063 L3 Experimental i/o module
 \g_iow_streams_prop=\toks48
 \g_ior_streams_prop=\toks49
-\l_iow_stream_int=\count151
+\l_iow_stream_int=\count155
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3skip.sty
 Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
@@ -614,12 +634,12 @@ Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
 \l_tmpc_skip=\skip57
 \g_tmpa_skip=\skip58
 \g_tmpb_skip=\skip59
-\l_tmpa_dim=\dimen175
-\l_tmpb_dim=\dimen176
-\l_tmpc_dim=\dimen177
-\l_tmpd_dim=\dimen178
-\g_tmpa_dim=\dimen179
-\g_tmpb_dim=\dimen180
+\l_tmpa_dim=\dimen188
+\l_tmpb_dim=\dimen189
+\l_tmpc_dim=\dimen190
+\l_tmpd_dim=\dimen191
+\g_tmpa_dim=\dimen192
+\g_tmpb_dim=\dimen193
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3box.sty
 Package: l3box 2011/04/09 v2223 L3 Experimental Box module
@@ -627,16 +647,16 @@ Package: l3box 2011/04/09 v2223 L3 Experimental Box module
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3keyval.sty
 Package: l3keyval 2011/04/09 v2223 L3 Experimental keyval processing
-\l_KV_level_int=\count152
+\l_KV_level_int=\count156
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3keys.sty
 Package: l3keys 2010/11/11 v2082 L3 Experimental key-value support
-\l_keys_choice_int=\count153
+\l_keys_choice_int=\count157
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3precom.sty
 Package: l3precom 2011/04/09 v2223 L3 Experimental precompilation module
-\g_gen_sym_int=\count154
-\g_ggen_sym_int=\count155
+\g_gen_sym_int=\count158
+\g_ggen_sym_int=\count159
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3xref.sty
 Package: l3xref 2011/04/09 v2223 L3 Experimental cross referencing
@@ -648,79 +668,79 @@ Package: l3file 2011/04/21 v2242 The LaTeX3 kernel: file operations
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3fp.sty
 Package: l3fp 2011/03/19 v2201 L3 Experimental floating-point operations
-\c_one_million=\count156
-\c_one_hundred_million=\count157
-\c_five_hundred_million=\count158
-\c_one_thousand_million=\count159
-\c_fp_pi_by_four_decimal_int=\count160
-\c_fp_pi_by_four_extended_int=\count161
-\c_fp_pi_decimal_int=\count162
-\c_fp_pi_extended_int=\count163
-\c_fp_two_pi_decimal_int=\count164
-\c_fp_two_pi_extended_int=\count165
-\l_fp_count_int=\count166
-\l_fp_div_offset_int=\count167
-\l_fp_exp_integer_int=\count168
-\l_fp_exp_decimal_int=\count169
-\l_fp_exp_extended_int=\count170
-\l_fp_exp_exponent_int=\count171
-\l_fp_input_a_sign_int=\count172
-\l_fp_input_a_integer_int=\count173
-\l_fp_input_a_decimal_int=\count174
-\l_fp_input_a_exponent_int=\count175
-\l_fp_input_b_sign_int=\count176
-\l_fp_input_b_integer_int=\count177
-\l_fp_input_b_decimal_int=\count178
-\l_fp_input_b_exponent_int=\count179
-\l_fp_input_a_extended_int=\count180
-\l_fp_input_b_extended_int=\count181
-\l_fp_mul_a_i_int=\count182
-\l_fp_mul_a_ii_int=\count183
-\l_fp_mul_a_iii_int=\count184
-\l_fp_mul_a_iv_int=\count185
-\l_fp_mul_a_v_int=\count186
-\l_fp_mul_a_vi_int=\count187
-\l_fp_mul_b_i_int=\count188
-\l_fp_mul_b_ii_int=\count189
-\l_fp_mul_b_iii_int=\count190
-\l_fp_mul_b_iv_int=\count191
-\l_fp_mul_b_v_int=\count192
-\l_fp_mul_b_vi_int=\count193
-\l_fp_mul_output_int=\count194
-\l_fp_output_sign_int=\count195
-\l_fp_output_integer_int=\count196
-\l_fp_output_decimal_int=\count197
-\l_fp_output_exponent_int=\count198
-\l_fp_output_extended_int=\count199
-\l_fp_round_position_int=\count200
-\l_fp_round_target_int=\count201
+\c_one_million=\count160
+\c_one_hundred_million=\count161
+\c_five_hundred_million=\count162
+\c_one_thousand_million=\count163
+\c_fp_pi_by_four_decimal_int=\count164
+\c_fp_pi_by_four_extended_int=\count165
+\c_fp_pi_decimal_int=\count166
+\c_fp_pi_extended_int=\count167
+\c_fp_two_pi_decimal_int=\count168
+\c_fp_two_pi_extended_int=\count169
+\l_fp_count_int=\count170
+\l_fp_div_offset_int=\count171
+\l_fp_exp_integer_int=\count172
+\l_fp_exp_decimal_int=\count173
+\l_fp_exp_extended_int=\count174
+\l_fp_exp_exponent_int=\count175
+\l_fp_input_a_sign_int=\count176
+\l_fp_input_a_integer_int=\count177
+\l_fp_input_a_decimal_int=\count178
+\l_fp_input_a_exponent_int=\count179
+\l_fp_input_b_sign_int=\count180
+\l_fp_input_b_integer_int=\count181
+\l_fp_input_b_decimal_int=\count182
+\l_fp_input_b_exponent_int=\count183
+\l_fp_input_a_extended_int=\count184
+\l_fp_input_b_extended_int=\count185
+\l_fp_mul_a_i_int=\count186
+\l_fp_mul_a_ii_int=\count187
+\l_fp_mul_a_iii_int=\count188
+\l_fp_mul_a_iv_int=\count189
+\l_fp_mul_a_v_int=\count190
+\l_fp_mul_a_vi_int=\count191
+\l_fp_mul_b_i_int=\count192
+\l_fp_mul_b_ii_int=\count193
+\l_fp_mul_b_iii_int=\count194
+\l_fp_mul_b_iv_int=\count195
+\l_fp_mul_b_v_int=\count196
+\l_fp_mul_b_vi_int=\count197
+\l_fp_mul_output_int=\count198
+\l_fp_output_sign_int=\count199
+\l_fp_output_integer_int=\count200
+\l_fp_output_decimal_int=\count201
 Normal \count register pool exhausted, switching to extended pool.
-\l_fp_split_sign_int=\count277
-\l_fp_tmp_int=\count278
-\l_fp_trig_octant_int=\count279
-\l_fp_trig_sign_int=\count280
-\l_fp_trig_decimal_int=\count281
-\l_fp_trig_extended_int=\count282
-\l_fp_tmp_dim=\dimen181
+\l_fp_output_exponent_int=\count277
+\l_fp_output_extended_int=\count278
+\l_fp_round_position_int=\count279
+\l_fp_round_target_int=\count280
+\l_fp_split_sign_int=\count281
+\l_fp_tmp_int=\count282
+\l_fp_trig_octant_int=\count283
+\l_fp_trig_sign_int=\count284
+\l_fp_trig_decimal_int=\count285
+\l_fp_trig_extended_int=\count286
+\l_fp_tmp_dim=\dimen194
 \l_fp_tmp_skip=\skip60
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3luatex.sty
 Package: l3luatex 2010/07/18 v1985 L3 Experimental LuaTeX functions
-\g_cctab_allocate_int=\count283
-\g_cctab_stack_int=\count284
+\g_cctab_allocate_int=\count287
+\g_cctab_stack_int=\count288
 ))
 (/usr/local/texlive/2010/texmf-dist/tex/latex/xpackages/xbase/xparse.sty
 Package: xparse 2011/04/08 v2219 Generic document command parser
 \c_xparse_shorthands_prop=\toks52
-\l_xparse_m_args_int=\count285
-\l_xparse_mandatory_args_int=\count286
-\l_xparse_processor_int=\count287
-\l_xparse_total_args_int=\count288
+\l_xparse_m_args_int=\count289
+\l_xparse_mandatory_args_int=\count290
+\l_xparse_processor_int=\count291
+\l_xparse_total_args_int=\count292
 )
 (/usr/local/texlive/2010/texmf-dist/tex/generic/kastrup/binhex.tex)
-\l_fontspec_script_int=\count289
-\l_fontspec_language_int=\count290
-\l_fontspec_strnum_int=\count291
+\l_fontspec_script_int=\count293
+\l_fontspec_language_int=\count294
+\l_fontspec_strnum_int=\count295
 Variant \tl_gset:cV already defined; not changing it on line 83
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/fontspec/fontspec-patches.sty
@@ -813,7 +833,7 @@ ther characters in Unicode lower plane
  LaTeX info: Defining document command \DeclareFontsExtensions
 (LaTeX)  with arg. spec. 'm' on line 474.
 
-\c@fontspec_tmp_int=\count292
+\c@fontspec_tmp_int=\count296
 LaTeX Info: Redefining \itshape on input line 2105.
 LaTeX Info: Redefining \slshape on input line 2109.
 LaTeX Info: Redefining \scshape on input line 2113.
@@ -854,7 +874,7 @@ s
  LaTeX info: Defining document command \textsupersubscript
 (LaTeX)  with arg. spec. 'sO{l}mm' on line 140.
 
-\subsupersep=\dimen182
+\subsupersep=\dimen195
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/metalogo/metalogo.sty
 Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
@@ -866,7 +886,7 @@ LaTeX Info: Redefining \LaTeXe on input line 219.
 )
 \xxt@tempbox=\box64
 )
-\g_fontspec_family_Times New Roman_int=\count293
+\g_fontspec_family_Times New Roman_int=\count297
  fontspec info: Defining font family 'TimesNewRoman(0)' for font 'Times New Rom
 an' with options [Mapping=tex-text,Mapping=tex-text].
 
@@ -892,7 +912,7 @@ on.
 
  fontspec info: Gill Sans scale = 0.9965.
 
-\g_fontspec_family_Gill Sans_int=\count294
+\g_fontspec_family_Gill Sans_int=\count298
  fontspec info: Defining font family 'GillSans(0)' for font 'Gill Sans' with op
 tions [Mapping=tex-text,Scale=MatchLowercase,Mapping=tex-text].
 
@@ -923,7 +943,7 @@ tion.
 
  fontspec info: Andale Mono scale = 0.87962.
 
-\g_fontspec_family_Andale Mono_int=\count295
+\g_fontspec_family_Andale Mono_int=\count299
  fontspec info: Defining font family 'AndaleMono(0)' for font 'Andale Mono' wit
 h options [Mapping=tex-text,Scale=MatchLowercase].
 
@@ -946,20 +966,20 @@ t).
 (./MIMOSA.aux)
 \openout1 = `MIMOSA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1000,147 +1020,149 @@ ABD: EveryShipout initializing macros
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 37.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 37.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 37.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 37.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 37.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 37.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 37.
-LaTeX Font Info:    Redeclaring math accent \check on input line 37.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 37.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 37.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 37.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 37.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 37.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 39.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 39.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 39.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 39.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 39.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 39.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 39.
+LaTeX Font Info:    Redeclaring math accent \check on input line 39.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 39.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 39.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 39.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 39.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 37.
+(Font)              `operators' in the math version `normal' on input line 39.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> EU1/TimesNewRoman(0)/m/n on input line 
-37.
+39.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 37.
+(Font)              `operators' in the math version `bold' on input line 39.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/m/n on input line
- 37.
+ 39.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 37.
+n input line 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 37.
+n input line 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> EU1/TimesNewRoman(0)/m/it on input lin
-e 37.
+e 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/bx/n on input lin
-e 37.
+e 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/GillSans(0)/m/n on input line 37.
+(Font)                  OT1/cmss/m/n --> EU1/GillSans(0)/m/n on input line 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/m/n on input line 37
+(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/m/n on input line 39
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 37.
+on input line 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 37.
+on input line 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> EU1/TimesNewRoman(0)/bx/it on input l
-ine 37.
+ine 39.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/GillSans(0)/bx/n on input line 37
+(Font)                  OT1/cmss/bx/n --> EU1/GillSans(0)/bx/n on input line 39
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/bx/n on input line 3
-7.
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+9.
+LaTeX Font Info:    Try loading font information for U+msa on input line 40.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 40.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Overfull \hbox (17.03381pt too wide) in paragraph at lines 40--41
+Overfull \hbox (17.03381pt too wide) in paragraph at lines 42--43
 \EU1/TimesNewRoman(0)/m/n/10 face proteins, or mRNA expression levels of genes 
 in single cells from specific cell sub–populations.
  []
 
 [1
 
-] [2] [3]
-Overfull \hbox (5.06525pt too wide) in paragraph at lines 66--67
-[]\EU1/TimesNewRoman(0)/m/n/10.95 . In order to have comparable response rates,
- we reanalyzed the ICS data using Fisher’s one–sided
- []
-
-[4]
-Overfull \hbox (23.82278pt too wide) in paragraph at lines 126--126
+] [2] [3] [4]
+Overfull \hbox (23.82278pt too wide) in paragraph at lines 128--128
 [] 
  []
 
 [5] [6] [7]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 224--224
+Overfull \hbox (1.82501pt too wide) in paragraph at lines 226--226
 [][] [] 
  []
 
 [8]
-Overfull \hbox (30.05641pt too wide) in paragraph at lines 267--267
+Overfull \hbox (30.05641pt too wide) in paragraph at lines 269--269
 [] 
  []
 
 [9]
-Overfull \hbox (14.02559pt too wide) in paragraph at lines 311--312
+Overfull \hbox (14.02559pt too wide) in paragraph at lines 313--314
 \EU1/TimesNewRoman(0)/m/n/10.95 We examined the performance of the constrained 
 ($\OML/cmm/m/it/10.95 p[] > p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) and unconstra
 ined ($\OML/cmm/m/it/10.95 p[] \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/c
 mm/m/it/10.95 p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) beta–binomial
  []
 
-[10] [11]
+[10] [11] [12]
+
+LaTeX Warning: Reference `tab:MDFisher, top left.' on page 13 undefined on inpu
+t line 335.
+
 File: Figures/simulations_all.pdf Graphic file (type QTm)
- <use  "Figures/simulations_all.pdf" >
+<use  "Figures/simulations_all.pdf" >
 File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
 
 <use  "Figures/simulations_violatedmodel.pdf" >
 File: Figures/PositivityRates.pdf Graphic file (type QTm)
 
 <use  "Figures/PositivityRates.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 347--348
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 432--433
  [][] 
  []
 
 File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
 <use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 354--355
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 439--440
  [][] 
  []
 
-[12] [13] [14] [15] [16] [17] (./MIMOSA.bbl [18
+[13] [14] [15] [16] [17] [18] (./MIMOSA.bbl [19
 
-]) [19] (./MIMOSA.aux) ) 
+]) [20] (./MIMOSA.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 21222 strings out of 494522
- 388886 string characters out of 3156642
- 465958 words of memory out of 3000000
- 24064 multiletter control sequences out of 15000+200000
+ 21244 strings out of 494522
+ 388748 string characters out of 3156642
+ 470899 words of memory out of 3000000
+ 24082 multiletter control sequences out of 15000+200000
  12827 words of font info for 75 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,22n,78p,2619b,574s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,22n,57p,2619b,342s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (19 pages).
+Output written on MIMOSA.pdf (20 pages).
