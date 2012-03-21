@@ -1,39 +1,34 @@
 \relax 
-\citation{}
+\citation{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}
 \citation{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}
 \citation{Plotkin:2010ve,Horton:2007tsa,Kim:2010fw}
 \citation{Jang:2011uj}
 \citation{Flatz:2011jb}
+\citation{Trigona:2003,Sinclair:2004hs,Horton:2007tsa}
+\citation{Proschan:2009ks}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
 \citation{Peiperl:2010ej}
 \citation{Peiperl:2010ej}
 \citation{Peiperl:2010ej,Horton:2007tsa}
 \citation{Horton:2007tsa}
 \citation{Peiperl:2010ej}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Materials and Methods}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Vaccine Trial ICS Dataset Description}{2}}
 \citation{Hahne:2009vv}
 \citation{Peiperl:2010ej}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Data Import, Preprocessing, and Gating}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Statistical Analysis of Responder and Non--responder calls}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Statistical Analysis in the Published Trial}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Statistical Analysis of Responder and Non--responder Calls for Direct Comparison Against the Bayesian Mixture Model Approach}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Two Competing Beta--Binomial Models}{4}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 2 x 2 contingency table of counts for cytokine positive and cytokine negative events between stimulated and unstimulated conditions}}{4}}
 \newlabel{tab:twobytwo}{{1}{4}}
-\newlabel{eq:null}{{1}{4}}
-\newlabel{eq:alternate}{{2}{4}}
-\newlabel{eq:stimprior}{{3}{4}}
-\newlabel{eq:nullprior}{{4}{4}}
-\newlabel{eq:model1post}{{5}{4}}
+\newlabel{eq:null}{{1}{5}}
+\newlabel{eq:alternate}{{2}{5}}
+\newlabel{eq:stimprior}{{3}{5}}
+\newlabel{eq:nullprior}{{4}{5}}
+\newlabel{eq:model1post}{{5}{5}}
 \newlabel{eq:model1MLL}{{6}{5}}
-\newlabel{eq:model2post}{{7}{5}}
+\newlabel{eq:model2post}{{7}{6}}
 \newlabel{eq:model2MLL}{{8}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}The Mixture of Beta--Binomials}{6}}
 \citation{Dempster:1977ul}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}The Mixture of Beta--Binomials}{7}}
 \newlabel{eq:CDLL}{{10}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$ }}{8}}
-\newlabel{tab:multdir}{{2}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$ }}{9}}
+\newlabel{tab:multdir}{{2}{9}}
 \newlabel{NRmd}{{18}{9}}
 \newlabel{eq:postmult}{{19}{9}}
 \newlabel{mdloglike}{{20}{9}}
@@ -48,17 +43,24 @@
 \newlabel{fig:positivityrates}{{3}{16}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Likelihood surface and volcano plot for IFNg producing, CD4+ T-cells in Gag2 stimulated vs control samples on day 28. A significant difference between control and stimulated samples is called at the 1\% FDR threshold (red) for the Beta--binomial model, and at 1\% for FDR adjusted p--values from Fisher's exact test (green). The likelihood surface shows the observed counts from stimulated and unstimulated samples. The volcano plot shows the difference between the proportion of cytokine positive cells in the stimulated and unstimulated samples, for the maximum likelihood estimates of the proportions (triangles) and for the MAP estimates (crosses). The effect of shrinking the MAP estimates towards zero can be seen in the volcano plot.}}{17}}
 \newlabel{fig:icsdata}{{4}{17}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Confusion matrices comparing responders and non--responders identified by the MIMOSA models and Fisher's exact test. Top left: Fisher's exact test vs the multivariate MIMOSA model for any combination of cytokines.Top right: Fisher's exact test vs MIMOSA for the univariate combination of IL4 and not TNFa. Bottom left: Fisher's exact test vs univariate MIMOSA for TNFa and not IL4. Bottom right: Fisher's exact test vs univariate MIMOSA for IL4 and TNFa. False discovery rate thresholds were set at 1\% for each cytokine combination (except in the multivariate model, where it was 1\% for each observation). }}{18}}
-\newlabel{tab:MDFisher}{{4}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Posterior probabilities from the four--dimensional, Multivariate--Dirichlet, MIMOSA model, compared against posterior probabilities from univariate MIMOSA for each combination of the cytokines IL4 and TNFa, on days zero and 28 for Env--2 peptide stimulated CD4+ T--cells.}}{18}}
+\newlabel{fig:polyfunctionality}{{5}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Posterior probabilities from the four--dimensional, Multivariate--Dirichlet, MIMOSA model, compared against posterior probabilities from univariate MIMOSA for each combination of the cytokines IL4 and TNFa, on days zero and 28 for Env--1 peptide stimulated CD4+ T--cells.}}{18}}
+\newlabel{fig:polyfunctionalityenv1}{{6}{18}}
 \bibstyle{unsrtnat}
 \bibdata{MIMOSA}
-\bibcite{Horton:2007tsa}{{1}{2007}{{Horton et~al.}}{{Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu, McElrath, and De~Rosa}}}
-\bibcite{DeRosa:2004wp}{{2}{2004}{{De~Rosa et~al.}}{{De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans, Koup, Miller, and Roederer}}}
-\bibcite{Betts:2006dw}{{3}{2006}{{Betts et~al.}}{{Betts, Nason, West, De~Rosa, Migueles, Abraham, Lederman, Benito, Goepfert, Connors, Roederer, and Koup}}}
-\bibcite{Plotkin:2010ve}{{4}{2010}{{Plotkin}}{{}}}
-\bibcite{Kim:2010fw}{{5}{2010}{{Kim et~al.}}{{Kim, Rerks-Ngarm, Excler, and Michael}}}
-\bibcite{Jang:2011uj}{{6}{2011}{{Jang et~al.}}{{Jang, Simon, Feddersen, Rakhshan, Schultz, Zschunke, Lingle, Kolbert, and Jen}}}
-\bibcite{Flatz:2011jb}{{7}{2011}{{Flatz et~al.}}{{Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet, Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel}}}
-\bibcite{Peiperl:2010ej}{{8}{2010}{{Peiperl et~al.}}{{Peiperl, Morgan, Moodie, Li, Russell, Graham, Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials Network}}}}
-\bibcite{Hahne:2009vv}{{9}{2009}{{Hahne et~al.}}{{Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar, Spidlen, Strain, and Gentleman}}}
-\bibcite{Dempster:1977ul}{{10}{1977}{{Dempster et~al.}}{{Dempster, Laird, and Rubin}}}
+\bibcite{Altman:1996wf}{{1}{1996}{{Altman et~al.}}{{Altman, Moss, Goulder, Barouch, McHeyzer-Williams, Bell, McMichael, and Davis}}}
+\bibcite{Betts:2006dw}{{2}{2006}{{Betts et~al.}}{{Betts, Nason, West, De~Rosa, Migueles, Abraham, Lederman, Benito, Goepfert, Connors, Roederer, and Koup}}}
+\bibcite{Inokuma:2007tn}{{3}{2007}{{Inokuma et~al.}}{{Inokuma, dela Rosa, Schmitt, Haaland, Siebert, Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, and Maecker}}}
+\bibcite{Horton:2007tsa}{{4}{2007}{{Horton et~al.}}{{Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu, McElrath, and De~Rosa}}}
+\bibcite{DeRosa:2004wp}{{5}{2004}{{De~Rosa et~al.}}{{De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans, Koup, Miller, and Roederer}}}
+\bibcite{Plotkin:2010ve}{{6}{2010}{{Plotkin}}{{}}}
+\bibcite{Kim:2010fw}{{7}{2010}{{Kim et~al.}}{{Kim, Rerks-Ngarm, Excler, and Michael}}}
+\bibcite{Jang:2011uj}{{8}{2011}{{Jang et~al.}}{{Jang, Simon, Feddersen, Rakhshan, Schultz, Zschunke, Lingle, Kolbert, and Jen}}}
+\bibcite{Flatz:2011jb}{{9}{2011}{{Flatz et~al.}}{{Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet, Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel}}}
+\bibcite{Trigona:2003}{{10}{2003}{{Trigona et~al.}}{{Trigona, Clair, Persaud, Punt, Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver}}}
+\bibcite{Sinclair:2004hs}{{11}{2004}{{Sinclair et~al.}}{{Sinclair, Black, Epling, Carvidi, Josefowicz, Bredt, and Jacobson}}}
+\bibcite{Proschan:2009ks}{{12}{2009}{{Proschan and Nason}}{{}}}
+\bibcite{Peiperl:2010ej}{{13}{2010}{{Peiperl et~al.}}{{Peiperl, Morgan, Moodie, Li, Russell, Graham, Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials Network}}}}
+\bibcite{Hahne:2009vv}{{14}{2009}{{Hahne et~al.}}{{Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar, Spidlen, Strain, and Gentleman}}}
+\bibcite{Dempster:1977ul}{{15}{1977}{{Dempster et~al.}}{{Dempster, Laird, and Rubin}}}

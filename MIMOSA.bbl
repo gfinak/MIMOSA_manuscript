@@ -1,9 +1,36 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{15}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Altman et~al.(1996)Altman, Moss, Goulder, Barouch, McHeyzer-Williams,
+  Bell, McMichael, and Davis]{Altman:1996wf}
+J~D Altman, P~A Moss, P~J Goulder, D~H Barouch, M~G McHeyzer-Williams, J~I
+  Bell, A~J McMichael, and M~M Davis.
+\newblock {Phenotypic analysis of antigen-specific T lymphocytes.}
+\newblock \emph{Science (New York, NY)}, 274\penalty0 (5284):\penalty0 94--96,
+  October 1996.
+
+\bibitem[Betts et~al.(2006)Betts, Nason, West, De~Rosa, Migueles, Abraham,
+  Lederman, Benito, Goepfert, Connors, Roederer, and Koup]{Betts:2006dw}
+Michael~R Betts, Martha~C Nason, Sadie~M West, Stephen~C De~Rosa, Stephen~A
+  Migueles, Jonathan Abraham, Michael~M Lederman, Jose~M Benito, Paul~A
+  Goepfert, Mark Connors, Mario Roederer, and Richard~A Koup.
+\newblock Hiv nonprogressors preferentially maintain highly functional
+  hiv-specific cd8+ t cells.
+\newblock \emph{Blood}, 107\penalty0 (12):\penalty0 4781--4789, June 2006.
+
+\bibitem[Inokuma et~al.(2007)Inokuma, dela Rosa, Schmitt, Haaland, Siebert,
+  Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, and
+  Maecker]{Inokuma:2007tn}
+Margaret Inokuma, Corazon dela Rosa, Charles Schmitt, Perry Haaland, Janet
+  Siebert, Douglas Petry, Mengxiang Tang, Maria~A Suni, Smita~A Ghanekar, Daiva
+  Gladding, John~F Dunne, Vernon~C Maino, Mary~L Disis, and Holden~T Maecker.
+\newblock {Functional T cell responses to tumor antigens in breast cancer
+  patients have a distinct phenotype and cytokine signature.}
+\newblock \emph{J Immunol}, 179\penalty0 (4):\penalty0 2627--2633, August 2007.
 
 \bibitem[Horton et~al.(2007)Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu,
   McElrath, and De~Rosa]{Horton:2007tsa}
@@ -23,15 +50,6 @@ Stephen~C De~Rosa, Fabien~X Lu, Joanne Yu, Stephen~P Perfetto, Judith Falloon,
 \newblock Vaccination in humans generates broad t cell cytokine responses.
 \newblock \emph{J Immunol}, 173\penalty0 (9):\penalty0 5372--5380, November
   2004.
-
-\bibitem[Betts et~al.(2006)Betts, Nason, West, De~Rosa, Migueles, Abraham,
-  Lederman, Benito, Goepfert, Connors, Roederer, and Koup]{Betts:2006dw}
-Michael~R Betts, Martha~C Nason, Sadie~M West, Stephen~C De~Rosa, Stephen~A
-  Migueles, Jonathan Abraham, Michael~M Lederman, Jose~M Benito, Paul~A
-  Goepfert, Mark Connors, Mario Roederer, and Richard~A Koup.
-\newblock Hiv nonprogressors preferentially maintain highly functional
-  hiv-specific cd8+ t cells.
-\newblock \emph{Blood}, 107\penalty0 (12):\penalty0 4781--4789, June 2006.
 
 \bibitem[Plotkin(2010)]{Plotkin:2010ve}
 S~Plotkin.
@@ -61,6 +79,31 @@ Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
   CD8 T cells elicited by different gene-based vaccines.}
 \newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
   (14):\penalty0 5724--5729, April 2011.
+
+\bibitem[Trigona et~al.(2003)Trigona, Clair, Persaud, Punt, Bachinsky,
+  Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver]{Trigona:2003}
+Wendy~L Trigona, James~H Clair, Natasha Persaud, Kara Punt, Margaret Bachinsky,
+  Usha Sadasivan-Nair, Sheri Dubey, Lynda Tussey, Tong-Ming Fu, and John
+  Shiver.
+\newblock {Intracellular staining for HIV-specific IFN-gamma production:
+  statistical analyses establish reproducibility and criteria for
+  distinguishing positive responses.}
+\newblock \emph{Journal of interferon {\&} cytokine research : the official
+  journal of the International Society for Interferon and Cytokine Research},
+  23\penalty0 (7):\penalty0 369--377, July 2003.
+
+\bibitem[Sinclair et~al.(2004)Sinclair, Black, Epling, Carvidi, Josefowicz,
+  Bredt, and Jacobson]{Sinclair:2004hs}
+Elizabeth Sinclair, Douglas Black, C~Lorrie Epling, Alexander Carvidi, Steven~Z
+  Josefowicz, Barry~M Bredt, and Mark~A Jacobson.
+\newblock {CMV antigen-specific CD4+ and CD8+ T cell IFNgamma expression and
+  proliferation responses in healthy CMV-seropositive individuals.}
+\newblock \emph{Viral immunology}, 17\penalty0 (3):\penalty0 445--454, 2004.
+
+\bibitem[Proschan and Nason(2009)]{Proschan:2009ks}
+Michael~A Proschan and Martha Nason.
+\newblock {Conditioning in 2 x 2 tables.}
+\newblock \emph{Biometrics}, 65\penalty0 (1):\penalty0 316--322, March 2009.
 
 \bibitem[Peiperl et~al.(2010)Peiperl, Morgan, Moodie, Li, Russell, Graham,
   Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
