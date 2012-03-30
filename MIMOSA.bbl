@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -128,5 +128,50 @@ A.P. Dempster, N.M. Laird, and D.B. Rubin.
 \newblock Maximum likelihood from incomplete data via the em algorithm.
 \newblock \emph{Journal of the Royal Statistical Society. Series B
   (Methodological)}, pages 1--38, 1977.
+
+\bibitem[Dittrich and Lehmann(2012)]{Dittrich:2012bv}
+Marcus Dittrich and Paul~V Lehmann.
+\newblock {Statistical analysis of ELISPOT assays.}
+\newblock \emph{Methods Mol Biol}, 792:\penalty0 173--183, 2012.
+
+\bibitem[Kendziorski et~al.(2003)Kendziorski, Newton, and
+  Lan]{Kendziorski:2003uw}
+CM~Kendziorski, MA~Newton, and H~Lan.
+\newblock {On parametric empirical Bayes methods for comparing multiple groups
+  using replicated gene expression profiles - Kendziorski - 2003 - Statistics
+  in Medicine - Wiley Online Library}.
+\newblock \emph{Statistics in {\ldots}}, 2003.
+
+\bibitem[Newton et~al.(2001)Newton, Kendziorski, Richmond, Blattner, and
+  Tsui]{Newton:2001go}
+M~A Newton, C~M Kendziorski, C~S Richmond, F~R Blattner, and K~W Tsui.
+\newblock {On differential variability of expression ratios: improving
+  statistical inference about gene expression changes from microarray data.}
+\newblock \emph{Journal of Computational Biology}, 8\penalty0 (1):\penalty0
+  37--52, 2001.
+
+\bibitem[Smyth et~al.(2005)Smyth, Michaud, and Scott]{Smyth:2005iy}
+Gordon~K Smyth, Jo{\"e}lle Michaud, and Hamish~S Scott.
+\newblock {Use of within-array replicate spots for assessing differential
+  expression in microarray experiments.}
+\newblock \emph{Bioinformatics (Oxford, England)}, 21\penalty0 (9):\penalty0
+  2067--2075, May 2005.
+
+\bibitem[Milush et~al.(2009)Milush, Long, Snyder-Cappione, Cappione, York,
+  Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon]{Milush:2009bz}
+Jeffrey~M Milush, Brian~R Long, Jennifer~E Snyder-Cappione, Amedeo~J Cappione,
+  Vanessa~A York, Lishomwa~C Ndhlovu, Lewis~L Lanier, Jakob Micha{\"e}lsson,
+  and Douglas~F Nixon.
+\newblock {Functionally distinct subsets of human NK cells and monocyte/DC-like
+  cells identified by coexpression of CD56, CD7, and CD4.}
+\newblock \emph{Blood}, 114\penalty0 (23):\penalty0 4823--4831, November 2009.
+
+\bibitem[Nason(2006)]{Nason:2006dx}
+M~Nason.
+\newblock {Patterns of Immune Response to a Vaccine or Virus as Measured by
+  Intracellular Cytokine Staining in Flow Cytometry: Hypothesis Generation and
+  Comparison of Groups}.
+\newblock \emph{Journal of Biopharmaceutical Statistics}, 16\penalty0
+  (4):\penalty0 483--498, August 2006.
 
 \end{thebibliography}
