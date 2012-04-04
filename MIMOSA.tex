@@ -16,6 +16,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{booktabs}
+\usepackage{multirow}
 \usepackage{url}
 
 % Will Robertson's fontspec.sty can be used to simplify font choices.
@@ -219,34 +220,84 @@ We initialize the $z_{ik}$'s using Fisher's exact test to assign each observatio
 
 Where $\hat{\mu}$ and $\hat{\sigma}^2$ are the sample mean and sample variance estimates, given the $z_{ik}$'s.
 
-
 \section{Results}
+The constrained model was applied to an ICS data set from a real--world vaccine trial in order to identify responders to antigen stimulation. The unconstrained model was applied to Fluidigm single--cell gene expression data to identify genes differentially expressed between stimulated and unstimulated conditions in populations of single--cells.
+
 \subsection{ICS}
+\subsubsection*{MIMOSA Outperforms Fisher's Exact Test in Real--World Vaccine Trial Data from HVTN054}
+
+We tested our method on ICS data from HVTN054, a safety and immunogenicity vaccine trial for a replication defective Adenovirus vector HIV vaccine. The data set consisted of 48 individuals who received two doses of vaccine or placebo, and ICS time points for these individuals were available at day 0 and day 28 after vaccination. Responders for each cytokine and stimulation combination were classified using Fisher's exact test and the constrained MIMOSA model at the 1\% FDR level, then the response rates for \textit{any cytokine} being positive within the control and treatment groups were calculated for both methods. Table~\ref{tab:positivityrates} tabulates the response rates for a subset of the ICS data (Gag1, Gag2, Env1, Env2, and Pol2 stimulations, for any cytokine positive, at days 0 and 28, in both CD4 and CD8 T--cell subpopulations). 
+
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr  4 09:53:11 2012
+\begin{table}[ht]
+\begin{center}
+\caption{Response rates for Pol2, Gag1, Gag2, Env1, and Env2 stimulated CD4+ and CD8+ T--cells on Day 0 and Day 28. C, T1, T2 are the Control, and increasing dose treatment groups, respectively. No response is expected on Day 0 in any group, while a response is expected on Day 28 in the treatment groups.}\label{tab:positivityrates}
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ &&\multicolumn{3}{c}{Day 0}&\multicolumn{3}{c}{Day 28}\\
+  \cmidrule{3-8}
+&Model & C  & T1 & T2  &   C  & T1  & T2  \\ 
+  \cmidrule{2-8}
+\multirow{2}{*}{CD8+ Pol2}&Beta--binomial & 0.00 & \textbf{0.00} & 0.00 &   0.00 & \textbf{0.89} & 0.57 \\ 
+& Fisher & 0.00 & 0.05 & 0.00 &   0.00 & 0.83 & 0.57 \\ 
+   \hline
+\multirow{2}{*}{CD4+ Pol2}&Beta-binomial & 0.00 & \textbf{0.00} & 0.00 &   0.00 & \textbf{0.89} & \textbf{0.71} \\ 
+&Fisher & 0.00 & 0.05 & 0.00  & 0.00 & 0.72 & 0.50 \\ 
+ \hline
+\multirow{2}{*}{CD8+ Gag2}& Beta-binomial & 0.00 & 0.00 & 0.00  & 0.00 & 0.39 & \textbf{0.21} \\ 
+& Fisher & 0.00 & 0.00 & 0.00  & 0.00 & 0.39 & 0.14 \\ 
+   \hline
+\multirow{2}{*}{CD4+ Gag2}& Beta-binomial & 0.00 & \textbf{0.00} & 0.00 &  0.00 & \textbf{0.44} & \textbf{0.50} \\ 
+ & Fisher & 0.00 & 0.05 & 0.00 &  0.00 & 0.33 & 0.43 \\ 
+   \hline
+\multirow{2}{*}{ CD8+ Env1}& Beta-binomial  & 0.00 & 0.00 & 0.00 & 0.29 & \textbf{0.71} & 0.86 \\ 
+   & Fisher & 0.00 & 0.00 & 0.00 &  \textbf{0.00} & 0.65 & 0.86 \\ 
+   \hline
+\multirow{2}{*}{  CD4+ Env1}& Beta-binomial   & 0.00 & 0.00 & 0.00 &  0.14 & \textbf{1.00} & \textbf{0.86} \\ 
+ & Fisher & 0.00 & 0.00 & 0.00 &  0.14 & 0.94 & 0.79 \\ 
+   \hline
+\multirow{2}{*}{CD8+ Env2}  & Beta-binomial & 0.00 & 0.05 & 0.08  & 0.29 & 0.83 & \textbf{0.57} \\ 
+  & Fisher & 0.00 & \textbf{0.00} & 0.08 & \textbf{0.14} & 0.83 & 0.43 \\ 
+   \hline
+\multirow{2}{*}{CD4+ Env2}& Beta-binomial & 0.00 & \textbf{0.00} & 0.00 &  0.00 & \textbf{0.78} & 0.64 \\ 
+  & Fisher & 0.00 & 0.05 & 0.00 &  0.00 & 0.72 & 0.64 \\ 
+   \hline
+\multirow{2}{*}{CD8+ Gag1}& Beta-binomial & 0.00 & \textbf{0.00} & 0.00  & 0.00 & \textbf{0.82} & 0.79 \\ 
+ & Fisher & 0.00 & 0.05 & 0.00  & 0.00 & 0.76 & 0.79 \\ 
+   \hline
+\multirow{2}{*}{CD4+ Gag1}& Beta-binomial & 0.00 & 0.00 & 0.00  & 0.00 & 0.71 & 0.79 \\ 
+ & Fisher & 0.00 & 0.00 & 0.00  & 0.00 & 0.71 & 0.79 \\ 
+   \hline
+
+
+   
+\end{tabular}
+\end{center}
+\end{table}
+
+On day zero, where no response is expected, response rates from the beta--binomial model were either smaller than (5 cases), or no greater (23 cases) than those from Fisher's exact test, with the exception of CD8+ Env2 stimulated T--cells, where Fisher's exact test (0\% response rate) outperformed the beta--binomial model (5\% response rate). On day 28, where a response is expected in the treatment groups, the beta--binomial model had a higher response rate in 12 cases and was no different from Fisher's exact test in the remaining eight cases. In the control group, the beta--binomial model was equal to Fisher's exact test in eight cases, and performed slightly worse than Fisher's exact test in two cases (Env2 and Env1 stimulated CD8+ cells).  
+%On day zero, we found that the response rates from the MIMOSA model were zero, and equal to response rates computed from Fisher's exact test across all treatment and control groups. The same was true for the response rate in the control groups at day 28. In the treatment groups, at day 28, the response rates for the MIMOSA model were  generally higher or equal to those for Fisher's exact test, demonstrating the increased sensitivity and specificity of our method.
+
+%The MIMOSA framework generates predictions for individual samples. To better understand the differences between the predictions from the MIMOSA model and Fisher's exact test, we examined the model fit from Gag2 stimulated CD4+ T--cells at day 28 producing IFNg (Figure~\ref{fig:icsdata}). We see that two individuals are predicted as responders by the MIMOSA model which are not detected by Fisher's exact test. Both individuals have a larger proportion of IFNg producing antigen specific T--cells in antigen stimulated than unstimulated samples, as measure by the MAP or ML estimates of the proportions (Figure~\ref{fig:icsdata}). 
+
+
 \subsection{Fluidigm}
+
+\subsection{Simulation Studies}
+We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p_s \ne p_u$) beta--binomial mixture models via simulations. Using hyper parameters estimated from the model fit of the constrained model to data from Gag1 stimulated CD4--positive, IL2 expressing T--cells on day 28 from the HVTN054 data set, we simulated data from the constrained model with 500 observations, a response rate of 40\%, an $N$ of 10K, 20K, 30K, 50K, 75K, 100K, and 150K events, and ten independent realizations for each $N$. The constrained model was fit to this data and the sensitivity and specificity of the model's ability to correctly identify observations from the ``responder'' and ``non--responder'' components was evaluated through ROC curve analysis and compared against Fisher's exact test. (Figure~\ref{fig:simulations}). The nominal vs observed false discovery rate was also examined for the models and for Fisher's exact test, as well as the accuracy of the estimated prior distributions. 
+
+We found that the both the constrained and unconstrained MIMOSA models out--performed Fisher's exact test with respect to sensitivity and specificity at all values of $N$, and that the false discovery rate observed for the mixture model more closely reflected the nominal false discovery rate than Fisher's exact test (Figure~\ref{fig:simulations}). Furthermore, both models gave reasonable estimates of the true hyper--parameters (Figure~\ref{fig:simulations}).
+
+Since the constrained model relies on Monte--Carlo integration to estimate the normalizing constant in the likelihood calculation, which can be computationally costly,  we examined whether the unconstrained model could be used to accurately fit data generated from the constrained model. We found that the unconstrained model performed as well as the constrained model when fitting data generated from the constrained model (Figure~\ref{fig:simulations}).
+
+To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the MLE estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN054 data set (Figure~\ref{fig:simulations_trunc}). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained model fit to constrained data.
+
 \section{Differential expression across combinatorial marker combinations}
 \subsection{Model}
-\subsection{Prior}
-\subsection{Parameter estimation}
-\subsection{ICS example with two markers}
-\section{Discussion}
-\section{Appendix}
-
-
-
-%\subsection*{Statistical Analysis of Responder and Non--responder Calls for Direct Comparison Against the Bayesian Mixture Model Approach}
-%Positivity calls for vaccine responders and non--responders depend upon the selection of an appropriate threshold. Therefore, to compare different methods of analysis, comparable thresholds for positivity must be selected for the methods. Our mixture modelling approach is fit within each stimulation, and we make positivity calls based on a false discovery rate calculated across individuals, within each stimulation, whereas the originally published analysis makes multiple testing adjustments within individuals, across cytokines. In order to have comparable response rates, we reanalyzed the ICS data using Fisher's one--sided exact test (as described in the original publication) but made positivity calls based on the false discovery rate computed across individuals within each stimulation.
-%
-%Our approach to modelling an individual's response to vaccine using ICS data takes a Bayesian approach. We model all observations (individuals) simultaneously for each combination of cytokine and stimulation (including the unstimulated samples). For a given cytokine, we let $n_s$ be the number of cytokine--positive cells in the stimulated sample, $N_s$ the total number of cells in the stimulated sample, and $n_u, N_u$, the number of cytokine--positive and total number of cells in the unstimulated sample, respectively. Note that usually, $N_u \ne N_s$. The observed count data $\mathbf{y}$ is a matrix of size $4 \times P$, where $P$ is the number of participants. For the $i$'th individual $\mathbf{y}_i = \left<N_{si},n_{si},N_{ui},n_{ui}\right>$, and can be represented as the following contingency table: 
-% latex table generated in R 2.14.0 by xtable 1.5-6 package
-% Wed Oct 12 09:41:50 2011
-
-%\subsection{The Mixture of Beta--Binomials}
-%Although we have specified the two models for the data, we do not know which observation was generated by which model. Clearly, not all individuals are expected to exhibit an immune response to a stimulation. Any individual observation, $y_i$, could either be generated by model~\eqref{eq:null} or by model~\eqref{eq:alternate}. We capture this uncertainty with a mixture framework of the two competing beta--binomial models. The likelihood for the mixture is given by:
-
-\subsection*{Generalization to Multiple Cytokines and Polyfunctionality with the Multinomial Dirichlet}
-The model can be generalized to handle multiple cytokines in a single stimulation, in order to assess polyfunctional cytokine responses of T--cells. We use the Multinomial--Dirichlet family of distributions to model counts of events in two \textit{different} 2x2 contingency tables. Here we consider only the \emph{unconstrained} case ($p_s\ne p_u$). The observed data can be represented in the following way: 
-
-\begin{table}[ht]
+%\subsection{Generalization to Multiple Cytokines and Polyfunctionality with the Multinomial Dirichlet}
+The model can be generalized to handle multiple cytokines in a single stimulation, in order to assess polyfunctional cytokine responses of T--cells. Without loss of generality, for two markers we use the Multinomial--Dirichlet family of distributions to model counts of events in two \textit{different} 2x2 contingency tables. Here we consider only the \emph{unconstrained} case ($p_s\ne p_u$). The observed data can be represented as shown in Table~\ref{tab:multdir}.
+\begin{table}[h]
 \centering
 \parbox{0.8\linewidth}{
 \caption{Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$  }\label{tab:multdir}
@@ -283,30 +334,37 @@ Positive &   $n_{ui3}$ &   $n_{ui4}$ \\
 }
 \end{table}
 
-Where the vector of observed counts for individual $i$ in the stimulated or unstimulated sample is denoted: $\bar{n}_{\{s,u\}i} = \{n_{\{s,u\}ij}\} ; j\in\{1\ldots 4\}$, and $j$ indexes the cells of the appropriate contingency table shown in~Table~\ref{tab:multdir}. The counts are modelled as draws from different multinomial distributions:
+The vector of observed counts for individual $i$ in the stimulated or unstimulated sample is denoted: $\bar{n}_{\{s,u\}i} = \{n_{\{s,u\}ij}\} ; j\in\{1\ldots 4\}$, and $j$ indexes the cells of the appropriate contingency table shown in~Table~\ref{tab:multdir}. The counts are modelled as draws from different multinomial distributions:
+
 \begin{align}
-\text{if } & \bar{p}_{si}=\bar{p}_{ui};& \bar{n}_{ui} \sim \mathcal{M}(\bar{p}_{ui},N_{ui});\bar{n}_{si} \sim \mathcal{M}(\bar{p}_{ui},N_{si})\\
-\text{if } & \bar{p}_{si} \ne \bar{p}_{ui};& \bar{n}_{ui} \sim \mathcal{M}(\bar{p}_{ui},N_{ui});\bar{n}_{si} \sim \mathcal{M}(\bar{p}_{si},N_{si})
+ &(\bar{n}_{ui}|p_{ui},) \sim \mathcal{M}(\bar{p}_{ui},N_{ui}); (\bar{n}_{si}|p_{si}) \sim \mathcal{M}(\bar{p}_{ui},N_{si}); \text{if $i$ is a non--responder}\\
+ &(\bar{n}_{ui}|p_{ui}) \sim \mathcal{M}(\bar{p}_{ui},N_{ui}); (\bar{n}_{si}|p_{si}) \sim \mathcal{M}(\bar{p}_{si},N_{si});\text{if $i$ is a responder}
 \end{align}
-with Dirichlet priors on the proportions:
+where the $N_{\{s,u\}i}=\sum\limits_{j=1}\limits^{J} n_{\{s,u\}ij}$.
+\subsection{Prior}
+As with the one--dimensional case, we share information across subjects. We put Dirichlet priors on the proportions.
 \begin{align}
 \bar{p}_{si} \sim \mathrm{Dir}(\bar{\alpha}_s) ; \bar{p}_{ui} \sim \mathrm{Dir}(\bar{\alpha}_u)
 \end{align}
 
-For the null component, where $\bar{p}_{s}=\bar{p}_{u}$ the marginal likelihood is given by: 
+For the null component, the marginal likelihood of the resulting multinomial--dirichlet is given by: 
 \begin{align}
 \mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u) &= \prod_{i=0}^P\frac{ \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{NRmd}
 \end{align}
 Where $\mathrm{B_j}$ is the $\mathrm{j}$--dimensional Beta function: $\frac{\prod_{j=1}^J\Gamma(\alpha_j)}{\Gamma(\sum\alpha_j)}$.
 
-The marginal likelihood for a component where $p_{sj} \ne p_{uj}$ for all $j$, is given by:
+Cells can express different combinations of markers. Since we now consider multiple markers simultaneously, the different marker combinations can be represented as separate components in the model. We examine the different possibilities below.
+
+\subsection{The simplest model: all marker combinations are different}
+The simplest case is where all possible marker combinations are expressed at different levels between the stimulated and unstimulated samples. In this case, we require only one additional component representing the alternative model, where $p_{sj} \ne p_{uj}$ for all $j$. An observation is assigned either to the null component (if there is no difference in any of the cell proportions), or to the alternative component, implying a difference in all the cell proportions. The marginal likelihood is given by:
 \begin{align}
 \mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u,\bar{\alpha}_s) &= \prod_{i=0}^P\frac{  \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}) \mathrm{B_j}(\bar{\alpha}_{s}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_s)\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{eq:postmult}
 \end{align}
 
-Without loss of generality, if only some $p_j$ are different between stimulated and unstimulated samples, the appropriate components of $\alpha_j$  can be substituted in the calculation of the likelihood eq~\eqref{eq:postmult}.
+However, it is possible to have a situation where only some combinations of markers exhibit differences between stimulation and control. These can be represented explicitly by additional components in the model. Without loss of generality, if only some $p_j$ are different between stimulated and unstimulated samples, the appropriate mixture components can be represented by simply substituting the relevant $\alpha_j$ in the calculation of the likelihood eq~\eqref{eq:postmult}.
 
-
+\subsection{Parameter estimation}
+The multivariate model is fit using the EM algorithm. 
 The marginal likelihood of the non--responding component, given in eq~\eqref{NRmd} can be rewritten as:
 \begin{align}
 \begin{split}
@@ -375,27 +433,23 @@ In the most simplistic case, we set up a two mixture component model (responders
 \subsubsection*{Second order hyperparameters as functions of first--order hyperparameters}
 Moving towards a more realistic case, we can define first--order hyperparameters as those elements of the $\alpha$ vectors corresponding to cells expressing individual cytokines (i.e. cytokine A only, or cytokine B only). Second--order and higher parameters are defined as cells expressing pairs, or triplets of cytokines, and so forth  (i.e. A and B, B and C, C and D). Higher order parameters can be expressed as functions of the first--order parameters (i.e. cells expressing A and B can be parameterized as $\alpha_{0ab} = \frac{\alpha_{0a}+\alpha_{0b}}{2}$ or $\alpha_{0ab}=\alpha_{0a}\alpha_{0b}$). This parameterization can be extended to models with more than two mixture components, allowing us to identify different types of responders. For example there may be observations where there are differences in the proportion of cells expressing combination A and B, but also observations where there are differences in the proportion of cells expressing A only, or B only. Distinguishing between these possibilities can increase the power of the model.
 
+\subsection{ICS example with two markers}
+\section{Discussion}
+\section{Appendix}
 
-\subsection*{Simulation Studies}
-We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p_s \ne p_u$) beta--binomial mixture models via simulations. Using hyper parameters estimated from the model fit of the constrained model to data from Gag1 stimulated CD4--positive, IL2 expressing T--cells on day 28 from the HVTN054 data set, we simulated data from the constrained model with 500 observations, a response rate of 40\%, an $N$ of 10K, 20K, 30K, 50K, 75K, 100K, and 150K events, and ten independent realizations for each $N$. The constrained model was fit to this data and the sensitivity and specificity of the model's ability to correctly identify observations from the ``responder'' and ``non--responder'' components was evaluated through ROC curve analysis and compared against Fisher's exact test. (Figure~\ref{fig:simulations}). The nominal vs observed false discovery rate was also examined for the models and for Fisher's exact test, as well as the accuracy of the estimated prior distributions. In order to assess whether the unconstrained model could be used to effectively fit data from a constrained model and benefit from faster computations using exact closed form expressions rather than Monte-Carlo integration, we fit the same data simulated from the constrained model using the unconstrained model (Figure~\ref{fig:simulations}. 
 
-To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the MLE estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN054 data set (Figure~\ref{fig:simulations_trunc}). 
+
+%\subsection*{Statistical Analysis of Responder and Non--responder Calls for Direct Comparison Against the Bayesian Mixture Model Approach}
+%Positivity calls for vaccine responders and non--responders depend upon the selection of an appropriate threshold. Therefore, to compare different methods of analysis, comparable thresholds for positivity must be selected for the methods. Our mixture modelling approach is fit within each stimulation, and we make positivity calls based on a false discovery rate calculated across individuals, within each stimulation, whereas the originally published analysis makes multiple testing adjustments within individuals, across cytokines. In order to have comparable response rates, we reanalyzed the ICS data using Fisher's one--sided exact test (as described in the original publication) but made positivity calls based on the false discovery rate computed across individuals within each stimulation.
+%
+%Our approach to modelling an individual's response to vaccine using ICS data takes a Bayesian approach. We model all observations (individuals) simultaneously for each combination of cytokine and stimulation (including the unstimulated samples). For a given cytokine, we let $n_s$ be the number of cytokine--positive cells in the stimulated sample, $N_s$ the total number of cells in the stimulated sample, and $n_u, N_u$, the number of cytokine--positive and total number of cells in the unstimulated sample, respectively. Note that usually, $N_u \ne N_s$. The observed count data $\mathbf{y}$ is a matrix of size $4 \times P$, where $P$ is the number of participants. For the $i$'th individual $\mathbf{y}_i = \left<N_{si},n_{si},N_{ui},n_{ui}\right>$, and can be represented as the following contingency table: 
+% latex table generated in R 2.14.0 by xtable 1.5-6 package
+% Wed Oct 12 09:41:50 2011
+
+%\subsection{The Mixture of Beta--Binomials}
+%Although we have specified the two models for the data, we do not know which observation was generated by which model. Clearly, not all individuals are expected to exhibit an immune response to a stimulation. Any individual observation, $y_i$, could either be generated by model~\eqref{eq:null} or by model~\eqref{eq:alternate}. We capture this uncertainty with a mixture framework of the two competing beta--binomial models. The likelihood for the mixture is given by:
 
 \section*{Results}
-\subsection*{Simulations Show MIMOSA Outperforms Fisher's Exact Test and is Robust to Departures from Model Assumptions}
-We ran simulation studies to assess the performance of the constrained and unconstrained models, as described in the Methods. We found that the both the constrained and unconstrained MIMOSA models out--performed Fisher's exact test with respect to sensitivity and specificity at all values of $N$, and that the false discovery rate observed for the mixture model more closely reflected the nominal false discovery rate than Fisher's exact test (Figure~\ref{fig:simulations}). Furthermore, both models gave reasonable estimates of the true hyper--parameters (Figure~\ref{fig:simulations}).
-
-Since the constrained model relies on Monte--Carlo integration, which can be computationally costly, to estimate the normalizing constant in the likelihood calculation, we examined whether the unconstrained model could be used to accurately fit data generated from the constrained model. We found that the unconstrained model performed as well as the constrained model when fitting data generated from the constrained model (Figure~\ref{fig:simulations}).
-
-In order to assess the sensitivity of the model to deviations from model assumptions, we fit the unconstrained model to simulated data where the proportions were drawn from truncated normal distributions (Figure~\ref{fig:simulations_trunc}). Even in these circumstances the unconstrained MIMOSA model outperformed Fisher's exact test and in fact performed about as well as the constrained model fit to constrained data.
-
-
-\subsection*{MIMOSA Outperforms Fisher's Exact Test in Real--World Vaccine Trial Data from HVTN054}
-
-We tested our method on ICS data from HVTN054, a safety and immunogenicity vaccine trial for a replication defective Adenovirus vector HIV vaccine. The data set consisted of 48 individuals who received two doses of vaccine or placebo, and ICS time points for these individuals were available at day 0 and day 28 after vaccination. Responders for each cytokine and stimulation combination were classified using Fisher's exact test and the constrained MIMOSA model at the 1\% FDR level, then the response rate within the control and treatment groups were calculated for both methods. Figure~\ref{fig:positivityrates} shows the response rates for a subset of the ICS data (Gag2 and Pol2 stimulations, for the IL2 and IFNg cytokines, at days 0 and 28, in both CD4 and CD8 T--cell subpopulations). On day 0, we found that the response rates from the MIMOSA model were zero, and equal to response rates computed from Fisher's exact test across all treatment and control groups. The same was true for the response rate in the control groups at day 28. In the treatment groups, at day 28, the response rates for the MIMOSA model were  generally higher or equal to those for Fisher's exact test, demonstrating the increased sensitivity and specificity of our method.
-
-The MIMOSA framework generates predictions for individual samples. To better understand the differences between the predictions from the MIMOSA model and Fisher's exact test, we examined the model fit from Gag2 stimulated CD4+ T--cells at day 28 producing IFNg (Figure~\ref{fig:icsdata}). We see that two individuals are predicted as responders by the MIMOSA model which are not detected by Fisher's exact test. Both individuals have a larger proportion of IFNg producing antigen specific T--cells in antigen stimulated than unstimulated samples, as measure by the MAP or ML estimates of the proportions (Figure~\ref{fig:icsdata}). 
-
 \subsection*{Testing Multifunctional Response via the Multinomial-Dirichlet model}
 We applied the Multinomial--Dirichlet extension of MIMOSA to the HVTN054 trial data to identify observations with cells expressing polyfunctional cytokine profiles. As a proof of principle we limited the model to the two--component case (Figure~\ref{tab:nesting}), with one component for the null model where we expect no difference between stimulations, and one component for the alternative model where we expect a difference between stimulations. We fit the model to the IL4 and TNFa cytokines for Env3 and Env1 stimulated CD4 T--cells from the day zero and day 28 time points (Figures~\ref{fig:polyfunctionality} and \ref{fig:polyfunctionalityenv1}). 
 

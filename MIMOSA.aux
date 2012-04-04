@@ -36,24 +36,28 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.3}Initialization}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ICS}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Fluidigm}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Differential expression across combinatorial marker combinations}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Model}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Prior}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Parameter estimation}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}ICS example with two markers}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$ }}{8}}
-\newlabel{tab:multdir}{{2}{8}}
-\newlabel{NRmd}{{16}{8}}
-\newlabel{eq:postmult}{{17}{8}}
-\newlabel{mdloglike}{{18}{9}}
-\newlabel{mdgrad}{{19}{9}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Nesting of models and parameter counts. Each row is a model component. The three columns correspond to cells two, three, and four of the contingency tables shown in Table\nobreakspace {}2\hbox {}. An open circle at a position indicates that the component models $p_{sj}=p_{uj}$, and a filled circle indicates that the component models $p_{sj}\not =p_{uj}$. The number of additional parameters that need to be estimated by including each additional component in the mixture model is in the fourth column (number of parameters for proportions + number of parameters for component weights).}}{10}}
-\newlabel{tab:nesting}{{3}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Response rates for Pol2, Gag1, Gag2, Env1, and Env2 stimulated CD4+ and CD8+ T--cells on Day 0 and Day 28. C, T1, T2 are the Control, and increasing dose treatment groups, respectively. No response is expected on Day 0 in any group, while a response is expected on Day 28 in the treatment groups.}}{8}}
+\newlabel{tab:positivityrates}{{2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Fluidigm}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Simulation Studies}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Differential expression across combinatorial marker combinations}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Model}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$ }}{10}}
+\newlabel{tab:multdir}{{3}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Prior}{10}}
+\newlabel{NRmd}{{16}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The simplest model: all marker combinations are different}{10}}
+\newlabel{eq:postmult}{{17}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Parameter estimation}{11}}
+\newlabel{mdloglike}{{18}{11}}
+\newlabel{mdgrad}{{19}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Nesting of models and parameter counts. Each row is a model component. The three columns correspond to cells two, three, and four of the contingency tables shown in Table\nobreakspace {}3\hbox {}. An open circle at a position indicates that the component models $p_{sj}=p_{uj}$, and a filled circle indicates that the component models $p_{sj}\not =p_{uj}$. The number of additional parameters that need to be estimated by including each additional component in the mixture model is in the fourth column (number of parameters for proportions + number of parameters for component weights).}}{13}}
+\newlabel{tab:nesting}{{4}{13}}
 \citation{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks}
 \citation{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}ICS example with two markers}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Performance of the constrained and unconstrained Beta--binomial mixture model vs Fisher's exact test on simulated data. Data were simulated from a constrained model with hyper--parameters estimated from a real data set of Gag1 stimulated, CD4+, IL2 expressing T--cells on day 28 from the HVTN054 trial. For total cell counts from 10,000 to 150,000, we simulated ten data sets each of 500 observations with a response rate of 40\%. The performance, measured by the AUC (area under the curve), of the constrained and unconstrained Beta--binomial mixture model compared to Fisher's exact test is shown in the first panel, as a function of increasing number of cells. The beta distributions for the estimated and true hyper parameters are shown in the second panel for one simulated data set, with N=150,000 events. The ROC curve for Fisher's exact test and the constrained and unconstrained Beta--binomial model for the same simulation are shown in the third panel. The observed vs expected false discovery rate for Fisher's exact test and the constrained and unconstrained Beta--binomial model are shown in the fourth panel.}}{15}}
 \newlabel{fig:simulations}{{1}{15}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sensitivity to departures from model assumptions. We generated data from variant of the constrained model ($p_s>p_u$) where the proportions were simulated from truncated normal distributions on $(0,1)$, rather than from beta distributions. The mean and variance of the normal distributions was given by $\mu =\alpha /(\alpha +beta), \sigma ^2=(\alpha \beta )/((\alpha +beta)^2(\alpha +\beta +1))$, where $\alpha ,\beta $ are the Beta--prior hyper parameters for the MIMOSA model estimated from real data ($s, u$ subscripts omitted for brevity). The AUC for the unconstrained MIMOSA model and Fisher's exact test as a function of event count are shown in the first panel. The beta distributions for the estimated and true hyper parameters are shown in the second panel. The ROC curves for one data set and the observed and true false discovery rates for the model and Fisher's exact test are shown in the third and fourth panels.}}{16}}
@@ -77,31 +81,33 @@
 \citation{Hahne:2009vv}
 \citation{Peiperl:2010ej}
 \citation{Horton:2007tsa}
-\@writefile{toc}{\contentsline {section}{\numberline {S.1}Vaccine Trial ICS Dataset Description}{21}}
-\newlabel{supp:data}{{S.1}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {S.2}Data Import, Preprocessing, and Gating}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {S.3}Statistical Analysis in the Published Trial}{21}}
-\newlabel{supp:statpublished}{{S.3}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {S.1}Vaccine Trial ICS Dataset Description}{22}}
+\newlabel{supp:data}{{S.1}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {S.2}Data Import, Preprocessing, and Gating}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {S.3}Statistical Analysis in the Published Trial}{22}}
+\newlabel{supp:statpublished}{{S.3}{22}}
 \bibstyle{unsrtnat}
 \bibdata{MIMOSA}
 \bibcite{Altman:1996wf}{{1}{1996}{{Altman et~al.}}{{Altman, Moss, Goulder, Barouch, McHeyzer-Williams, Bell, McMichael, and Davis}}}
 \bibcite{Betts:2006dw}{{2}{2006}{{Betts et~al.}}{{Betts, Nason, West, De~Rosa, Migueles, Abraham, Lederman, Benito, Goepfert, Connors, Roederer, and Koup}}}
 \bibcite{Inokuma:2007tn}{{3}{2007}{{Inokuma et~al.}}{{Inokuma, dela Rosa, Schmitt, Haaland, Siebert, Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, and Maecker}}}
-\bibcite{Horton:2007tsa}{{4}{2007}{{Horton et~al.}}{{Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu, McElrath, and De~Rosa}}}
-\bibcite{DeRosa:2004wp}{{5}{2004}{{De~Rosa et~al.}}{{De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans, Koup, Miller, and Roederer}}}
-\bibcite{Plotkin:2010ve}{{6}{2010}{{Plotkin}}{{}}}
-\bibcite{Kim:2010fw}{{7}{2010}{{Kim et~al.}}{{Kim, Rerks-Ngarm, Excler, and Michael}}}
-\bibcite{Jang:2011uj}{{8}{2011}{{Jang et~al.}}{{Jang, Simon, Feddersen, Rakhshan, Schultz, Zschunke, Lingle, Kolbert, and Jen}}}
-\bibcite{Flatz:2011jb}{{9}{2011}{{Flatz et~al.}}{{Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet, Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel}}}
-\bibcite{Trigona:2003}{{10}{2003}{{Trigona et~al.}}{{Trigona, Clair, Persaud, Punt, Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver}}}
-\bibcite{Sinclair:2004hs}{{11}{2004}{{Sinclair et~al.}}{{Sinclair, Black, Epling, Carvidi, Josefowicz, Bredt, and Jacobson}}}
-\bibcite{Proschan:2009ks}{{12}{2009}{{Proschan and Nason}}{{}}}
-\bibcite{Peiperl:2010ej}{{13}{2010}{{Peiperl et~al.}}{{Peiperl, Morgan, Moodie, Li, Russell, Graham, Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials Network}}}}
-\bibcite{Hahne:2009vv}{{14}{2009}{{Hahne et~al.}}{{Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar, Spidlen, Strain, and Gentleman}}}
-\bibcite{Dempster:1977ul}{{15}{1977}{{Dempster et~al.}}{{Dempster, Laird, and Rubin}}}
-\bibcite{Dittrich:2012bv}{{16}{2012}{{Dittrich and Lehmann}}{{}}}
-\bibcite{Kendziorski:2003uw}{{17}{2003}{{Kendziorski et~al.}}{{Kendziorski, Newton, and Lan}}}
-\bibcite{Newton:2001go}{{18}{2001}{{Newton et~al.}}{{Newton, Kendziorski, Richmond, Blattner, and Tsui}}}
-\bibcite{Smyth:2005iy}{{19}{2005}{{Smyth et~al.}}{{Smyth, Michaud, and Scott}}}
-\bibcite{Milush:2009bz}{{20}{2009}{{Milush et~al.}}{{Milush, Long, Snyder-Cappione, Cappione, York, Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon}}}
-\bibcite{Nason:2006dx}{{21}{2006}{{Nason}}{{}}}
+\bibcite{McKinstry:2010ei}{{4}{2010}{{McKinstry et~al.}}{{McKinstry, Strutt, and Swain}}}
+\bibcite{Horton:2007tsa}{{5}{2007}{{Horton et~al.}}{{Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu, McElrath, and De~Rosa}}}
+\bibcite{DeRosa:2004wp}{{6}{2004}{{De~Rosa et~al.}}{{De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans, Koup, Miller, and Roederer}}}
+\bibcite{Plotkin:2010ve}{{7}{2010}{{Plotkin}}{{}}}
+\bibcite{Kim:2010fw}{{8}{2010}{{Kim et~al.}}{{Kim, Rerks-Ngarm, Excler, and Michael}}}
+\bibcite{Bendall:2011wf}{{9}{2011}{{Bendall et~al.}}{{Bendall, Simonds, Qiu, Amir, Krutzik, Finck, Bruggner, Melamed, Trejo, and Ornatsky}}}
+\bibcite{Jang:2011uj}{{10}{2011}{{Jang et~al.}}{{Jang, Simon, Feddersen, Rakhshan, Schultz, Zschunke, Lingle, Kolbert, and Jen}}}
+\bibcite{Flatz:2011jb}{{11}{2011}{{Flatz et~al.}}{{Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet, Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel}}}
+\bibcite{Trigona:2003}{{12}{2003}{{Trigona et~al.}}{{Trigona, Clair, Persaud, Punt, Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver}}}
+\bibcite{Sinclair:2004hs}{{13}{2004}{{Sinclair et~al.}}{{Sinclair, Black, Epling, Carvidi, Josefowicz, Bredt, and Jacobson}}}
+\bibcite{Nason:2006dx}{{14}{2006}{{Nason}}{{}}}
+\bibcite{Proschan:2009ks}{{15}{2009}{{Proschan and Nason}}{{}}}
+\bibcite{Peiperl:2010ej}{{16}{2010}{{Peiperl et~al.}}{{Peiperl, Morgan, Moodie, Li, Russell, Graham, Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials Network}}}}
+\bibcite{Dempster:1977ul}{{17}{1977}{{Dempster et~al.}}{{Dempster, Laird, and Rubin}}}
+\bibcite{Dittrich:2012bv}{{18}{2012}{{Dittrich and Lehmann}}{{}}}
+\bibcite{Kendziorski:2003uw}{{19}{2003}{{Kendziorski et~al.}}{{Kendziorski, Newton, and Lan}}}
+\bibcite{Newton:2001go}{{20}{2001}{{Newton et~al.}}{{Newton, Kendziorski, Richmond, Blattner, and Tsui}}}
+\bibcite{Smyth:2005iy}{{21}{2005}{{Smyth et~al.}}{{Smyth, Michaud, and Scott}}}
+\bibcite{Milush:2009bz}{{22}{2009}{{Milush et~al.}}{{Milush, Long, Snyder-Cappione, Cappione, York, Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon}}}
+\bibcite{Hahne:2009vv}{{23}{2009}{{Hahne et~al.}}{{Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar, Spidlen, Strain, and Gentleman}}}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  3 APR 2012 17:07
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  4 APR 2012 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -542,6 +542,9 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count142
 \@thisrulewidth=\dimen187
 )
+(/usr/local/texlive/2010/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen188
+)
 (/usr/local/texlive/2010/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
@@ -638,12 +641,12 @@ Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
 \l_tmpc_skip=\skip57
 \g_tmpa_skip=\skip58
 \g_tmpb_skip=\skip59
-\l_tmpa_dim=\dimen188
-\l_tmpb_dim=\dimen189
-\l_tmpc_dim=\dimen190
-\l_tmpd_dim=\dimen191
-\g_tmpa_dim=\dimen192
-\g_tmpb_dim=\dimen193
+\l_tmpa_dim=\dimen189
+\l_tmpb_dim=\dimen190
+\l_tmpc_dim=\dimen191
+\l_tmpd_dim=\dimen192
+\g_tmpa_dim=\dimen193
+\g_tmpb_dim=\dimen194
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3box.sty
 Package: l3box 2011/04/09 v2223 L3 Experimental Box module
@@ -725,7 +728,7 @@ Normal \count register pool exhausted, switching to extended pool.
 \l_fp_trig_sign_int=\count284
 \l_fp_trig_decimal_int=\count285
 \l_fp_trig_extended_int=\count286
-\l_fp_tmp_dim=\dimen194
+\l_fp_tmp_dim=\dimen195
 \l_fp_tmp_skip=\skip60
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3luatex.sty
@@ -878,7 +881,7 @@ s
  LaTeX info: Defining document command \textsupersubscript
 (LaTeX)  with arg. spec. 'sO{l}mm' on line 140.
 
-\subsupersep=\dimen195
+\subsupersep=\dimen196
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/metalogo/metalogo.sty
 Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
@@ -970,20 +973,20 @@ t).
 (./MIMOSA.aux)
 \openout1 = `MIMOSA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1024,141 +1027,141 @@ ABD: EveryShipout initializing macros
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 40.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 40.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 40.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 40.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 40.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 40.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 40.
-LaTeX Font Info:    Redeclaring math accent \check on input line 40.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 40.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 40.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 40.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 40.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 41.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 41.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 41.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 41.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 41.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 41.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 41.
+LaTeX Font Info:    Redeclaring math accent \check on input line 41.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 41.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 41.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 41.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 41.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 40.
+(Font)              `operators' in the math version `normal' on input line 41.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> EU1/TimesNewRoman(0)/m/n on input line 
-40.
+41.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 40.
+(Font)              `operators' in the math version `bold' on input line 41.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/m/n on input line
- 40.
+ 41.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 40.
+n input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 40.
+n input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> EU1/TimesNewRoman(0)/m/it on input lin
-e 40.
+e 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/bx/n on input lin
-e 40.
+e 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/GillSans(0)/m/n on input line 40.
+(Font)                  OT1/cmss/m/n --> EU1/GillSans(0)/m/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/m/n on input line 40
+(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/m/n on input line 41
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 40.
+on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 40.
+on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> EU1/TimesNewRoman(0)/bx/it on input l
-ine 40.
+ine 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/GillSans(0)/bx/n on input line 40
+(Font)                  OT1/cmss/bx/n --> EU1/GillSans(0)/bx/n on input line 41
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/bx/n on input line 4
-0.
-LaTeX Font Info:    Try loading font information for U+msa on input line 41.
+1.
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 41.
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-]
-
-Package natbib Warning: Citation `McKinstry:2010ei' on page 2 undefined on inpu
-t line 57.
-
-
-Package natbib Warning: Citation `Bendall:2011wf' on page 2 undefined on input 
-line 57.
-
-[2]
-Overfull \hbox (8.20863pt too wide) in paragraph at lines 73--74
+] [2]
+Overfull \hbox (8.20863pt too wide) in paragraph at lines 74--75
 []\EU1/TimesNewRoman(0)/m/it/10.95 Fluidigm single–cell gene expression\EU1/T
 imesNewRoman(0)/m/n/10.95 : This is a single–cell gene expression data set of
  flow–sorted
  []
 
 [3] [4]
-Overfull \hbox (4.21054pt too wide) in paragraph at lines 138--138
+Overfull \hbox (4.21054pt too wide) in paragraph at lines 139--139
 [] 
  []
 
 
-Overfull \hbox (47.0321pt too wide) in paragraph at lines 151--151
+Overfull \hbox (47.0321pt too wide) in paragraph at lines 152--152
 [] 
  []
 
 [5]
-Overfull \hbox (2.7267pt too wide) in paragraph at lines 211--212
+Overfull \hbox (2.7267pt too wide) in paragraph at lines 212--213
 \EU1/TimesNewRoman(0)/m/n/10.95 mated numerically using R’s \EU1/TimesNewRoma
 n(0)/m/it/10.95 optim \EU1/TimesNewRoman(0)/m/n/10.95 function. To simplify the
  optimization, they are re–parameterized
  []
 
 [6]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 283--283
-[][] [] 
+Overfull \hbox (0.44858pt too wide) in paragraph at lines 227--227
+[]\EU1/TimesNewRoman(0)/bx/n/10.95 MIMOSA Outperforms Fisher’s Exact Test in 
+Real–World Vaccine Trial Data from HVTN054 
  []
 
-[7] [8]
-Overfull \hbox (30.05641pt too wide) in paragraph at lines 326--326
-[] 
- []
-
-[9] [10]
-Overfull \hbox (15.37462pt too wide) in paragraph at lines 373--374
-\EU1/TimesNewRoman(0)/m/n/10.95 In the most simplistic case, we set up a two mi
-xture component model (responders and non–responders),
- []
-
-
-Overfull \hbox (14.02559pt too wide) in paragraph at lines 380--381
+[7]
+Overfull \hbox (14.02559pt too wide) in paragraph at lines 288--289
 \EU1/TimesNewRoman(0)/m/n/10.95 We examined the performance of the constrained 
 ($\OML/cmm/m/it/10.95 p[] > p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) and unconstra
 ined ($\OML/cmm/m/it/10.95 p[] \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/c
 mm/m/it/10.95 p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) beta–binomial
  []
 
-[11] [12] [13]
+[8]
+Overfull \hbox (1.82501pt too wide) in paragraph at lines 334--334
+[][] [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10]
+Overfull \hbox (30.05641pt too wide) in paragraph at lines 384--384
+[] 
+ []
+
+[11]
+Overfull \hbox (15.37462pt too wide) in paragraph at lines 431--432
+\EU1/TimesNewRoman(0)/m/n/10.95 In the most simplistic case, we set up a two mi
+xture component model (responders and non–responders),
+ []
+
+[12] [13]
 File: Figures/simulations_all.pdf Graphic file (type QTm)
  <use  "Figures/simulations_all.pdf" >
 File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
@@ -1167,50 +1170,46 @@ File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
 File: Figures/PositivityRates.pdf Graphic file (type QTm)
 
 <use  "Figures/PositivityRates.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 504--505
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 558--559
  [][] 
  []
 
 File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
 <use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 511--512
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 565--566
  [][] 
  []
 
 File: Figures/Polyfunctionality_ggplot2.pdf Graphic file (type QTm)
 <use  "Figures/Polyfunctionality_ggplot2.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 518--519
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 572--573
  [][] 
  []
 
 File: Figures/Polyfunctionality_Env1.pdf Graphic file (type QTm)
 <use  "Figures/Polyfunctionality_Env1.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 525--526
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 579--580
  [][] 
  []
 
-[14] [15] [16] [17] [18] [19]
-Overfull \hbox (19.1337pt too wide) in paragraph at lines 541--542
+[14] [15] [16] [17] [18] [19] [20]
+Overfull \hbox (19.1337pt too wide) in paragraph at lines 595--596
 []\EU1/TimesNewRoman(0)/m/n/10.95 We show a proof of principle example with two
  components to identify responder and non–responder
  []
 
 LaTeX Font Info:    Font shape `EU1/AndaleMono(0)/m/n' will be
-(Font)              scaled to size 9.63187pt on input line 544.
-[20] [21] (./MIMOSA.bbl [22
+(Font)              scaled to size 9.63187pt on input line 598.
+[21] [22] (./MIMOSA.bbl [23
 
-] [23])
-
-Package natbib Warning: There were undefined citations.
-
-[24] (./MIMOSA.aux) ) 
+] [24]) [25] (./MIMOSA.aux) ) 
 Here is how much of TeX's memory you used:
- 21367 strings out of 494522
- 390900 string characters out of 3156642
- 472953 words of memory out of 3000000
- 24193 multiletter control sequences out of 15000+200000
+ 21384 strings out of 494522
+ 391319 string characters out of 3156642
+ 471389 words of memory out of 3000000
+ 24206 multiletter control sequences out of 15000+200000
  13496 words of font info for 81 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,18n,57p,2074b,322s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,18n,57p,2074b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (24 pages).
+Output written on MIMOSA.pdf (25 pages).

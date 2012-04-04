@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MIMOSA.aux
 The style file: unsrtnat.bst
 Database file #1: MIMOSA.bib
-You've used 21 entries,
+You've used 23 entries,
             2481 wiz_defined-function locations,
-            704 strings with 10541 characters,
-and the built_in function-call counts, 10525 in all, are:
-= -- 718
-> -- 911
+            718 strings with 10970 characters,
+and the built_in function-call counts, 11448 in all, are:
+= -- 778
+> -- 995
 < -- 5
-+ -- 326
-- -- 284
-* -- 1064
-:= -- 1825
-add.period$ -- 63
-call.type$ -- 21
-change.case$ -- 42
-chr.to.int$ -- 21
-cite$ -- 21
-duplicate$ -- 402
-empty$ -- 775
-format.name$ -- 309
-if$ -- 2079
++ -- 356
+- -- 310
+* -- 1159
+:= -- 1988
+add.period$ -- 69
+call.type$ -- 23
+change.case$ -- 46
+chr.to.int$ -- 23
+cite$ -- 23
+duplicate$ -- 440
+empty$ -- 843
+format.name$ -- 337
+if$ -- 2261
 int.to.chr$ -- 1
-int.to.str$ -- 22
-missing$ -- 21
-newline$ -- 113
-num.names$ -- 63
-pop$ -- 153
+int.to.str$ -- 24
+missing$ -- 23
+newline$ -- 123
+num.names$ -- 69
+pop$ -- 167
 preamble$ -- 1
-purify$ -- 21
+purify$ -- 23
 quote$ -- 0
-skip$ -- 211
+skip$ -- 230
 stack$ -- 0
-substring$ -- 490
-swap$ -- 59
+substring$ -- 516
+swap$ -- 64
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 147
+type$ -- 161
 warning$ -- 0
-while$ -- 78
+while$ -- 85
 width$ -- 0
-write$ -- 278
+write$ -- 304
