@@ -281,7 +281,34 @@ On day zero, where no response is expected, response rates from the beta--binomi
 
 %The MIMOSA framework generates predictions for individual samples. To better understand the differences between the predictions from the MIMOSA model and Fisher's exact test, we examined the model fit from Gag2 stimulated CD4+ T--cells at day 28 producing IFNg (Figure~\ref{fig:icsdata}). We see that two individuals are predicted as responders by the MIMOSA model which are not detected by Fisher's exact test. Both individuals have a larger proportion of IFNg producing antigen specific T--cells in antigen stimulated than unstimulated samples, as measure by the MAP or ML estimates of the proportions (Figure~\ref{fig:icsdata}). 
 
-
+\subsection{Study 073}
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr 11 15:01:22 2012
+\begin{table}[ht]
+\begin{center}
+\caption{Cytokine-specific response rates for ENV1 stimulated CD4+ T--cells on visits 2 through 14.1. No response is expected on visit 2 (day 0) for any cytokine.}\label{tab:positivityrates2}
+\begin{tabular}{rrrrrrrrrrrr}
+  \hline
+&Visit & 2 & 5 & 6 & 8 & 9 & 11 & 12 & 13 & 14 & 14.1 \\ 
+  \hline
+\multirow{2}{*}{IL2}&BB & 0.00 & 0.17 & 0.25 & 0.00 & 0.55 & 0.11 & 0.32 & 0.17 & 0.11 & 0.53 \\ 
+ &Fisher & 0.01 & 0.17 & 0.25 & 0.00 & 0.55 & 0.15 & 0.30 & 0.20 & 0.13 & 0.47 \\ 
+   \hline
+  \hline
+&Visit & 2 & 5 & 6 & 8 & 9 & 11 & 12 & 13 & 14 \\ 
+  \hline
+\multirow{2}{*}{TNF}&BB & 0.05 & 0.00 & 0.21 & 0.00 & 0.57 & 0.12 & 0.39 & 0.44 & 0.25 \\ 
+  &Fisher & 0.07 & 0.00 & 0.26 & 0.00 & 0.55 & 0.14 & 0.38 & 0.42 & 0.25 \\ 
+   \hline
+  \hline
+ &Visit& 2 & 5 & 6 & 8 & 9 & 11 & 12 & 13 & 14 & 14.1 \\ 
+  \hline
+\multirow{2}{*}{IFN}&BB & 0.00 & 0.43 & 0.31 & 0.29 & 0.63 & 0.28 & 0.39 & 0.34 & 0.17 & 0.56 \\ 
+  &Fisher & 0.00 & 0.29 & 0.29 & 0.43 & 0.60 & 0.26 & 0.37 & 0.32 & 0.16 & 0.44 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 \subsection{Fluidigm}
 
 \subsection{Simulation Studies}
@@ -364,34 +391,34 @@ The simplest case is where all possible marker combinations are expressed at dif
 However, it is possible to have a situation where only some combinations of markers exhibit differences between stimulation and control. These can be represented explicitly by additional components in the model. Without loss of generality, if only some $p_j$ are different between stimulated and unstimulated samples, the appropriate mixture components can be represented by simply substituting the relevant $\alpha_j$ in the calculation of the likelihood eq~\eqref{eq:postmult}.
 
 \subsection{Parameter estimation}
-The multivariate model is fit using the EM algorithm. 
-The marginal likelihood of the non--responding component, given in eq~\eqref{NRmd} can be rewritten as:
-\begin{align}
-\begin{split}
-l(\bar{\alpha}_u|D)=\sum_i \left[ \log \Gamma (\sum_j \alpha_{uj}) - \log \Gamma (\sum_j \alpha_{uj}+n_{uij}+n_{sij})+ \sum_j (\log \Gamma(\alpha_{uj}+n_{uij}+n_{sij}) \right.\\ \left. -\log\Gamma(\alpha_{uj}))+ \log\Gamma(N_{si}+1) +\log\Gamma(N_{ui}+1)-\right.\\ \left.\left[\sum_j(\log\Gamma(n_{sij}+1)+\log\Gamma(n_{uij}+1))\right]\right]\label{mdloglike}
-\end{split}
-\end{align}
+The multivariate model is fit using the EM algorithm. We estimate the model hyper--parameters numerically ($\bar{\alpha}_u,\bar{\alpha}_s$) using Newton's method. 
+%The marginal likelihood of the non--responding component, given in eq~\eqref{NRmd} can be rewritten as:
+%\begin{align}
+%\begin{split}
+%l(\bar{\alpha}_u|D)=\sum_i \left[ \log \Gamma (\sum_j \alpha_{uj}) - \log \Gamma (\sum_j \alpha_{uj}+n_{uij}+n_{sij})+ \sum_j (\log \Gamma(\alpha_{uj}+n_{uij}+n_{sij}) \right.\\ \left. -\log\Gamma(\alpha_{uj}))+ \log\Gamma(N_{si}+1) +\log\Gamma(N_{ui}+1)-\right.\\ \left.\left[\sum_j(\log\Gamma(n_{sij}+1)+\log\Gamma(n_{uij}+1))\right]\right]\label{mdloglike}
+%\end{split}
+%\end{align}
 
-The gradient is given by:
+The gradient of the log of the marginal likelihood in equation~\eqref{NRmd} is:
 \begin{align}
 \frac{\partial l}{ \partial \alpha_{uj}} = \sum_i \Psi(\sum_j \alpha_{uj}) - \Psi (\sum_j \alpha_{uj}+n_{uij}+n_{sij}) + \Psi(\alpha_{uj}+n_{uij}+n_{sij}) - \Psi(\alpha_{uj})\label{mdgrad}
 \end{align}
 
-and the Hessian is:
+and the Hessian:
 \begin{align}
 j&\ne k; &\frac{\partial^2 l}{\partial \alpha_{uj}\alpha_{uk}} & = \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})\\
 j&=k;&\frac{\partial^2l}{\partial \alpha_{uj}^2} &= \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})+\Psi'(\alpha_{uj}+n_{uij}+n_{sij})-\Psi'(\alpha_{uj})
 \end{align}
 
-The marginal likelihood of the responding component in eq~\ref{eq:postmult} can be rewritten as:
-\begin{align}
-\begin{split}
-\sum_i\bigg[\sum_j \big[ \log\Gamma(\alpha_{uj}+n_{uij})+\log\Gamma(\alpha_{sj}+n_{sij}) -\log\Gamma(\alpha_{uj}) -\log\Gamma(\alpha_{sj})\\
--\log\Gamma(n_{sij}+1)-\log\Gamma(n_{uij}+1)\big]+\log\Gamma(\sum_j\alpha_{sj})+\log\Gamma(\sum_j\alpha_{uj})\\
--\log\Gamma(\sum_j\alpha_{uj}+n_{uij})-\log\Gamma(\sum_j\alpha_{sj}+n_{sij})+\log\Gamma(N_{si}+1)+\log\Gamma(N_{ui}+1)\bigg]
-\end{split}
-\end{align}
-with gradient:
+The gradient of the log of the marginal likelihood of the responding component in eq~\ref{eq:postmult} is:
+%\begin{align}
+%\begin{split}
+%\sum_i\bigg[\sum_j \big[ \log\Gamma(\alpha_{uj}+n_{uij})+\log\Gamma(\alpha_{sj}+n_{sij}) -\log\Gamma(\alpha_{uj}) -\log\Gamma(\alpha_{sj})\\
+%-\log\Gamma(n_{sij}+1)-\log\Gamma(n_{uij}+1)\big]+\log\Gamma(\sum_j\alpha_{sj})+\log\Gamma(\sum_j\alpha_{uj})\\
+%-\log\Gamma(\sum_j\alpha_{uj}+n_{uij})-\log\Gamma(\sum_j\alpha_{sj}+n_{sij})+\log\Gamma(N_{si}+1)+\log\Gamma(N_{ui}+1)\bigg]
+%\end{split}
+%\end{align}
+%with gradient:
 \begin{align}
 \frac{\partial l}{\partial\alpha_{\phi j}} = \sum_i \Psi(\alpha_{\phi j}+n_{\phi ij})-\Psi(\alpha_{\phi j})+\Psi(\sum_j \alpha_{\phi j}) - \Psi(\sum_j \alpha_{\phi j}+n_{\phi ij}): (\phi \in {s,u})
 \end{align}
@@ -402,7 +429,7 @@ and Hessian:
 \end{align}
 
 \subsubsection*{Mixture Model Complexity}
-We may wish to detect any of $2^3 = 8$ different possible scenarios where the proportion of events in corresponding cells of the contingency tables are either equal or unequal between stimulated and unstimulated conditions. Such a model would have 8 components and 55 parameters. However, if we recognize that the models can be nested, i.e. that parameters can be shared across components with similar outcomes, then the number of parameters can be reduced to 19, and further to 15 if we only consider components where any one cell of the tables differs between stimulated and unstimulated conditions. This is outlined in Table~\ref{tab:nesting}.
+In the two marker case described here, we may wish to test for any of 8 different possible scenarios where the proportion of events in corresponding cells of the contingency tables are either equal or unequal between stimulated and unstimulated conditions. Such a model would have 8 components and 55 parameters. However, if we recognize that the models can be nested, i.e., that parameters can be shared across components with similar outcomes, then the number of parameters can be reduced to 19, and further to 15 if we only consider components where any one cell of the tables differs between stimulated and unstimulated conditions. This number of parameters required for modelling different numbers of components is shown in Table~\ref{tab:nesting}.
 \begin{table}
 \centering
 \parbox{0.8\linewidth}{\caption{Nesting of models and parameter counts. Each row is a model component. The three columns correspond to cells two, three, and four of the contingency tables shown in Table~\ref{tab:multdir}. An open circle at a position indicates that the component models $p_{sj}=p_{uj}$, and a filled circle indicates that the component models $p_{sj}\ne p_{uj}$. The number of additional parameters that need to be estimated by including each additional component in the mixture model is in the fourth column (number of parameters for proportions + number of parameters for component weights).}\label{tab:nesting}
@@ -425,17 +452,41 @@ $\bullet$&$\bullet$&$\bullet$&0\\
 \end{table}
 
 \subsubsection*{Model simplifications for K>2 cytokines}
-In the case of multiple cytokines, there is a combinatorial explosion in the number of parameters of the resulting model. We propose several alternative solutions to reducing the number of parameters in general, when the dimensionality of the Multinomial Dirichlet increases. If we model $N$ cytokines simultaneously, this results in $2^N$ possible combinations. We let $K$ be the number of possible cytokine combinations being modelled, with hyperparameter vector $\bar{\alpha}_0=\{\alpha_{00},\ldots,\alpha_{0K-1}\}$, and $\bar{\alpha}_s=\{\alpha_{s0},\ldots,\alpha_{sK-1}\}$ for the unstimulated and stimulated distributions, respectively. We formulate several strategies for reducing the number of parameters required to fit MIMOSA to high dimensional data by sharing hyperparameters across some of the $K$ combinations.
+In the case of more than two cytokines, there is a combinatorial explosion in the number of parameters of the resulting model. We propose several alternative solutions to reducing the number of parameters in general, when the dimensionality of the Multinomial Dirichlet increases. If we model $N$ cytokines simultaneously, this results in $2^N$ possible marker combinations (i.e. each marker is either expressed, or not). We let $K$ be the number of possible cytokine combinations being modelled, with hyperparameter vector $\bar{\alpha}_0=\{\alpha_{00},\ldots,\alpha_{0K-1}\}$, and $\bar{\alpha}_s=\{\alpha_{s0},\ldots,\alpha_{sK-1}\}$ for the unstimulated and stimulated distributions, respectively. We formulate several strategies for reducing the number of parameters required to fit MIMOSA to high dimensional data by sharing hyperparameters across some of the $K$ combinations.
 
 \subsubsection*{Fully shared model hyperparameters}
-In the most simplistic case, we set up a two mixture component model (responders and non--responders), with a goal of identifying observations with no response (equal to the null), or some response in any of the possible combinations of measured cytokines. For ICS data, the first component of the hyperparameter vector represents cells not expressing any cytokine combination, and is usually much larger than the remaining components. As a first approximation, we can set the $K-1$ remaining parameters to be all equal $\{\alpha_{01}=\{\alpha_{01},\ldots,\alpha_{0K-1}\}$ and thus all variation across cells expressing different cytokine combinations in the unstimulated samples are captured by a single parameter. The same simplification is made for modeling the distribution of stimulated samples. As stated above, such a model can only be fit to two mixture components (the null component and the responder component), but requires estimation of only four parameters. In practice, such a model would likely have a vary high false positive and false negative rate.
+In the most simplistic case, we set up a two mixture component model (responders and non--responders). This formulation would ignore most of the marker combinations and only explicitly test for all combinations equal to the null, or all combinations different from the null. 
+
+For ICS data, the first component of the hyper--parameter vector represents cells not expressing any cytokine combination, and is usually much larger than the remaining components. As a first approximation, we can set the $K-1$ remaining parameters to be all equal $\{\alpha_{01}=\{\alpha_{01},\ldots,\alpha_{0K-1}\}$ (e.g. shared across all possible combinations) and thus all variation across cells expressing different cytokine combinations in the stimulated and unstimulated samples are captured by four parameters. As stated above, such a model can only be fit to two mixture components (the null component and the responder component), but requires a total of only five parameters. In practice, such a model would likely have a vary high false negative rate, since observations with differences in only a few marker combinations would be absorbed into the null component.
 
 \subsubsection*{Second order hyperparameters as functions of first--order hyperparameters}
-Moving towards a more realistic case, we can define first--order hyperparameters as those elements of the $\alpha$ vectors corresponding to cells expressing individual cytokines (i.e. cytokine A only, or cytokine B only). Second--order and higher parameters are defined as cells expressing pairs, or triplets of cytokines, and so forth  (i.e. A and B, B and C, C and D). Higher order parameters can be expressed as functions of the first--order parameters (i.e. cells expressing A and B can be parameterized as $\alpha_{0ab} = \frac{\alpha_{0a}+\alpha_{0b}}{2}$ or $\alpha_{0ab}=\alpha_{0a}\alpha_{0b}$). This parameterization can be extended to models with more than two mixture components, allowing us to identify different types of responders. For example there may be observations where there are differences in the proportion of cells expressing combination A and B, but also observations where there are differences in the proportion of cells expressing A only, or B only. Distinguishing between these possibilities can increase the power of the model.
+A more realistic scenario would be to define \textit{first--order} hyper--parameters as those elements of the $\alpha$ vectors corresponding to cells expressing individual cytokines (i.e. cytokine A only, or cytokine B only). Second--order and higher parameters are defined for cells expressing pairs, triplets, and higher order combinations of cytokines (i.e. A and B, or B and C, or A,B and C). Higher order parameters could be expressed as functions of the first--order parameters (i.e. cells expressing A and B can be parameterized as $\alpha_{0ab} = \frac{\alpha_{0a}+\alpha_{0b}}{2}$ or $\alpha_{0ab}=\alpha_{0a}\alpha_{0b}$). 
+
+This parameterization can be extended to models with more than two mixture components, allowing us to identify different types of responders. For example there may be observations where there are differences in the proportion of cells expressing combination A and B, but also observations where there are differences in the proportion of cells expressing A only, or B only. Distinguishing between these possibilities can increase the power of the model.
 
 \subsection{ICS example with two markers}
+We applied the Multinomial--Dirichlet extension of MIMOSA to the HVTN054 trial data to identify observations with cells expressing polyfunctional cytokine profiles. As a proof of principle we limited the model to the two--component case (Figure~\ref{tab:nesting}), with one component for the null model where we expect no difference between stimulations, and one component for the alternative model where we expect a difference between stimulations. We fit the model to the IL4 and TNFa cytokines for Env3 and Env1 stimulated CD4 T--cells from the day zero and day 28 time points (Figures~\ref{fig:polyfunctionality} and \ref{fig:polyfunctionalityenv1}). 
+
+The day 28 stimulations show that the posterior probability of response is generally higher for the multivariate MIMOSA model than for the univariate models, and the day zero stimulation (Figure~\ref{fig:polyfunctionality}) shows that the multivariate model has fewer false positives than the univariate MIMOSA model fit to distinct cytokine combinations. We compared multivariate MIMOSA against Fisher's exact test. Fisher's exact test was used to test whether the number of cells expressing a specific combination of cytokines (i.e TNFa+/IL4-, TNFa+/IL4+, and so forth) was significantly higher in the stimulated samples than in the unstimulated samples.  In this comparison, Fisher's exact test detected only one of the 8 responders detected by the MIMOSA model in the Env3 stimulated, day 28 data, and detected two false positives in the day zero data. Fisher's exact test also failed to identify four of the 12 responders identified by the MIMOSA model in the day 28, Env1 stimulated data.
+
+
 \section{Discussion}
-\section{Appendix}
+The variety of single--cell assays being adopted by the immunology community is increasing. Flow cytometry, mass cytometry, ELISPOT, Fluidigm, and other single--cell assays can all be analyzed as single--cell count data. Development of effective statistical methods to detect differences in gene or protein expression at the single cell level is becoming increasingly important. Current approaches rely on asymptotic approximations (t--test, or $\chi^2$ test), empirical or ad--hoc methods (2--fold change), or exact tests (Fisher's exact test) where model assumptions are generally not satisfied, all of which can lead to invalid conclusions about the data~\cite{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks}. Most importantly, existing classical methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modelling approaches, which are widely applied in the microarray literature~\cite{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. 
+
+The MIMOSA model presented here uses a mixture model framework of Beta--Binomial or Multinomial--Dirichlet distributions to model cell counts in non--responding and responding individuals. Information is shared across non--responders and across responders through an empirical--Bayes prior, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when model assumptions are violated (Figures~\ref{fig:simulations} and~\ref{fig:simulations_trunc}). The MIMOSA model based on the Beta--Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample, our simulations show that we can relax this assumption to the unconstrained case where $p_s\ne p_u$ without compromising the observed false positive or false negative rates (Figures~\ref{fig:simulations} and \ref{fig:simulations_trunc}), while saving on computation time.
+
+\todo[inline]{Fix references to non-existent figure}
+The analysis of real--world ICS data from a vaccine trial demonstrated that the MIMOSA model outperformed Fisher's exact test in detecting individuals who were responders and non--responders to vaccine across multiple antigen stimulations and multiple cytokines (Figure~\ref{fig:positivityrates}). Importantly, the MIMOSA model was fit within each antigen stimulation $\times$ cytokine $\times$ time point combination but the model was blinded to placebo and vaccine treatment. Despite this, MIMOSA demonstrated a lower false positive rate at day zero (increased specificity), where no response is expected, than Fisher's exact test (Figure~\ref{fig:positivityrates} Gag2, IL2, CD4+ T--cells, day 0, treatment group T1). Similarly, none of the placebo treated samples were identified as responders by the MIMOSA model (Figure~\ref{fig:positivityrates} treatment group C). MIMOSA also exhibited an increased sensitivity in real--world data compared to Fisher's exact test, as demonstrated by the higher response rates for 7 of the 8 stimulation/cytokine/cell type combinations at day 28 to which the model was fit, and where a response is expected to be observed. Although it is not possible to validate the responders identified at day 28 for all cases, the conclusion of increased sensitivity is consistent with both the performance of the model in simulations, and with the increased specificity observed on day 0 and in the placebo treated samples. 
+
+\todo[inline]{Fix references to non--existent figure}
+We examined some of the contradictory observations identified as responders by MIMOSA and non--responders by Fisher's exact test more closely (Figure~\ref{fig:icsdata}).  For Gag2 stimulated CD4+ T--cells expressing IFNg, we see two observations detected as responders by MIMOSA at the 1\% FDR level, but not by Fisher's exact test. These two observations had a 2.32 and 3.08 fold increase in the proportion of cytokine--positive cells in the stimulated vs unstimulated samples, respectively, but differences in absolute positive cell counts of 2-3 cells, although the negative cell counts for the simulated and unstimulated samples were substantially different (32K vs 82K cells, and 65K vs 145K cells, respectively), resulting in the significant difference in proportions. This is a clear example where sharing information through the empirical Bayes framework, and eliminating the conditioning on fixed margins inherent in Fisher's exact test, lead to improved sensitivity on real data for the MIMOSA model. This increased power to detect vaccine responders is important since it impacts decision--making about which vaccine candidates move forward to later phase clinical trials.
+
+Polyfunctionality (identifying cells coexpressing multiple proteins, cytokines, or genes, is important in single cells assays since it allows the identification of functionally distinct subsets of cells in heterogeneous cell populations~\cite{Milush:2009bz}. In vaccine trials, these polyfunctional cell subsets may be correlated with vaccine response or efficacy. Existing methods for identifying polyfunctional cytokine profiles from ICS data either test individual combinations of cytokines separately, perform global tests at the expense of decreased power when only specific differences are of interest, sometimes  empirical in nature, and generally don't share information across observations~\cite{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks,Nason:2006dx}. As others have pointed out, in order to have the most power to detect a true difference, the statistical test selected to detect differences in various combinations of cytokines should take into consideration the cytokine combinations that are of interest~\cite{Nason:2006dx}. A global test, one that tests for a difference between all proportions of cytokine expressing cells will have lower power than one testing for difference in a specific cytokine combination if only that specific combination is truly different. This approach is inherent in our mixture model framework, where each mixture component representing some pattern of cytokine expression that is of interest.
+
+We show a proof of principle example with two components to identify responder and non--responder observations for the four--dimensional (two cytokine) case. Sharing of parameters across nested models in the two--cytokine case allows us to reduce the number of parameters. The model is easily extended. First, to multiple components to identify not just responders and non--responders, but responders with respect to each combination of cytokines. Second, extensions to multiple cytokines are straightforward, only requiring increasing the dimensionality of the Multinomial--Dirichlet distribution. With the increase in dimensionality there is a combinatorial explosion in the number of combinations of cytokines, and the resulting number of parameters in the model. We present several possible approaches to reducing the number of parameters in the model by sharing the hyperparamters across different combinations of cytokines. A number of these strategies can be generalized to models with multiple components that allow us to identify observations with differences in specific cytokine combinations between treatment and control samples.
+
+\section{Conclusions}
+We have developed a combinatorial mixture model framework for identifying differences between treatment conditions in paired observations of cell counts from a variety of single--cell assays. The software is implemented in R and C++, and is freely available from GitHub (\url{http://www.github.org/finak/MIMOSA}). 
 
 
 
@@ -448,13 +499,6 @@ Moving towards a more realistic case, we can define first--order hyperparameters
 
 %\subsection{The Mixture of Beta--Binomials}
 %Although we have specified the two models for the data, we do not know which observation was generated by which model. Clearly, not all individuals are expected to exhibit an immune response to a stimulation. Any individual observation, $y_i$, could either be generated by model~\eqref{eq:null} or by model~\eqref{eq:alternate}. We capture this uncertainty with a mixture framework of the two competing beta--binomial models. The likelihood for the mixture is given by:
-
-\section*{Results}
-\subsection*{Testing Multifunctional Response via the Multinomial-Dirichlet model}
-We applied the Multinomial--Dirichlet extension of MIMOSA to the HVTN054 trial data to identify observations with cells expressing polyfunctional cytokine profiles. As a proof of principle we limited the model to the two--component case (Figure~\ref{tab:nesting}), with one component for the null model where we expect no difference between stimulations, and one component for the alternative model where we expect a difference between stimulations. We fit the model to the IL4 and TNFa cytokines for Env3 and Env1 stimulated CD4 T--cells from the day zero and day 28 time points (Figures~\ref{fig:polyfunctionality} and \ref{fig:polyfunctionalityenv1}). 
-
-The day 28 stimulations show that the posterior probability of response is generally higher for the multivariate MIMOSA model than for the univariate models, and the day zero stimulation (Figure~\ref{fig:polyfunctionality}) shows that the multivariate model has fewer false positives than the univariate MIMOSA model fit to distinct cytokine combinations. We compared multivariate MIMOSA against Fisher's exact test. Fisher's exact test was used to test whether the number of cells expressing a specific combination of cytokines (i.e TNFa+/IL4-, TNFa+/IL4+, and so forth) was significantly higher in the stimulated samples than in the unstimulated samples.  In this comparison, Fisher's exact test detected only one of the 8 responders detected by the MIMOSA model in the Env3 stimulated, day 28 data, and detected two false positives in the day zero data. Fisher's exact test also failed to identify four of the 12 responders identified by the MIMOSA model in the day 28, Env1 stimulated data.
-
 
 %The classification of responder and non--responder individuals was compared between the multivariate MIMOSA model, univariate MIMOSA models applied to each cytokine combination, and Fisher's exact test applied to each cytokine combination. 
 
@@ -553,18 +597,20 @@ The day 28 stimulations show that the posterior probability of response is gener
 \end{figure}
 
 
-\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-   \centering
-   \includegraphics[width=6in]{Figures/PositivityRates} 
-   \caption{Comparison of MIMOSA and Fisher's exact test for calling responders in ICS data. Response rates for IL2 and IFNg cytokine positivity in Gag2 and Pol2 stimulated samples at days 0 and 28 in the CD4 and CD8 T--cell subpopulations of the HVTN054 ICS data. In the treatment groups, response rates for the MIMOSA model are greater than or equal to those for Fisher's exact test at day 28 but are equal (and zero) at day 0 as expected. In the control groups, response rates are equal (and zero) between Fisher's exact test and the MIMOSA model at day 0 and at day 28, as expected.}
-   \label{fig:positivityrates}
-\end{figure}
+%\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+%   \centering
+%   \includegraphics[width=6in]{Figures/PositivityRates} 
+%   \caption{Comparison of MIMOSA and Fisher's exact test for calling responders in ICS data. Response rates for IL2 and IFNg cytokine positivity in Gag2 and Pol2 stimulated samples at days 0 and 28 in the CD4 and CD8 T--cell subpopulations of the HVTN054 ICS data. In the treatment groups, response rates for the MIMOSA model are greater than or equal to those for Fisher's exact test at day 28 but are equal (and zero) at day 0 as expected. In the control groups, response rates are equal (and zero) between Fisher's exact test and the MIMOSA model at day 0 and at day 28, as expected.}
+%   \label{fig:positivityrates}
+%\end{figure}
 
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
-   \includegraphics[width=6in]{Figures/HVTN054LikelihoodAndVolcanoplots} 
-   \caption{Likelihood surface and volcano plot for IFNg producing, CD4+ T-cells in Gag2 stimulated vs control samples on day 28. A significant difference between control and stimulated samples is called at the 1\% FDR threshold (red) for the Beta--binomial model, and at 1\% for FDR adjusted p--values from Fisher's exact test (green). The likelihood surface shows the observed counts from stimulated and unstimulated samples. The volcano plot shows the difference between the proportion of cytokine positive cells in the stimulated and unstimulated samples, for the maximum likelihood estimates of the proportions (triangles) and for the MAP estimates (crosses). The effect of shrinking the MAP estimates towards zero can be seen in the volcano plot.}
-   \label{fig:icsdata}
+   \includegraphics[width=6in]{Figures/FluidigmMIMOSA.pdf} 
+  % \caption{Likelihood surface and volcano plot for IFNg producing, CD4+ T-cells in Gag2 stimulated vs control samples on day 28. A significant difference between control and stimulated samples is called at the 1\% FDR threshold (red) for the Beta--binomial model, and at 1\% for FDR adjusted p--values from Fisher's exact test (green). The likelihood surface shows the observed counts from stimulated and unstimulated samples. The volcano plot shows the difference between the proportion of cytokine positive cells in the stimulated and unstimulated samples, for the maximum likelihood estimates of the proportions (triangles) and for the MAP estimates (crosses). The effect of shrinking the MAP estimates towards zero can be seen in the volcano plot.}
+%   \label{fig:icsdata}
+\caption{Signed posterior probability, difference and log-odds ratio of the proportion of single cells expressing each gene on a 96x96 Fluidigm array. The posterior probability of response times the sign of the change in expression is shown in the first panel (red indicates a significant decrease, green a significant increase, relative to the control). Columns and rows are clustered based on these signed posterior probabilities. The middle panel shows the $log_2$ odds ratio of the proportion of cells expressing a gene in the stimulated vs. control samples. Rows and columns are ordered as in the left panel for comparison. The right panel shows the difference in the proportion of cells expressing each gene in the stimulated vs. control samples. Ordering of the rows and columns is preserved as in the first panel. The traces show the deviations of each cell from zero.}
+\label{fig:fluidigm}
 \end{figure}
 
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
@@ -581,21 +627,7 @@ The day 28 stimulations show that the posterior probability of response is gener
    \label{fig:polyfunctionalityenv1}
 \end{figure}
 
-\section*{Discussion}
-The variety of single--cell assays being adopted by the immunology community is increasing. Flow cytometry, mass cytometry, ELISPOT, Fluidigm, and other single--cell assays can all be analyzed as single--cell count data. Development of effective statistical methods to detect differences in gene or protein expression at the single cell level is becoming increasingly important. Current approaches rely on asymptotic approximations (t--test, or $\chi^2$ test), empirical or ad--hoc methods (2--fold change), or exact tests (Fisher's exact test) where model assumptions are generally not satisfied, all of which can lead to invalid conclusions about the data~\cite{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks}. Most importantly, existing classical methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modelling approaches, which are widely applied in the microarray literature~\cite{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. 
 
-The MIMOSA model presented here uses a mixture model framework of Beta--Binomial or Multinomial--Dirichlet distributions to model cell counts in non--responding and responding individuals. Information is shared across non--responders and across responders through an empirical--Bayes prior, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when model assumptions are violated (Figures~\ref{fig:simulations} and~\ref{fig:simulations_trunc}). The MIMOSA model based on the Beta--Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample, our simulations show that we can relax this assumption to the unconstrained case where $p_s\ne p_u$ without compromising the observed false positive or false negative rates (Figures~\ref{fig:simulations} and \ref{fig:simulations_trunc}), while saving on computation time.
-
-The analysis of real--world ICS data from a vaccine trial demonstrated that the MIMOSA model outperformed Fisher's exact test in detecting individuals who were responders and non--responders to vaccine across multiple antigen stimulations and multiple cytokines (Figure~\ref{fig:positivityrates}). Importantly, the MIMOSA model was fit within each antigen stimulation $\times$ cytokine $\times$ time point combination but the model was blinded to placebo and vaccine treatment. Despite this, MIMOSA demonstrated a lower false positive rate at day zero (increased specificity), where no response is expected, than Fisher's exact test (Figure~\ref{fig:positivityrates} Gag2, IL2, CD4+ T--cells, day 0, treatment group T1). Similarly, none of the placebo treated samples were identified as responders by the MIMOSA model (Figure~\ref{fig:positivityrates} treatment group C). MIMOSA also exhibited an increased sensitivity in real--world data compared to Fisher's exact test, as demonstrated by the higher response rates for 7 of the 8 stimulation/cytokine/cell type combinations at day 28 to which the model was fit, and where a response is expected to be observed. Although it is not possible to validate the responders identified at day 28 for all cases, the conclusion of increased sensitivity is consistent with both the performance of the model in simulations, and with the increased specificity observed on day 0 and in the placebo treated samples. 
-
-We examined some of the contradictory observations identified as responders by MIMOSA and non--responders by Fisher's exact test more closely (Figure~\ref{fig:icsdata}).  For Gag2 stimulated CD4+ T--cells expressing IFNg, we see two observations detected as responders by MIMOSA at the 1\% FDR level, but not by Fisher's exact test. These two observations had a 2.32 and 3.08 fold increase in the proportion of cytokine--positive cells in the stimulated vs unstimulated samples, respectively, but differences in absolute positive cell counts of 2-3 cells, although the negative cell counts for the simulated and unstimulated samples were substantially different (32K vs 82K cells, and 65K vs 145K cells, respectively), resulting in the significant difference in proportions. This is a clear example where sharing information through the empirical Bayes framework, and eliminating the conditioning on fixed margins inherent in Fisher's exact test, lead to improved sensitivity on real data for the MIMOSA model. This increased power to detect vaccine responders is important since it impacts decision--making about which vaccine candidates move forward to later phase clinical trials.
-
-Polyfunctionality (identifying cells coexpressing multiple proteins, cytokines, or genes, is important in single cells assays since it allows the identification of functionally distinct subsets of cells in heterogeneous cell populations~\cite{Milush:2009bz}. In vaccine trials, these polyfunctional cell subsets may be correlated with vaccine response or efficacy. Existing methods for identifying polyfunctional cytokine profiles from ICS data either test individual combinations of cytokines separately, perform global tests at the expense of decreased power when only specific differences are of interest, sometimes  empirical in nature, and generally don't share information across observations~\cite{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks,Nason:2006dx}. As others have pointed out, in order to have the most power to detect a true difference, the statistical test selected to detect differences in various combinations of cytokines should take into consideration the cytokine combinations that are of interest~\cite{Nason:2006dx}. A global test, one that tests for a difference between all proportions of cytokine expressing cells will have lower power than one testing for difference in a specific cytokine combination if only that specific combination is truly different. This approach is inherent in our mixture model framework, where each mixture component representing some pattern of cytokine expression that is of interest.
-
-We show a proof of principle example with two components to identify responder and non--responder observations for the four--dimensional (two cytokine) case. Sharing of parameters across nested models in the two--cytokine case allows us to reduce the number of parameters. The model is easily extended. First, to multiple components to identify not just responders and non--responders, but responders with respect to each combination of cytokines. Second, extensions to multiple cytokines are straightforward, only requiring increasing the dimensionality of the Multinomial--Dirichlet distribution. With the increase in dimensionality there is a combinatorial explosion in the number of combinations of cytokines, and the resulting number of parameters in the model. We present several possible approaches to reducing the number of parameters in the model by sharing the hyperparamters across different combinations of cytokines. A number of these strategies can be generalized to models with multiple components that allow us to identify observations with differences in specific cytokine combinations between treatment and control samples.
-
-\section*{Conclusions}
-We have developed a combinatorial mixture model framework for identifying differences between treatment conditions in paired observations of cell counts from a variety of single--cell assays. The software is implemented in R and C++, and is freely available from GitHub (\url{http://www.github.org/finak/MIMOSA}). 
 \renewcommand{\thesection}{S.\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \setcounter{section}{0}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  4 APR 2012 16:29
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  11 APR 2012 15:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1135,81 +1135,91 @@ Real–World Vaccine Trial Data from HVTN054
  []
 
 [7]
-Overfull \hbox (14.02559pt too wide) in paragraph at lines 288--289
+Overfull \hbox (14.02559pt too wide) in paragraph at lines 314--315
 \EU1/TimesNewRoman(0)/m/n/10.95 We examined the performance of the constrained 
 ($\OML/cmm/m/it/10.95 p[] > p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) and unconstra
 ined ($\OML/cmm/m/it/10.95 p[] \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/c
 mm/m/it/10.95 p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) beta–binomial
  []
 
-[8]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 334--334
+[8] [9]
+Overfull \hbox (1.82501pt too wide) in paragraph at lines 360--360
 [][] [] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9] [10]
-Overfull \hbox (30.05641pt too wide) in paragraph at lines 384--384
+[10]
+Overfull \hbox (30.05641pt too wide) in paragraph at lines 410--410
 [] 
  []
 
 [11]
-Overfull \hbox (15.37462pt too wide) in paragraph at lines 431--432
+Overfull \hbox (15.37462pt too wide) in paragraph at lines 457--458
 \EU1/TimesNewRoman(0)/m/n/10.95 In the most simplistic case, we set up a two mi
-xture component model (responders and non–responders),
+xture component model (responders and non–responders).
  []
 
-[12] [13]
-File: Figures/simulations_all.pdf Graphic file (type QTm)
- <use  "Figures/simulations_all.pdf" >
-File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
+[12] [13] [14]
 
-<use  "Figures/simulations_violatedmodel.pdf" >
-File: Figures/PositivityRates.pdf Graphic file (type QTm)
+LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
+ne 478.
 
-<use  "Figures/PositivityRates.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 558--559
- [][] 
- []
 
-File: Figures/HVTN054LikelihoodAndVolcanoplots.pdf Graphic file (type QTm)
-<use  "Figures/HVTN054LikelihoodAndVolcanoplots.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 565--566
- [][] 
- []
+LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
+ne 478.
 
-File: Figures/Polyfunctionality_ggplot2.pdf Graphic file (type QTm)
-<use  "Figures/Polyfunctionality_ggplot2.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 572--573
- [][] 
- []
 
-File: Figures/Polyfunctionality_Env1.pdf Graphic file (type QTm)
-<use  "Figures/Polyfunctionality_Env1.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 579--580
- [][] 
- []
+LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
+ne 478.
 
-[14] [15] [16] [17] [18] [19] [20]
-Overfull \hbox (19.1337pt too wide) in paragraph at lines 595--596
+
+LaTeX Warning: Reference `fig:icsdata' on page 15 undefined on input line 481.
+
+[15]
+Overfull \hbox (19.1337pt too wide) in paragraph at lines 485--486
 []\EU1/TimesNewRoman(0)/m/n/10.95 We show a proof of principle example with two
  components to identify responder and non–responder
  []
 
 LaTeX Font Info:    Font shape `EU1/AndaleMono(0)/m/n' will be
-(Font)              scaled to size 9.63187pt on input line 598.
-[21] [22] (./MIMOSA.bbl [23
+(Font)              scaled to size 9.63187pt on input line 488.
+File: Figures/simulations_all.pdf Graphic file (type QTm)
+<use  "Figures/simulations_all.pdf" >
+File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
 
-] [24]) [25] (./MIMOSA.aux) ) 
+<use  "Figures/simulations_violatedmodel.pdf" >
+File: Figures/FluidigmMIMOSA.pdf Graphic file (type QTm)
+
+<use  "Figures/FluidigmMIMOSA.pdf" >
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 608--611
+ [][] 
+ []
+
+File: Figures/Polyfunctionality_ggplot2.pdf Graphic file (type QTm)
+<use  "Figures/Polyfunctionality_ggplot2.pdf" >
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 617--618
+ [][] 
+ []
+
+File: Figures/Polyfunctionality_Env1.pdf Graphic file (type QTm)
+<use  "Figures/Polyfunctionality_Env1.pdf" >
+Overfull \hbox (3.61537pt too wide) in paragraph at lines 624--625
+ [][] 
+ []
+
+[16] [17] [18] [19] [20] [21] (./MIMOSA.bbl [22
+
+] [23]) [24] (./MIMOSA.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 21384 strings out of 494522
- 391319 string characters out of 3156642
- 471389 words of memory out of 3000000
- 24206 multiletter control sequences out of 15000+200000
+ 21421 strings out of 494522
+ 392226 string characters out of 3156642
+ 472424 words of memory out of 3000000
+ 24244 multiletter control sequences out of 15000+200000
  13496 words of font info for 81 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,18n,57p,2074b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,18n,78p,2074b,573s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (25 pages).
+Output written on MIMOSA.pdf (24 pages).
