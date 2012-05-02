@@ -73,21 +73,22 @@ In this paper we consider two different immunological single-cell assays typical
 
 \textit{Fluidigm single--cell gene expression}: This is a single--cell gene expression data set of flow--sorted CD8 T--cells from sixteen individuals. The T--cells from blocks of four individuals were stimulated with different antigens, gene expression measured at the single--cell level and compared to paired, unstimulated controls. 
 
-In the remainder of the paper, we use the following notation to describe our model. We observe cell counts from $I$ individuals in two conditions (stimulated and unstimulated). Each cell can either be positive or negative for a marker. We let $i$ index the individual and $k$ index the measured markers, \textit{i.e.} cytokine for the ICS data and genes for the ICS data. The subscripts $s$,$u$ refer to the cell counts from stimulated and unstimulated conditions, respectively. For a given individual, $p$, the total number of cells is denoted by $N_p$, while $n_p$, the number of positive cells is part of the observe data. Thus for a given cytokine, $N_{si}$ denotes the total number of cells collected for subject $i$ in the stimulated condition and $n_{si}$ denotes how many of those cells were cytokine positive. Similarly, $N_{ui}$, $n_{ui}$ represent the total, and cytokine positive cell counts in the unstimulated condition for the same subject. For each cytokine and each stimulation, given the total cell counts, the observed data is a matrix of size $2 \times P$, where the $i$'th row is a subject, $\mathbf{y}_i = <n_{si},n_{ui}>$. 
+In the remainder of the paper, we use the following notation to describe our model. 
+From this point on, we assume that we observe cell counts from $I$ individuals in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a marker. Given a set of $K$ markers, the measured cells can be classified into $2^K$ positive/negative marker combinations. We denote by $n_{sik}$ and $n_{uik}$, $k=1\dots 2^K$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples. We denote by $N_{si}=\sum_k n_{sik}$ and $N_{ui}=\sum_k n_{uik}$ the total number of cells measured for individuals $i$ in each sample. For ease of notations, we will denote by $\mathbf{y}_i$ the vector of observed counts for individual $i$, \textit{i.e.} $\mathbf{y}_{i}=(\mathbf{n}_{si}, \mathbf{n}_{ui})$ where $\mathbf{n}_{sk}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{uk}=\{n_{uik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
 
 \section{Differential expression with one marker}
-The data for a single marker can be represented in contingency table form:
+In practice, stimulation studies like the ones presented here, are often analyzed one marker at a times to avoid being under powered due to the large number of combinations and the potential for very small cell counts in many of the combinations. As a consequence, we first consider the one marker case, \textit{i.e.} $K=1$. In this case, for a given individual, the data can be summarized in a contingency table of $+/-$ cell counts across the un-stimulated and stimulated samples as depicted in Table \ref{tab:twobytwo}.
 
 \begin{table}[ht]
 \centering
 \parbox{0.8\linewidth}{
-\caption{2 x 2 contingency table of counts for cytokine positive and cytokine negative events between stimulated and unstimulated conditions}\label{tab:twobytwo}
+\caption{2 x 2 contingency table of counts for marker positive and negative cells between stimulated ($s$) and unstimulated ($u$) conditions for a given individual $i$.}\label{tab:twobytwo}
 \centering
 \begin{tabular}{rrr}
 
   \hline
 \multicolumn{1}{l}{}&
-\multicolumn{2}{c}{Cytokine}\\
+\multicolumn{2}{c}{Marker}\\
  & Negative & Positive \\ 
   \hline
 Stimulated &   $N_{si} - n_{si}$ &   $n_{si}$ \\ 
@@ -96,16 +97,15 @@ Unstimulated &   $N_{ui}-n_{ui}$ &   $n_{ui}$ \\
 \end{tabular}
 }
 \end{table}
-We consider a marker to be differentially expressed between conditions if the proportion of cells in the stimulated samples is different from the number of cells in the control sample. The model is described below.
+For a given individual and stimulation, we consider a marker to be differentially expressed if the proportion of positive cells in the stimulated samples is different from the number of positive cells in the un-stimulated sample. Individuals that show differential expression for a given marker will be called responders for that marker. In this section, we shall be concerned with identifying differential expression one marker at a time, using a beta-binomial mixture model as described below. 
 
 \subsection{Beta--Binomial Model for One Marker}
-The positive cell counts for stimulated and unstimulated samples from the same individual are modelled as binomial random variables, as follows,
+For a given individual $i$, the positive cell counts for the stimulated and un-stimulated samples are jointly modeled as follows,
 \begin{align}
-(n_{si}|p_{ui}) \sim \mathrm{Bin}(N_{si},p_{ui});\text{ }& (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui})\label{eq:null};&\text{if $i$ is a non--responder}\\
+(n_{si}|p_{ui}) \sim \mathrm{Bin}(N_{si},p_{ui});\text{ }& (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui})\label{eq:null};&\text{if $i$ is a non-responder}\\
 (n_{si}|p_{si}) \sim \mathrm{Bin}(N_{si},p_{si});\text{ }& (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui});&\text{if $i$ is a responder}\label{eq:alternate}
  \end{align}
- 
-where $p_{si}$, $p_{ui}$ are the unobserved proportions for the stimulated and un-stimulated samples. Under the null hypothesis, \textit{i.e.} Equation~\ref{eq:null}, there is no difference between the stimulation and control samples, and the proportions are equal. Model~\eqref{eq:alternate} represents the  alternative hypothesis where there is a difference in proportions between the stimulation and control samples.
+ where $p_{si}$, $p_{ui}$ are the unobserved proportions for the stimulated and un-stimulated paired samples. Under the null hypothesis, \textit{i.e.}~\eqref{eq:null}, there is no difference between the stimulation and control samples, and the proportions are equal. Under the alternative model given by \eqref{eq:alternate}, there is a difference in proportions between the two samples.
 
 \subsection{Priors}
 Our model shares information across all individuals using an exchangeable Beta priors on the unknown proportions, as follows, 
@@ -113,118 +113,43 @@ Our model shares information across all individuals using an exchangeable Beta p
 (p_{ui} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha_u, \beta_u)\label{eq:prior-null}\\
 (p_{si} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha_s,\beta_s) \quad\mathrm{and}\quad (p_{ui}|z_{i}=1) \sim \mathrm{Beta}(\alpha_u, \beta_u) \label{eq:prior-alternative}
  \end{align}
-where $z_i$ is an indicator variable equal to one if individual $i$ is a responder, i.e.  $p_{si}\ne p_{ui}$ (or $p_{si}> p_{ui}$), and 0 otherwise, and $\alpha_u, \beta_u, \alpha_s,\beta_s$ are unknown hyper-parameters shared across all individuals. Note that the parameters $\alpha_u, \beta_u$ are explicitly shared across the two models. Under the null model, the stimulated condition should behave just like the unstimulated one, and thus
-the stimulated response rates (\textit{i.e.} $p_{si}$'s) should follow the same prior distribution. Finally, we assume that the $z_i$'s are independent and identically distributed as Bernoulli with probability $w$.
-Treating the $z_i$'s as missing data, the unknown parameter vector $\theta\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ can easily be estimated via an Empirical-Bayes fashion using and Expectation-Maximization algorithm as described in Section \ref{sec:estimation}. 
+where $z_i$ is an indicator variable equal to one if individual $i$ is a responder, i.e.  $p_{si}\ne p_{ui}$, and zero otherwise, and $\alpha_u, \beta_u, \alpha_s,\beta_s$ are unknown hyper-parameters shared across all individuals. Note that the parameters $\alpha_u, \beta_u$ are explicitly shared across the two models, whereas $\alpha_s,\beta_s$ are only present for the alternative model. Under the null model, the stimulated condition should behave just like the unstimulated one, and thus the stimulated response rates (\textit{i.e.} $p_{si}$'s) should follow the same prior distribution. Finally, we assume that the $z_i$'s are independent and identically distributed as Bernoulli with probability $w$, where $w$ represents the proportion of responders. It follows that marginally, i.e. after integrating $z_i$, $p_{ui}$ and $p_{si}$ are jointly distributed as a mixture of a one dimensional and a two dimensional Beta distributions with mixing parameter $w$. Treating the $z_i$'s as missing data, the unknown parameter vector $\theta\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ can easily be estimated via an Empirical-Bayes fashion using and Expectation-Maximization~\cite{Dempster:1977ul} algorithm as described in Section \ref{sec:estimation}. We will also explore a fully Bayesian model where the hyperparameters $\alpha_u, \beta_u$ and $\alpha_s, \beta_s$ are given vague exponential priors with mean $10^3$, and $w$ wis assumed to be drawn from a uniform distribution between 0 and 1. In this case, all parameters will be estimated via a Markov Chain Monte Carlo algorithm as described in Section \ref{sec:estimation}. 
 
 \subsection{Parameter estimation}
-The log complete data likelihood can be written as 
-\begin{equation}
-l(\theta|y)=\sum_i z_i l_0(\alpha_u, \beta_u|y_i) +(1-z_i) l_1(\alpha_u, \beta_u, \alpha_s, \beta_s|y_i)
-\end{equation}
-where $l_0$ and $l_1$ are the marginal likelihoods for the null and alternative models obtained after integrating out the prior for $\alpha_u, \beta_u, \alpha_s$, and $\beta_s$. 
-
-\subsubsection{Null Model}
-Given the above formulation, the posterior for the null model is Beta--binomial, with marginal likelihood (integrating out $p_u$):
-
+\label{sec:estimation}
+Whether we use an EM or an MCMC algorithm for parameter estimation, we make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p$'s for the null and alternative models, to simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Appendix A), and are given by,
  \begin{align}
-  	\mathrm{L}(\alpha_u,\beta_u|\mathbf{y})
+  	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
 	&=\prod_{i=1}^P\binom{N_{si}}{n_{si}}\binom{N_{ui}}{n_{ui}}\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\label{eq:model1post}
-%	\intertext{Integrating out the proportions gives the marginal log--likelihood.}
-%	\begin{split}
-%	\mathcal{L}(\alpha_u,\beta_u|\mathbf{y})=\sum_{i=1}^P\left[\log{\binom{N_{si}}{n_{si}}}+\log{\binom{N_{ui}}{n_{ui}}}+\right.\\
-%	\left.\log{\left(\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)\right)}\right]-P\log\left(\mathrm{B}(\alpha_u,\beta_u)\right)\label{eq:model1MLL}
-%	\end{split}
  \end{align} 
- \subsubsection{Alternative Model - Unconstrained}
- If the data is generated by model~\eqref{eq:alternate} then we have  $p_s\ne p_u$, and the marginal likelihood of the alternative is:
+and
 \begin{align}
 	\begin{split}
-\mathrm{Pr}(y_i|\alpha_u,\beta_u,\alpha_s,\beta_s) =\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}\label{model2:unconstrained}
+\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}) 
+=\prod_{i=1}^P\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}.\label{model2:unconstrained}
 \end{split}
 \end{align}
 
-\subsubsection{Alternative Model - Constrained}
-For ICS data, however, we are generally interested in the one--sided case where $p_s>p_u$, which is consistent with a positive response to stimulation (i.e., more cells are producing the marker after stimulation). In this constrained case, integrating out $p_s$, $p_u$ leads to an additional factor, $C$, in the marginal likelihood, which is just the ratio of normalizing constants for the prior and the likelihood with constraints:
-\begin{align}
-\begin{split}
-	 C=\frac{\int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}p_{ui}^{n_{ui}+\alpha_u-1}(1-p_{ui})^{N_{ui}-n_{ui}+\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(N^i_s-n^i_s+\beta_s,n^i_s+\alpha_s)\right)d p_{ui}}{   \int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_{ui}^{\alpha_u-1}(1-p_{ui})^{\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(\beta_s,\alpha_s)\right)d p_{ui}}
-\label{eq:model2post}
-\end{split}
-%	\intertext{with marginal log--likelihood:}
-%\begin{split}
-%\mathcal{L}(\alpha_s,\alpha_u,\beta_s,\beta_u|\mathbf{y})=-P\log\left(\mathrm{B}(\alpha_u,\beta_u)\right)-P\log\left(\mathrm{B}(\alpha_s,\beta_s)\right)+\\ \sum_{i=0}^P\left\{\log\binom{N_{ui}}{n_{ui}}+ \log\binom{N_{si}}{n_{si}}+ \log\left(\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)\right)+\right. \\ \left. \log\left(\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)\right) + \right. \\ \left. \log\left[\hspace{1em}\int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}p_{ui}^{n_{ui}+\alpha_u-1}(1-p_{ui})^{N_{ui}-n_{ui}+\beta_u-1} \right) \right. \right. \\  \left.\vphantom{\int\left( \frac{1}{\mathrm{B}(\alpha,\beta)}\right)}\left(\mathrm{I_{1-p_{ui}}}(N_{si}-n_{si}+\beta_s,n_{si}+\alpha_s)\right)d p_{ui}\right] \\ -  \left. \log\left[\hspace{1em}\int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_{ui}^{\alpha_u-1}(1-p_{ui})^{\beta_u-1} \right) \right. \right. \\  \left. \left.\vphantom{\int\left( \frac{1}{\mathrm{B}(\alpha,\beta)}\right)} \left(\mathrm{I_{1-p_{ui}}}(\beta_s,\alpha_s)\right)d p_{ui}\right] \right\}\label{eq:model2MLL}
-%\end{split}
-\end{align}
+Assuming that the missing data $z_i$'s are known, we define the complete log-likelihood as follows,
+\begin{equation}
+l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha_u, \beta_u|\mathbf{y}_i) +(1-z_i) l_1(\alpha_u, \beta_u, \alpha_s, \beta_s|\mathbf{y}_i)+z_i\log(w)+(1-z_i)\log(1-w)
+\label{eq:cll}
+\end{equation}
+where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ is the vector of parameters to be estimated.
 
-%The ratio of integrals in \eqref{eq:model2post} accounts for the different normalizing constants due to the constraints $p_{si}>p_{ui}$ on the prior and the posterior distributions. We call this the \emph{constrained} model. 
+\subsubsection{EM algoritm}
+Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,\tilde{w}\right\}$, and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
+\[
+\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,|\mathbf{y}_i)}{\tilde{w}\cdot\mathrm{L}_0(\tilde{\alpha}_u,\tilde{\beta}_u|\mathbf{y}_i)+(1-\tilde{w})\cdot\mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s|\mathbf{y}_i)}.
+\]
 
-The term $I_{1-p_{ui}}(\beta_s,\alpha_s)=1-I_{p_{ui}}(\alpha_s,\beta_s)=Pr(p_{si} > p_{ui}; \alpha_s,\beta_s)$, is just the CDF of a Beta distribution with parameters $\alpha_s,\beta_s$, resulting in a 1--dimensional numerical integration for calculating the ratio of normalizing constants.
+Replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}, we then optimize the complete-data log-likelihood over $\boldsymbol{\theta}$. Straightforward calculations lead to 
+$\tilde w = \sum_i{\tilde{z_i}}/P$, but unfortunately no closed form solutions exist for the remaining parameters. We used numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters.  Starting from some initial values, the EM algorithms iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
-%Without constraints, ($p_s\ne p_u$), the ratio of integrals for the normalizing constant in \eqref{eq:model2post} is dropped. We call this the \emph{unconstrained} model.
+\subsubsection{MCMC algorithm}
+Realizations were generated from the posterior distribution via MCMC algorithms \citep{Gelfand}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s that were done via Gibbs samplings.
+All full conditionals are given in supplementary material. We used the method of Raftery and Lewis \citep{Raftery1,Raftery2} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
 
-\subsection{The Mixture Model Framework}
-
-The two models (null and alternative), are represented as two components in our mixture model framework. The observed data is thus a mixture of observations drawn from one or the other of these components (i.e., each subject is either a responder, or a non--responder). Setting  $\theta_1=\{\alpha_u,\beta_u\},\theta_2=\{\alpha_u,\beta_u,\alpha_s,\beta_s\}$, the likelihood for the mixture model is:
-
-
-%\begin{align}
-%f(y_i|\alpha_{u},\beta{u},\alpha_{s},\beta_{s}) = (1-\pi)f_1(y_i|\alpha_u,\beta_u) + \pi f_2(y_i|\alpha_u,\beta_u,\alpha_s,\beta_s)
-%\end{align}
-
- \begin{align}
-\begin{split}
-%L(\alpha_s,\beta_s,\alpha_u,\beta_u,\pi_k|\mathbf{y})=\prod\limits_{i=1}\limits^P\left[ \pi_1 Pr(y_i|\alpha_u,\beta_u) +\pi_2 Pr(y_i|\alpha_u,\beta_u,\alpha_s,\beta_s) \right] ,\\ \sum\limits_{k=1}\limits^2\pi_k=1\\
-L(\alpha_s,\beta_s,\alpha_u,\beta_u,\pi|\mathbf{y})=\prod\limits_{i=1}\limits^P\left[ \pi f_1(y_i|\alpha_u,\beta_u) +(1-\pi)f_2(y_i|\alpha_u,\beta_u,\alpha_s,\beta_s) \right] 
-\end{split}
-\end{align}
-%,\\ \sum\limits_{k=1}\limits^2\pi_k=1
-%Where $\theta_1=\{\alpha_u,\beta_u\}, \theta_2=\{\alpha_u,\beta_u,\alpha_s,\beta_s\}$, $\pi_1$ is the fraction of observations exhibiting no response to stimulation, $\pi_2$ the fraction of observations exhibiting a response to stimulation, and $f_1 = Pr(y_i|\alpha_u,\beta_u), f_2 = Pr(y_i|\alpha_u,\beta_u,\alpha_s,\beta_s)$ from \eqref{eq:model1post} and \eqref{eq:model2post}, above. 
-The terms $f_1$,$f_2$ are the marginal likelihoods of the null and alternative models, respectively, $\pi$ is the proportion of responders. 
-
-The component membership of each subject is unobserved and  treated as missing data. They are modelled as random variables  $\mathbf{z}_i = \left\{z_{i1},(1-z_{i1})\right\}$, where:
-
-$$
-z_{ik} = \left\{ \begin{array}{rl}
-1 &\mbox{ if observation $i$ is from the $k$'th model (component)} \\
-0&\mbox{ otherwise}
-\end{array} \right.
-$$
-
-Each $\mathbf{z}_{i}$ follows an independent multinomial distribution with one trial and  parameters $\boldsymbol{\pi}=\left\{\pi_1,1-\pi_1\right\}$. They are interpreted as the posterior probabilities of response. Given the $z_i$'s the complete data likelihood is written as:
-
-\begin{align}
-\begin{split}
-\mathbf{L_c}(\theta_k,\pi_k|\mathbf{y},\mathbf{z}) = \prod\limits_{i=1}\limits^P\prod\limits_{k=1}\limits^2\left[\pi_k f_k(y_i|\theta_k)\right]^{z_{ik}}\label{eq:cll}
-%\mathcal{L}_c(\alpha_s,\beta_s,\alpha_u,\beta_u,\pi|\mathbf{y},\mathbf{z})=\sum\limits_{i=1}\limits^P\sum\limits_{k=1}\limits^2{z_{ik}\left[ \log\pi_k+\log f_k(y_i|\theta_k)\right]}\label{eq:CDLL}
-\end{split}
-\end{align}
-
-\subsection{Parameter estimation}
-In the from of~\eqref{eq:cll}, we use the expectation--maximization (EM) algorithm~\cite{Dempster:1977ul} to fit the model. 
-
-\subsubsection{E--step}
-Given the model parameters $\boldsymbol{\Psi}=\left\{\alpha_u,\beta_u,\alpha_s,\beta_s,\pi_k\right\}$, and the data $\mathbf{y}$, we estimate the unobserved component memberships, $\mathbf{Z_i}$  by computing the conditional expectation of the $\mathbf{Z_i}$'s,  $\mathbb{E}\boldsymbol{_\Psi}(\mathbf{Z_i}|\mathbf{y}_i)$:
-\begin{align}
-\tilde z_{ik} &= \frac{\pi_k f_k(\mathbf{y}_i|\theta_k)}{\sum\limits_{k=1}\limits^{2}\pi_kf_k(\mathbf{y}_i|\theta_k)}
-\end{align}
-
-\subsubsection{M--step}
-Given the $\tilde{z}_{ik}$, we update the estimates of the model parameters to maximize the conditional expectation of the complete--data log--likelihood. The mixing proportions are given by:
-\begin{align}
-\hat\pi_k = \frac{ \sum_i^P \tilde z_{ik}}{n}
-\end{align}
-
-There is no closed form for the model hyper--parameter estimates, $\alpha_u,\beta_u,\alpha_s,\beta_s$. They are estimated numerically using R's \textit{optim} function. To simplify the optimization, they are re--parameterized as $\mu_u=\frac{\alpha_u}{\alpha_u+\beta_u}$ and $S=\alpha_u+\beta_u$ (likewise for the $\alpha_s,\beta_s$), corresponding to the mean and sample size of the prior distributions. 
-
-\subsubsection{Initialization}
-We initialize the $z_{ik}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the $\hat{z}_i$'s to initialize the hyper--parameters to their method--of--moments estimates:
-\begin{align}
-\hat{\alpha} = \hat{\mu}\left(\frac{\hat{\mu}(1-\hat{\mu})}{\hat{\sigma}^2} -1\right)\\
-\hat{\beta} =  (1-\hat{\mu}\left(\frac{\hat{\mu}(1-\hat{\mu})}{\hat{\sigma}^2} -1\right)
-\end{align}
-
-Where $\hat{\mu}$ and $\hat{\sigma}^2$ are the sample mean and sample variance estimates, given the $z_{ik}$'s.
 
 \section{Results}
 The constrained model was applied to an ICS data set from a real--world vaccine trial in order to identify responders to antigen stimulation. The unconstrained model was applied to Fluidigm single--cell gene expression data to identify genes differentially expressed between stimulated and unstimulated conditions in populations of single--cells.
@@ -326,23 +251,23 @@ Since the constrained model relies on Monte--Carlo integration to estimate the n
 
 To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the MLE estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN054 data set (Figure~\ref{fig:simulations_trunc}). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained model fit to constrained data.
 
-\section{Differential expression across combinatorial marker combinations}
+\section{Differential expression across marker combinations}
 \subsection{Model}
-%\subsection{Generalization to Multiple Cytokines and Polyfunctionality with the Multinomial Dirichlet}
-The model can be generalized to handle multiple cytokines in a single stimulation, in order to assess polyfunctional cytokine responses of T--cells. Without loss of generality, for two markers we use the Multinomial--Dirichlet family of distributions to model counts of events in two \textit{different} 2x2 contingency tables. Here we consider only the \emph{unconstrained} case ($p_s\ne p_u$). The observed data can be represented as shown in Table~\ref{tab:multdir}.
+Our beta-binomial model described in section \ref{sec:} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple marker combinations. As described in the data section, we now have counts for each marker combination, denoted by  $\mathbf{n}_{sk}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{uk}=\{n_{uik}: k=1,\dots,2^K\}$. Table~\ref{tab:multdir} gives an illustration of the counts with two putative markers A and B.
+
 \begin{table}[h]
 \centering
 \parbox{0.8\linewidth}{
-\caption{Contingency tables for counts of cells expressing two cytokines between stimulated and unstimulated conditions. $n_{\{s,u\}j}$ denotes observed counts for stimulated or unstimulated table cell $j$, and individual $i$  }\label{tab:multdir}
+\caption{Contingency tables for counts of cells expressing two markers between stimulated and unstimulated conditions. $n_{\{s,u\}k}$ denotes observed counts for stimulated or unstimulated table cell $k$, and individual $i$  }\label{tab:multdir}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
 \begin{tabular}{rrr}
 \multicolumn{3}{c}{Stimulated}\\
   \hline
 \multicolumn{1}{l}{}&
-\multicolumn{2}{c}{Cytokine A}\\
+\multicolumn{2}{c}{Marker A}\\
  & Negative & Positive \\ 
- \multicolumn{1}{l}{Cytokine B}&&\\
+ \multicolumn{1}{l}{Marker B}&&\\
   \hline
 Negative &   $n_{si1}$ &   $n_{si2}$ \\ 
 Positive &   $n_{si3}$ &   $n_{si4}$ \\ 
@@ -367,19 +292,42 @@ Positive &   $n_{ui3}$ &   $n_{ui4}$ \\
 }
 \end{table}
 
-The vector of observed counts for individual $i$ in the stimulated or unstimulated sample is denoted: $\bar{n}_{\{s,u\}i} = \{n_{\{s,u\}ij}\} ; j\in\{1\ldots 4\}$, and $j$ indexes the cells of the appropriate contingency table shown in~Table~\ref{tab:multdir}. The counts are modelled as draws from different multinomial distributions:
+In this context, for a given individual,  the beta distribution is replaced by a multinomial distribution, as follows,
 
-\begin{align}
- &(\bar{n}_{ui}|p_{ui},) \sim \mathcal{M}(\bar{p}_{ui},N_{ui}); (\bar{n}_{si}|p_{si}) \sim \mathcal{M}(\bar{p}_{ui},N_{si}); \text{if $i$ is a non--responder}\\
- &(\bar{n}_{ui}|p_{ui}) \sim \mathcal{M}(\bar{p}_{ui},N_{ui}); (\bar{n}_{si}|p_{si}) \sim \mathcal{M}(\bar{p}_{si},N_{si});\text{if $i$ is a responder}
-\end{align}
-where the $N_{\{s,u\}i}=\sum\limits_{j=1}\limits^{J} n_{\{s,u\}ij}$.
+\[
+ (\mathbf{n}_{ui}|\mathbf{p}_{ui},) \sim \mathcal{M}(N_{ui},\mathbf{p}_{ui}) \quad\mathrm{and}\quad (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(N_{si},\mathbf{p}_{si})
+\]
+%; \text{if $i$ is a non--responder}\\
+% &(\mathbf{n}_{ui}|\mathbf{p}_{ui}) \sim \mathcal{M}(\mathbf{p}_{ui},N_{ui}); (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(\mathbf{p}_{si},N_{si});\text{if $i$ is a responder}
+%\end{align}
+where $N_{\{s,u\}i}=\sum\limits_{k=1}\limits^{2^K} n_{\{s,u\}ik}$ are the number of cells collected and $\mathbf{p}_{ui}$ and $\mathbf{p}_{si}$ are the unknown vectors of proportions of cells. 
+As stated, the number of parameters to be estimated is $2(2^K-1)$, which grows exponentially with the number of makers $K$. In addition, we now have many possible patterns of expression across the different marker combinations. 
+In fact, if we assume that each proportion can be equal (\textit{i.e.} $p_u=p_s$) or different (\textit{i.e.} $p_u\ne p_s$) the number of possible patterns is $2^{2^{K}}$, which grows super-exponentionally with $K$.
+For example, if the data considered have two markers resulting in four possible combinations, we have 16 possible patterns of expression, as follows.
+\begin{align*}
+p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 0)}\\
+p_{s1}&\ne p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
+p_{s1}&= p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
+p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
+p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 1)}\\
+p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 2)}\\
+p_{s1}&\ne p_{u1},\ p_{s2}= p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 2)}\\
+&\vdots\\
+p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 3)}\\
+p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 3)}\\
+&\vdots\\
+p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 4)}.
+\end{align*}
+This \textit{combinatorial explosion} of possible patterns renders the model selection and parameter estimation difficult as one would need to explore $2^{2^K}$ possible models. 
+In practice, one could reduce the total number of patterns to a more manageable level, by eliminating marker combinations that known not to be co-expressed. An other possibility would be to only retain the null pattern
+and the pattern of highest degree (\textit{i.e.} all proportions are different), or retain the null pattern and all patterns of degree 1 (\textit{i.e.} one proportion is different). In our illustration here, we have opted for the former and thus have two patterns of expression. 
+
 \subsection{Prior}
-As with the one--dimensional case, we share information across subjects. We put Dirichlet priors on the proportions.
+As with the one-dimensional case, we share information across subjects using an exchangeable prior on the unknown proportions. We use conjugate Dirichlet priors, as follows,
 \begin{align}
-\bar{p}_{si} \sim \mathrm{Dir}(\bar{\alpha}_s) ; \bar{p}_{ui} \sim \mathrm{Dir}(\bar{\alpha}_u)
+\mathbf{p}_{si} \sim \mathrm{Dir}(\mathbf{\alpha}_s) ; \mathbf{p}_{ui} \sim \mathrm{Dir}(\mathbf{\alpha}_u)
 \end{align}
-
+where $\mathbf{p}_{si}$ would satisfy the constrain given by the expression pattern. That is under the null pattern we have $\mathbf{p}_{si}=\mathbf{p}_{ui}$
 For the null component, the marginal likelihood of the resulting multinomial--dirichlet is given by: 
 \begin{align}
 \mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u) &= \prod_{i=0}^P\frac{ \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{NRmd}
