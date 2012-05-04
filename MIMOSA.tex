@@ -53,13 +53,13 @@ Here we present a framework based on mixtures of Beta--binomial or Dirichlet--Mu
 \end{abstract}
 
 \section{Introduction}
-In the 1970s, single-cell analysis was revolutionized with the development of fluorescence-based flow cytometry (FCM). Since then, instrumentation and reagent advances have enabled the study of numerous cellular processes via the simultaneous single cell measurement of multiple surface and intracellular markers (up to 17 markers). Recently, DVS Sciences Inc. introduced a new cytometry technology named cytometry Time-Of-Flight (CyTOF) that uses rare isotopes instead of fluorochromes (as in standard FCM), as antibody tags to label single cells. CyTOF drastically extends the capabilities of single-cell cytometry to measure dozens of simultaneous parameters per cell. Although cells sorted using well-established surface markers may appear homogeneous, mRNA expression of other genes within these cells can be heterogeneous4,5 and could further characterize cell poly-functionality. A new technology based on microfluidic arrays combined with multiplexed polymerase chain reactions (PCR) can now be used to perform thousands of PCRs in a single device, enabling simultaneous, high-throughput gene expression measurements at the single-cell level across hundreds of cells and genes6. While classic gene expression microarrays sum the expression from many individual cells, the intrinsic stochastic nature of biochemical processes results in relatively large cell-to-cell gene expression variability. This heterogeneity may carry important information, thus single cell expression data should not be analyzed in the same fashion as cell-population level data. Special treatment of single cell level data, which preserves information about population heterogeneity, is warranted in general. For this reason, single--cell assays are an important tool in immunology, providing a functional and phenotypic snapshot of the immune system at a given time. These assays typically measure multiple variables simultaneously on individual cells in a heterogeneous mixture such as whole blood. These variables are used to classify individual cells in the mixture into more homogeneous sub--populations based on phenotypic or functional differences. Such single--cell assays are used for immune monitoring of disease, vaccine research, and diagnosis of haematological malignancies~\cite{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}.
+In the 1970s, single-cell analysis was revolutionized with the development of fluorescence-based flow cytometry (FCM). Since then, instrumentation and reagent advances have enabled the study of numerous cellular processes via the simultaneous single cell measurement of multiple surface and intracellular markers (up to 17 markers). More recent technological development have drastically extended the capabilities of single-cell cytometry to measure dozens of simultaneous parameters per cell. Although cells sorted using well-established surface markers may appear homogeneous, mRNA expression of other genes within these cells can be heterogeneous4,5 and could further characterize cell poly-functionality. A new technology based on microfluidic arrays combined with multiplexed polymerase chain reactions (PCR) can now be used to perform thousands of PCRs in a single device, enabling simultaneous, high-throughput gene expression measurements at the single-cell level across hundreds of cells and genes6. While classic gene expression microarrays sum the expression from many individual cells, the intrinsic stochastic nature of biochemical processes results in relatively large cell-to-cell gene expression variability. This heterogeneity may carry important information, thus single cell expression data should not be analyzed in the same fashion as cell-population level data. Special treatment of single cell level data, which preserves information about population heterogeneity, is warranted in general. For this reason, single--cell assays are an important tool in immunology, providing a functional and phenotypic snapshot of the immune system at a given time. These assays typically measure multiple variables simultaneously on individual cells in a heterogeneous mixture such as whole blood. These variables are used to classify individual cells in the mixture into more homogeneous sub--populations based on phenotypic or functional differences. Such single--cell assays are used for immune monitoring of disease, vaccine research, and diagnosis of haematological malignancies~\cite{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}.
 
 A motivating example from vaccine research is the flow cytometric intracellular cytokine staining (ICS) assay, which is used to identify and quantify individuals' immune responses to a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T--cels via antigen presenting cells. While not all T--cells can recognize all antigens, those that recognize antigens in the vaccine become \emph{activated} and produce a variety of cytokines, further promoting the immune response. After activation, this antigen--specific subpopulation proliferates and can persist in the immune system for some time providing \emph{memory} that can more rapidly recognize the same antigen again in the future \cite{McKinstry:2010ei}. These antigen--specific T--cell subpopulations constitute a very small fraction of the total number of CD4 and CD8 T--cells. The ICS assay measures the number of antigen--specific T--cells in whole blood by measuring cytokine production in response to activation following stimulation by an antigen that closely matches what was present in the original vaccine. Individual cells are labelled using fluorescently conjugated antibodies against phenotypic markers (CD3, CD4, and CD8) and functional markers (cytokines) of the cell subpopulations of interest~\cite{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}. A sufficiently large number of cells must be collected to ensure that the rare cell populations can be detected. Subsequently, each individual cell is classified as either positive or negative for each maker based on predetermined thresholds, then the number of cells matching each subpopulation phenotype is counted. These counts are compared between antigen stimulated and unstimulated samples from an individual to identify significant differences. Assessing a broad T cell response to a vaccine is particularly important in HIV vaccine trials, where the search for immune correlates of protection against HIV progression and infection is ongoing~\cite{Plotkin:2010ve,Horton:2007tsa,Kim:2010fw, Bendall:2011wf}.
 
 %The ICS assay in flow cytometry is just one example of the applications of single--cell technologies to immunology. Single--cell gene expression technologies such as Fluidigm are enabling researchers to measure the expression of 96 genes in 96 single cells from a homogeneous population sorted by flow cytometry\cite{Jang:2011uj}. This technology has been used to identify signatures of immune cell sub--populations that correlate with different types of vaccine~\cite{Flatz:2011jb}. To date, published analysis of Fluidigm data ignore cells where transcripts are undetected, focusing solely on continuous gene expression measurements. However, the proportion of single cells expressing individual genes also carries information and should be evaluated.
 
-Although there is no standard approach to analyzing ICS assay data current methods range from ad--hoc rules based on log--fold changes, to permutation tests based on Hotelling's T$^2$ statistics, to exact tests of 2x2 contingency tables (e.g., Fisher's exact test)~\cite{Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Nason:2006dx}. These methods generally test pairwise combinations of markers, raising questions of appropriate multiple testing adjustments, or they perform global tests of significance on multiple markers resulting in decreased power to detect small changes in subsets of cytokines~\cite{Proschan:2009ks,Nason:2006dx}. In the context of single-cell gene expression, very few methods have been proposed. To date, published analysis of Fluidigm data ignore cells where transcripts are undetected, focusing solely on continuous gene expression measurements. However, the proportion of single cells expressing individual genes also carries information and should be evaluated.
+Although there is no standard approach to analyzing ICS assay data current methods range from ad--hoc rules based on log--fold changes, to permutation tests based on Hotelling's T$^2$ statistics, to exact tests of 2x2 contingency tables (e.g., Fisher's exact test and $\chi^2$ test\footnote{make sure there is a reference for that})~\cite{Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Nason:2006dx}. These methods generally test pairwise combinations of markers, raising questions of appropriate multiple testing adjustments, or they perform global tests of significance on multiple markers resulting in decreased power to detect small changes in subsets of cytokines~\cite{Proschan:2009ks,Nason:2006dx}. In the context of single-cell gene expression, very few methods have been proposed. To date, published analysis of Fluidigm data ignore cells where transcripts are undetected, focusing solely on continuous gene expression measurements. However, the proportion of single cells expressing individual genes also carries information and should be evaluated.
 
 
 %on a per--cytokine basis to identify observations where the number of cytokine producing cells is greater in the stimulated than the control data Problems with Fisher's exact when the test assumptions are not met have been reviewed in the literature~\cite{Proschan:2009ks}. In the context of single--cell assay data the assumption of fixed margins is not satisfied since the observations for treatment and control conditions arise from independent experiments, thus the p--values from Fisher's exact test are incorrect. More importantly, Fisher's exact test does not share information across observations, resulting in low power when counts are small. 
@@ -69,15 +69,15 @@ The framework developed in this paper addresses these issues explicitly. We pres
 \section{Data structure and notation} 
 In this paper we consider two different immunological single-cell assays typically used in vaccine trials, one flow cytometry data set, and one single-cell gene expression data set.
 
-\textit{Flow cytometry}: This ICS data is from a phase-I (safety and efficacy) trial of an adenoviral vector vaccine in individuals without prior immunity, measuring four cytokines in two cell populations from 20 individuals at two time points (zero and 28 days post-vaccination, see Supplementary Information~\ref{supp:data} for details)~\cite{Peiperl:2010ej}. The statistical analysis of responder and non-responder calls in the published trial is described in the original manuscript and outlined in the supplementary information (Supplementary Information~\ref{supp:statpublished})~\cite{Peiperl:2010ej}. The goal of this data set was to assess and quantify response rates of CD4 and CD8 T-cell populations to different antigens.
+\textit{Flow cytometry}: This dataset is from a phase-I (safety and efficacy) trial of an adenoviral vector vaccine in individuals without prior immunity, measuring four cytokines via intracellular cytokine staining (ICS) in two cell populations from 20 individuals at two time points (zero and 28 days post-vaccination, see Supplementary Information~\ref{supp:data} for details)~\cite{Peiperl:2010ej}. The statistical analysis of responder\footnote{need to define this} and non-responder calls in the published trial is described in the original manuscript and outlined in the supplementary information (Supplementary Information~\ref{supp:statpublished})~\cite{Peiperl:2010ej}. The goal of this data set was to assess and quantify response rates of CD4 and CD8 T-cell populations to different antigens.
 
-\textit{Fluidigm single--cell gene expression}: This is a single--cell gene expression data set of flow--sorted CD8 T--cells from sixteen individuals. The T--cells from blocks of four individuals were stimulated with different antigens, gene expression measured at the single--cell level and compared to paired, unstimulated controls. 
+\textit{Fluidigm single-cell gene expression}: This is a single-cell gene expression data set of flow-sorted CD8 T-cells from sixteen individuals. The T-cells from blocks of four individuals were stimulated with different antigens, gene expression measured at the single-cell level and compared to paired, unstimulated controls. \footnote{Add a bit more info here, how many genes, tetramer sorted, etc}.
 
 In the remainder of the paper, we use the following notation to describe our model. 
-From this point on, we assume that we observe cell counts from $I$ individuals in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a marker. Given a set of $K$ markers, the measured cells can be classified into $2^K$ positive/negative marker combinations. We denote by $n_{sik}$ and $n_{uik}$, $k=1\dots 2^K$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples. We denote by $N_{si}=\sum_k n_{sik}$ and $N_{ui}=\sum_k n_{uik}$ the total number of cells measured for individuals $i$ in each sample. For ease of notations, we will denote by $\mathbf{y}_i$ the vector of observed counts for individual $i$, \textit{i.e.} $\mathbf{y}_{i}=(\mathbf{n}_{si}, \mathbf{n}_{ui})$ where $\mathbf{n}_{sk}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{uk}=\{n_{uik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
+From this point on, we assume that we observe cell counts from $I$ individuals in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a marker. Given a set of $K$ markers, the measured cells can be classified into $2^K$ positive/negative marker combinations. We denote by $n_{sik}$ and $n_{uik}$, $k=1\dots 2^K$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples. We denote by $N_{si}=\sum_k n_{sik}$ and $N_{ui}=\sum_k n_{uik}$ the total number of cells measured for individual $i$ in each sample. For ease of notations, we will denote by $\mathbf{y}_i$ the vector of observed counts for individual $i$, \textit{i.e.} $\mathbf{y}_{i}=(\mathbf{n}_{si}, \mathbf{n}_{ui})$ where $\mathbf{n}_{si}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{ui}=\{n_{uik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
 
 \section{Differential expression with one marker}
-In practice, stimulation studies like the ones presented here, are often analyzed one marker at a times to avoid being under powered due to the large number of combinations and the potential for very small cell counts in many of the combinations. As a consequence, we first consider the one marker case, \textit{i.e.} $K=1$. In this case, for a given individual, the data can be summarized in a contingency table of $+/-$ cell counts across the un-stimulated and stimulated samples as depicted in Table \ref{tab:twobytwo}.
+Datasets like the ones presented here are usually analyzed one marker at a times to avoid being underpowered due to the large number of combinations and the potential for very small cell counts in many of the combinations. As a consequence, we first consider the one marker case where cell counts are marginalized and each marker is analyzed separately and $K=1$. In this case, for a given individual, the data can be summarized in a contingency table of $+/-$ cell counts across the un-stimulated and stimulated samples as depicted in Table \ref{tab:twobytwo}.
 
 \begin{table}[ht]
 \centering
@@ -97,30 +97,34 @@ Unstimulated &   $N_{ui}-n_{ui}$ &   $n_{ui}$ \\
 \end{tabular}
 }
 \end{table}
-For a given individual and stimulation, we consider a marker to be differentially expressed if the proportion of positive cells in the stimulated samples is different from the number of positive cells in the un-stimulated sample. Individuals that show differential expression for a given marker will be called responders for that marker. In this section, we shall be concerned with identifying differential expression one marker at a time, using a beta-binomial mixture model as described below. 
+For a given individual and stimulation, we consider a marker to be differentially expressed if the proportion of positive cells in the stimulated samples is different from the number of positive cells in the un-stimulated sample. Individuals that show differential expression for a given marker will be called responders for that marker. In this section, we shall be concerned with identifying differential expression one marker at a time, using a beta-binomial mixture model as described in what follows. 
 
-\subsection{Beta--Binomial Model for One Marker}
+\subsection{Beta-Binomial Model for One Marker}
 For a given individual $i$, the positive cell counts for the stimulated and un-stimulated samples are jointly modeled as follows,
-\begin{align}
-(n_{si}|p_{ui}) \sim \mathrm{Bin}(N_{si},p_{ui});\text{ }& (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui})\label{eq:null};&\text{if $i$ is a non-responder}\\
-(n_{si}|p_{si}) \sim \mathrm{Bin}(N_{si},p_{si});\text{ }& (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui});&\text{if $i$ is a responder}\label{eq:alternate}
- \end{align}
- where $p_{si}$, $p_{ui}$ are the unobserved proportions for the stimulated and un-stimulated paired samples. Under the null hypothesis, \textit{i.e.}~\eqref{eq:null}, there is no difference between the stimulation and control samples, and the proportions are equal. Under the alternative model given by \eqref{eq:alternate}, there is a difference in proportions between the two samples.
+
+\begin{equation}
+(n_{si}|p_{si}) \sim \mathrm{Bin}(N_{si},p_{si})\quad \text{and}\quad (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui})\label{eq:bino_likelihood}
+\end{equation}
+where $p_{si}$, $p_{ui}$ are the unknown proportions for the stimulated and un-stimulated paired samples. In order to detect responding individuals we consider two competing models:
+\begin{equation}
+{\cal M}_0: p_{ui}=p_{si}\quad \text{and}\quad {\cal M}_1: p_{ui}\ne p_{si}. \label{eq:beta_prior}
+\end{equation}
+Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal. Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the individual $i$ is a responder. 
 
 \subsection{Priors}
-Our model shares information across all individuals using an exchangeable Beta priors on the unknown proportions, as follows, 
+Our model shares information across all individuals using exchangeable Beta priors on the unknown proportions, as follows, 
  \begin{align}
 (p_{ui} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha_u, \beta_u)\label{eq:prior-null}\\
 (p_{si} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha_s,\beta_s) \quad\mathrm{and}\quad (p_{ui}|z_{i}=1) \sim \mathrm{Beta}(\alpha_u, \beta_u) \label{eq:prior-alternative}
  \end{align}
-where $z_i$ is an indicator variable equal to one if individual $i$ is a responder, i.e.  $p_{si}\ne p_{ui}$, and zero otherwise, and $\alpha_u, \beta_u, \alpha_s,\beta_s$ are unknown hyper-parameters shared across all individuals. Note that the parameters $\alpha_u, \beta_u$ are explicitly shared across the two models, whereas $\alpha_s,\beta_s$ are only present for the alternative model. Under the null model, the stimulated condition should behave just like the unstimulated one, and thus the stimulated response rates (\textit{i.e.} $p_{si}$'s) should follow the same prior distribution. Finally, we assume that the $z_i$'s are independent and identically distributed as Bernoulli with probability $w$, where $w$ represents the proportion of responders. It follows that marginally, i.e. after integrating $z_i$, $p_{ui}$ and $p_{si}$ are jointly distributed as a mixture of a one dimensional and a two dimensional Beta distributions with mixing parameter $w$. Treating the $z_i$'s as missing data, the unknown parameter vector $\theta\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ can easily be estimated via an Empirical-Bayes fashion using and Expectation-Maximization~\cite{Dempster:1977ul} algorithm as described in Section \ref{sec:estimation}. We will also explore a fully Bayesian model where the hyperparameters $\alpha_u, \beta_u$ and $\alpha_s, \beta_s$ are given vague exponential priors with mean $10^3$, and $w$ wis assumed to be drawn from a uniform distribution between 0 and 1. In this case, all parameters will be estimated via a Markov Chain Monte Carlo algorithm as described in Section \ref{sec:estimation}. 
+where $z_i$ is an indicator variable equal to one if individual $i$ is a responder, i.e.  ${\cal M}_1$ is true, and zero otherwise, and $\alpha_u, \beta_u, \alpha_s,\beta_s$ are unknown hyper-parameters shared across all individuals. Note that the parameters $\alpha_u, \beta_u$ are explicitly shared across the two models, whereas $\alpha_s,\beta_s$ are only present in the alternative model. Finally, we assume that the $z_i$'s are independent and identically distributed Bernoulli with probability $w$, where $w$ represents the proportion of responders. It follows that marginally, \textit{i.e.} after integrating $z_i$, $p_{ui}$ and $p_{si}$ are jointly distributed as a mixture of a one dimensional and a two dimensional Beta distributions with mixing parameter $w$. Treating the $z_i$'s as missing data, the unknown parameter vector $\boldsymbol\theta\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ can be estimated in an Empirical-Bayes fashion using and Expectation-Maximization~\cite{Dempster:1977ul} algorithm as described in Section \ref{sec:estimation}. As an alternative, we will also explore a fully Bayesian model where the hyperparameters $\alpha_u, \beta_u$ and $\alpha_s, \beta_s$ are given vague exponential priors with mean $10^3$, and $w$ is assumed to be drawn from a uniform distribution between 0 and 1. In this case, all parameters will be estimated via a Markov Chain Monte Carlo algorithm as described in Section \ref{sec:estimation}. 
 
 \subsection{Parameter estimation}
 \label{sec:estimation}
-Whether we use an EM or an MCMC algorithm for parameter estimation, we make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p$'s for the null and alternative models, to simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Appendix A), and are given by,
+Our estimation algorithms make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p_{\{s,u\}i}$'s for the null and alternative models, to simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Supplementary material), and are given by,
  \begin{align}
   	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
-	&=\prod_{i=1}^P\binom{N_{si}}{n_{si}}\binom{N_{ui}}{n_{ui}}\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\label{eq:model1post}
+	&=\prod_{i=1}^P\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\label{eq:model1post}
  \end{align} 
 and
 \begin{align}
@@ -129,8 +133,7 @@ and
 =\prod_{i=1}^P\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}.\label{model2:unconstrained}
 \end{split}
 \end{align}
-
-Assuming that the missing data $z_i$'s are known, we define the complete log-likelihood as follows,
+Assuming that the missing data, the $z_i$'s, are known, we define the complete log-likelihood as follows,
 \begin{equation}
 l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha_u, \beta_u|\mathbf{y}_i) +(1-z_i) l_1(\alpha_u, \beta_u, \alpha_s, \beta_s|\mathbf{y}_i)+z_i\log(w)+(1-z_i)\log(1-w)
 \label{eq:cll}
@@ -138,17 +141,16 @@ l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha_u, \beta_u|\m
 where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ is the vector of parameters to be estimated.
 
 \subsubsection{EM algoritm}
-Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,\tilde{w}\right\}$, and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
+Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,\tilde{w}\right\}$ and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
 \[
-\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,|\mathbf{y}_i)}{\tilde{w}\cdot\mathrm{L}_0(\tilde{\alpha}_u,\tilde{\beta}_u|\mathbf{y}_i)+(1-\tilde{w})\cdot\mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s|\mathbf{y}_i)}.
-\]
-
-Replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}, we then optimize the complete-data log-likelihood over $\boldsymbol{\theta}$. Straightforward calculations lead to 
-$\tilde w = \sum_i{\tilde{z_i}}/P$, but unfortunately no closed form solutions exist for the remaining parameters. We used numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters.  Starting from some initial values, the EM algorithms iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
+\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}_u,\tilde{\beta}_u|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s|\mathbf{y}_i)}.
+\] 
+The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to 
+$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters.  Starting from some initial values, the EM algorithms iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
 \subsubsection{MCMC algorithm}
-Realizations were generated from the posterior distribution via MCMC algorithms \citep{Gelfand}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s that were done via Gibbs samplings.
-All full conditionals are given in supplementary material. We used the method of Raftery and Lewis \citep{Raftery1,Raftery2} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
+Realizations were generated from the posterior distribution via MCMC algorithms \citep{Gelfand}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were done via Gibbs samplings.
+Details about the algorithms are given in Supplementary material. We used the method of Raftery and Lewis \citep{Raftery1,Raftery2} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
 
 
 \section{Results}
@@ -252,171 +254,42 @@ Since the constrained model relies on Monte--Carlo integration to estimate the n
 To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the MLE estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN054 data set (Figure~\ref{fig:simulations_trunc}). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained model fit to constrained data.
 
 \section{Differential expression across marker combinations}
+Our beta-binomial model described in section \ref{sec:DE} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple marker combinations. As described in the data section, we now have counts for each marker combination, denoted by  $\mathbf{n}_{si}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{ui}=\{n_{uik}: k=1,\dots,2^K\}$. 
+%Table~\ref{tab:multdir} gives an illustration of the counts with two putative markers A and B.
 \subsection{Model}
-Our beta-binomial model described in section \ref{sec:} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple marker combinations. As described in the data section, we now have counts for each marker combination, denoted by  $\mathbf{n}_{sk}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{uk}=\{n_{uik}: k=1,\dots,2^K\}$. Table~\ref{tab:multdir} gives an illustration of the counts with two putative markers A and B.
 
-\begin{table}[h]
-\centering
-\parbox{0.8\linewidth}{
-\caption{Contingency tables for counts of cells expressing two markers between stimulated and unstimulated conditions. $n_{\{s,u\}k}$ denotes observed counts for stimulated or unstimulated table cell $k$, and individual $i$  }\label{tab:multdir}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\begin{tabular}{rrr}
-\multicolumn{3}{c}{Stimulated}\\
-  \hline
-\multicolumn{1}{l}{}&
-\multicolumn{2}{c}{Marker A}\\
- & Negative & Positive \\ 
- \multicolumn{1}{l}{Marker B}&&\\
-  \hline
-Negative &   $n_{si1}$ &   $n_{si2}$ \\ 
-Positive &   $n_{si3}$ &   $n_{si4}$ \\ 
-   \hline
-\end{tabular}
-\end{minipage}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\begin{tabular}{rrr}
-\multicolumn{3}{c}{Unstimulated}\\
-  \hline
-\multicolumn{1}{l}{}&
-\multicolumn{2}{c}{Cytokine A}\\
- & Negative & Positive \\ 
- \multicolumn{1}{l}{Cytokine B}&&\\
-  \hline
-Negative &   $n_{ui1}$ &   $n_{ui2}$ \\ 
-Positive &   $n_{ui3}$ &   $n_{ui4}$ \\ 
-   \hline
-\end{tabular}
-\end{minipage}
-}
-\end{table}
-
-In this context, for a given individual,  the beta distribution is replaced by a multinomial distribution, as follows,
-
-\[
- (\mathbf{n}_{ui}|\mathbf{p}_{ui},) \sim \mathcal{M}(N_{ui},\mathbf{p}_{ui}) \quad\mathrm{and}\quad (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(N_{si},\mathbf{p}_{si})
-\]
+In our multivariate model, the beta distribution is replaced by a multinomial distribution, as follows,
+\begin{equation}
+ (\mathbf{n}_{ui}|\mathbf{p}_{ui},) \sim \mathcal{M}(N_{ui},\mathbf{p}_{ui})\quad\text{and}\quad (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(N_{si},\mathbf{p}_{si})\label{eq:mult_likeliehood}
+ \end{equation}
 %; \text{if $i$ is a non--responder}\\
 % &(\mathbf{n}_{ui}|\mathbf{p}_{ui}) \sim \mathcal{M}(\mathbf{p}_{ui},N_{ui}); (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(\mathbf{p}_{si},N_{si});\text{if $i$ is a responder}
-%\end{align}
-where $N_{\{s,u\}i}=\sum\limits_{k=1}\limits^{2^K} n_{\{s,u\}ik}$ are the number of cells collected and $\mathbf{p}_{ui}$ and $\mathbf{p}_{si}$ are the unknown vectors of proportions of cells. 
-As stated, the number of parameters to be estimated is $2(2^K-1)$, which grows exponentially with the number of makers $K$. In addition, we now have many possible patterns of expression across the different marker combinations. 
-In fact, if we assume that each proportion can be equal (\textit{i.e.} $p_u=p_s$) or different (\textit{i.e.} $p_u\ne p_s$) the number of possible patterns is $2^{2^{K}}$, which grows super-exponentionally with $K$.
-For example, if the data considered have two markers resulting in four possible combinations, we have 16 possible patterns of expression, as follows.
-\begin{align*}
-p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 0)}\\
-p_{s1}&\ne p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
-p_{s1}&= p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
-p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 1)}\\
-p_{s1}&= p_{u1},\ p_{s2}= p_{u2},\ p_{s3}= p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 1)}\\
-p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 2)}\\
-p_{s1}&\ne p_{u1},\ p_{s2}= p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 2)}\\
-&\vdots\\
-p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}= p_{u4} \quad \text{(DE of degree 3)}\\
-p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}= p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 3)}\\
-&\vdots\\
-p_{s1}&\ne p_{u1},\ p_{s2}\ne p_{u2},\ p_{s3}\ne p_{u3},\ p_{s4}\ne p_{u4} \quad \text{(DE of degree 4)}.
-\end{align*}
-This \textit{combinatorial explosion} of possible patterns renders the model selection and parameter estimation difficult as one would need to explore $2^{2^K}$ possible models. 
-In practice, one could reduce the total number of patterns to a more manageable level, by eliminating marker combinations that known not to be co-expressed. An other possibility would be to only retain the null pattern
-and the pattern of highest degree (\textit{i.e.} all proportions are different), or retain the null pattern and all patterns of degree 1 (\textit{i.e.} one proportion is different). In our illustration here, we have opted for the former and thus have two patterns of expression. 
+%\end{align} 
+where $N_{\{s,u\}i}=\sum\limits_{k=1}\limits^{2^K} n_{\{s,u\}ik}$ are the number of cells collected and $\mathbf{p}_{ui}$ and $\mathbf{p}_{si}$ are the unknown proportions for the un-stimulated and stimulated samples.
 
 \subsection{Prior}
-As with the one-dimensional case, we share information across subjects using an exchangeable prior on the unknown proportions. We use conjugate Dirichlet priors, as follows,
+As in the one-marker case, we share information across subjects using an exchangeable prior on the unknown proportions. This time the beta priors are replaced by Dirichlet priors, as follows,
 \begin{align}
-\mathbf{p}_{si} \sim \mathrm{Dir}(\mathbf{\alpha}_s) ; \mathbf{p}_{ui} \sim \mathrm{Dir}(\mathbf{\alpha}_u)
+(\mathbf{p}_{ui}|z_i=0) &\sim \mathrm{Dir}(\boldsymbol{\alpha}_u)\\\nonumber
+(\mathbf{p}_{ui}|z_i=1) &\sim \mathrm{Dir}(\boldsymbol{\alpha}_u) \quad \text{and}\quad (\mathbf{p}_{si}|z_i=1) \sim \mathrm{Dir}(\boldsymbol{\alpha}_s)\label{eq:dir_prior}
 \end{align}
-where $\mathbf{p}_{si}$ would satisfy the constrain given by the expression pattern. That is under the null pattern we have $\mathbf{p}_{si}=\mathbf{p}_{ui}$
-For the null component, the marginal likelihood of the resulting multinomial--dirichlet is given by: 
-\begin{align}
-\mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u) &= \prod_{i=0}^P\frac{ \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{NRmd}
-\end{align}
-Where $\mathrm{B_j}$ is the $\mathrm{j}$--dimensional Beta function: $\frac{\prod_{j=1}^J\Gamma(\alpha_j)}{\Gamma(\sum\alpha_j)}$.
-
-Cells can express different combinations of markers. Since we now consider multiple markers simultaneously, the different marker combinations can be represented as separate components in the model. We examine the different possibilities below.
-
-\subsection{The simplest model: all marker combinations are different}
-The simplest case is where all possible marker combinations are expressed at different levels between the stimulated and unstimulated samples. In this case, we require only one additional component representing the alternative model, where $p_{sj} \ne p_{uj}$ for all $j$. An observation is assigned either to the null component (if there is no difference in any of the cell proportions), or to the alternative component, implying a difference in all the cell proportions. The marginal likelihood is given by:
-\begin{align}
-\mathrm{L}(\bar{n}_s,\bar{n}_u,N_s,N_u|\bar{\alpha}_u,\bar{\alpha}_s) &= \prod_{i=0}^P\frac{  \mathrm{B_j}(\bar{\alpha}_{u}+\bar{n}_{ui}) \mathrm{B_j}(\bar{\alpha}_{s}+\bar{n}_{si})}{\mathrm{B_j}(\bar{\alpha}_s)\mathrm{B_j}(\bar{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_{j=1}^J n_{sij}!} \cdot \frac{N_{ui}!}{\prod_{j=1}^J n_{uij}!}\label{eq:postmult}
-\end{align}
-
-However, it is possible to have a situation where only some combinations of markers exhibit differences between stimulation and control. These can be represented explicitly by additional components in the model. Without loss of generality, if only some $p_j$ are different between stimulated and unstimulated samples, the appropriate mixture components can be represented by simply substituting the relevant $\alpha_j$ in the calculation of the likelihood eq~\eqref{eq:postmult}.
+where the indicator variable $z_i$ is as defined in \eqref{eq:beta_prior}, i.e. $z_i\sim\mathrm{Be}(w)$ where $w$ is the proportion of responders. As in the beta-binomial case both an EM and MCMC algorithms can be used for parameter estimation. When using a fully Bayesian approach via MCMC, we use the same priors for $\boldsymbol{\alpha}_{\{u,s\}}$ and $w$ as for the beta-binomial model. 
 
 \subsection{Parameter estimation}
-The multivariate model is fit using the EM algorithm. We estimate the model hyper--parameters numerically ($\bar{\alpha}_u,\bar{\alpha}_s$) using Newton's method. 
-%The marginal likelihood of the non--responding component, given in eq~\eqref{NRmd} can be rewritten as:
-%\begin{align}
-%\begin{split}
-%l(\bar{\alpha}_u|D)=\sum_i \left[ \log \Gamma (\sum_j \alpha_{uj}) - \log \Gamma (\sum_j \alpha_{uj}+n_{uij}+n_{sij})+ \sum_j (\log \Gamma(\alpha_{uj}+n_{uij}+n_{sij}) \right.\\ \left. -\log\Gamma(\alpha_{uj}))+ \log\Gamma(N_{si}+1) +\log\Gamma(N_{ui}+1)-\right.\\ \left.\left[\sum_j(\log\Gamma(n_{sij}+1)+\log\Gamma(n_{uij}+1))\right]\right]\label{mdloglike}
-%\end{split}
-%\end{align}
-
-The gradient of the log of the marginal likelihood in equation~\eqref{NRmd} is:
+Again, to simplify the estimation problem, we make use of the marginal likelihoods that can be obtained in closed forms (See supplementary material). For the null component, the marginal likelihood $\mathrm{L}_0$ is given by,
 \begin{align}
-\frac{\partial l}{ \partial \alpha_{uj}} = \sum_i \Psi(\sum_j \alpha_{uj}) - \Psi (\sum_j \alpha_{uj}+n_{uij}+n_{sij}) + \Psi(\alpha_{uj}+n_{uij}+n_{sij}) - \Psi(\alpha_{uj})\label{mdgrad}
+\mathrm{L}_0(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u) &= \prod_{i=0}^I\frac{ \mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \frac{N_{ui}!}{\prod_k n_{uik}!}
 \end{align}
-
-and the Hessian:
+where $\mathrm{B}$ is the $2^K$-dimensional Beta function defined as $\mathrm{B}(\boldsymbol{\alpha})=\prod_k\Gamma(\alpha_k)/\Gamma(\sum_k\alpha_k)$. Similarly the marginal likelihood for the alternative model is given by 
 \begin{align}
-j&\ne k; &\frac{\partial^2 l}{\partial \alpha_{uj}\alpha_{uk}} & = \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})\\
-j&=k;&\frac{\partial^2l}{\partial \alpha_{uj}^2} &= \sum_i \Psi'(\sum_j\alpha_{uj})-\Psi'(\sum_j\alpha_{uj}+n_{uij}+n_{sij})+\Psi'(\alpha_{uj}+n_{uij}+n_{sij})-\Psi'(\alpha_{uj})
+\mathrm{L}_1(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u) &= \prod_{i=0}^I\frac{\mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}) \mathrm{B}(\boldsymbol{\alpha}_{s}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_s)\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \frac{N_{ui}!}{\prod_k n_{uik}!}.\label{eq:postmult}
 \end{align}
+The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet are the same as for the beta-binomial model except that the number of parameters to be estimated is larger. In our experience, the performance of the EM algorithm greatly deteriorates when $K$ becomes larger than 2. The EM algorithms becomes very dependent on the initial values, and can even fail to converge when good initial values are provided. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and can be used even when $K$ is large. More details about both algorithms are given in Supplementary material. 
 
-The gradient of the log of the marginal likelihood of the responding component in eq~\ref{eq:postmult} is:
-%\begin{align}
-%\begin{split}
-%\sum_i\bigg[\sum_j \big[ \log\Gamma(\alpha_{uj}+n_{uij})+\log\Gamma(\alpha_{sj}+n_{sij}) -\log\Gamma(\alpha_{uj}) -\log\Gamma(\alpha_{sj})\\
-%-\log\Gamma(n_{sij}+1)-\log\Gamma(n_{uij}+1)\big]+\log\Gamma(\sum_j\alpha_{sj})+\log\Gamma(\sum_j\alpha_{uj})\\
-%-\log\Gamma(\sum_j\alpha_{uj}+n_{uij})-\log\Gamma(\sum_j\alpha_{sj}+n_{sij})+\log\Gamma(N_{si}+1)+\log\Gamma(N_{ui}+1)\bigg]
-%\end{split}
-%\end{align}
-%with gradient:
-\begin{align}
-\frac{\partial l}{\partial\alpha_{\phi j}} = \sum_i \Psi(\alpha_{\phi j}+n_{\phi ij})-\Psi(\alpha_{\phi j})+\Psi(\sum_j \alpha_{\phi j}) - \Psi(\sum_j \alpha_{\phi j}+n_{\phi ij}): (\phi \in {s,u})
-\end{align}
-and Hessian:
-\begin{align}
-\frac{\partial^2l}{\partial \alpha_{\phi j}^2}& \overset {k=j}{=}\sum_i \Psi'(\alpha_{\phi j}+n_{\phi ij}) - \Psi'(\alpha_{\phi j}) + \Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})\\
-\frac{\partial^2l}{\partial \alpha_{\phi j}\alpha_{\phi k}}&\overset{k\ne j}{=}\sum_i\Psi'(\sum_j \alpha_{\phi j}) - \Psi'(\sum_j\alpha_{\phi j}+n_{\phi ij})
-\end{align}
+\subsection{Parsimonious multivariate model representation}
+In the case of more than two markers, there is a combinatorial explosion in the number of parameters involved in our multinomial-Dirichlet mixture model. The number of parameters to be estimated is $2^{K+1}+1$, which can become very large even for moderate values of $K$. As an example, $K=4$ leads to 33 parameters, and this would require one to have a large number of individuals to properly estimate all parameters. Here, we propose alternative model parametrizations that could be used to address this problem by reducing the number of required parameters. A simple solution would be to assume that the hyper-parameters are constant across marker combinations, \textit{i.e.} $\alpha_{\{s,u\}k}=\alpha_{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$. As attractive as this might sound, such a model would be unrealistic given that certain stimulations are known to induce expression of certain markers more than others. As a more flexible solution, we propose to define $K$ main effect parameters, denoted $\{\theta_k:k=1,\dots,K\}$, for the $K$ markers and represent co-expression parameters as a function of these main effects. So a combination of dregree $l$, with positive markers, $k_1$, $k_2$, \dots, $k_l$ would have a hyperparameter defined as $\tau_l(\theta_{k_1}\theta_{k_2}\cdots\theta_{k_l})^{1/l}$, which is the geometric mean of the corresponding main marker effects scaled by a degree effect, $\tau_l$. Note that the scaling degree effect would be the same for any combinations with the same number of positive markers. The rationale being that as the degree of polyfunctionality increases, the number of cells might decrease (or increase in some instances) and the corresponding parameters should be adjusted by a scaling factor to allow for such variation. The choice of the geometric mean versus an arithmetic mean is to account for the fact that when a particular combination of degree 1 is empty, \textit{i.e.} the corresponding $\theta$ value is close to zero, it is unlikely that other combination involving that maker would be large. Our specification would account for this since the product would be near zero if one of the $\theta$ is near zero.  Finally, the null combination would have a single parameter equal to $\theta_0$.
 
-\subsubsection*{Mixture Model Complexity}
-In the two marker case described here, we may wish to test for any of 8 different possible scenarios where the proportion of events in corresponding cells of the contingency tables are either equal or unequal between stimulated and unstimulated conditions. Such a model would have 8 components and 55 parameters. However, if we recognize that the models can be nested, i.e., that parameters can be shared across components with similar outcomes, then the number of parameters can be reduced to 19, and further to 15 if we only consider components where any one cell of the tables differs between stimulated and unstimulated conditions. This number of parameters required for modelling different numbers of components is shown in Table~\ref{tab:nesting}.
-\begin{table}
-\centering
-\parbox{0.8\linewidth}{\caption{Nesting of models and parameter counts. Each row is a model component. The three columns correspond to cells two, three, and four of the contingency tables shown in Table~\ref{tab:multdir}. An open circle at a position indicates that the component models $p_{sj}=p_{uj}$, and a filled circle indicates that the component models $p_{sj}\ne p_{uj}$. The number of additional parameters that need to be estimated by including each additional component in the mixture model is in the fourth column (number of parameters for proportions + number of parameters for component weights).}\label{tab:nesting}
-\centering
-\begin{tabular}{ccccc}
-\multicolumn{3}{c}{Cell of Table}\\
-\hline
-cell 2&cell 3&cell 4&\# of parameters\\
-\hline
-$\circ$&$\circ$&$\circ$&6+1\\
-$\circ$&$\circ$&$\bullet$&2+1\\
-$\circ$&$\bullet$&$\circ$&2+1\\
-$\bullet$&$\circ$&$\circ$&2+1\\
-$\circ$&$\bullet$&$\bullet$&0+1\\
-$\bullet$&$\bullet$&$\circ$&0+1\\
-$\bullet$&$\circ$&$\bullet$&0+1\\
-$\bullet$&$\bullet$&$\bullet$&0\\
-\end{tabular}
-}
-\end{table}
-
-\subsubsection*{Model simplifications for K>2 cytokines}
-In the case of more than two cytokines, there is a combinatorial explosion in the number of parameters of the resulting model. We propose several alternative solutions to reducing the number of parameters in general, when the dimensionality of the Multinomial Dirichlet increases. If we model $N$ cytokines simultaneously, this results in $2^N$ possible marker combinations (i.e. each marker is either expressed, or not). We let $K$ be the number of possible cytokine combinations being modelled, with hyperparameter vector $\bar{\alpha}_0=\{\alpha_{00},\ldots,\alpha_{0K-1}\}$, and $\bar{\alpha}_s=\{\alpha_{s0},\ldots,\alpha_{sK-1}\}$ for the unstimulated and stimulated distributions, respectively. We formulate several strategies for reducing the number of parameters required to fit MIMOSA to high dimensional data by sharing hyperparameters across some of the $K$ combinations.
-
-\subsubsection*{Fully shared model hyperparameters}
-In the most simplistic case, we set up a two mixture component model (responders and non--responders). This formulation would ignore most of the marker combinations and only explicitly test for all combinations equal to the null, or all combinations different from the null. 
-
-For ICS data, the first component of the hyper--parameter vector represents cells not expressing any cytokine combination, and is usually much larger than the remaining components. As a first approximation, we can set the $K-1$ remaining parameters to be all equal $\{\alpha_{01}=\{\alpha_{01},\ldots,\alpha_{0K-1}\}$ (e.g. shared across all possible combinations) and thus all variation across cells expressing different cytokine combinations in the stimulated and unstimulated samples are captured by four parameters. As stated above, such a model can only be fit to two mixture components (the null component and the responder component), but requires a total of only five parameters. In practice, such a model would likely have a vary high false negative rate, since observations with differences in only a few marker combinations would be absorbed into the null component.
-
-\subsubsection*{Second order hyperparameters as functions of first--order hyperparameters}
-A more realistic scenario would be to define \textit{first--order} hyper--parameters as those elements of the $\alpha$ vectors corresponding to cells expressing individual cytokines (i.e. cytokine A only, or cytokine B only). Second--order and higher parameters are defined for cells expressing pairs, triplets, and higher order combinations of cytokines (i.e. A and B, or B and C, or A,B and C). Higher order parameters could be expressed as functions of the first--order parameters (i.e. cells expressing A and B can be parameterized as $\alpha_{0ab} = \frac{\alpha_{0a}+\alpha_{0b}}{2}$ or $\alpha_{0ab}=\alpha_{0a}\alpha_{0b}$). 
-
-This parameterization can be extended to models with more than two mixture components, allowing us to identify different types of responders. For example there may be observations where there are differences in the proportion of cells expressing combination A and B, but also observations where there are differences in the proportion of cells expressing A only, or B only. Distinguishing between these possibilities can increase the power of the model.
+Assuming that the $\theta$'s and $\tau$'s are stimulation specific, this parametrization would result in $4K+3$ parameters, and would scale linearly with the number of markers providing a good alternative between the fully parametrize model and the model with constant rate for moderate to large values of $K$. In this case, we would recommend the use of an MCMC algorithm. The $\theta$'s would be given the same exponential priors than the unconstrained model, \textit{i.e.} exponentional with mean 100. As for the $\tau's$ we would use an exponential distribution with mean 1\footnote{check with real data to see if that makes sense}. 
 
 \subsection{ICS example with two markers}
 We applied the Multinomial--Dirichlet extension of MIMOSA to the HVTN054 trial data to identify observations with cells expressing polyfunctional cytokine profiles. As a proof of principle we limited the model to the two--component case (Figure~\ref{tab:nesting}), with one component for the null model where we expect no difference between stimulations, and one component for the alternative model where we expect a difference between stimulations. We fit the model to the IL4 and TNFa cytokines for Env3 and Env1 stimulated CD4 T--cells from the day zero and day 28 time points (Figures~\ref{fig:polyfunctionality} and \ref{fig:polyfunctionalityenv1}). 
