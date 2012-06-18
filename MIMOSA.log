@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  11 APR 2012 15:17
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2011.5.12)  18 JUN 2012 05:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -548,429 +548,7 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 (/usr/local/texlive/2010/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/fontspec/fontspec.sty
-Package: fontspec 2011/02/26 v2.1f Advanced font selection for XeLaTeX/LuaLaTeX
-
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/expl3.sty
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3names.sty
-Package: l3names 2011/01/08 v2122 L3 Experimental Naming Scheme for TeX Primiti
-ves
-)
-Package: expl3 2011/04/09 v2222 L3 Experimental code bundle wrapper
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/etex-pkg/etex.sty
-Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count143
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3basics.sty
-Package: l3basics 2011/04/23 v2246 L3 Experimental basic definitions
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3expan.sty
-Package: l3expan 2011/04/09 v2223 L3 Experimental Argument Expansion module
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3tl.sty
-Package: l3tl 2011/04/09 v2223 L3 Experimental Token Lists
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3int.sty
-Package: l3int 2011/04/11 v2229 L3 Experimental Integer module
-\l_tmpa_int=\count144
-\l_tmpb_int=\count145
-\l_tmpc_int=\count146
-\g_tmpa_int=\count147
-\g_tmpb_int=\count148
-\c_max_int=\count149
-\g_tl_inline_level_int=\count150
-\g_prg_inline_level_int=\count151
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3quark.sty
-Package: l3quark 2011/04/14 v2234 L3 Experimental Quark Commands
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3seq.sty
-Package: l3seq 2011/04/21 v2245 The LaTeX3 kernel: sequences and stacks
-\g_seq_nesting_depth_int=\count152
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3toks.sty
-Package: l3toks 2011/04/09 v2223 L3 Experimental Token Registers
-\l_tmpb_toks=\toks32
-\l_tmpc_toks=\toks33
-\g_tmpa_toks=\toks34
-\g_tmpb_toks=\toks35
-\g_tmpc_toks=\toks36
-\c_empty_toks=\toks37
-\l_tl_replace_toks=\toks38
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3prg.sty
-Package: l3prg 2011/04/09 v2223 L3 Experimental control structures
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3clist.sty
-Package: l3clist 2011/04/09 v2223 L3 Experimental comma separated lists
-\g_clist_map_inline_int=\count153
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3token.sty
-Package: l3token 2011/04/09 v2223 L3 Experimental token investigation and manip
-ulation
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3prop.sty
-Package: l3prop 2011/04/09 v2223 L3 Experimental Property Lists
-\g_prop_inline_level_int=\count154
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3msg.sty
-Package: l3msg 2010/10/02 v2052 L3 Experimental LaTeX Messages module
-\l_msg_redirect_classes_prop=\toks39
-\l_msg_redirect_names_prop=\toks40
-\l_msg_redirect_fatal_prop=\toks41
-\l_msg_redirect_error_prop=\toks42
-\l_msg_redirect_warning_prop=\toks43
-\l_msg_redirect_info_prop=\toks44
-\l_msg_redirect_log_prop=\toks45
-\l_msg_redirect_trace_prop=\toks46
-\l_msg_redirect_none_prop=\toks47
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3io.sty
-Package: l3io 2010/10/03 v2063 L3 Experimental i/o module
-\g_iow_streams_prop=\toks48
-\g_ior_streams_prop=\toks49
-\l_iow_stream_int=\count155
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3skip.sty
-Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
-\l_tmpa_skip=\skip55
-\l_tmpb_skip=\skip56
-\l_tmpc_skip=\skip57
-\g_tmpa_skip=\skip58
-\g_tmpb_skip=\skip59
-\l_tmpa_dim=\dimen189
-\l_tmpb_dim=\dimen190
-\l_tmpc_dim=\dimen191
-\l_tmpd_dim=\dimen192
-\g_tmpa_dim=\dimen193
-\g_tmpb_dim=\dimen194
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3box.sty
-Package: l3box 2011/04/09 v2223 L3 Experimental Box module
-\l_tmpb_box=\box63
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3keyval.sty
-Package: l3keyval 2011/04/09 v2223 L3 Experimental keyval processing
-\l_KV_level_int=\count156
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3keys.sty
-Package: l3keys 2010/11/11 v2082 L3 Experimental key-value support
-\l_keys_choice_int=\count157
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3precom.sty
-Package: l3precom 2011/04/09 v2223 L3 Experimental precompilation module
-\g_gen_sym_int=\count158
-\g_ggen_sym_int=\count159
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3xref.sty
-Package: l3xref 2011/04/09 v2223 L3 Experimental cross referencing
-\g_xref_all_curr_immediate_fields_prop=\toks50
-\g_xref_all_curr_deferred_fields_prop=\toks51
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3file.sty
-Package: l3file 2011/04/21 v2242 The LaTeX3 kernel: file operations
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3fp.sty
-Package: l3fp 2011/03/19 v2201 L3 Experimental floating-point operations
-\c_one_million=\count160
-\c_one_hundred_million=\count161
-\c_five_hundred_million=\count162
-\c_one_thousand_million=\count163
-\c_fp_pi_by_four_decimal_int=\count164
-\c_fp_pi_by_four_extended_int=\count165
-\c_fp_pi_decimal_int=\count166
-\c_fp_pi_extended_int=\count167
-\c_fp_two_pi_decimal_int=\count168
-\c_fp_two_pi_extended_int=\count169
-\l_fp_count_int=\count170
-\l_fp_div_offset_int=\count171
-\l_fp_exp_integer_int=\count172
-\l_fp_exp_decimal_int=\count173
-\l_fp_exp_extended_int=\count174
-\l_fp_exp_exponent_int=\count175
-\l_fp_input_a_sign_int=\count176
-\l_fp_input_a_integer_int=\count177
-\l_fp_input_a_decimal_int=\count178
-\l_fp_input_a_exponent_int=\count179
-\l_fp_input_b_sign_int=\count180
-\l_fp_input_b_integer_int=\count181
-\l_fp_input_b_decimal_int=\count182
-\l_fp_input_b_exponent_int=\count183
-\l_fp_input_a_extended_int=\count184
-\l_fp_input_b_extended_int=\count185
-\l_fp_mul_a_i_int=\count186
-\l_fp_mul_a_ii_int=\count187
-\l_fp_mul_a_iii_int=\count188
-\l_fp_mul_a_iv_int=\count189
-\l_fp_mul_a_v_int=\count190
-\l_fp_mul_a_vi_int=\count191
-\l_fp_mul_b_i_int=\count192
-\l_fp_mul_b_ii_int=\count193
-\l_fp_mul_b_iii_int=\count194
-\l_fp_mul_b_iv_int=\count195
-\l_fp_mul_b_v_int=\count196
-\l_fp_mul_b_vi_int=\count197
-\l_fp_mul_output_int=\count198
-\l_fp_output_sign_int=\count199
-\l_fp_output_integer_int=\count200
-\l_fp_output_decimal_int=\count201
-Normal \count register pool exhausted, switching to extended pool.
-\l_fp_output_exponent_int=\count277
-\l_fp_output_extended_int=\count278
-\l_fp_round_position_int=\count279
-\l_fp_round_target_int=\count280
-\l_fp_split_sign_int=\count281
-\l_fp_tmp_int=\count282
-\l_fp_trig_octant_int=\count283
-\l_fp_trig_sign_int=\count284
-\l_fp_trig_decimal_int=\count285
-\l_fp_trig_extended_int=\count286
-\l_fp_tmp_dim=\dimen195
-\l_fp_tmp_skip=\skip60
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/expl3/l3luatex.sty
-Package: l3luatex 2010/07/18 v1985 L3 Experimental LuaTeX functions
-\g_cctab_allocate_int=\count287
-\g_cctab_stack_int=\count288
-))
-(/usr/local/texlive/2010/texmf-dist/tex/latex/xpackages/xbase/xparse.sty
-Package: xparse 2011/04/08 v2219 Generic document command parser
-\c_xparse_shorthands_prop=\toks52
-\l_xparse_m_args_int=\count289
-\l_xparse_mandatory_args_int=\count290
-\l_xparse_processor_int=\count291
-\l_xparse_total_args_int=\count292
-)
-(/usr/local/texlive/2010/texmf-dist/tex/generic/kastrup/binhex.tex)
-\l_fontspec_script_int=\count293
-\l_fontspec_language_int=\count294
-\l_fontspec_strnum_int=\count295
-Variant \tl_gset:cV already defined; not changing it on line 83
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/fontspec/fontspec-patches.sty
-Package: fontspec-patches 2011/02/26 v2.1f Advanced font selection for XeLaTeX/
-LuaLaTeX
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/fixltx2e.sty
-Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
-LaTeX Info: Redefining \em on input line 420.
-LaTeX Info: The control sequence `\[' is already robust on input line 471.
-LaTeX Info: The control sequence `\]' is already robust on input line 472.
-)
-LaTeX Info: Redefining \em on input line 22.
-LaTeX Info: Redefining \emph on input line 29.
-LaTeX Info: Redefining \- on input line 32.
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/euenc/eu1enc.def
-File: eu1enc.def 2010/05/27 v0.1h Experimental Unicode font encodings
-)
-LaTeX Font Info:    Try loading font information for EU1+lmr on input line 100.
-
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/euenc/eu1lmr.fd
-File: eu1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
-(/usr/local/texlive/2010/texmf-dist/tex/xelatex/xunicode/xunicode.sty
-File: xunicode.sty 2010/11/06 v0.96 provides access to latin accents and many o
-ther characters in Unicode lower plane
-)
- LaTeX info: Defining document command \fontspec
-(LaTeX)  with arg. spec. 'O{}m' on line 335.
-
- LaTeX info: Defining document command \setmainfont
-(LaTeX)  with arg. spec. 'O{}m' on line 339.
-
- LaTeX info: Defining document command \setsansfont
-(LaTeX)  with arg. spec. 'O{}m' on line 343.
-
- LaTeX info: Defining document command \setmonofont
-(LaTeX)  with arg. spec. 'O{}m' on line 347.
-
- LaTeX info: Defining document command \setmathrm
-(LaTeX)  with arg. spec. 'O{}m' on line 351.
-
- LaTeX info: Defining document command \setboldmathrm
-(LaTeX)  with arg. spec. 'O{}m' on line 354.
-
- LaTeX info: Defining document command \setmathsf
-(LaTeX)  with arg. spec. 'O{}m' on line 357.
-
- LaTeX info: Defining document command \setmathtt
-(LaTeX)  with arg. spec. 'O{}m' on line 360.
-
- LaTeX info: Defining document command \newfontfamily
-(LaTeX)  with arg. spec. 'mO{}m' on line 377.
-
- LaTeX info: Defining document command \newfontface
-(LaTeX)  with arg. spec. 'mO{}m' on line 380.
-
- LaTeX info: Defining document command \defaultfontfeatures
-(LaTeX)  with arg. spec. 'm' on line 383.
-
- LaTeX info: Defining document command \addfontfeatures
-(LaTeX)  with arg. spec. 'm' on line 400.
-
- LaTeX info: Defining document command \newfontfeature
-(LaTeX)  with arg. spec. 'mm' on line 407.
-
- LaTeX info: Defining document command \newAATfeature
-(LaTeX)  with arg. spec. 'mmmm' on line 416.
-
- LaTeX info: Defining document command \newICUfeature
-(LaTeX)  with arg. spec. 'mmm' on line 425.
-
- LaTeX info: Defining document command \aliasfontfeature
-(LaTeX)  with arg. spec. 'mm' on line 427.
-
- LaTeX info: Defining document command \aliasfontfeatureoption
-(LaTeX)  with arg. spec. 'mmm' on line 430.
-
- LaTeX info: Defining document command \newfontscript
-(LaTeX)  with arg. spec. 'mm' on line 435.
-
- LaTeX info: Defining document command \newfontlanguage
-(LaTeX)  with arg. spec. 'mm' on line 457.
-
- LaTeX info: Defining document command \DeclareFontsExtensions
-(LaTeX)  with arg. spec. 'm' on line 474.
-
-\c@fontspec_tmp_int=\count296
-LaTeX Info: Redefining \itshape on input line 2105.
-LaTeX Info: Redefining \slshape on input line 2109.
-LaTeX Info: Redefining \scshape on input line 2113.
-LaTeX Info: Redefining \upshape on input line 2117.
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/fontspec/fontspec.cfg))
-(/usr/local/texlive/2010/texmf-dist/tex/latex/xltxtra/xltxtra.sty
-Package: xltxtra 2010/09/20 v0.5e Improvements for the "XeLaTeX" format
-
-(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/realscripts/realscripts.sty
-Package: realscripts 2010/09/30 v0.3 Access OpenType subscripts and superscript
-s
- LaTeX info: Defining document command \fakesubscript
-(LaTeX)  with arg. spec. 'm' on line 19.
-
- LaTeX info: Defining document command \fakesuperscript
-(LaTeX)  with arg. spec. 'm' on line 22.
-
- LaTeX info: Redefining document command \textsubscript
-(LaTeX)  with arg. spec. 's' on line 25.
-
- LaTeX info: Redefining document command \textsuperscript
-(LaTeX)  with arg. spec. 's' on line 28.
-
- LaTeX info: Defining document command \realsubscript
-(LaTeX)  with arg. spec. 'm' on line 45.
-
- LaTeX info: Defining document command \realsuperscript
-(LaTeX)  with arg. spec. 'm' on line 60.
-
- LaTeX info: Defining document command \textsubsuperscript
-(LaTeX)  with arg. spec. 'sO{l}mm' on line 137.
-
- LaTeX info: Defining document command \textsupersubscript
-(LaTeX)  with arg. spec. 'sO{l}mm' on line 140.
-
-\subsupersep=\dimen196
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/metalogo/metalogo.sty
-Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
-\xl@everylogo=\toks53
-\xl@@everylogo=\toks54
-LaTeX Info: Redefining \TeX on input line 193.
-LaTeX Info: Redefining \LaTeX on input line 202.
-LaTeX Info: Redefining \LaTeXe on input line 219.
-)
-\xxt@tempbox=\box64
-)
-\g_fontspec_family_Times New Roman_int=\count297
- fontspec info: Defining font family 'TimesNewRoman(0)' for font 'Times New Rom
-an' with options [Mapping=tex-text,Mapping=tex-text].
-
-\g_fontspec_TimesNewRoman(0)_prop=\toks55
- fontspec info: Defining shape 'normal' with NFSS spec.:
-(fontspec)  <->"Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
-mapping=tex-text;"
-
- fontspec info: Defining shape 'bold' with NFSS spec.:
-(fontspec)  <->"Times New Roman/B/ICU:script=latn;language=DFLT;mapping=tex-tex
-t;mapping=tex-text;"
-
- fontspec info: Defining shape 'italic' with NFSS spec.:
-(fontspec)  <->"Times New Roman/I/ICU:script=latn;language=DFLT;mapping=tex-tex
-t;mapping=tex-text;"
-
- fontspec info: Defining shape 'bold italic' with NFSS spec.:
-(fontspec)  <->"Times New Roman/BI/ICU:script=latn;language=DFLT;mapping=tex-te
-xt;mapping=tex-text;"
-
- fontspec info: Font Gill Sans does not contain any OpenType `Script' informati
-on.
-
- fontspec info: Gill Sans scale = 0.9965.
-
-\g_fontspec_family_Gill Sans_int=\count298
- fontspec info: Defining font family 'GillSans(0)' for font 'Gill Sans' with op
-tions [Mapping=tex-text,Scale=MatchLowercase,Mapping=tex-text].
-
-\g_fontspec_GillSans(0)_prop=\toks56
- fontspec info: Gill Sans scale = 0.9965.
-
- fontspec info: Defining shape 'normal' with NFSS spec.:
-(fontspec)  <->s*[0.9965]"Gill Sans/AAT:mapping=tex-text;mapping=tex-text;"
-
- fontspec info: Gill Sans/B scale = 0.89905.
-
- fontspec info: Defining shape 'bold' with NFSS spec.:
-(fontspec)  <->s*[0.89905]"Gill Sans/B/AAT:mapping=tex-text;mapping=tex-text;"
-
- fontspec info: Gill Sans/I scale = 0.9965.
-
- fontspec info: Defining shape 'italic' with NFSS spec.:
-(fontspec)  <->s*[0.9965]"Gill Sans/I/AAT:mapping=tex-text;mapping=tex-text;"
-
- fontspec info: Gill Sans/BI scale = 0.89905.
-
- fontspec info: Defining shape 'bold italic' with NFSS spec.:
-(fontspec)  <->s*[0.89905]"Gill Sans/BI/AAT:mapping=tex-text;mapping=tex-text;"
-
-
- fontspec info: Font Andale Mono does not contain any OpenType `Script' informa
-tion.
-
- fontspec info: Andale Mono scale = 0.87962.
-
-\g_fontspec_family_Andale Mono_int=\count299
- fontspec info: Defining font family 'AndaleMono(0)' for font 'Andale Mono' wit
-h options [Mapping=tex-text,Scale=MatchLowercase].
-
-\g_fontspec_AndaleMono(0)_prop=\toks57
- fontspec info: Andale Mono scale = 0.87962.
-
- fontspec info: Defining shape 'normal' with NFSS spec.:
-(fontspec)  <->s*[0.87962]"Andale Mono/AAT:mapping=tex-text;"
-
- fontspec info: Could not resolve font Andale Mono/B (it probably doesn't exist
-).
-
- fontspec info: Could not resolve font Andale Mono/I (it probably doesn't exist
-).
-
- fontspec info: Could not resolve font Andale Mono/BI (it probably doesn't exis
-t).
-
-
-(./MIMOSA.aux)
+) (./MIMOSA.aux)
 \openout1 = `MIMOSA.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
@@ -984,8 +562,6 @@ LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 
 *geometry* driver: auto-detecting
@@ -1023,76 +599,6 @@ LaTeX Font Info:    ... okay on input line 41.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
- fontspec info: Adjusting the maths setup (use [no-math] to avoid this).
-
-\symlegacymaths=\mathgroup6
-LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 41.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 41.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 41.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 41.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 41.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 41.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 41.
-LaTeX Font Info:    Redeclaring math accent \check on input line 41.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 41.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 41.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 41.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 41.
-LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 41.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/TimesNewRoman(0)/m/n on input line 
-41.
-LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 41.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/m/n on input line
- 41.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/m/n o
-n input line 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> EU1/TimesNewRoman(0)/m/it on input lin
-e 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> EU1/TimesNewRoman(0)/bx/n on input lin
-e 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/GillSans(0)/m/n on input line 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/m/n on input line 41
-.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  EU1/TimesNewRoman(0)/m/n --> EU1/TimesNewRoman(0)/bx/n 
-on input line 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> EU1/TimesNewRoman(0)/bx/it on input l
-ine 41.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/GillSans(0)/bx/n on input line 41
-.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/AndaleMono(0)/bx/n on input line 4
-1.
 LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1105,121 +611,123 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 ] [2]
-Overfull \hbox (8.20863pt too wide) in paragraph at lines 74--75
-[]\EU1/TimesNewRoman(0)/m/it/10.95 Fluidigm single–cell gene expression\EU1/T
-imesNewRoman(0)/m/n/10.95 : This is a single–cell gene expression data set of
- flow–sorted
- []
+[3]
 
-[3] [4]
-Overfull \hbox (4.21054pt too wide) in paragraph at lines 139--139
+LaTeX Warning: Reference `supp:statpublished' on page 4 undefined on input line
+ 72.
+
+[4] [5]
+Overfull \hbox (23.89018pt too wide) in paragraph at lines 135--135
 [] 
  []
 
+[6] [7]
 
-Overfull \hbox (47.0321pt too wide) in paragraph at lines 152--152
-[] 
- []
+LaTeX Warning: Reference `fit:fluidigm' on page 8 undefined on input line 165.
 
-[5]
-Overfull \hbox (2.7267pt too wide) in paragraph at lines 212--213
-\EU1/TimesNewRoman(0)/m/n/10.95 mated numerically using R’s \EU1/TimesNewRoma
-n(0)/m/it/10.95 optim \EU1/TimesNewRoman(0)/m/n/10.95 function. To simplify the
- optimization, they are re–parameterized
- []
 
-[6]
-Overfull \hbox (0.44858pt too wide) in paragraph at lines 227--227
-[]\EU1/TimesNewRoman(0)/bx/n/10.95 MIMOSA Outperforms Fisher’s Exact Test in 
-Real–World Vaccine Trial Data from HVTN054 
- []
+LaTeX Warning: Reference `fig:simulations_trunc' on page 8 undefined on input l
+ine 173.
 
-[7]
-Overfull \hbox (14.02559pt too wide) in paragraph at lines 314--315
-\EU1/TimesNewRoman(0)/m/n/10.95 We examined the performance of the constrained 
-($\OML/cmm/m/it/10.95 p[] > p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) and unconstra
-ined ($\OML/cmm/m/it/10.95 p[] \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/c
-mm/m/it/10.95 p[]$\EU1/TimesNewRoman(0)/m/n/10.95 ) beta–binomial
+
+LaTeX Warning: Reference `sec:DE' on page 8 undefined on input line 176.
+
+
+Overfull \hbox (10.24664pt too wide) in paragraph at lines 176--178
+\OT1/cmr/m/n/10.95 Our beta-binomial model de-scribed in sec-tion [] can be gen
+-er-al-ized to a Dirichlet-multinomial
  []
 
 [8] [9]
-Overfull \hbox (1.82501pt too wide) in paragraph at lines 360--360
-[][] [] 
- []
 
-[10]
-Overfull \hbox (30.05641pt too wide) in paragraph at lines 410--410
-[] 
- []
-
-[11]
-Overfull \hbox (15.37462pt too wide) in paragraph at lines 457--458
-\EU1/TimesNewRoman(0)/m/n/10.95 In the most simplistic case, we set up a two mi
-xture component model (responders and non–responders).
- []
-
-[12] [13] [14]
-
-LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
-ne 478.
+LaTeX Warning: Reference `fig:simulations_trunc' on page 10 undefined on input 
+line 222.
 
 
-LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
-ne 478.
+LaTeX Warning: Reference `fig:simulations_trunc' on page 10 undefined on input 
+line 222.
 
 
-LaTeX Warning: Reference `fig:positivityrates' on page 15 undefined on input li
-ne 478.
+LaTeX Warning: Reference `fig:positivityrates' on page 10 undefined on input li
+ne 225.
 
 
-LaTeX Warning: Reference `fig:icsdata' on page 15 undefined on input line 481.
+LaTeX Warning: Reference `fig:positivityrates' on page 10 undefined on input li
+ne 225.
 
-[15]
-Overfull \hbox (19.1337pt too wide) in paragraph at lines 485--486
-[]\EU1/TimesNewRoman(0)/m/n/10.95 We show a proof of principle example with two
- components to identify responder and non–responder
- []
 
-LaTeX Font Info:    Font shape `EU1/AndaleMono(0)/m/n' will be
-(Font)              scaled to size 9.63187pt on input line 488.
-File: Figures/simulations_all.pdf Graphic file (type QTm)
-<use  "Figures/simulations_all.pdf" >
-File: Figures/simulations_violatedmodel.pdf Graphic file (type QTm)
+LaTeX Warning: Reference `fig:positivityrates' on page 10 undefined on input li
+ne 225.
 
-<use  "Figures/simulations_violatedmodel.pdf" >
-File: Figures/FluidigmMIMOSA.pdf Graphic file (type QTm)
+[10] [11]
+File: Figures/2.pdf Graphic file (type QTm)
+ <use  "Figures/2.pdf" >
+File: Figures/12.pdf Graphic file (type QTm)
+ <use  "Figures/12.pdf" >
+File: Figures/Fluidigm_plot1.pdf Graphic file (type QTm)
 
-<use  "Figures/FluidigmMIMOSA.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 608--611
- [][] 
- []
+<use  "Figures/Fluidigm_plot1.pdf" >
+File: Figures/Fluidigm_plot2.pdf Graphic file (type QTm)
+ <use  "Figures/Fluidigm_plot2.pdf" >
+File: Figures/Fluidigm_plot3.pdf Graphic file (type QTm)
 
-File: Figures/Polyfunctionality_ggplot2.pdf Graphic file (type QTm)
-<use  "Figures/Polyfunctionality_ggplot2.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 617--618
- [][] 
- []
+<use  "Figures/Fluidigm_plot3.pdf" >
+File: Figures/Fluidigm_Multivariate_BIRC3_CCL5_Unstim_Counts.pdf Graphic file (
+type QTm)
 
-File: Figures/Polyfunctionality_Env1.pdf Graphic file (type QTm)
-<use  "Figures/Polyfunctionality_Env1.pdf" >
-Overfull \hbox (3.61537pt too wide) in paragraph at lines 624--625
- [][] 
- []
+<use  "Figures/Fluidigm_Multivariate_BIRC3_CCL5_Unstim_Counts.pdf" >
+File: Figures/Fluidigm_Multivariate_BIRC3_CCL5_Stim_Counts.pdf Graphic file (ty
+pe QTm)
 
-[16] [17] [18] [19] [20] [21] (./MIMOSA.bbl [22
+<use  "Figures/Fluidigm_Multivariate_BIRC3_CCL5_Stim_Counts.pdf" >
+File: Figures/Fluidigm_Multivariate_Marginalized_BIRC3_CCL5.pdf Graphic file (t
+ype QTm)
 
-] [23]) [24] (./MIMOSA.aux)
+<use  "Figures/Fluidigm_Multivariate_Marginalized_BIRC3_CCL5.pdf" >
+File: Figures/Fluidigm_Multivariate_BIRC3_CCL5.pdf Graphic file (type QTm)
+
+<use  "Figures/Fluidigm_Multivariate_BIRC3_CCL5.pdf" >
+File: Figures/simulations_onesided_AUCS.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_onesided_AUCS.pdf" >
+File: Figures/simulations_twosided_AUC.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_twosided_AUC.pdf" >
+File: Figures/simulations_onesided_FDR.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_onesided_FDR.pdf" >
+File: Figures/simulations_twosided_FDR.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_twosided_FDR.pdf" >
+File: Figures/simulations_onesided_ROC.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_onesided_ROC.pdf" >
+File: Figures/simulations_twosided_ROC.pdf Graphic file (type QTm)
+
+<use  "Figures/simulations_twosided_ROC.pdf" >
+File: Figures/Multivariate_Sims_AUCBOX.pdf Graphic file (type QTm)
+
+<use  "Figures/Multivariate_Sims_AUCBOX.pdf" >
+File: Figures/Multivariate_Sims_FDR.pdf Graphic file (type QTm)
+
+<use  "Figures/Multivariate_Sims_FDR.pdf" >
+File: Figures/Multivariate_Sims_ROC.pdf Graphic file (type QTm)
+
+<use  "Figures/Multivariate_Sims_ROC.pdf" > [12] [13] [14] [15] [16]
+(./MIMOSA.bbl [17
+
+] [18]) [19] (./MIMOSA.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 21421 strings out of 494522
- 392226 string characters out of 3156642
- 472424 words of memory out of 3000000
- 24244 multiletter control sequences out of 15000+200000
- 13496 words of font info for 81 fonts, out of 3000000 for 9000
+ 11571 strings out of 494522
+ 213132 string characters out of 3156642
+ 281783 words of memory out of 3000000
+ 14555 multiletter control sequences out of 15000+200000
+ 17126 words of font info for 64 fonts, out of 3000000 for 9000
  670 hyphenation exceptions out of 8191
- 63i,18n,78p,2074b,573s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,16n,78p,2311b,701s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on MIMOSA.pdf (24 pages).
+Output written on MIMOSA.pdf (19 pages).

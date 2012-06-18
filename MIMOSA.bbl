@@ -1,4 +1,4 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -76,24 +76,6 @@ SC~Bendall, EF~Simonds, P~Qiu, ED~Amir, PO~Krutzik, R~Finck, RV~Bruggner,
 \newblock \emph{Science (New York, NY)}, 332\penalty0 (6030):\penalty0 687,
   2011.
 
-\bibitem[Jang et~al.(2011)Jang, Simon, Feddersen, Rakhshan, Schultz, Zschunke,
-  Lingle, Kolbert, and Jen]{Jang:2011uj}
-JS~Jang, VA~Simon, RM~Feddersen, F~Rakhshan, DA~Schultz, MA~Zschunke,
-  WL~Lingle, CP~Kolbert, and J~Jen.
-\newblock {Quantitative miRNA Expression Analysis Using Fluidigm Microfluidics
-  Dynamic Arrays}.
-\newblock \emph{BMC Genomics}, 12\penalty0 (1):\penalty0 144, 2011.
-
-\bibitem[Flatz et~al.(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet,
-  Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel]{Flatz:2011jb}
-Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
-  Jean-Philippe Goulet, Nadia Kettaf, Min Lin, Mario Roederer, Elias~K Haddad,
-  Rafick~P S{\'e}kaly, and Gary~J Nabel.
-\newblock {Single-cell gene-expression profiling reveals qualitatively distinct
-  CD8 T cells elicited by different gene-based vaccines.}
-\newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
-  (14):\penalty0 5724--5729, April 2011.
-
 \bibitem[Trigona et~al.(2003)Trigona, Clair, Persaud, Punt, Bachinsky,
   Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver]{Trigona:2003}
 Wendy~L Trigona, James~H Clair, Natasha Persaud, Kara Punt, Margaret Bachinsky,
@@ -144,6 +126,24 @@ A.P. Dempster, N.M. Laird, and D.B. Rubin.
 \newblock \emph{Journal of the Royal Statistical Society. Series B
   (Methodological)}, pages 1--38, 1977.
 
+\bibitem[Gelfand(1996)]{Gelfand:1996wc}
+AE~Gelfand.
+\newblock \emph{{Markov Chain Monte Carlo in practice, edited by Gilks WR}}.
+\newblock Richardson S., 1996.
+
+\bibitem[Raftery and Lewis(1992)]{Raftery:1992vp}
+Adrian~E Raftery and Steven~M Lewis.
+\newblock {[Practical Markov Chain Monte Carlo]: Comment: One Long Run with
+  Diagnostics: Implementation Strategies for Markov Chain Monte Carlo}.
+\newblock \emph{STATISTICAL SCIENCE}, 7\penalty0 (4):\penalty0 493--497,
+  November 1992.
+
+\bibitem[Raftery(1996)]{Raftery:1996ws}
+AE~Raftery.
+\newblock {Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia
+  Richardson, D. J. Spiegelhalter - Google Books}.
+\newblock \emph{Markov chain Monte Carlo in practice}, 1996.
+
 \bibitem[Dittrich and Lehmann(2012)]{Dittrich:2012bv}
 Marcus Dittrich and Paul~V Lehmann.
 \newblock {Statistical analysis of ELISPOT assays.}
@@ -180,6 +180,23 @@ Jeffrey~M Milush, Brian~R Long, Jennifer~E Snyder-Cappione, Amedeo~J Cappione,
 \newblock {Functionally distinct subsets of human NK cells and monocyte/DC-like
   cells identified by coexpression of CD56, CD7, and CD4.}
 \newblock \emph{Blood}, 114\penalty0 (23):\penalty0 4823--4831, November 2009.
+
+\bibitem[Goonetilleke et~al.(2006)Goonetilleke, Moore, Dally, Winstone, Cebere,
+  Mahmoud, Pinheiro, Gillespie, Brown, Loach, Roberts, Guimaraes-Walker, Hayes,
+  Loughran, Smith, De~Bont, Verlinde, Vooijs, Schmidt, Boaz, Gilmour, Fast,
+  Dorrell, Hanke, and McMichael]{Goonetilleke:2006jk}
+Nilu Goonetilleke, Stephen Moore, Len Dally, Nicola Winstone, Inese Cebere,
+  Abdul Mahmoud, Susana Pinheiro, Geraldine Gillespie, Denise Brown, Vanessa
+  Loach, Joanna Roberts, Ana Guimaraes-Walker, Peter Hayes, Kelley Loughran,
+  Carole Smith, Jan De~Bont, Carl Verlinde, Danii Vooijs, Claudia Schmidt, Mark
+  Boaz, Jill Gilmour, Pat Fast, Lucy Dorrell, Tomas Hanke, and Andrew~J
+  McMichael.
+\newblock {Induction of multifunctional human immunodeficiency virus type 1
+  (HIV-1)-specific T cells capable of proliferation in healthy subjects by
+  using a prime-boost regimen of DNA- and modified vaccinia virus
+  Ankara-vectored vaccines expressing HIV-1 Gag coupled to CD8+ T-cell
+  epitopes.}
+\newblock \emph{J Virol}, 80\penalty0 (10):\penalty0 4717--4728, May 2006.
 
 \bibitem[Hahne et~al.(2009)Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar,
   Spidlen, Strain, and Gentleman]{Hahne:2009vv}
