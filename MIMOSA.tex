@@ -116,7 +116,7 @@ where $p_{si}$, $p_{ui}$ are the unknown proportions for the stimulated and un-s
 \begin{equation}
 {\cal M}_0: p_{ui}=p_{si}\quad \text{and}\quad {\cal M}_1: p_{ui}\ne p_{si}. \label{eq:beta_prior}
 \end{equation}
-Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal. Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the individual $i$ is a responder. 
+Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal. Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the individual $i$ is a responder. In the supplementary material we describe modifications for an alternative constrained model where $p_s>p_u$ (supplementary material~\ref{supp:constrained}).
 
 \subsection{Priors}
 Our model shares information across all individuals using exchangeable Beta priors on the unknown proportions, as follows, 
@@ -228,7 +228,7 @@ The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet
 %
 
 \subsubsection{Polyfunctionality in Fluidigm Single Cell Gene Expression Data}
-We fit the multivariate MIMOSA model to the two--sided Fluidigm data, looking at coexpression of pairs of genes in single cells across the four stimulations. In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the BIRC3 and CCL5 genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and the expression of BIRC3 increases upon stimulation. The typical approach to analyzing polyfunctional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is to say, the number of BIRC3-/CCL5+ cells decreases upon stimulation and the number of BIRC3+/CCL5+ cells increases. There is no difference in the marginal counts for any sample (Figure~\ref{fig:polyfunctionality} C). In contrast, multivariate MIMOSA tests all cell subpopulations simultaneously, and identifies a significant difference between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the individual combinations, which requires multiplicity adjustment and a potential loss of power. 
+We fit the multivariate MIMOSA model to the two--sided Fluidigm data, looking at co--expression of pairs of genes in single cells across the four stimulations. In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the BIRC3 and CCL5 genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and the expression of BIRC3 increases upon stimulation. The typical approach to analyzing polyfunctional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is to say, the number of BIRC3-/CCL5+ cells decreases upon stimulation and the number of BIRC3+/CCL5+ cells increases. There is no difference in the marginal counts for any sample (Figure~\ref{fig:polyfunctionality} C). In contrast, multivariate MIMOSA tests all cell subpopulations simultaneously, and identifies a significant difference between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the individual combinations, which requires multiplicity adjustment and a potential loss of power. 
 
 Since the Fluidigm data has a limited number of observations (100 cells and 16 samples), we performed simulations (five--dimensional data) to assess the power of the multivariate MIMOSA  model compared to Fisher's exact test on the resulting 2x5 tables, Fisher's exact test performed marginally on each dimension of the data and p--values combined through Fisher's method ($\chi^2=-2\sum_{i=1}^k\log(p_i)$), as well as the likelihood ratio test (Figure~\ref{fig:mvsimulations} A-C). These results show that multivariate MIMOSA has significantly increased power to detect true differences in multivariate data, even with small counts and small effect sizes, and the model is a better fit to the data than other standard approaches tested for analyzing such multivariate count data (Figure~\ref{fig:mvsimulations} B). 
 
@@ -407,6 +407,27 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 HVTN065 is a phase 1 (safety and immunogenicity) trial of GeoVax HIV/AIDS DNA and MVA vaccine in 120 individuals (100 vaccinees, 20 placebo recipients, parts A and B). CD4 and CD8 T--cell epitope specific immune responses were measured via the ICS assay. Other humoral and cellular immune responses were measured via ELISA, and neutralizing antibody assays. Cytokines measured in the ICS assay included IFNg, TNFa, IL2, and IL4, and antigens included three Env, three Gag, and three Pol peptide pools. Results of the trial have been published~\citep{Goonetilleke:2006jk}.
 
 HVTN054 is a phase 1 (safety and immunogenicity) trial of an adenoviral vector vaccine in individuals without prior immunity~\cite{Peiperl:2010ej}. The vaccine vector expressed Gag, Pol and Env proteins from multiple HIV clades~\cite{Peiperl:2010ej}. Vaccine was given at two increasing doses, as well as a placebo. T--cell responses to antigens in the vaccine were measured via the ICS assay~\cite{Peiperl:2010ej,Horton:2007tsa}. The cytokines measured were IFNg (Interferon--$\gamma$), IL2 (Interleukin--2), TNFa (Tumor necrosis factor--$\alpha$) and IL4 (Interleukin 4)~\cite{Horton:2007tsa}. The sample size consisted of 20 vaccine and four placebo recipients. The original statistical analysis of the positivity calls is described in the associated publication~\cite{Peiperl:2010ej}. The Gag stimulated, IL2 expressing, CD4+ T--cell data from day 28 was used to derive hyper--parameter estimates for the simulation studies. 
+
+\subsection{Constrained Beta--binomial model}
+\label{supp:constrained}
+We can define a model where we constrain the stimulated proportions under the alternative model such that $p_s>p_u$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in equation~\eqref{model2:unconstrained}. The marginal likelihood for the constrained model becomes $\mathrm{L}_1\times \mathrm{C}$, where $\mathrm{C}$ is a ratio of normalizing constants for the likelihood and the prior.
+
+\begin{align}
+\begin{split}
+	 \mathrm{C}=\frac{\int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}p_{ui}^{n_{ui}+\alpha_u-1}(1-p_{ui})^{N_{ui}-n_{ui}+\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(N^i_s-n^i_s+\beta_s,n^i_s+\alpha_s)\right)d p_{ui}}{   \int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_{ui}^{\alpha_u-1}(1-p_{ui})^{\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(\beta_s,\alpha_s)\right)d p_{ui}}
+\label{eq:model2post}
+\end{split}
+\end{align}
+ 
+The term $I_{1-p_{ui}}(\beta_s,\alpha_s)=1-I_{p_{ui}}(\alpha_s,\beta_s)=Pr(p_{si} > p_{ui}; \alpha_s,\beta_s)$ is the regularized incomplete Beta function, which is just the CDF of a Beta distribution with parameters $\alpha_s,\beta_s$, resulting in a 1--dimensional integral that can be computed via Monte--Carlo integration (i.e. in our EM implementation). However, this can be computationally costly in the MCMC framework. In the latter case, we can compute the integral exactly if $\alpha_s$ and $\beta_s$ are integers by using the identity:
+\begin{align}
+I_{1-p_u}(\beta_s,\alpha_s) = \sum_{j=\beta_s}^{\beta_s+\alpha_s-1} \frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}(1-p_u)^j(p_u)^{\beta_s+\alpha_s-j}
+\label{eq:IBident}
+\end{align}
+Typically, in ICS data $\beta_s>>\alpha_s$, leading to relatively few terms in the sum in equation~\ref{eq:IBident}.  This leads to an exact expression for the normalizing constant:
+$$
+foo
+$$
 
 \subsection{HVTN065 Results for Other Cytokines}
 \label{supp:HVTN065Results}
