@@ -171,7 +171,7 @@ We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p
 For both the constrained and unconstrained simulations, MIMOSA out--performed competing methods, including Fisher's exact test, with respect to sensitivity and specificity at all values of $N$ (Figure~\ref{fig:simulations} A, D). Additionally, the false discovery rate for MIMOSA more closely reflected the nominal false discovery rate compared to Fisher's exact test (Figure~\ref{fig:simulations} E, F).
 %Since the constrained model relies on Monte--Carlo integration to estimate the normalizing constant in the likelihood calculation, which can be computationally costly, we approximated the.
 
-To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (Figure~\ref{fig:simulations_trunc}). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained MIMOSA model fit to one-sided data.
+To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (Supplementary Figure~\ref{fig:simulations_trunc}). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained MIMOSA model fit to one-sided data.
 
 \section{Differential expression across marker combinations}
 Our beta-binomial model described in section \ref{sec:DE} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple marker combinations. As described in the data section, we now have counts for each marker combination, denoted by  $\mathbf{n}_{si}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{ui}=\{n_{uik}: k=1,\dots,2^K\}$. 
@@ -226,7 +226,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 \section{Discussion}
 The variety of single--cell assays being adopted by the immunology community is increasing. Flow cytometry, mass cytometry, ELISPOT, Fluidigm, and other single--cell assays can all be analyzed as single--cell count data. Development of effective statistical methods to detect differences in gene or protein expression at the single cell level is becoming increasingly important. Current approaches rely on asymptotic approximations (t--test, or $\chi^2$ test), empirical or ad--hoc methods (2--fold change), or exact tests (Fisher's exact test) where model assumptions are generally not satisfied, all of which can lead to invalid conclusions about the data~\cite{Dittrich:2012bv,Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Proschan:2009ks}. Most importantly, existing classical methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modelling approaches, which are widely applied in the microarray literature~\cite{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. 
 
-The MIMOSA model presented here uses a mixture model framework of Beta--Binomial or Multinomial--Dirichlet distributions to model counts in experimental units (i.e. individuals) across multiple conditions (i.e. vaccine responders and non--responders). Information is shared across non--responder individuals and across responders individuals through exchangeable Beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when model assumptions are violated (Figures~\ref{fig:simulations} and~\ref{fig:simulations_trunc}). The MIMOSA model based on the Beta--Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. 
+The MIMOSA model presented here uses a mixture model framework of Beta--Binomial or Multinomial--Dirichlet distributions to model counts in experimental units (i.e. individuals) across multiple conditions (i.e. vaccine responders and non--responders). Information is shared across non--responder individuals and across responders individuals through exchangeable Beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when model assumptions are violated (Figures~\ref{fig:simulations} and Supplementary Figure~\ref{fig:simulations_trunc}). The MIMOSA model based on the Beta--Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. 
 
 Importantly, the analysis of real--world ICS data from vaccine trials demonstrated that the the constrained MIMOSA model performs as well or better than Fisher's exact test or other non-Bayesian alternatives for identifying vaccine responders across multiple antigen stimulations and multiple cytokines (Figure~\ref{fig:HVTN065}). Although the MIMOSA model was fit within each antigen stimulation $\times$ cytokine combination, the model is naive to vaccine time point. Despite this, MIMOSA demonstrated a higher sensitivity and specificity to discriminate between vaccine responders and non-responders on days 0 (pre--vaccination) and 182 (post--vaccination) than the current standard approach (Fisher's exact test), or non--Bayesian alternatives such as the likelihood ratio test or ranking by log--fold change (Figure~\ref{fig:HVTN065} A,C). Our approach treats all day 0 observations as true negatives and all day 182 observations as true positives, yet we know that not all vaccine recipients are likely to exhibit a vaccine response on day 182. None the less, this shortcoming, at worst, leads us to underestimate the true sensitivity of MIMOSA, and does not negatively impact the comparison. Additionally, MIMOSA was found to be a better fit to real--world ICS data from vaccine trials than other analysis approaches, as evidenced by more accurate estimates of true false discovery rate (Figure~\ref{fig:HVTN065} B,D).
 
@@ -300,24 +300,6 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
    \caption{Comparison of positivity detection methods on data simulated from the one--sided model. Ten simulations were generated at an $N$ of 5,000 total counts using hyper--parameter estimates from real ICS data (IFNg expressing CD4+ T--cells stimulated with ENV-1-PTEG from HVTN065) with a five--fold effect size between responder and non--responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000) D) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000). Curves are shown for MIMOSA (one--sided), Fisher's exact test, the likelihood ratio test, and ranked log fold--change. Results for the two--sided model and the MIMOSA fit to a model violating model assumptions, as well as other values of N are in the Supplementary Material.}\label{fig:simulations}
 \end{figure}
 
-
-\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-   \centering
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=0.3\columnwidth]{Figures/Sim_Trunc_AUC.pdf}};
-    \node[anchor=south west, inner sep=0] at (4.5,0) {\includegraphics[width=0.3\columnwidth]{Figures/Sim_Trunc_ROC.pdf}};
-   \node[anchor=south west, inner sep=0] at (9,0) {\includegraphics[width=0.3\columnwidth]{Figures/Sim_Trunc_FDR.pdf}};
-    \node at (0,3.4) [font=\tiny\sffamily] {A} ;
-    \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
-    \node at (9,3.4) [font=\tiny\sffamily] {C} ;
- \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to data where model assumptions are violated. Two--sided data were simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution.}
-   \label{fig:simulations_trunc}
-\end{figure}
-
-
-
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -337,14 +319,12 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.3\columnwidth]{Figures/Multivariate_Sims_AUCBOX.pdf}};
-    \node[anchor=south west, inner sep=0] at (4.5,0){\includegraphics[width=0.3\columnwidth]{Figures/Multivariate_Sims_FDR.pdf}};
-   \node[anchor=south west, inner sep=0] at (9,0) {\includegraphics[width=0.3\columnwidth]{Figures/Multivariate_Sims_ROC.pdf}};
-    \node at (0,2.1) [font=\tiny\sffamily] {A} ;
-    \node at (4.5,2.1) [font=\tiny\sffamily] {B} ;
-    \node at (9,2.1) [font=\tiny\sffamily] {C} ;
+    \node[anchor=south west, inner sep=0] at (0,0){\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_ROC.pdf}};
+   \node[anchor=south west, inner sep=0] at (6,0) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_FDR.pdf}};
+    \node at (0,3.5) [font=\tiny\sffamily] {A} ;
+    \node at (6,3.5) [font=\tiny\sffamily] {B} ;
 \end{tikzpicture}
-   \caption{Multivariate simulations from a two--sided model. Ten, five-dimensional data sets were simulated from a two--sided model with an effect sizes of $2.5\times 10^{-3}$ and $-2.5\times 10^{-3}$ in two of the five dimensions. Multivariate MIMOSA was compared against Fisher's exact test, the likelihood ratio test, and Fisher's combined p--value, combining Fisher's exact test run marginally on each of the five dimensions. A) Boxplots of AUCs (area under the curve) for the ten simulations. B) Observed and nominal false discovery rate for each method. C)ROC curves for the competing methods.}
+   \caption{Multivariate simulations from a two--sided model. Ten, eight-dimensional data sets were simulated from a two--sided model with an effect sizes of $2.5\times 10^{-3}$ and $-2.5\times 10^{-3}$ in two of the eight dimensions (N=1,500). Multivariate MIMOSA was compared against Fisher's exact test, the likelihood ratio test, and Fisher's combined p--value (combining Fisher's exact test run marginally on each of the five dimensions). A) Average ROC curves for the competing methods over 10 simulations. B) Average observed and nominal false discovery rate for each method over 10 simulations.}
    \label{fig:mvsimulations}
 \end{figure}
 \clearpage
@@ -473,6 +453,18 @@ $$
     \end{tikzpicture}
    \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
 \label{fig:HVTN065ResultsCont}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.pdf}};
+    \node[anchor=south west, inner sep=0] at (6,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.pdf}};
+    \node at (0,3.4) [font=\tiny\sffamily] {A} ;
+    \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
+ \end{tikzpicture}
+   \caption{Unconstrained MIMOSA model fit to data where model assumptions are violated. Two--sided data were simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. A) Average ROC curves from 10 simulations and B) average observed vs nominal FDR from 10 simulations at N=5,000.}
+   \label{fig:simulations_trunc}
 \end{figure}
 
 %\section{Data Import, Preprocessing, and Gating}
