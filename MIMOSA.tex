@@ -260,13 +260,13 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 %   \includegraphics[width=.75\columnwidth]{Figures/12} 
 \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.6\columnwidth]{Figures/2}};
-    \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.6\columnwidth]{Figures/12}};
+    \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.6\columnwidth]{Figures/1}};
     \node at (0,3.4) [font=\tiny\sffamily] {A} ;
     \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
     \node at (0,-0.25) [font=\tiny\sffamily] {C} ;
     \node at (4.6,-0.25) [font=\tiny\sffamily] {D} ;
 \end{tikzpicture}
-   \caption{Performance of MIMOSA (EM and MCMC implementations, one--sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T--cells stimulated with A--B) ENV-1-PTEG and expressing IFNg or C--D) GAG-1-PTEG and expressing IL2 and IFNg. ROC and FDR plots of other cytokine combinations can be found in the supplementary material.}
+   \caption{Performance of MIMOSA (EM and MCMC implementations, one--sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T--cells stimulated with A--B) ENV-1-PTEG and expressing IFNg or C--D) ENV-1-PTEG and expressing IL2. ROC and FDR plots of other cytokine combinations can be found in the supplementary material.}
 \label{fig:HVTN065}
 \end{figure}
 
@@ -292,20 +292,12 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.3\columnwidth]{Figures/simulations_onesided_AUCS.pdf}};
-    \node[anchor=south west, inner sep=0] at (4.5,0){\includegraphics[width=0.3\columnwidth]{Figures/simulations_twosided_AUC.pdf}};
-   \node[anchor=south west, inner sep=0] at (9,0) {\includegraphics[width=0.3\columnwidth]{Figures/simulations_onesided_ROC.pdf}};
-   \node[anchor=south west, inner sep=0] at (0,-3.5){\includegraphics[width=0.3\columnwidth]{Figures/simulations_twosided_ROC.pdf}};
-   \node[anchor=south west, inner sep=0] at (4.5,-3.5){\includegraphics[width=0.3\columnwidth]{Figures/simulations_onesided_FDR.pdf}};
-   \node[anchor=south west, inner sep=0] at (9,-3.5){\includegraphics[width=0.3\columnwidth]{Figures/simulations_twosided_FDR.pdf}};
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.4\columnwidth]{Figures/Sim_onesided_ROC_5000.pdf}};
+    \node[anchor=south west, inner sep=0] at (6,0){\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
     \node at (0,3.4) [font=\tiny\sffamily] {A} ;
     \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
-    \node at (9,3.4) [font=\tiny\sffamily] {C} ;
-    \node at (0,-0.25) [font=\tiny\sffamily] {D} ;
-    \node at (4.6,-0.25) [font=\tiny\sffamily] {E} ;
-    \node at (9,-0.25) [font=\tiny\sffamily] {F} ;
 \end{tikzpicture}
-   \caption{Comparison of positivity detection methods on data simulated from the one--sided model (top row) and the two--sided model (bottom row). Ten simulations were generated at each of seven increasing values of $N$ (total counts) using hyper--parameter estimates from real ICS data. A) Boxplots of the area under the ROC curves for Fisher's exact test, MIMOSA (MCMC constrained model), likelihood ratio test, and the ranked log fold change. B) Boxplots for the unconstrained model. C) Observed and nominal false discovery rate for a representative simulated data set (N=100,000 counts) MIMOSA (one--sided), Fisher's exact test, and the likelihood ratio test. C) ROC curves for a representative simulated data set (N=100,000 counts). D) AUC  boxplots, E) observed vs. nominal FDR, F) ROC analysis comparing MIMOSA (MCMC unconstrained model) and competing methods for two--sided simulated data. }\label{fig:simulations}
+   \caption{Comparison of positivity detection methods on data simulated from the one--sided model. Ten simulations were generated at an $N$ of 5,000 total counts using hyper--parameter estimates from real ICS data (IFNg expressing CD4+ T--cells stimulated with ENV-1-PTEG from HVTN065) with a five--fold effect size between responder and non--responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000) D) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000). Curves are shown for MIMOSA (one--sided), Fisher's exact test, the likelihood ratio test, and ranked log fold--change. Results for the two--sided model and the MIMOSA fit to a model violating model assumptions, as well as other values of N are in the Supplementary Material.}\label{fig:simulations}
 \end{figure}
 
 
@@ -439,7 +431,7 @@ $$
 %   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
 %   \includegraphics[width=.75\columnwidth]{Figures/12} 
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.5\columnwidth]{Figures/1}};
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.5\columnwidth]{Figures/12}};
     \node[anchor=south west, inner sep=0] at (8,0){\includegraphics[width=.5\columnwidth]{Figures/3}};
     \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.5\columnwidth]{Figures/5}};
     \node[anchor=south west, inner sep=0] at (8,-3.75){\includegraphics[width=.5\columnwidth]{Figures/6}};
