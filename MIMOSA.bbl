@@ -1,4 +1,4 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -13,6 +13,32 @@ SC~Bendall, EF~Simonds, P~Qiu, ED~Amir, PO~Krutzik, R~Finck, RV~Bruggner,
   Across a Human Hematopoietic Continuum}.
 \newblock \emph{Science (New York, NY)}, 332\penalty0 (6030):\penalty0 687,
   2011.
+
+\bibitem[Narsinh et~al.(2011)Narsinh, Sun, Sanchez-Freire, Lee, Almeida, Hu,
+  Jan, Wilson, Leong, Rosenberg, Yao, Robbins, and Wu]{Narsinh:2011gn}
+Kazim~H Narsinh, Ning Sun, Veronica Sanchez-Freire, Andrew~S Lee, Patricia
+  Almeida, Shijun Hu, Taha Jan, Kitchener~D Wilson, Denise Leong, Jarrett
+  Rosenberg, Mylene Yao, Robert~C Robbins, and Joseph~C Wu.
+\newblock {Single cell transcriptional profiling reveals heterogeneity of human
+  induced pluripotent stem cells.}
+\newblock \emph{Journal of Clinical Investigation}, 121\penalty0 (3):\penalty0
+  1217--1221, March 2011.
+
+\bibitem[Flatz et~al.(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet,
+  Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel]{Flatz:2011jb}
+Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
+  Jean-Philippe Goulet, Nadia Kettaf, Min Lin, Mario Roederer, Elias~K Haddad,
+  Rafick~P S{\'e}kaly, and Gary~J Nabel.
+\newblock {Single-cell gene-expression profiling reveals qualitatively distinct
+  CD8 T cells elicited by different gene-based vaccines.}
+\newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
+  (14):\penalty0 5724--5729, April 2011.
+
+\bibitem[Pieprzyk(2009)]{Pieprzyk:2009uc}
+M~Pieprzyk.
+\newblock {Fluidigm Dynamic Arrays provide a platform for single-cell gene
+  expression analysis : Abstract : Nature Methods}.
+\newblock \emph{Nature Methods}, 2009.
 
 \bibitem[Altman et~al.(1996)Altman, Moss, Goulder, Barouch, McHeyzer-Williams,
   Bell, McMichael, and Davis]{Altman:1996wf}
@@ -160,16 +186,6 @@ Gordon~K Smyth, Jo{\"e}lle Michaud, and Hamish~S Scott.
   expression in microarray experiments.}
 \newblock \emph{Bioinformatics (Oxford, England)}, 21\penalty0 (9):\penalty0
   2067--2075, May 2005.
-
-\bibitem[Flatz et~al.(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet,
-  Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel]{Flatz:2011jb}
-Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
-  Jean-Philippe Goulet, Nadia Kettaf, Min Lin, Mario Roederer, Elias~K Haddad,
-  Rafick~P S{\'e}kaly, and Gary~J Nabel.
-\newblock {Single-cell gene-expression profiling reveals qualitatively distinct
-  CD8 T cells elicited by different gene-based vaccines.}
-\newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
-  (14):\penalty0 5724--5729, April 2011.
 
 \bibitem[Milush et~al.(2009)Milush, Long, Snyder-Cappione, Cappione, York,
   Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon]{Milush:2009bz}
