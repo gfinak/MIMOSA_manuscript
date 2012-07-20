@@ -1,9 +1,18 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bendall et~al.(2011)Bendall, Simonds, Qiu, Amir, Krutzik, Finck,
+  Bruggner, Melamed, Trejo, and Ornatsky]{Bendall:2011wf}
+SC~Bendall, EF~Simonds, P~Qiu, ED~Amir, PO~Krutzik, R~Finck, RV~Bruggner,
+  R~Melamed, A~Trejo, and OI~Ornatsky.
+\newblock {Single-Cell Mass Cytometry of Differential Immune and Drug Responses
+  Across a Human Hematopoietic Continuum}.
+\newblock \emph{Science (New York, NY)}, 332\penalty0 (6030):\penalty0 687,
+  2011.
 
 \bibitem[Altman et~al.(1996)Altman, Moss, Goulder, Barouch, McHeyzer-Williams,
   Bell, McMichael, and Davis]{Altman:1996wf}
@@ -56,26 +65,6 @@ Stephen~C De~Rosa, Fabien~X Lu, Joanne Yu, Stephen~P Perfetto, Judith Falloon,
 \newblock \emph{J Immunol}, 173\penalty0 (9):\penalty0 5372--5380, November
   2004.
 
-\bibitem[Plotkin(2010)]{Plotkin:2010ve}
-S~Plotkin.
-\newblock Correlates of protection induced by vaccination.
-\newblock \emph{Clinical and Vaccine Immunology}, 2010.
-
-\bibitem[Kim et~al.(2010)Kim, Rerks-Ngarm, Excler, and Michael]{Kim:2010fw}
-Jerome~H Kim, Supachai Rerks-Ngarm, Jean-Louis Excler, and Nelson~L Michael.
-\newblock Hiv vaccines: lessons learned and the way forward.
-\newblock \emph{Current opinion in HIV and AIDS}, 5\penalty0 (5):\penalty0
-  428--434, September 2010.
-
-\bibitem[Bendall et~al.(2011)Bendall, Simonds, Qiu, Amir, Krutzik, Finck,
-  Bruggner, Melamed, Trejo, and Ornatsky]{Bendall:2011wf}
-SC~Bendall, EF~Simonds, P~Qiu, ED~Amir, PO~Krutzik, R~Finck, RV~Bruggner,
-  R~Melamed, A~Trejo, and OI~Ornatsky.
-\newblock {Single-Cell Mass Cytometry of Differential Immune and Drug Responses
-  Across a Human Hematopoietic Continuum}.
-\newblock \emph{Science (New York, NY)}, 332\penalty0 (6030):\penalty0 687,
-  2011.
-
 \bibitem[Trigona et~al.(2003)Trigona, Clair, Persaud, Punt, Bachinsky,
   Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver]{Trigona:2003}
 Wendy~L Trigona, James~H Clair, Natasha Persaud, Kara Punt, Margaret Bachinsky,
@@ -104,11 +93,6 @@ M~Nason.
 \newblock \emph{Journal of Biopharmaceutical Statistics}, 16\penalty0
   (4):\penalty0 483--498, August 2006.
 
-\bibitem[Proschan and Nason(2009)]{Proschan:2009ks}
-Michael~A Proschan and Martha Nason.
-\newblock {Conditioning in 2 x 2 tables.}
-\newblock \emph{Biometrics}, 65\penalty0 (1):\penalty0 316--322, March 2009.
-
 \bibitem[Peiperl et~al.(2010)Peiperl, Morgan, Moodie, Li, Russell, Graham,
   Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
   Network}]{Peiperl:2010ej}
@@ -119,6 +103,11 @@ Laurence Peiperl, Cecilia Morgan, Zoe Moodie, Hongli Li, Nina Russell, Barney~S
   5 hiv vaccine in ad5-seronegative persons: A randomized clinical trial (hvtn
   054).
 \newblock \emph{PLoS ONE}, 5\penalty0 (10):\penalty0 e13579, October 2010.
+
+\bibitem[Proschan and Nason(2009)]{Proschan:2009ks}
+Michael~A Proschan and Martha Nason.
+\newblock {Conditioning in 2 x 2 tables.}
+\newblock \emph{Biometrics}, 65\penalty0 (1):\penalty0 316--322, March 2009.
 
 \bibitem[Dempster et~al.(1977)Dempster, Laird, and Rubin]{Dempster:1977ul}
 A.P. Dempster, N.M. Laird, and D.B. Rubin.
@@ -172,6 +161,16 @@ Gordon~K Smyth, Jo{\"e}lle Michaud, and Hamish~S Scott.
 \newblock \emph{Bioinformatics (Oxford, England)}, 21\penalty0 (9):\penalty0
   2067--2075, May 2005.
 
+\bibitem[Flatz et~al.(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet,
+  Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel]{Flatz:2011jb}
+Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
+  Jean-Philippe Goulet, Nadia Kettaf, Min Lin, Mario Roederer, Elias~K Haddad,
+  Rafick~P S{\'e}kaly, and Gary~J Nabel.
+\newblock {Single-cell gene-expression profiling reveals qualitatively distinct
+  CD8 T cells elicited by different gene-based vaccines.}
+\newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
+  (14):\penalty0 5724--5729, April 2011.
+
 \bibitem[Milush et~al.(2009)Milush, Long, Snyder-Cappione, Cappione, York,
   Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon]{Milush:2009bz}
 Jeffrey~M Milush, Brian~R Long, Jennifer~E Snyder-Cappione, Amedeo~J Cappione,
@@ -197,12 +196,5 @@ Nilu Goonetilleke, Stephen Moore, Len Dally, Nicola Winstone, Inese Cebere,
   Ankara-vectored vaccines expressing HIV-1 Gag coupled to CD8+ T-cell
   epitopes.}
 \newblock \emph{J Virol}, 80\penalty0 (10):\penalty0 4717--4728, May 2006.
-
-\bibitem[Hahne et~al.(2009)Hahne, LeMeur, Brinkman, Ellis, Haaland, Sarkar,
-  Spidlen, Strain, and Gentleman]{Hahne:2009vv}
-F~Hahne, N~LeMeur, RR~Brinkman, B~Ellis, P~Haaland, D~Sarkar, J~Spidlen,
-  E~Strain, and R~Gentleman.
-\newblock flowcore: a bioconductor package for high throughput flow cytometry.
-\newblock \emph{BMC Bioinformatics}, 10\penalty0 (1):\penalty0 106, 2009.
 
 \end{thebibliography}
