@@ -157,7 +157,7 @@ In this section, we apply our MIMOSA model to the data described in Section \ref
 \subsubsection*{HVTN065}
 
 Using the ICS data, an ROC (receiver operator characteristic) analysis was performed to assess the sensitivity and specificity of the one-sided MIMOSA model compared to a one-sided Fisher's exact test, ranked log fold change, and a likelihood ratio test based on the MIMOSA model for identifying vaccine responders and non-responders. Observations at the day 0 time point were treated as true negatives, while observations at the day 182 time point were treated as true positives (potentially underestimating the sensitivity due to non-responders). We examined the CD4+ T-cell cytokine responses for ENV-1-PTEG and GAG-1-PTEG stimulated samples\footnote{Were these stimulations described in the data section}. 
-The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or ranked log fold change for discriminating vaccine responders and non-responders when the magnitude of response was small (i.e. ENV-1-PTEG stimulation) (Figure~\ref{fig:HVTN065} A),  (AUC=0.954 for MIMOSA vs. 0.923 for Fisher's exact test vs. 0.827 for LRT vs. 0.775 for ranked fold change). When the magnitude of response was larger (GAG-1-PTEG stimulation), MIMOSA performed as well as Fisher's exact test, and better than other competing methods (Figure~\ref{fig:HVTN065} C) (AUC=0.982 for MIMOSA vs. 0.978 for Fisher's exact test vs. 0.877 for LRT vs. 0.784 for ranked fold change). Irrespective of the magnitude of the response to stimulation, MIMOSA gave better estimates of the observed false discovery rate than competing methods (Figure~\ref{fig:HVTN065} B,D). These results are consistent for other cytokines (see supplementary material~\ref{supp:HVTN065Results}, supplementary figures~\ref{fig:HVTN065Results} and~\ref{fig:HVTN065ResultsCont}) \footnote{Perhaps we could only keep the Env stimulation}.
+The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or ranked log fold change for discriminating vaccine responders and non-responders when the magnitude of response was small (i.e. ENV-1-PTEG stimulation) (Figure~\ref{fig:HVTN065} A),  (AUC=0.954 for MIMOSA vs. 0.923 for Fisher's exact test vs. 0.827 for LRT vs. 0.775 for ranked fold change). When the magnitude of response was larger (GAG-1-PTEG stimulation), MIMOSA performed as well as Fisher's exact test, and better than other competing methods (Figure~\ref{fig:HVTN065} C) (AUC=0.982 for MIMOSA vs. 0.978 for Fisher's exact test vs. 0.877 for LRT vs. 0.784 for ranked fold change). Irrespective of the magnitude of the response to stimulation, MIMOSA gave better estimates of the observed false discovery rate than competing methods (Figure~\ref{fig:HVTN065} B,D). These results are consistent for other cytokines (see supplementary material~\ref{supp:HVTN065Results}, supplementary figure~\ref{fig:HVTN065Results}) \footnote{Perhaps we could only keep the Env stimulation}.
 
 \subsubsection*{HVTN054}
 
@@ -296,8 +296,8 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.4\columnwidth]{Figures/Sim_onesided_ROC_5000.pdf}};
-    \node[anchor=south west, inner sep=0] at (6,0){\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.5\columnwidth]{Figures/Sim_onesided_ROC_5000.pdf}};
+    \node[anchor=south west, inner sep=0] at (6,0){\includegraphics[width=0.5\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
     \node at (0,3.4) [font=\tiny\sffamily] {A} ;
     \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
 \end{tikzpicture}
@@ -309,14 +309,14 @@ We have developed a mixture model framework that we call MIMOSA .for identifying
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5_Unstim_Counts.pdf}};
 \node[anchor=south west, inner sep=0] at (6.5,0) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5_Stim_Counts.pdf}};
-\node [anchor = south west, inner sep=0] at (0,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_Marginalized_BIRC3_CCL5.pdf}};
-\node [anchor=south west, inner sep=0] at (6.5,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5.pdf}};
+%\node [anchor = south west, inner sep=0] at (0,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_Marginalized_BIRC3_CCL5.pdf}};
+%\node [anchor=south west, inner sep=0] at (6.5,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5.pdf}};
 \node at (0,4.5) [font=\tiny\sffamily] {A} ;
 \node at (6.25,4.5) [font=\tiny\sffamily] {B} ;
-\node at (0,0) [font=\tiny\sffamily] {C} ;
-\node at (6.25,0) [font=\tiny\sffamily] {D} ;
+%\node at (0,0) [font=\tiny\sffamily] {C} ;
+%\node at (6.25,0) [font=\tiny\sffamily] {D} ;
 \end{tikzpicture}
-\caption{Counts of cells expressing different combinations of BIRC3 and CCL5 genes in the A) unstimulated and B) stimulated conditions. The posterior difference in proportions between stimulated and unstimulated samples fitting the C) marginalized counts D) multivariate combinations. No difference is observed from the marginalized counts, while multivariate MIMOSA detects a difference between stimulated and unstimulated conditions in 13 of 16 samples.}
+\caption{Counts of cells expressing different combinations of BIRC3 and CCL5 genes in the A) unstimulated and B) stimulated conditions. No difference is observed from the marginalized counts, while multivariate MIMOSA detects a difference between stimulated and unstimulated conditions in 13 of 16 samples. Sample names highlighted in red identify those where MIMOSA did not detect a difference.}
 \label{fig:polyfunctionality}
 \end{figure}
 
@@ -415,59 +415,62 @@ $$
 %   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
 %   \includegraphics[width=.75\columnwidth]{Figures/12} 
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.5\columnwidth]{Figures/12}};
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=.5\columnwidth]{Figures/16}};
     \node[anchor=south west, inner sep=0] at (8,0){\includegraphics[width=.5\columnwidth]{Figures/3}};
     \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.5\columnwidth]{Figures/5}};
     \node[anchor=south west, inner sep=0] at (8,-3.75){\includegraphics[width=.5\columnwidth]{Figures/6}};
     \node[anchor=south west, inner sep=0] at (0,-7.5){\includegraphics[width=.5\columnwidth]{Figures/7}};
-    \node[anchor=south west, inner sep=0] at (8,-7.5){\includegraphics[width=.5\columnwidth]{Figures/8}};
-    \node[anchor=south west, inner sep=0] at (0,-11.25){\includegraphics[width=.5\columnwidth]{Figures/9}};
-    \node[anchor=south west, inner sep=0] at (8,-11.25){\includegraphics[width=.5\columnwidth]{Figures/10}};
-    \node[anchor=south west, inner sep=0] at (0,-15){\includegraphics[width=.5\columnwidth]{Figures/11}};
-    \node[anchor=south west, inner sep=0] at (8,-15){\includegraphics[width=.5\columnwidth]{Figures/13}};
+   % \node[anchor=south west, inner sep=0] at (8,-7.5){\includegraphics[width=.5\columnwidth]{Figures/8}};
+   % \node[anchor=south west, inner sep=0] at (0,-11.25){\includegraphics[width=.5\columnwidth]{Figures/9}};
+    %\node[anchor=south west, inner sep=0] at (8,-11.25){\includegraphics[width=.5\columnwidth]{Figures/10}};
+    %\node[anchor=south west, inner sep=0] at (0,-15){\includegraphics[width=.5\columnwidth]{Figures/11}};
+    %\node[anchor=south west, inner sep=0] at (8,-15){\includegraphics[width=.5\columnwidth]{Figures/13}};
 
     \node at (0,3.4) [font=\tiny\sffamily] {A} ;
     \node at (8,3.4) [font=\tiny\sffamily] {B} ;
     \node at (0,-0.5) [font=\tiny\sffamily] {C} ;
     \node at (8,-0.5) [font=\tiny\sffamily] {D} ;
     \node at (0,-4) [font=\tiny\sffamily] {E} ;
-    \node at (8,-4) [font=\tiny\sffamily] {F} ;
-    \node at (0,-7.75) [font=\tiny\sffamily] {G} ;
-    \node at (8,-7.75) [font=\tiny\sffamily] {H} ;
-    \node at (0,-11.75) [font=\tiny\sffamily] {I} ;
-    \node at (8,-11.75) [font=\tiny\sffamily] {J} ;
+  %  \node at (8,-4) [font=\tiny\sffamily] {F} ;
+%    \node at (0,-7.75) [font=\tiny\sffamily] {G} ;
+  %  \node at (8,-7.75) [font=\tiny\sffamily] {H} ;
+   % \node at (0,-11.75) [font=\tiny\sffamily] {I} ;
+   % \node at (8,-11.75) [font=\tiny\sffamily] {J} ;
     \end{tikzpicture}
-   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
+   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
 \label{fig:HVTN065Results}
 \end{figure}
 
+%\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+%   \centering
+%%   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
+%%   \includegraphics[width=.75\columnwidth]{Figures/12} 
+%\begin{tikzpicture}
+%    \node[anchor=south west, inner sep=0] at (0,0){\includegraphics[width=.5\columnwidth]{Figures/14}};
+%    \node[anchor=south west, inner sep=0] at (8,0){\includegraphics[width=.5\columnwidth]{Figures/15}};
+%    \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.5\columnwidth]{Figures/16}};
+%
+%
+%    \node at (0,3.4) [font=\tiny\sffamily] {A} ;
+%    \node at (8,3.4) [font=\tiny\sffamily] {B} ;
+%    \node at (0,-0.5) [font=\tiny\sffamily] {C} ;
+%    \end{tikzpicture}
+%   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
+%\label{fig:HVTN065ResultsCont}
+%\end{figure}
+
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
-%   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
-%   \includegraphics[width=.75\columnwidth]{Figures/12} 
 \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0){\includegraphics[width=.5\columnwidth]{Figures/14}};
-    \node[anchor=south west, inner sep=0] at (8,0){\includegraphics[width=.5\columnwidth]{Figures/15}};
-    \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.5\columnwidth]{Figures/16}};
-
-
-    \node at (0,3.4) [font=\tiny\sffamily] {A} ;
-    \node at (8,3.4) [font=\tiny\sffamily] {B} ;
-    \node at (0,-0.5) [font=\tiny\sffamily] {C} ;
-    \end{tikzpicture}
-   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
-\label{fig:HVTN065ResultsCont}
-\end{figure}
-
-\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-   \centering
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.pdf}};
-    \node[anchor=south west, inner sep=0] at (6,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.pdf}};
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_5000.pdf}};
+    \node[anchor=south west, inner sep=0] at (6,0) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_5000.pdf}};        \node[anchor=south west,inner sep=0] at (0,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.pdf}};
+    \node[anchor=south west, inner sep=0] at (6,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.pdf}};
     \node at (0,3.4) [font=\tiny\sffamily] {A} ;
     \node at (4.6,3.4) [font=\tiny\sffamily] {B} ;
+        \node at (0,0) [font=\tiny\sffamily] {C} ;
+    \node at (4.6,0) [font=\tiny\sffamily] {D} ;
  \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to data where model assumptions are violated. Two--sided data were simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. A) Average ROC curves from 10 simulations and B) average observed vs nominal FDR from 10 simulations at N=5,000.}
+   \caption{Unconstrained MIMOSA model fit to two--sided data (A-B) or to data where model assumptions are violated (C-D). Two--sided data were simulated from a standard model. A) Average ROC curves from 10 simulations and B) average observed vs nominal FDR from 10 simulations at N=5,000. Unconstrained MIMOSA fit to two--sided data simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. C) Average ROC curves from 10 simulations and D) average observed vs nominal FDR from 10 simulations at N=5,000. }
    \label{fig:simulations_trunc}
 \end{figure}
 
