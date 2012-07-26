@@ -5,42 +5,42 @@ The style file: mn2e.bst
 Database file #1: MIMOSA.bib
 You've used 27 entries,
             2938 wiz_defined-function locations,
-            797 strings with 12663 characters,
-and the built_in function-call counts, 17227 in all, are:
-= -- 1200
-> -- 2000
+            796 strings with 12235 characters,
+and the built_in function-call counts, 16555 in all, are:
+= -- 1168
+> -- 1870
 < -- 0
-+ -- 629
-- -- 609
-* -- 1411
-:= -- 3297
++ -- 590
+- -- 570
+* -- 1352
+:= -- 3174
 add.period$ -- 1
 call.type$ -- 27
-change.case$ -- 308
+change.case$ -- 295
 chr.to.int$ -- 27
 cite$ -- 27
-duplicate$ -- 450
-empty$ -- 701
-format.name$ -- 653
-if$ -- 3336
+duplicate$ -- 449
+empty$ -- 695
+format.name$ -- 614
+if$ -- 3202
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 27
 newline$ -- 85
 num.names$ -- 108
-pop$ -- 288
+pop$ -- 276
 preamble$ -- 1
-purify$ -- 308
+purify$ -- 295
 quote$ -- 0
-skip$ -- 540
+skip$ -- 523
 stack$ -- 0
-substring$ -- 545
+substring$ -- 532
 swap$ -- 27
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 240
 warning$ -- 0
-while$ -- 111
+while$ -- 110
 width$ -- 0
-write$ -- 269
+write$ -- 268

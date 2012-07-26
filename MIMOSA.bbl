@@ -72,12 +72,6 @@ Nason M., 2006, Journal of Biopharmaceutical Statistics, 16, 483
 Newton M.~A., Kendziorski C.~M., Richmond C.~S., Blattner F.~R., Tsui K.~W.,
   2001, Journal of Computational Biology, 8, 37
 
-\bibitem[{Nilu {et~al}\mbox{.}(2006)Nilu, Moore, Dally, Winstone, Cebere,
-  Mahmoud, Pinheiro, Gillespie, Brown, Loach, Roberts, Guimaraes-Walker, Hayes,
-  Loughran, Smith, De~Bont, Verlinde, Vooijs, Schmidt, Boaz, Gilmour, Fast,
-  Dorrell, Hanke, \& McMichael}]{Goonetilleke:2006jk}
-Nilu G. {et~al.}, 2006, J Virol, 80, 4717
-
 \bibitem[{Peiperl {et~al}\mbox{.}(2010)Peiperl, Morgan, Moodie, Li, Russell,
   Graham, Tomaras, De~Rosa, McElrath, \& {the NIAID HIV Vaccine Trials
   Network}}]{Peiperl:2010ej}
@@ -99,6 +93,11 @@ Raftery A., 1996, Markov chain Monte Carlo in practice
 
 \bibitem[{Raftery \& Lewis(1992)}]{Raftery:1992vp}
 Raftery A.~E., Lewis S.~M., 1992, STATISTICAL SCIENCE, 7, 493
+
+\bibitem[{Ramsk{\"o}ld {et~al}\mbox{.}(2012)Ramsk{\"o}ld, Luo, Wang, Li, Deng,
+  Faridani, Daniels, Khrebtukova, Loring, Laurent, Schroth, \&
+  Sandberg}]{Ramskold:2012gj}
+Ramsk{\"o}ld D. {et~al.}, 2012, Nature Biotechnology
 
 \bibitem[{Sinclair {et~al}\mbox{.}(2004)Sinclair, Black, Epling, Carvidi,
   Josefowicz, Bredt, \& Jacobson}]{Sinclair:2004hs}

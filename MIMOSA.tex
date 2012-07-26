@@ -129,7 +129,7 @@ Because our framework is multivariate in nature, multiple cell subsets can be mo
 In this paper we consider two types of immunological single-cell assays: flow cytometry and single-cell gene expression, as described below.
 
 \textit{Flow cytometry}:
-The primary ICS data set is from a  trial testing the GeoVax DNA and MVA vaccines in a prime-boost regimen with 120 individuals (98 vaccines and 20 placebo recipients, see supplementary material~\ref{supp:statpublished}). 
+The primary ICS data set is from a  trial testing the GeoVax DNA and MVA vaccines in a prime-boost regimen with 120 individuals (98 vaccines and 20 placebo recipients, see Web Appendix A). 
 The goal of this data set was to assess the immune response to the vaccine across multiple stimulations, time points, cytokines and T-cell subsets. 
 Here, we analyze a subset of the data consisting of 98 individual from the vaccinee group at two time points, day 0 and day 182. Samples on day 0 were taken just before vaccination and no response is expected there. 
 The corresponding samples can be used as negative controls. 
@@ -193,16 +193,16 @@ where $z_i$ is an indicator variable equal to one if individual $i$ is a respond
 Our estimation algorithms make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p_{\{s,u\}i}$'s for the null and alternative models, which greatly simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Web Appendix C), and are given by,
  \begin{align*}
  \begin{split}
-  	&\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
-	=\prod_{i=1}^P\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}
+  	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
+	=&\prod_{i=1}^P\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}
 	\end{split}
  \end{align*} 
  
 and
 \begin{align}
 	\begin{split}
-&\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}) 
-=\prod_{i=1}^P\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}
+\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}) 
+=&\prod_{i=1}^P\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\cdot \\ &\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}
 \label{model2:unconstrained}
 \end{split}
 \end{align}
@@ -237,7 +237,7 @@ In this section, we apply our MIMOSA model to the data described in Section \ref
 
 \subsection{ICS}
 Using the ICS data, an ROC (receiver operator characteristic) analysis was performed to assess the sensitivity and specificity of the one-sided MIMOSA model compared to a one-sided Fisher's exact test, log fold--change, and a likelihood ratio test based on the MIMOSA model for identifying vaccine responders and non-responders. Observations at the day 0 time point were treated as true negatives, while observations at the day 182 time point were treated as true positives (potentially underestimating the sensitivity due to non-responders). We examined the CD4+ T-cell cytokine responses \footnote{What about CD8+? Didn't look at CD8's}. The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or log fold--change for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065} A. 
-In addition, MIMOSA gave better estimates of the observed false discovery rate than competing methods (Figure~\ref{fig:HVTN065} B). These results are consistent for other cytokines (see Web Figure ~\ref{webfig:HVTN065Results}).
+In addition, MIMOSA gave better estimates of the observed false discovery rate than competing methods (Figure~\ref{fig:HVTN065} B). These results are consistent for other cytokines (see Web Figure A).
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page
@@ -262,7 +262,7 @@ In addition, MIMOSA gave better estimates of the observed false discovery rate t
     \end{tikzpicture}
  };
 \end{tikzpicture}
-   \caption{Performance of MIMOSA (EM and MCMC implementations, one--sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T--cells stimulated with A--B) ENV-1-PTEG and expressing IFNg or C--D) ENV-1-PTEG and expressing IL2. ROC and FDR plots of other cytokine combinations can be found in Web Figure ~\ref{webfig:HVTN065Results}.}
+   \caption{Performance of MIMOSA (EM and MCMC implementations, one--sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T--cells stimulated with A--B) ENV-1-PTEG and expressing IFNg or C--D) ENV-1-PTEG and expressing IL2. ROC and FDR plots of other cytokine combinations can be found in Web Figure A.}
 \label{fig:HVTN065}
 \end{figure}
 
@@ -309,7 +309,7 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 
 We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p_s \ne p_u$) beta--binomial mixture models via simulations. Using hyper parameters estimated from a one-sided MIMOSA model fit to data from ENV--1--stimulated, CD4-positive, IL2-expressing T-cells from the primary immunogenicity time point of the HVTN065 trial~. We simulated data from this constrained model with 200 observations, a response rate of 60\%, an $N$ of 1,000, 5,000, 10,000, and 50,000 events, with ten independent realizations of data for each $N$. The one-sided MIMOSA model was fit to this data and the sensitivity and specificity of the model's ability to correctly identify observations from the ``responder'' and ``non-responder'' groups was evaluated through analysis of ROC curves, and compared against Fisher's exact test, the likelihood ratio test, and log fold--change. This procedure was repeated for the two-sided models fit to two-sided data (Figure~\ref{fig:simulations} A-D). In addition, the nominal \textit{vs.} observed FDR\footnote{Need to define this earlier} was also examined to assess the ability of each method to properly estimate the FDR (Figure~\ref{fig:simulations} A,B). 
 
-For both the constrained and unconstrained simulations, MIMOSA out-performed competing methods, including Fisher's exact test, with respect to sensitivity and specificity at all values of $N$ (Figure~\ref{fig:simulations} A and Web Figure~\ref{webfig:simulations_trunc} panel A). Additionally, the estimated FDR for MIMOSA more closely reflected the nominal FDR compared to Fisher's exact test and competing methods (Figure~\ref{fig:simulations} B and Web Figure~\ref{webfig:simulations_trunc} panel B).
+For both the constrained and unconstrained simulations, MIMOSA out-performed competing methods, including Fisher's exact test, with respect to sensitivity and specificity at all values of $N$ (Figure~\ref{fig:simulations} A and Web Figure B, panel A). Additionally, the estimated FDR for MIMOSA more closely reflected the nominal FDR compared to Fisher's exact test and competing methods (Figure~\ref{fig:simulations} B and Web Figure B panel B).
 %Since the constrained model relies on Monte--Carlo integration to estimate the normalizing constant in the likelihood calculation, which can be computationally costly, we approximated the.
 
 
@@ -333,12 +333,12 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
     \end{tikzpicture}
     };
 \end{tikzpicture}
-   \caption{Comparison of positivity detection methods on data simulated from the one--sided model. Ten simulations were generated at an $N$ of 5,000 total counts using hyper--parameter estimates from real ICS data (IFNg expressing CD4+ T--cells stimulated with ENV-1-PTEG from HVTN065) with a five--fold effect size between responder and non--responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000) D) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000). Curves are shown for MIMOSA (one--sided), Fisher's exact test, the likelihood ratio test, and log fold--change. Results for the two--sided model and the MIMOSA fit to a model violating model assumptions, as well as other values of N are in Web Figure~\ref{webfig:simulations_trunc}.}\label{fig:simulations}
+   \caption{Comparison of positivity detection methods on data simulated from the one--sided model. Ten simulations were generated at an $N$ of 5,000 total counts using hyper--parameter estimates from real ICS data (IFNg expressing CD4+ T--cells stimulated with ENV-1-PTEG from HVTN065) with a five--fold effect size between responder and non--responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000) D) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000). Curves are shown for MIMOSA (one--sided), Fisher's exact test, the likelihood ratio test, and log fold--change. Results for the two--sided model and the MIMOSA fit to a model violating model assumptions, as well as other values of N are in Web Figure B.}\label{fig:simulations}
 \end{figure}
 
 
 
-To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (see Web Figure~\ref{webfig:simulations_trunc} panels C and D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained MIMOSA model fit to one-sided data.
+To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (see Web Figure B panels C and D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained MIMOSA model fit to one-sided data.
 
 
 \section{Differential expression across marker combinations}
@@ -391,7 +391,7 @@ The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet
 
 \subsection{Polyfunctionality in Fluidigm Single--Cell Gene Expression Data}
 As a proof-of-concept, we fitted our multivariate MIMOSA model looking at two specific genes in the Fluidigm data, namely BIRC3 and CCL5. In this case, $K=2$ and we have four possible combinations. 
-In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the BIRC3 and CCL5 genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and the expression of BIRC3 increases upon stimulation. The typical approach to analyzing poly-functional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is to say, the number of BIRC3-/CCL5+ cells decreases upon stimulation and the number of BIRC3+/CCL5+ cells increases. There is no difference in the marginal counts for any sample (Figure~\ref{fig:polyfunctionality} C). In contrast, multivariate MIMOSA tests all cell subpopulations simultaneously, and identifies a significant difference between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the individual combinations, which requires multiplicity adjustment and a potential loss of power. 
+In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the BIRC3 and CCL5 genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and the its expression increases upon stimulation. The typical approach to analyzing poly-functional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is to say, the number of BIRC3-/CCL5+ cells decreases upon stimulation and the number of BIRC3+/CCL5+ cells increases. When marginalizing over these cell populations, no difference is apparent in any of the samples. In contrast, multivariate MIMOSA tests all polyfunctional cell subpopulations simultaneously, identifying significant differences between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D, black labels). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the individual combinations, which requires multiplicity adjustment and a potential loss of power. 
 
 \begin{figure}
 \centering
@@ -453,7 +453,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 \label{s:discussion}
 Experimentalists have already access to a myriad of single-cell assays such as flow cytometry, mass cytometry and multiplexed quantitative-PCR, to name a few. Single--cell assays will become even more routine once sequencing at the single-cell level becomes practical~\citep{Ramskold:2012gj}. As a consequence, the development of effective statistical methods to detect differences in gene or protein expression at the single--cell level is becoming increasingly important. Current approaches for single-cell assays are for the most part simplistic (t-test, $\chi^2$ test, Fisher's exact test), and resulting inference can be quite unreliable especially when the cell counts are small. Most importantly, these methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modeling approaches, which are widely applied in the microarray literature~\citep{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. In addition, most of these methods are univariate in nature and inappropriate for high dimensional next generation single--cell assay.
 
-The MIMOSA model presented here uses a mixture model framework of beta-binomial or Dirichlet-multinomial distributions to model counts in experimental individuals across multiple conditions (\textit{i.e.} vaccine responders and non-responders). Information is shared across responders and non-responders through exchangeable beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Web Figure~\ref{webfig:simulations_trunc}). The univariate MIMOSA model based on the Beta-Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. This has proven to be useful for the ICS data where stimulation induced changes are expected to be one-sided.
+The MIMOSA model presented here uses a mixture model framework of beta-binomial or Dirichlet-multinomial distributions to model counts in experimental individuals across multiple conditions (\textit{i.e.} vaccine responders and non-responders). Information is shared across responders and non-responders through exchangeable beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Web Figure B). The univariate MIMOSA model based on the Beta-Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. This has proven to be useful for the ICS data where stimulation induced changes are expected to be one-sided.
 
 %Importantly, the analysis of real-world ICS data from vaccine trials demonstrated that the the constrained MIMOSA model performs as well or better than Fisher's exact test or other non-Bayesian alternatives for identifying vaccine responders across multiple antigen stimulations and multiple cytokines (Figure~\ref{fig:HVTN065}). Although the MIMOSA model was fit within each antigen stimulation $\times$ cytokine combination, the model is naive to vaccine time point. Despite this, MIMOSA demonstrated a higher sensitivity and specificity to discriminate between vaccine responders and non-responders on days 0 (pre-vaccination) and 182 (post-vaccination) than the current standard approach (Fisher's exact test), or non-Bayesian alternatives such as the likelihood ratio test or ranking by log-fold change (Figure~\ref{fig:HVTN065} A,C). Our approach treats all day 0 observations as true negatives and all day 182 observations as true positives, yet we know that not all vaccine recipients are likely to exhibit a vaccine response on day 182. None the less, this shortcoming, at worst, leads us to underestimate the true sensitivity of MIMOSA, and does not negatively impact the comparison. Additionally, MIMOSA was found to be a better fit to real--world ICS data from vaccine trials than other analysis approaches, as evidenced by more accurate estimates of true false discovery rate (Figure~\ref{fig:HVTN065} B,D).
 
@@ -533,199 +533,6 @@ Web Appendices A, B, C, D, and E, and Web Figures A and B referenced in Sections
 
 \section*{Acknowledgments}
 We wish to acknowledge ...
-\appendix
-
-\section{}
-\subsection{Web Appendix A: HVTN065 Vaccine Trial ICS Data Description}
-\label{supp:statpublished}
-HVTN065 is a phase 1 (safety and immunogenicity) trial of GeoVax HIV/AIDS DNA and MVA vaccine in 120 individuals (100 vaccinees, 20 placebo recipients, parts A and B). CD4 and CD8 T--cell epitope specific immune responses were measured via the ICS assay. Other humoral and cellular immune responses were measured via ELISA, and neutralizing antibody assays. Cytokines measured in the ICS assay included IFNg, TNFa, IL2, and IL4, and antigens included three Env, three Gag, and three Pol peptide pools. Results of the trial have been published~\citep{Goonetilleke:2006jk}.
-
-%HVTN054 is a phase 1 (safety and immunogenicity) trial of an adenoviral vector vaccine in individuals without prior immunity~\cite{Peiperl:2010ej}. The vaccine vector expressed Gag, Pol and Env proteins from multiple HIV clades~\cite{Peiperl:2010ej}. Vaccine was given at two increasing doses, as well as a placebo. T--cell responses to antigens in the vaccine were measured via the ICS assay~\cite{Peiperl:2010ej,Horton:2007tsa}. The cytokines measured were IFNg (Interferon--$\gamma$), IL2 (Interleukin--2), TNFa (Tumor necrosis factor--$\alpha$) and IL4 (Interleukin 4)~\cite{Horton:2007tsa}. The sample size consisted of 20 vaccine and four placebo recipients. The original statistical analysis of the positivity calls is described in the associated publication~\cite{Peiperl:2010ej}. The Gag stimulated, IL2 expressing, CD4+ T--cell data from day 28 was used to derive hyper--parameter estimates for the simulation studies. 
-
-\subsection{Web Appendix B: Constrained Beta--binomial model}
-\label{supp:constrained}
-We can define a model where we constrain the stimulated proportions under the alternative model such that $p_s>p_u$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in equation~\eqref{model2:unconstrained}. The marginal likelihood for the constrained model becomes $\mathrm{L}_1\times \mathrm{C}$, where $\mathrm{C}$ is a ratio of normalizing constants for the likelihood and the prior.
-
-\begin{align*}
-\begin{split}
-	 \mathrm{C}=\frac{\int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}p_{ui}^{n_{ui}+\alpha_u-1}(1-p_{ui})^{N_{ui}-n_{ui}+\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(N^i_s-n^i_s+\beta_s,n^i_s+\alpha_s)\right)d p_{ui}}{   \int\limits_{p_{ui}=0}\limits^{1}\left(\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_{ui}^{\alpha_u-1}(1-p_{ui})^{\beta_u-1} \right)\left(\mathrm{I_{1-p_{ui}}}(\beta_s,\alpha_s)\right)d p_{ui}}
-%\label{eq:model2post}
-\end{split}
-\end{align*}
- 
-The term $I_{1-p_{ui}}(\beta_s,\alpha_s)=1-I_{p_{ui}}(\alpha_s,\beta_s)=Pr(p_{si} > p_{ui}; \alpha_s,\beta_s)$ is the regularized incomplete Beta function, which is just the CDF of a Beta distribution with parameters $\alpha_s,\beta_s$, resulting in a 1--dimensional integral that can be computed via Monte--Carlo integration (i.e. in our EM implementation). However, this can be computationally costly in the MCMC framework. In the latter case, we can compute the integral exactly if $\alpha_s$ and $\beta_s$ are integers by using the identity:
-\begin{align}
-I_{1-p_u}(\beta_s,\alpha_s) = \sum_{j=\beta_s}^{\beta_s+\alpha_s-1} \frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}(1-p_u)^j(p_u)^{\beta_s+\alpha_s-j}
-\label{eq:IBident}
-\end{align}
-Typically, in ICS data $\beta_s>>\alpha_s$, leading to relatively few terms in the sum in equation~\ref{eq:IBident}.  This leads to an exact expression for the normalizing constant:
-$$
-f
-$$
-
-\subsection{Web Appendix C: Derivation of Marginal Likelihoods for Beta--Binomial Model}
-
-\subsection{Web Appendix D: The MCMC Algorithm}
-
-\subsection{Web Appendix E: Marginal Likelihoods for the Multivariate Model}
-
-%\renewcommand{\thesection}{S.\arabic{section}}
-%\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-%\setcounter{section}{1}
-%\setcounter{subsection}{0}
-%\setcounter{figure}{0}
-%\todo[inline]{Note that the Supplementary Information section needs corrections to notation and overall}
-\subsection{Web Figure A: HVTN065 Results for Other Cytokines}
-\begin{figure} %  figure placement: here, top, bottom, or page
-   \centering
-%   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
-%   \includegraphics[width=.75\columnwidth]{Figures/12} 
-\begin{tikzpicture} [auto, node distance=0cm]
-\node at (0,0) (A){
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (a) {\includegraphics[width=.5\columnwidth]{Figures/15}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {A} ;
-        \end{scope}
-        \end{tikzpicture}
- };
- \node [right=of A] (B) {
- \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=.5\columnwidth]{Figures/3}};
-        \begin{scope}[x={(b.south east)},y={(b.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {B} ;
-                \end{scope}
-        \end{tikzpicture}
- };
- \node [below=of A] (C) {
- \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (c) {\includegraphics[width=.5\columnwidth]{Figures/5}};
-        \begin{scope}[x={(c.south east)},y={(c.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {C} ;
-        \end{scope}
-        \end{tikzpicture}
-};
-\node [below=of B] (D) {
-\begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=.5\columnwidth]{Figures/6}};
-        \begin{scope}[x={(d.south east)},y={(d.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {D} ;
-                \end{scope}
-        \end{tikzpicture}
-};
-\node [below=of C] (E) {
-\begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (e) {\includegraphics[width=.5\columnwidth]{Figures/7}};
-        \begin{scope}[x={(d.south east)},y={(d.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {E} ;
-                \end{scope}
-        \end{tikzpicture}
- };
-   % \node[anchor=south west, inner sep=0] at (8,-7.5){\includegraphics[width=.5\columnwidth]{Figures/8}};
-   % \node[anchor=south west, inner sep=0] at (0,-11.25){\includegraphics[width=.5\columnwidth]{Figures/9}};
-    %\node[anchor=south west, inner sep=0] at (8,-11.25){\includegraphics[width=.5\columnwidth]{Figures/10}};
-    %\node[anchor=south west, inner sep=0] at (0,-15){\includegraphics[width=.5\columnwidth]{Figures/11}};
-    %\node[anchor=south west, inner sep=0] at (8,-15){\includegraphics[width=.5\columnwidth]{Figures/13}};
-
-  %  \node at (8,-4) [font=\tiny\sffamily] {F} ;
-%    \node at (0,-7.75) [font=\tiny\sffamily] {G} ;
-  %  \node at (8,-7.75) [font=\tiny\sffamily] {H} ;
-   % \node at (0,-11.75) [font=\tiny\sffamily] {I} ;
-   % \node at (8,-11.75) [font=\tiny\sffamily] {J} ;
-    \end{tikzpicture}
-   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
-\label{webfig:HVTN065Results}
-\end{figure}
-
-%\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-%   \centering
-%%   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
-%%   \includegraphics[width=.75\columnwidth]{Figures/12} 
-%\begin{tikzpicture}
-%    \node[anchor=south west, inner sep=0] at (0,0){\includegraphics[width=.5\columnwidth]{Figures/14}};
-%    \node[anchor=south west, inner sep=0] at (8,0){\includegraphics[width=.5\columnwidth]{Figures/15}};
-%    \node[anchor=south west, inner sep=0] at (0,-3.75){\includegraphics[width=.5\columnwidth]{Figures/16}};
-%
-%
-%    \node at (0,3.4) [font=\tiny\sffamily] {A} ;
-%    \node at (8,3.4) [font=\tiny\sffamily] {B} ;
-%    \node at (0,-0.5) [font=\tiny\sffamily] {C} ;
-%    \end{tikzpicture}
-%   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
-%\label{fig:HVTN065ResultsCont}
-%\end{figure}
-\subsection{Web Figure B: Additional Simulation Results}
-\begin{figure} %  figure placement: here, top, bottom, or page
-   \centering
-\begin{tikzpicture} [auto,node distance=0cm]
-\node at (0,0) (A) {
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (a) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_5000.pdf}};
-    \begin{scope} [x={(a.south east)},y={(a.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {A} ;
-    \end{scope}
-    \end{tikzpicture}
-    };
-    \node [right=of A] (B) {
-    \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_5000.pdf}};
-        \begin{scope} [x={(b.south east)},y={(b.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {B} ;
-        \end{scope}
-    \end{tikzpicture}
-    };
-    \node [below=of A] (C) {
-    \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.pdf}};
-         \begin{scope} [x={(c.south east)},y={(c.north west)}]
-                 \node at (0,1) [font=\tiny\sffamily] {C} ;
-	\end{scope}
-     \end{tikzpicture}
-     };
-     \node [below=of B] (D) {
-     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.pdf}};
-        \begin{scope} [x={(d.south east)},y={(d.north west)}]
-            \node at (0,1) [font=\tiny\sffamily] {D} ;
-\end{scope}
-    \end{tikzpicture}
-    };
-  \node [below=of C] (E) {
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_1000.pdf}};
-    \begin{scope} [x={(e.south east)},y={(e.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {E} ;
-    \end{scope}
-    \end{tikzpicture}
-    };
-    \node [right=of E] (F) {
-    \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_1000.pdf}};
-        \begin{scope} [x={(f.south east)},y={(f.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {F} ;
-        \end{scope}
-    \end{tikzpicture}
-    };
-    \node [below=of E] (G) {
-    \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (g) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_1000.pdf}};
-         \begin{scope} [x={(g.south east)},y={(g.north west)}]
-                 \node at (0,1) [font=\tiny\sffamily] {G} ;
-	\end{scope}
-     \end{tikzpicture}
-     };
-     \node [below=of F] (H) {
-     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (h) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_1000.pdf}};
-        \begin{scope} [x={(h.south east)},y={(h.north west)}]
-            \node at (0,1) [font=\tiny\sffamily] {H} ;
-\end{scope}
-    \end{tikzpicture}
-    };
- \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to two--sided data (A,B,E,F) or to data where model assumptions are violated (C,D,G,H). Two--sided data were simulated from a standard model. A) Average ROC curves and B) average observed vs nominal FDR from 10 simulations with N=5,000, and E-F) N=1,000. Unconstrained MIMOSA fit to two--sided data simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. C) Average ROC curves and D) average observed vs nominal FDR from 10 simulations at N=5,000, and G-H) N=1,000. }
-   \label{webfig:simulations_trunc}
-\end{figure}
 
 %\section{Data Import, Preprocessing, and Gating}
 %The ICS assay data was imported into R from the original flowJo workspaces (version 6, TreeStar Inc, Ashland, OR)  using the BioConductor tool, \textit{flowWorkspace} (v 1.1.6) and ncdfFlow (v 1.1.4). Data were preprocessed using the flowJo--defined compensation matrices and data transformations extracted from the workspace file, and gated using methods from the flowCore package (v 1.19.2) to extract counts of cytokine positive and negative T--cells for each sample and stimulation~\cite{Hahne:2009vv}.
