@@ -1,216 +1,112 @@
 \begin{thebibliography}{25}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
-\bibitem[Bendall et~al.(2011)Bendall, Simonds, Qiu, Amir, Krutzik, Finck,
-  Bruggner, Melamed, Trejo, and Ornatsky]{Bendall:2011wf}
-SC~Bendall, EF~Simonds, P~Qiu, ED~Amir, PO~Krutzik, R~Finck, RV~Bruggner,
-  R~Melamed, A~Trejo, and OI~Ornatsky.
-\newblock {Single-Cell Mass Cytometry of Differential Immune and Drug Responses
-  Across a Human Hematopoietic Continuum}.
-\newblock \emph{Science (New York, NY)}, 332\penalty0 (6030):\penalty0 687,
-  2011.
+\bibitem[{Altman {et~al}\mbox{.}(1996)Altman, Moss, Goulder, Barouch,
+  McHeyzer-Williams, Bell, McMichael, \& Davis}]{Altman:1996wf}
+Altman J.~D., Moss P.~A., Goulder P.~J., Barouch D.~H., McHeyzer-Williams
+  M.~G., Bell J.~I., McMichael A.~J., Davis M.~M., 1996, Science (New York,
+  NY), 274, 94
 
-\bibitem[Narsinh et~al.(2011)Narsinh, Sun, Sanchez-Freire, Lee, Almeida, Hu,
-  Jan, Wilson, Leong, Rosenberg, Yao, Robbins, and Wu]{Narsinh:2011gn}
-Kazim~H Narsinh, Ning Sun, Veronica Sanchez-Freire, Andrew~S Lee, Patricia
-  Almeida, Shijun Hu, Taha Jan, Kitchener~D Wilson, Denise Leong, Jarrett
-  Rosenberg, Mylene Yao, Robert~C Robbins, and Joseph~C Wu.
-\newblock {Single cell transcriptional profiling reveals heterogeneity of human
-  induced pluripotent stem cells.}
-\newblock \emph{Journal of Clinical Investigation}, 121\penalty0 (3):\penalty0
-  1217--1221, March 2011.
+\bibitem[{Bendall {et~al}\mbox{.}(2011)Bendall, Simonds, Qiu, Amir, Krutzik,
+  Finck, Bruggner, Melamed, Trejo, \& Ornatsky}]{Bendall:2011wf}
+Bendall S. {et~al.}, 2011, Science (New York, NY), 332, 687
 
-\bibitem[Flatz et~al.(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim, Goulet,
-  Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, and Nabel]{Flatz:2011jb}
-Lukas Flatz, Rahul Roychoudhuri, Mitsuo Honda, Abdelali Filali-Mouhim,
-  Jean-Philippe Goulet, Nadia Kettaf, Min Lin, Mario Roederer, Elias~K Haddad,
-  Rafick~P S{\'e}kaly, and Gary~J Nabel.
-\newblock {Single-cell gene-expression profiling reveals qualitatively distinct
-  CD8 T cells elicited by different gene-based vaccines.}
-\newblock \emph{Proceedings of the National Academy of Sciences}, 108\penalty0
-  (14):\penalty0 5724--5729, April 2011.
+\bibitem[{Betts {et~al}\mbox{.}(2006)Betts, Nason, West, De~Rosa, Migueles,
+  Abraham, Lederman, Benito, Goepfert, Connors, Roederer, \&
+  Koup}]{Betts:2006dw}
+Betts M.~R. {et~al.}, 2006, Blood, 107, 4781
 
-\bibitem[Pieprzyk(2009)]{Pieprzyk:2009uc}
-M~Pieprzyk.
-\newblock {Fluidigm Dynamic Arrays provide a platform for single-cell gene
-  expression analysis : Abstract : Nature Methods}.
-\newblock \emph{Nature Methods}, 2009.
+\bibitem[{De~Rosa {et~al}\mbox{.}(2004)De~Rosa, Lu, Yu, Perfetto, Falloon,
+  Moser, Evans, Koup, Miller, \& Roederer}]{DeRosa:2004wp}
+De~Rosa S.~C. {et~al.}, 2004, J Immunol, 173, 5372
 
-\bibitem[Altman et~al.(1996)Altman, Moss, Goulder, Barouch, McHeyzer-Williams,
-  Bell, McMichael, and Davis]{Altman:1996wf}
-J~D Altman, P~A Moss, P~J Goulder, D~H Barouch, M~G McHeyzer-Williams, J~I
-  Bell, A~J McMichael, and M~M Davis.
-\newblock {Phenotypic analysis of antigen-specific T lymphocytes.}
-\newblock \emph{Science (New York, NY)}, 274\penalty0 (5284):\penalty0 94--96,
-  October 1996.
+\bibitem[{Dempster {et~al}\mbox{.}(1977)Dempster, Laird, \&
+  Rubin}]{Dempster:1977ul}
+Dempster A., Laird N., Rubin D., 1977, Journal of the Royal Statistical
+  Society. Series B (Methodological), 1
 
-\bibitem[Betts et~al.(2006)Betts, Nason, West, De~Rosa, Migueles, Abraham,
-  Lederman, Benito, Goepfert, Connors, Roederer, and Koup]{Betts:2006dw}
-Michael~R Betts, Martha~C Nason, Sadie~M West, Stephen~C De~Rosa, Stephen~A
-  Migueles, Jonathan Abraham, Michael~M Lederman, Jose~M Benito, Paul~A
-  Goepfert, Mark Connors, Mario Roederer, and Richard~A Koup.
-\newblock Hiv nonprogressors preferentially maintain highly functional
-  hiv-specific cd8+ t cells.
-\newblock \emph{Blood}, 107\penalty0 (12):\penalty0 4781--4789, June 2006.
+\bibitem[{Flatz {et~al}\mbox{.}(2011)Flatz, Roychoudhuri, Honda, Filali-Mouhim,
+  Goulet, Kettaf, Lin, Roederer, Haddad, S{\'e}kaly, \& Nabel}]{Flatz:2011jb}
+Flatz L. {et~al.}, 2011, Proceedings of the National Academy of Sciences, 108,
+  5724
 
-\bibitem[Inokuma et~al.(2007)Inokuma, dela Rosa, Schmitt, Haaland, Siebert,
-  Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, and
-  Maecker]{Inokuma:2007tn}
-Margaret Inokuma, Corazon dela Rosa, Charles Schmitt, Perry Haaland, Janet
-  Siebert, Douglas Petry, Mengxiang Tang, Maria~A Suni, Smita~A Ghanekar, Daiva
-  Gladding, John~F Dunne, Vernon~C Maino, Mary~L Disis, and Holden~T Maecker.
-\newblock {Functional T cell responses to tumor antigens in breast cancer
-  patients have a distinct phenotype and cytokine signature.}
-\newblock \emph{J Immunol}, 179\penalty0 (4):\penalty0 2627--2633, August 2007.
+\bibitem[{Gelfand(1996)}]{Gelfand:1996wc}
+Gelfand A., 1996, {Markov Chain Monte Carlo in practice, edited by Gilks WR}.
+  Richardson S.
 
-\bibitem[McKinstry et~al.(2010)McKinstry, Strutt, and Swain]{McKinstry:2010ei}
-K~Kai McKinstry, Tara~M Strutt, and Susan~L Swain.
-\newblock {The potential of CD4 T-cell memory.}
-\newblock \emph{Immunology}, 130\penalty0 (1):\penalty0 1--9, May 2010.
+\bibitem[{Horton {et~al}\mbox{.}(2007)Horton, Thomas, Stucky, Frank, Moodie,
+  Huang, Chiu, McElrath, \& De~Rosa}]{Horton:2007tsa}
+Horton H. {et~al.}, 2007, Journal of immunological methods, 323, 39
 
-\bibitem[Horton et~al.(2007)Horton, Thomas, Stucky, Frank, Moodie, Huang, Chiu,
-  McElrath, and De~Rosa]{Horton:2007tsa}
-H~Horton, EP~Thomas, JA~Stucky, I~Frank, Z~Moodie, Y~Huang, YL~Chiu,
-  MJ~McElrath, and SC~De~Rosa.
-\newblock Optimization and validation of an 8-color intracellular cytokine
-  staining (ics) assay to quantify antigen-specific t cells induced by
-  vaccination.
-\newblock \emph{Journal of immunological methods}, 323\penalty0 (1):\penalty0
-  39--54, 2007.
+\bibitem[{Inokuma {et~al}\mbox{.}(2007)Inokuma, dela Rosa, Schmitt, Haaland,
+  Siebert, Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, \&
+  Maecker}]{Inokuma:2007tn}
+Inokuma M. {et~al.}, 2007, J Immunol, 179, 2627
 
-\bibitem[De~Rosa et~al.(2004)De~Rosa, Lu, Yu, Perfetto, Falloon, Moser, Evans,
-  Koup, Miller, and Roederer]{DeRosa:2004wp}
-Stephen~C De~Rosa, Fabien~X Lu, Joanne Yu, Stephen~P Perfetto, Judith Falloon,
-  Susan Moser, Thomas~G Evans, Richard Koup, Christopher~J Miller, and Mario
-  Roederer.
-\newblock Vaccination in humans generates broad t cell cytokine responses.
-\newblock \emph{J Immunol}, 173\penalty0 (9):\penalty0 5372--5380, November
-  2004.
+\bibitem[{Kendziorski {et~al}\mbox{.}(2003)Kendziorski, Newton, \&
+  Lan}]{Kendziorski:2003uw}
+Kendziorski C., Newton M., Lan H., 2003, Statistics in {\ldots}
 
-\bibitem[Trigona et~al.(2003)Trigona, Clair, Persaud, Punt, Bachinsky,
-  Sadasivan-Nair, Dubey, Tussey, Fu, and Shiver]{Trigona:2003}
-Wendy~L Trigona, James~H Clair, Natasha Persaud, Kara Punt, Margaret Bachinsky,
-  Usha Sadasivan-Nair, Sheri Dubey, Lynda Tussey, Tong-Ming Fu, and John
-  Shiver.
-\newblock {Intracellular staining for HIV-specific IFN-gamma production:
-  statistical analyses establish reproducibility and criteria for
-  distinguishing positive responses.}
-\newblock \emph{Journal of interferon {\&} cytokine research : the official
-  journal of the International Society for Interferon and Cytokine Research},
-  23\penalty0 (7):\penalty0 369--377, July 2003.
+\bibitem[{McKinstry {et~al}\mbox{.}(2010)McKinstry, Strutt, \&
+  Swain}]{McKinstry:2010ei}
+McKinstry K.~K., Strutt T.~M., Swain S.~L., 2010, Immunology, 130, 1
 
-\bibitem[Sinclair et~al.(2004)Sinclair, Black, Epling, Carvidi, Josefowicz,
-  Bredt, and Jacobson]{Sinclair:2004hs}
-Elizabeth Sinclair, Douglas Black, C~Lorrie Epling, Alexander Carvidi, Steven~Z
-  Josefowicz, Barry~M Bredt, and Mark~A Jacobson.
-\newblock {CMV antigen-specific CD4+ and CD8+ T cell IFNgamma expression and
-  proliferation responses in healthy CMV-seropositive individuals.}
-\newblock \emph{Viral immunology}, 17\penalty0 (3):\penalty0 445--454, 2004.
+\bibitem[{Milush {et~al}\mbox{.}(2009)Milush, Long, Snyder-Cappione, Cappione,
+  York, Ndhlovu, Lanier, Micha{\"e}lsson, \& Nixon}]{Milush:2009bz}
+Milush J.~M. {et~al.}, 2009, Blood, 114, 4823
 
-\bibitem[Nason(2006)]{Nason:2006dx}
-M~Nason.
-\newblock {Patterns of Immune Response to a Vaccine or Virus as Measured by
-  Intracellular Cytokine Staining in Flow Cytometry: Hypothesis Generation and
-  Comparison of Groups}.
-\newblock \emph{Journal of Biopharmaceutical Statistics}, 16\penalty0
-  (4):\penalty0 483--498, August 2006.
+\bibitem[{Narsinh {et~al}\mbox{.}(2011)Narsinh, Sun, Sanchez-Freire, Lee,
+  Almeida, Hu, Jan, Wilson, Leong, Rosenberg, Yao, Robbins, \&
+  Wu}]{Narsinh:2011gn}
+Narsinh K.~H. {et~al.}, 2011, Journal of Clinical Investigation, 121, 1217
 
-\bibitem[Peiperl et~al.(2010)Peiperl, Morgan, Moodie, Li, Russell, Graham,
-  Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
-  Network}]{Peiperl:2010ej}
-Laurence Peiperl, Cecilia Morgan, Zoe Moodie, Hongli Li, Nina Russell, Barney~S
-  Graham, Georgia~D Tomaras, Stephen~C De~Rosa, M~Juliana McElrath, and {the
-  NIAID HIV Vaccine Trials Network}.
-\newblock Safety and immunogenicity of a replication-defective adenovirus type
-  5 hiv vaccine in ad5-seronegative persons: A randomized clinical trial (hvtn
-  054).
-\newblock \emph{PLoS ONE}, 5\penalty0 (10):\penalty0 e13579, October 2010.
+\bibitem[{Nason(2006)}]{Nason:2006dx}
+Nason M., 2006, Journal of Biopharmaceutical Statistics, 16, 483
 
-\bibitem[Proschan and Nason(2009)]{Proschan:2009ks}
-Michael~A Proschan and Martha Nason.
-\newblock {Conditioning in 2 x 2 tables.}
-\newblock \emph{Biometrics}, 65\penalty0 (1):\penalty0 316--322, March 2009.
+\bibitem[{Newton {et~al}\mbox{.}(2001)Newton, Kendziorski, Richmond, Blattner,
+  \& Tsui}]{Newton:2001go}
+Newton M.~A., Kendziorski C.~M., Richmond C.~S., Blattner F.~R., Tsui K.~W.,
+  2001, Journal of Computational Biology, 8, 37
 
-\bibitem[Dempster et~al.(1977)Dempster, Laird, and Rubin]{Dempster:1977ul}
-A.P. Dempster, N.M. Laird, and D.B. Rubin.
-\newblock Maximum likelihood from incomplete data via the em algorithm.
-\newblock \emph{Journal of the Royal Statistical Society. Series B
-  (Methodological)}, pages 1--38, 1977.
-
-\bibitem[Gelfand(1996)]{Gelfand:1996wc}
-AE~Gelfand.
-\newblock \emph{{Markov Chain Monte Carlo in practice, edited by Gilks WR}}.
-\newblock Richardson S., 1996.
-
-\bibitem[Raftery and Lewis(1992)]{Raftery:1992vp}
-Adrian~E Raftery and Steven~M Lewis.
-\newblock {[Practical Markov Chain Monte Carlo]: Comment: One Long Run with
-  Diagnostics: Implementation Strategies for Markov Chain Monte Carlo}.
-\newblock \emph{STATISTICAL SCIENCE}, 7\penalty0 (4):\penalty0 493--497,
-  November 1992.
-
-\bibitem[Raftery(1996)]{Raftery:1996ws}
-AE~Raftery.
-\newblock {Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia
-  Richardson, D. J. Spiegelhalter - Google Books}.
-\newblock \emph{Markov chain Monte Carlo in practice}, 1996.
-
-\bibitem[Dittrich and Lehmann(2012)]{Dittrich:2012bv}
-Marcus Dittrich and Paul~V Lehmann.
-\newblock {Statistical analysis of ELISPOT assays.}
-\newblock \emph{Methods Mol Biol}, 792:\penalty0 173--183, 2012.
-
-\bibitem[Kendziorski et~al.(2003)Kendziorski, Newton, and
-  Lan]{Kendziorski:2003uw}
-CM~Kendziorski, MA~Newton, and H~Lan.
-\newblock {On parametric empirical Bayes methods for comparing multiple groups
-  using replicated gene expression profiles - Kendziorski - 2003 - Statistics
-  in Medicine - Wiley Online Library}.
-\newblock \emph{Statistics in {\ldots}}, 2003.
-
-\bibitem[Newton et~al.(2001)Newton, Kendziorski, Richmond, Blattner, and
-  Tsui]{Newton:2001go}
-M~A Newton, C~M Kendziorski, C~S Richmond, F~R Blattner, and K~W Tsui.
-\newblock {On differential variability of expression ratios: improving
-  statistical inference about gene expression changes from microarray data.}
-\newblock \emph{Journal of Computational Biology}, 8\penalty0 (1):\penalty0
-  37--52, 2001.
-
-\bibitem[Smyth et~al.(2005)Smyth, Michaud, and Scott]{Smyth:2005iy}
-Gordon~K Smyth, Jo{\"e}lle Michaud, and Hamish~S Scott.
-\newblock {Use of within-array replicate spots for assessing differential
-  expression in microarray experiments.}
-\newblock \emph{Bioinformatics (Oxford, England)}, 21\penalty0 (9):\penalty0
-  2067--2075, May 2005.
-
-\bibitem[Milush et~al.(2009)Milush, Long, Snyder-Cappione, Cappione, York,
-  Ndhlovu, Lanier, Micha{\"e}lsson, and Nixon]{Milush:2009bz}
-Jeffrey~M Milush, Brian~R Long, Jennifer~E Snyder-Cappione, Amedeo~J Cappione,
-  Vanessa~A York, Lishomwa~C Ndhlovu, Lewis~L Lanier, Jakob Micha{\"e}lsson,
-  and Douglas~F Nixon.
-\newblock {Functionally distinct subsets of human NK cells and monocyte/DC-like
-  cells identified by coexpression of CD56, CD7, and CD4.}
-\newblock \emph{Blood}, 114\penalty0 (23):\penalty0 4823--4831, November 2009.
-
-\bibitem[Goonetilleke et~al.(2006)Goonetilleke, Moore, Dally, Winstone, Cebere,
+\bibitem[{Nilu {et~al}\mbox{.}(2006)Nilu, Moore, Dally, Winstone, Cebere,
   Mahmoud, Pinheiro, Gillespie, Brown, Loach, Roberts, Guimaraes-Walker, Hayes,
   Loughran, Smith, De~Bont, Verlinde, Vooijs, Schmidt, Boaz, Gilmour, Fast,
-  Dorrell, Hanke, and McMichael]{Goonetilleke:2006jk}
-Nilu Goonetilleke, Stephen Moore, Len Dally, Nicola Winstone, Inese Cebere,
-  Abdul Mahmoud, Susana Pinheiro, Geraldine Gillespie, Denise Brown, Vanessa
-  Loach, Joanna Roberts, Ana Guimaraes-Walker, Peter Hayes, Kelley Loughran,
-  Carole Smith, Jan De~Bont, Carl Verlinde, Danii Vooijs, Claudia Schmidt, Mark
-  Boaz, Jill Gilmour, Pat Fast, Lucy Dorrell, Tomas Hanke, and Andrew~J
-  McMichael.
-\newblock {Induction of multifunctional human immunodeficiency virus type 1
-  (HIV-1)-specific T cells capable of proliferation in healthy subjects by
-  using a prime-boost regimen of DNA- and modified vaccinia virus
-  Ankara-vectored vaccines expressing HIV-1 Gag coupled to CD8+ T-cell
-  epitopes.}
-\newblock \emph{J Virol}, 80\penalty0 (10):\penalty0 4717--4728, May 2006.
+  Dorrell, Hanke, \& McMichael}]{Goonetilleke:2006jk}
+Nilu G. {et~al.}, 2006, J Virol, 80, 4717
+
+\bibitem[{Peiperl {et~al}\mbox{.}(2010)Peiperl, Morgan, Moodie, Li, Russell,
+  Graham, Tomaras, De~Rosa, McElrath, \& {the NIAID HIV Vaccine Trials
+  Network}}]{Peiperl:2010ej}
+Peiperl L. {et~al.}, 2010, PLoS ONE, 5, e13579
+
+\bibitem[{Pieprzyk(2009)}]{Pieprzyk:2009uc}
+Pieprzyk M., 2009, Nature Methods
+
+\bibitem[{Proschan \& Nason(2009)}]{Proschan:2009ks}
+Proschan M.~A., Nason M., 2009, Biometrics, 65, 316
+
+\bibitem[{Raftery(1996)}]{Raftery:1996ws}
+Raftery A., 1996, Markov chain Monte Carlo in practice
+
+\bibitem[{Raftery \& Lewis(1992)}]{Raftery:1992vp}
+Raftery A.~E., Lewis S.~M., 1992, STATISTICAL SCIENCE, 7, 493
+
+\bibitem[{Sinclair {et~al}\mbox{.}(2004)Sinclair, Black, Epling, Carvidi,
+  Josefowicz, Bredt, \& Jacobson}]{Sinclair:2004hs}
+Sinclair E., Black D., Epling C.~L., Carvidi A., Josefowicz S.~Z., Bredt B.~M.,
+  Jacobson M.~A., 2004, Viral immunology, 17, 445
+
+\bibitem[{Smyth {et~al}\mbox{.}(2005)Smyth, Michaud, \& Scott}]{Smyth:2005iy}
+Smyth G.~K., Michaud J., Scott H.~S., 2005, Bioinformatics (Oxford, England),
+  21, 2067
+
+\bibitem[{Trigona {et~al}\mbox{.}(2003)Trigona, Clair, Persaud, Punt,
+  Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu, \& Shiver}]{Trigona:2003}
+Trigona W.~L. {et~al.}, 2003, Journal of interferon {\&} cytokine research :
+  the official journal of the International Society for Interferon and Cytokine
+  Research, 23, 369
+
+\bibitem[{van Oudenaarden(2009)}]{vanOudenaarden200915a}
+van Oudenaarden A., 2009, Biophysical Journal, 96, 15a
 
 \end{thebibliography}
