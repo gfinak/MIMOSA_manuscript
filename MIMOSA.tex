@@ -190,7 +190,7 @@ where $z_i$ is an indicator variable equal to one if individual $i$ is a respond
 
 \subsection{Parameter estimation}
 \label{s:estimation}
-Our estimation algorithms make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p_{\{s,u\}i}$'s for the null and alternative models, which greatly simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Web Appendix XX), and are given by,
+Our estimation algorithms make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p_{\{s,u\}i}$'s for the null and alternative models, which greatly simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed forms (Web Appendix C), and are given by,
  \begin{align*}
  \begin{split}
   	&\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
@@ -212,7 +212,7 @@ Assuming that the missing data, the $z_i$'s, are known, we define the complete d
 l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha_u, \beta_u|\mathbf{y}_i) +(1-z_i) l_1(\alpha_u, \beta_u, \alpha_s, \beta_s|\mathbf{y}_i)+\\z_i\log(w)+(1-z_i)\log(1-w)\label{eq:cll}
 \end{split}
 \end{equation}
-where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ is the vector of parameters to be estimated. In the one-sided case, the alternative prior specification must satisfy the constraint $p_s>p_u$, and the marginal likelihood derivation involves the calculation of a normalizing constant that is not available in closed form but can easily be estimated. All calculations for the one-sided case are described in Web Appendix XX. 
+where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ is the vector of parameters to be estimated. In the one-sided case, the alternative prior specification must satisfy the constraint $p_s>p_u$, and the marginal likelihood derivation involves the calculation of a normalizing constant that is not available in closed form but can easily be estimated. All calculations for the one-sided case are described in Web Appendix B. 
 
 \subsection{EM algoritm}
 Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,\tilde{w}\right\}$ and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
@@ -226,7 +226,7 @@ $\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions e
 
 \subsection{MCMC algorithm}
 Realizations were generated from the posterior distribution via MCMC algorithms~\citep{Gelfand:1996wc}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were done via Gibbs samplings.
-Details about the algorithms are given in Web Appendix XX. We used the method of \cite{Raftery:1992vp,Raftery:1996ws} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
+Details about the algorithms are given in Web Appendix D. We used the method of \cite{Raftery:1992vp,Raftery:1996ws} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
 
 
 \section{Results}
@@ -365,7 +365,7 @@ As in the one-marker case, we share information across individuals using an exch
 where the indicator variable $z_i$ is as defined in \ref{ss:priors}, i.e. $z_i\sim\mathrm{Be}(w)$ where $w$ is the proportion of responders. As in the beta-binomial case both an EM and MCMC algorithms can be used for parameter estimation. When using a fully Bayesian approach via MCMC, we use the same priors for $\boldsymbol{\alpha}_{\{u,s\}}$ and $w$ as for the beta-binomial model. 
 
 \subsection{Parameter estimation}
-Again, to simplify the estimation problem, we make use of the marginal likelihoods that can be obtained in closed forms (see Web Appendix XX). For the null component, the marginal likelihood $\mathrm{L}_0$ is given by,
+Again, to simplify the estimation problem, we make use of the marginal likelihoods that can be obtained in closed forms (see Web Appendix E). For the null component, the marginal likelihood $\mathrm{L}_0$ is given by,
 \begin{align*}
 \mathrm{L}_0(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u) &= \prod_{i=0}^I\frac{ \mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \frac{N_{ui}!}{\prod_k n_{uik}!}
 \end{align*}
@@ -375,7 +375,7 @@ where $\mathrm{B}$ is the $2^K$-dimensional Beta function defined as $\mathrm{B}
 \mathrm{L}_1(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u) =& \prod_{i=0}^I\frac{\mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}) \mathrm{B}(\boldsymbol{\alpha}_{s}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_s)\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \\ &\frac{N_{ui}!}{\prod_k n_{uik}!}.%\label{eq:postmult}
 \end{split}
 \end{align*}
-The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet are the same as for the beta-binomial model except that the number of parameters to be estimated is larger. In our experience, the performance of the EM algorithm greatly deteriorates when $K$ becomes larger than three. It becomes highly dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about both algorithms are given in Web Appendix XX. 
+The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet are the same as for the beta-binomial model except that the number of parameters to be estimated is larger. In our experience, the performance of the EM algorithm greatly deteriorates when $K$ becomes larger than three. It becomes highly dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about both algorithms are given in Web Appendix D. 
 
 %\subsection{Parsimonious multivariate model representation}
 %In the case of more than two markers, there is a combinatorial explosion in the number of parameters involved in our multinomial-Dirichlet mixture model. The number of parameters to be estimated is $2^{K+1}+1$, which can become very large even for moderate values of $K$. As an example, $K=4$ leads to 33 parameters, and this would require one to have a large number of individuals to properly estimate all parameters. Here, we propose alternative model parametrizations that could be used to address this problem by reducing the number of required parameters. A simple solution would be to assume that the hyper-parameters are constant across marker combinations, \textit{i.e.} $\alpha_{\{s,u\}k}=\alpha_{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$. As attractive as this might sound, such a model would be unrealistic given that certain stimulations are known to induce expression of certain markers more than others. As a more flexible solution, we propose to define $K$ main effect parameters, denoted $\{\theta_k:k=1,\dots,K\}$, for the $K$ markers and represent co-expression parameters as a function of these main effects. So a combination of dregree $l$, with positive markers, $k_1$, $k_2$, \dots, $k_l$ would have a hyperparameter defined as $\tau_l(\theta_{k_1}\theta_{k_2}\cdots\theta_{k_l})^{1/l}$, which is the geometric mean of the corresponding main marker effects scaled by a degree effect, $\tau_l$. Note that the scaling degree effect would be the same for any combinations with the same number of positive markers. The rationale being that as the degree of polyfunctionality increases, the number of cells might decrease (or increase in some instances) and the corresponding parameters should be adjusted by a scaling factor to allow for such variation. The choice of the geometric mean versus an arithmetic mean is to account for the fact that when a particular combination of degree 1 is empty, \textit{i.e.} the corresponding $\theta$ value is close to zero, it is unlikely that other combination involving that maker would be large. Our specification would account for this since the product would be near zero if one of the $\theta$ is near zero.  Finally, the null combination would have a single parameter equal to $\theta_0$.
@@ -451,7 +451,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 
 \section{Discussion}
 \label{s:discussion}
-Experimentalists have already access to a myriad of single-cell assays such as flow cytometry, mass cytometry and multiplexed quantitative-PCR, to name a few. Single--cell assays will become even more routine once sequencing at the single-cell level becomes practical (Ref to RNA-Seq single--cell). As a consequence, the development of effective statistical methods to detect differences in gene or protein expression at the single--cell level is becoming increasingly important. Current approaches for single-cell assays are for the most part simplistic (t-test, $\chi^2$ test, Fisher's exact test), and resulting inference can be quite unreliable especially when the cell counts are small. Most importantly, these methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modeling approaches, which are widely applied in the microarray literature~\citep{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. In addition, most of these methods are univariate in nature and inappropriate for high dimensional next generation single--cell assay.
+Experimentalists have already access to a myriad of single-cell assays such as flow cytometry, mass cytometry and multiplexed quantitative-PCR, to name a few. Single--cell assays will become even more routine once sequencing at the single-cell level becomes practical~\citep{Ramskold:2012gj}. As a consequence, the development of effective statistical methods to detect differences in gene or protein expression at the single--cell level is becoming increasingly important. Current approaches for single-cell assays are for the most part simplistic (t-test, $\chi^2$ test, Fisher's exact test), and resulting inference can be quite unreliable especially when the cell counts are small. Most importantly, these methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modeling approaches, which are widely applied in the microarray literature~\citep{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy}. In addition, most of these methods are univariate in nature and inappropriate for high dimensional next generation single--cell assay.
 
 The MIMOSA model presented here uses a mixture model framework of beta-binomial or Dirichlet-multinomial distributions to model counts in experimental individuals across multiple conditions (\textit{i.e.} vaccine responders and non-responders). Information is shared across responders and non-responders through exchangeable beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Web Figure~\ref{webfig:simulations_trunc}). The univariate MIMOSA model based on the Beta-Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. This has proven to be useful for the ICS data where stimulation induced changes are expected to be one-sided.
 
@@ -459,7 +459,7 @@ The MIMOSA model presented here uses a mixture model framework of beta-binomial 
 
 Although we used two single-cell assay platforms as motivating examples, our MIMOSA model can be applied to any type of single-cell assay where cells are dichotomized into positive and negative sets, counted and compared across different conditions. In the case of the Fluidigm data, most analysis methods have been focused on identifying differences in the continuous part of the signal ignoring cells that are undetected (\textit{i.e.} the gene is not expressed in the cell), or simply using this information for pre-filtering~\citep{Flatz:2011jb}. The ability of MIMOSA to identify stimulation-specific expression patterns in single-cell gene expression data demonstrates not only the broader utility of the method, but importantly, also demonstrates that biologically relevant signal is present in the proportion of cells expressing each gene under different conditions (Figure~\ref{fig:fluidigm} A-C). 
 
-Detecting differences in poly-functional cell populations (\textit{i.e.} identifying changes in cell populations that co-express multiple proteins, cytokines, or genes), is important in immunology, since it allows the identification of more precisely defined, more homogeneous cell populations~\citep{Milush:2009bz}. In the context of HIV, these poly-functional cell populations have been shown to be correlated with good outcome such as vaccine protection and long-term disease non-progression (ADD REFERENCES TO THE PAPERS STEVE SUGGESTED IN THE GRANT). In the ICS data used here, the stimulation is expected to only increase the number of antigen specific cells detected. It  follows that if a specific cell subset expressing multiple markers is being differentially expressed, differential expression based on the marginal cell counts should also be detected. As such, identifying poly-functional cytokine profiles from ICS data can be done in an iterative way. First univariate tests on marginal populations are performed and then specific cell subsets expressing the positive markers detected are then tested. Even in this situation, this iterative (univariate) approach might not be satisfactory due to the large number of possible combinations that needs to be tested, and a multivariate approach might be preferable. In this case, as others have pointed out, in order to have the most power to detect a true difference, the statistical test should be selected taking into account only the cytokine combinations of interest~\citep{Nason:2006dx}. 
+Detecting differences in poly-functional cell populations (\textit{i.e.} identifying changes in cell populations that co-express multiple proteins, cytokines, or genes), is important in immunology, since it allows the identification of more precisely defined, more homogeneous cell populations~\citep{Milush:2009bz}. In the context of HIV, these poly-functional cell populations have been shown to be correlated with good outcome such as vaccine protection and long-term disease non-progression~\citep{Betts:2006dw,Darrah:2007ih,Precopio:2007ht}. In the ICS data used here, the stimulation is expected to only increase the number of antigen specific cells detected. It  follows that if a specific cell subset expressing multiple markers is being differentially expressed, differential expression based on the marginal cell counts should also be detected. As such, identifying poly-functional cytokine profiles from ICS data can be done in an iterative way. First univariate tests on marginal populations are performed and then specific cell subsets expressing the positive markers detected are then tested. Even in this situation, this iterative (univariate) approach might not be satisfactory due to the large number of possible combinations that needs to be tested, and a multivariate approach might be preferable. In this case, as others have pointed out, in order to have the most power to detect a true difference, the statistical test should be selected taking into account only the cytokine combinations of interest~\citep{Nason:2006dx}. 
 
 When changes are two-sided, as with the Fluidigm data, changes in poly-functional cell populations are not always detectable when looking at the marginal populations (Figure~\ref{fig:polyfunctionality} A-C). In this case, the use of multivariate model, as our Dirichlet-multinomial model, will become important to detect differential marker expression. Here we have shown that MIMOSA has higher sensitivity and specificity than these competing methods to identify true differences between conditions in multivariate count data (Figure~\ref{fig:polyfunctionality} A, and Figure~\ref{fig:mvsimulations} A,C), and the model generally provides a better fit to the single-cell assay count data arising from studies with these types of experimental designs (Figure~\ref{fig:mvsimulations} B). Unfortunately, the limited number of samples in the Fluidigm data prevented us from looking at co-expression involving more than two genes.
 In the case of more than two markers, there is a combinatorial explosion in the number of parameters involved in our multinomial-Dirichlet mixture model. The number of parameters to be estimated is $2^{K+1}+1$, which can become very large even for moderate values of $K$. As an example, $K=4$ leads to 33 parameters, and this would require one to have a large number of individuals to properly estimate all parameters. A solution would be to explore alternative model parametrizations that could be used to reduce the number of required parameters. For example, one could assume that the hyper-parameters are constant across marker combinations, \textit{i.e.} $\alpha_{\{s,u\}k}=\alpha_{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$. As attractive as this might sound, such a model would be unrealistic given that certain stimulations are known to induce expression of certain markers more than others. More exploratory work will need to be done in this area once high dimensional single--cell level data with large number of samples become available.
@@ -527,7 +527,7 @@ All of the results presented here were obtained with a software implementation o
 
 \section*{Supplementary Materials}
 
-Web Appendices A and B, and Web Figures A and B referenced in Sections \ref{s:data} and \ref{s:DEone} are available in the attached Web-based supplementary material.\vspace*{-8pt}
+Web Appendices A, B, C, D, and E, and Web Figures A and B referenced in Sections \ref{s:data} and \ref{s:DEone},\ref{s:estimation},  and \ref{s:demarkercombos} are available in the attached Web-based supplementary material.\vspace*{-8pt}
 % This will be replaced at submission time
 %at the Biometrics website on Wiley Online Library.
 
@@ -562,6 +562,12 @@ Typically, in ICS data $\beta_s>>\alpha_s$, leading to relatively few terms in t
 $$
 f
 $$
+
+\subsection{Web Appendix C: Derivation of Marginal Likelihoods for Beta--Binomial Model}
+
+\subsection{Web Appendix D: The MCMC Algorithm}
+
+\subsection{Web Appendix E: Marginal Likelihoods for the Multivariate Model}
 
 %\renewcommand{\thesection}{S.\arabic{section}}
 %\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
@@ -648,7 +654,7 @@ $$
 %   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG and GAG-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
 %\label{fig:HVTN065ResultsCont}
 %\end{figure}
-\subsection{Web Figure B: Other Simulation Results}
+\subsection{Web Figure B: Additional Simulation Results}
 \begin{figure} %  figure placement: here, top, bottom, or page
    \centering
 \begin{tikzpicture} [auto,node distance=0cm]
@@ -684,8 +690,40 @@ $$
 \end{scope}
     \end{tikzpicture}
     };
+  \node [below=of C] (E) {
+\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_1000.pdf}};
+    \begin{scope} [x={(e.south east)},y={(e.north west)}]
+        \node at (0,1) [font=\tiny\sffamily] {E} ;
+    \end{scope}
+    \end{tikzpicture}
+    };
+    \node [right=of E] (F) {
+    \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_1000.pdf}};
+        \begin{scope} [x={(f.south east)},y={(f.north west)}]
+        \node at (0,1) [font=\tiny\sffamily] {F} ;
+        \end{scope}
+    \end{tikzpicture}
+    };
+    \node [below=of E] (G) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (g) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_1000.pdf}};
+         \begin{scope} [x={(g.south east)},y={(g.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {G} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+     \node [below=of F] (H) {
+     \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (h) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_1000.pdf}};
+        \begin{scope} [x={(h.south east)},y={(h.north west)}]
+            \node at (0,1) [font=\tiny\sffamily] {H} ;
+\end{scope}
+    \end{tikzpicture}
+    };
  \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to two--sided data (A-B) or to data where model assumptions are violated (C-D). Two--sided data were simulated from a standard model. A) Average ROC curves from 10 simulations and B) average observed vs nominal FDR from 10 simulations at N=5,000. Unconstrained MIMOSA fit to two--sided data simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. C) Average ROC curves from 10 simulations and D) average observed vs nominal FDR from 10 simulations at N=5,000. }
+   \caption{Unconstrained MIMOSA model fit to two--sided data (A,B,E,F) or to data where model assumptions are violated (C,D,G,H). Two--sided data were simulated from a standard model. A) Average ROC curves and B) average observed vs nominal FDR from 10 simulations with N=5,000, and E-F) N=1,000. Unconstrained MIMOSA fit to two--sided data simulated from a model where the proportions were drawn from a truncated normal distribution over $[0,1]$, rather than a Beta distribution. C) Average ROC curves and D) average observed vs nominal FDR from 10 simulations at N=5,000, and G-H) N=1,000. }
    \label{webfig:simulations_trunc}
 \end{figure}
 

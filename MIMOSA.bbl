@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{27}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Altman {et~al}\mbox{.}(1996)Altman, Moss, Goulder, Barouch,
@@ -15,6 +15,10 @@ Bendall S. {et~al.}, 2011, Science (New York, NY), 332, 687
   Abraham, Lederman, Benito, Goepfert, Connors, Roederer, \&
   Koup}]{Betts:2006dw}
 Betts M.~R. {et~al.}, 2006, Blood, 107, 4781
+
+\bibitem[{Darrah {et~al}\mbox{.}(2007)Darrah, Patel, De~Luca, Lindsay, Davey,
+  Flynn, Hoff, Andersen, Reed, Morris, Roederer, \& Seder}]{Darrah:2007ih}
+Darrah P.~A. {et~al.}, 2007, Nature Medicine, 13, 843
 
 \bibitem[{De~Rosa {et~al}\mbox{.}(2004)De~Rosa, Lu, Yu, Perfetto, Falloon,
   Moser, Evans, Koup, Miller, \& Roederer}]{DeRosa:2004wp}
@@ -81,6 +85,11 @@ Peiperl L. {et~al.}, 2010, PLoS ONE, 5, e13579
 
 \bibitem[{Pieprzyk(2009)}]{Pieprzyk:2009uc}
 Pieprzyk M., 2009, Nature Methods
+
+\bibitem[{Precopio {et~al}\mbox{.}(2007)Precopio, Betts, Parrino, Price,
+  Gostick, Ambrozak, Asher, Douek, Harari, Pantaleo, Bailer, Graham, Roederer,
+  \& Koup}]{Precopio:2007ht}
+Precopio M.~L. {et~al.}, 2007, The Journal of experimental medicine, 204, 1405
 
 \bibitem[{Proschan \& Nason(2009)}]{Proschan:2009ks}
 Proschan M.~A., Nason M., 2009, Biometrics, 65, 316

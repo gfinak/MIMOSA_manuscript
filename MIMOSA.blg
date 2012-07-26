@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MIMOSA.aux
 The style file: mn2e.bst
 Database file #1: MIMOSA.bib
-You've used 25 entries,
+You've used 27 entries,
             2938 wiz_defined-function locations,
-            782 strings with 11793 characters,
-and the built_in function-call counts, 15412 in all, are:
-= -- 1087
-> -- 1740
+            797 strings with 12663 characters,
+and the built_in function-call counts, 17227 in all, are:
+= -- 1200
+> -- 2000
 < -- 0
-+ -- 549
-- -- 531
-* -- 1262
-:= -- 2952
++ -- 629
+- -- 609
+* -- 1411
+:= -- 3297
 add.period$ -- 1
-call.type$ -- 25
-change.case$ -- 274
-chr.to.int$ -- 25
-cite$ -- 25
-duplicate$ -- 416
-empty$ -- 648
-format.name$ -- 571
-if$ -- 2983
+call.type$ -- 27
+change.case$ -- 308
+chr.to.int$ -- 27
+cite$ -- 27
+duplicate$ -- 450
+empty$ -- 701
+format.name$ -- 653
+if$ -- 3336
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 25
-newline$ -- 79
-num.names$ -- 100
-pop$ -- 256
+missing$ -- 27
+newline$ -- 85
+num.names$ -- 108
+pop$ -- 288
 preamble$ -- 1
-purify$ -- 274
+purify$ -- 308
 quote$ -- 0
-skip$ -- 487
+skip$ -- 540
 stack$ -- 0
-substring$ -- 500
-swap$ -- 25
+substring$ -- 545
+swap$ -- 27
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 222
+type$ -- 240
 warning$ -- 0
-while$ -- 103
+while$ -- 111
 width$ -- 0
-write$ -- 249
+write$ -- 269
