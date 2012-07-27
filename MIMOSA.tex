@@ -274,7 +274,7 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 \begin{tikzpicture} [auto,node distance=0cm]
 \node at (0,0) (A) {
 \begin{tikzpicture}
-\node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.29\columnwidth]{Figures/Fluidigm_plot1.pdf}};
+\node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_plot1.pdf}};
 \begin{scope} [x={(foo.south east)},y={(foo.north west)}]
 \node at (0,1) [font=\tiny\sffamily] {A} ;
 \end{scope}
@@ -282,15 +282,15 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 };
 \node [right=of A] (B) {
 \begin{tikzpicture}
-\node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.29\columnwidth]{Figures/Fluidigm_plot2.pdf}};
+\node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_plot2.pdf}};
 \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
 \node at (-0.1,1.1) [font=\tiny\sffamily] {B} ;
 \end{scope}
 \end{tikzpicture}
 };
-\node [right=of B] (C) {
+\node [below=of A] (C) {
 \begin{tikzpicture}
-\node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.29\columnwidth]{Figures/FluidigmFisher.pdf}};
+\node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.4\columnwidth]{Figures/FluidigmFisher.pdf}};
 \begin{scope} [x={(baz.south east)},y={(baz.north west)}]
 \node at (0,1) [font=\tiny\sffamily] {C} ;
 \end{scope}
@@ -330,13 +330,30 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
     \end{scope}
     \end{tikzpicture}
     };
+        \node [below=of A] (C) {
+    \begin{tikzpicture}
+    \node [anchor=south west] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_twosided_ROC_5000.pdf}};
+    \begin{scope}[x={(c.south east)},y={(c.north west)}]
+    \node at (0,1) [font=\tiny\sffamily] {C} ;
+    \end{scope}
+    \end{tikzpicture}
+    };
+    \node [right=of C] (D) {
+    \begin{tikzpicture}
+    \node [anchor=south west] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
+    \begin{scope}[x={(d.south east)},y={(d.north west)}]
+    \node at (0,1) [font=\tiny\sffamily] {D} ;
+    \end{scope}
+    \end{tikzpicture}
+    };
+
 \end{tikzpicture}
-   \caption{Comparison of positivity detection methods on data simulated from the one-sided model. Ten simulations were generated at an $N$ of 5,000 total counts using hyper-parameter estimates from real ICS data (IFNg expressing CD4+ T-cells stimulated with ENV-1-PTEG from HVTN065) with a five-fold effect size between responder and non-responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000) D) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000). Curves are shown for MIMOSA (one-sided), Fisher's exact test, the likelihood ratio test, and log fold-change. Results for the two-sided model and the MIMOSA fit to a model violating model assumptions, as well as other values of N are in Web Figure B.}\label{fig:simulations}
+   \caption{Comparison of positivity detection methods on data simulated from the one-sided and two--sided models. Ten simulations were generated at an $N$ of 5,000 total counts using hyper-parameter estimates from real ICS data (IFNg expressing CD4+ T-cells stimulated with ENV-1-PTEG from HVTN065) with a five-fold effect size between responder and non-responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000), one--sided B) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000), one--sided. C) Average ROC curves, two--sided model. D) Average observed and nominal FDR, two--sided model. Curves are shown for MIMOSA, Fisher's exact test, the likelihood ratio test, and log fold-change. Results for MIMOSA fit to a model violating model assumptions, as well as other values of N are in Web Figure B.}\label{fig:simulations}
 \end{figure}
 
 
 
-To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (see Web Figure B panels C and D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test and performed about as well as the constrained MIMOSA model fit to one-sided data.
+To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the cell proportions drawn from  truncated normal distributions on $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the $\alpha,\beta$ hyper parameters estimated from the HVTN065 data set (see Web Figure B panels C and D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test.
 
 
 \section{Differential expression across marker combinations}
@@ -420,7 +437,7 @@ In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells ex
 \end{figure}
 
 
-Since the Fluidigm data has a limited number of observations (100 cells and 16 samples), we could not look at more than two makers at once. Therefore, we performed simulations in eight dimension to assess the power of the multivariate MIMOSA  model compared to Fisher's exact test on the resulting 2x5 tables, Fisher's exact test performed marginally on each dimension of the data and p-values combined through Fisher's method ($\chi^2=-2\sum_{i=1}^k\log(p_i)$), as well as the likelihood ratio test (Figure~\ref{fig:mvsimulations} A-C). These results show that multivariate MIMOSA has significantly increased power to detect true differences in multivariate data, even with small counts and small effect sizes, and the model is a better fit to the data than other standard approaches tested for analyzing such multivariate count data (Figure~\ref{fig:mvsimulations} B). 
+Since the Fluidigm data has a limited number of observations (100 cells and 16 samples), we could not look at more than two makers at once. Therefore, we performed simulations in eight dimension to assess the power of the multivariate MIMOSA  model compared to Fisher's exact test on the resulting 2x5 tables, as well as the likelihood ratio test (Figure~\ref{fig:mvsimulations} A-C). These results show that multivariate MIMOSA has significantly increased power to detect true differences in multivariate data, even with small counts and small effect sizes, and the model is a better fit to the data than other standard approaches tested for analyzing such multivariate count data (Figure~\ref{fig:mvsimulations} B). 
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page
@@ -428,7 +445,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 \begin{tikzpicture} [auto, node distance=0cm]
 \node at (0,0) (A) {
 \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_ROC.pdf}};
+    \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_ROC_rev.pdf}};
 \begin{scope} [x={(foo.south east)},y={(foo.north west)}]
     \node at (0,1) [font=\tiny\sffamily] {A} ;
 \end{scope}
@@ -436,14 +453,14 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 };
 \node [right=of A] (B) {
 \begin{tikzpicture}
-   \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_FDR.pdf}};
+   \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_FDR_rev.pdf}};
    \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
        \node at (0,1) [font=\tiny\sffamily] {B} ;
 \end{scope}
 \end{tikzpicture}
 };
 \end{tikzpicture}
-   \caption{Multivariate simulations from a two-sided model. Ten, eight-dimensional data sets were simulated from a two-sided model with an effect sizes of $2.5\times 10^{-3}$ and $-2.5\times 10^{-3}$ in two of the eight dimensions (N=1,500). Multivariate MIMOSA was compared against Fisher's exact test, the likelihood ratio test, and Fisher's combined p-value (combining Fisher's exact test run marginally on each of the five dimensions). A) Average ROC curves for the competing methods over 10 simulations. B) Average observed and nominal false discovery rate for each method over 10 simulations.}
+   \caption{Multivariate simulations from a two-sided model. Ten, eight-dimensional data sets were simulated from a two-sided model with an effect sizes of $2.5\times 10^{-3}$ and $-2.5\times 10^{-3}$ in two of the eight dimensions (N=1,500). Multivariate MIMOSA was compared against Fisher's exact test, and the likelihood ratio test. A) Average ROC curves for the competing methods over 10 simulations. B) Average observed and nominal false discovery rate for each method over 10 simulations.}
    \label{fig:mvsimulations}
 \end{figure}
 
@@ -455,7 +472,7 @@ The MIMOSA model presented here uses a mixture model framework of beta-binomial 
 
 %Importantly, the analysis of real-world ICS data from vaccine trials demonstrated that the the constrained MIMOSA model performs as well or better than Fisher's exact test or other non-Bayesian alternatives for identifying vaccine responders across multiple antigen stimulations and multiple cytokines (Figure~\ref{fig:HVTN065}). Although the MIMOSA model was fit within each antigen stimulation $\times$ cytokine combination, the model is naive to vaccine time point. Despite this, MIMOSA demonstrated a higher sensitivity and specificity to discriminate between vaccine responders and non-responders on days 0 (pre-vaccination) and 182 (post-vaccination) than the current standard approach (Fisher's exact test), or non-Bayesian alternatives such as the likelihood ratio test or ranking by log-fold change (Figure~\ref{fig:HVTN065} A,C). Our approach treats all day 0 observations as true negatives and all day 182 observations as true positives, yet we know that not all vaccine recipients are likely to exhibit a vaccine response on day 182. None the less, this shortcoming, at worst, leads us to underestimate the true sensitivity of MIMOSA, and does not negatively impact the comparison. Additionally, MIMOSA was found to be a better fit to real-world ICS data from vaccine trials than other analysis approaches, as evidenced by more accurate estimates of true false discovery rate (Figure~\ref{fig:HVTN065} B,D).
 
-Although we used two single-cell assay platforms as motivating examples, our MIMOSA model can be applied to any type of single-cell assay where cells are dichotomized into positive and negative sets, counted and compared across different conditions. In the case of the Fluidigm data, most analysis methods have been focused on identifying differences in the continuous part of the signal ignoring cells that are undetected (\textit{i.e.} the gene is not expressed in the cell), or simply using this information for pre-filtering~\citep{Flatz:2011jb}. The ability of MIMOSA to identify stimulation-specific expression patterns in single-cell gene expression data demonstrates not only the broader utility of the method, but importantly, also demonstrates that biologically relevant signal is present in the proportion of cells expressing each gene under different conditions (Figure~\ref{fig:fluidigm} A-C). 
+Although we used two single-cell assay platforms as motivating examples, our MIMOSA model can be applied to any type of single-cell assay where cells are dichotomized into positive and negative sets, counted and compared across different conditions. In the case of the Fluidigm data, most analysis methods have been focused on identifying differences in the continuous part of the signal ignoring cells that are undetected (\textit{i.e.} the gene is not expressed in the cell), or the information is used for pre-filtering~\citep{Flatz:2011jb}. The ability of MIMOSA to identify stimulation-specific expression patterns in single-cell gene expression data demonstrates not only the broader utility of the method, but importantly, also demonstrates that biologically relevant signal is present in the proportion of cells expressing each gene under different conditions (Figure~\ref{fig:fluidigm} A-C). 
 
 Detecting differences in poly-functional cell populations (\textit{i.e.} identifying changes in cell populations that co-express multiple proteins, cytokines, or genes), is important in immunology, since it allows the identification of more precisely defined, more homogeneous cell populations~\citep{Milush:2009bz}. In the context of HIV, these poly-functional cell populations have been shown to be correlated with good outcome such as vaccine protection and long-term disease non-progression~\citep{Betts:2006dw,Darrah:2007ih,Precopio:2007ht}. In the ICS data used here, the stimulation is expected to only increase the number of antigen specific cells detected. It  follows that if a specific cell subset expressing multiple markers is being differentially expressed, differential expression based on the marginal cell counts should also be detected. As such, identifying poly-functional cytokine profiles from ICS data can be done in an iterative way. First univariate tests on marginal populations are performed and then specific cell subsets expressing the positive markers detected are then tested. Even in this situation, this iterative (univariate) approach might not be satisfactory due to the large number of possible combinations that needs to be tested, and a multivariate approach might be preferable. In this case, as others have pointed out, in order to have the most power to detect a true difference, the statistical test should be selected taking into account only the cytokine combinations of interest~\citep{Nason:2006dx}. 
 
