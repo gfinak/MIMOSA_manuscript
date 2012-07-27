@@ -229,7 +229,7 @@ Details about the algorithms are given in Web Appendix B. We used the method of 
 
 \section{Results}
 \label{s:results}
-In this section, we apply our MIMOSA model to the data described in Section \ref{s:data}, and present the results of a simulation study based on the ICS data. The performance of MIMOSA was evaluated and compared against Fisher's exact test, the likelihood ratio test, and log fold-change by ROC (receiver operator characteristic) curve analysis and by comparing the observed FDR (false discovery rate) against the nominal FDR for each data set.
+In this section, we apply our MIMOSA model to the data described in Section \ref{s:data}, and present the results of a simulation study based on the ICS data. The performance of MIMOSA was evaluated and compared against Fisher's exact test, the likelihood ratio test, and log fold-change by ROC (receiver operator characteristic) curve analysis and by comparing the \textit{observed FDR} (false discovery rate), defined as $\frac{\text{\# of false positives}}{\text{\# of observations called positive}}$ against the \textit{nominal FDR} (expected false discovery rate) for each data set~\citep{Storey:2002vj}.
 
 %The constrained model was applied to an ICS data set from a real-world vaccine trial in order to identify responders to antigen stimulation. The unconstrained model was applied to Fluidigm single-cell gene expression data to identify genes differentially expressed between stimulated and unstimulated conditions in populations of single-cells. We also performed simulation studies to assess the performance of the constrained and unconstrained models in a univariate and multivariate settings.
 
