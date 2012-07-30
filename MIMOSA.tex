@@ -37,7 +37,7 @@
 %\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
 %\setmonofont[Scale=MatchLowercase]{Andale Mono}
 
-\title[MIMOSA: Mixture Models or Single-Cell Assays]{Mixture Models for Single-Cell Assays with Application to Vaccine Studies}
+\title[MIMOSA: Combinatorial Mixture Models or Single-Cell Assays]{Combinatorial Mixture Models for Single-Cell Assays with Application to Vaccine Studies}
 %\author[1]{Greg Finak}
 %\author[2]{SC De Rosa}
 %\author[3]{Mario Roederer}
@@ -72,10 +72,11 @@ $^{3}$Vaccine Research Center, NIAID, NIH, 40 Convent Drive, Rm 5509, Bethesda, 
 \begin{abstract}
 Most biological samples (\textit{e.g.}, blood and tissue) are composed of many functionally distinct cell subsets that can only be measured accurately using single-cell assays. The characterization of these small cell subsets is crucial to decipher system level biological changes. For this reason, an increasing number of studies rely on single-cell assays to provide single-cell measurements of multiple genes and proteins from bulk cell samples. A common problem in the analysis of such data is to identify markers (or combinations of markers) that are differentially expressed between two biological conditions (\textit{e.g.}, before/after vaccination), where expression is defined as the proportion of cells expressing that marker (or marker combination) in the cell subset(s) of interest.
 Here, we present a Bayesian hierarchical framework based on a beta-binomial mixture model for testing for differential marker expression using single-cell assays. Our model allows the inference to be subject specific, as is typically required when accessing vaccine responses, while borrowing strength across subjects through common prior distributions. We propose two approaches for parameter estimation: an empirical-Bayes approach using an Expectation-Maximization algorithm and a fully Bayesian one based on a Markov chain Monte Carlo algorithm. We compare our method against classical approaches for single-cell assays including Fisher's exact test, a likelihood ratio test, and basic log-fold changes. Using several experimental assays measuring proteins or genes at the single-cell level and simulated data, we show that our method has higher sensitivity and specificity than alternative methods. Additional simulations show that our framework is also robust to model misspecification. Finally, we also demonstrate how our approach can be extended to testing multivariate differential expression across multiple marker combinations using a Dirichlet-multinomial model and illustrate this multivariate approach using single-cell gene expression data and simulations.
+Here, we present a Bayesian hierarchical framework based on a beta-binomial mixture model for testing for differential marker expression using single-cell assays. Our model allows the inference to be subject specific, as is typically required when accessing vaccine responses, while borrowing strength across subjects through common prior distributions. We propose two approaches for parameter estimation: an empirical-Bayes approach using an Expectation-Maximization algorithm and a fully Bayesian one based on a Markov chain Monte Carlo algorithm. We compare our method against classical approaches for single-cell assays including Fisher's exact test, a likelihood ratio test, and basic log-fold changes. Using several experimental assays measuring proteins or genes at the single-cell level and simulated data, we show that our method has higher sensitivity and specificity than alternative methods. Additional simulations show that our framework is also robust to model misspecification. Finally, we also demonstrate how our approach can be extended to testing multivariate differential expression across multiple marker combinations using a Dirichlet-multinomial model and illustrate this multivariate approach using single-cell gene expression data and simulations.
 \end{abstract}
 
 \begin{keywords}
-Bayesian Inference, Expectation-Maximization, Flow cytometry, Gene expression, Hierarchical modeling, Immunology, Markov chain Monte Carlo
+Mixture modelling, hierarchical modelling, bayesian modelling, single-cell assays, immunology
 \end{keywords}
 
 \maketitle
@@ -86,7 +87,7 @@ Cell populations, particularly in the immune system, are never truly homogeneous
 This single-cell heterogeneity is informative, but lost in assays that measure cell mixtures. 
 For this reason, endpoints in vaccine and immunological studies are measured through a variety of assays that provide single-cell measurements of multiple genes and proteins. 
 In the 1970s, single-cell analysis was revolutionized with the development of fluorescence-based flow cytometry (FCM). 
-Since then, instrumentation and reagent advances have enabled the study of numerous cellular processes via the simultaneous single-cell measurement of multiple surface and intracellular markers (up to 17 markers)\footnote{Reference Mario's paper}. 
+Since then, instrumentation and reagent advances have enabled the study of numerous cellular processes via the simultaneous single-cell measurement of multiple surface and intracellular markers (up to 17 markers). 
 More recent technological development have drastically extended the capabilities of single-cell cytometry to measure dozens of simultaneous parameters per cell~\citep{Bendall:2011wf}. 
 Although cells sorted using well-established surface markers may appear homogeneous, mRNA expression of other genes within these cells can be heterogeneous~\citep{Narsinh:2011gn, Flatz:2011jb} and could further characterize and subset these cells. 
 A new technology based on microfluidic arrays combined with multiplexed polymerase chain reactions (PCR) can now be used to perform thousands of PCRs in a single device, enabling simultaneous, high-throughput gene expression measurements at the single-cell level across hundreds of cells and genes~\citep{Pieprzyk:2009uc}. 
@@ -94,7 +95,7 @@ While classic gene expression microarrays sum the expression from many individua
 This heterogeneity may carry important information, thus single-cell expression data should not be analyzed in the same fashion as cell-population level data. 
 Special treatment of single-cell level data, which preserves information about population heterogeneity, is warranted in general. 
 For this reason, single-cell assays are an important tool in immunology, providing a functional and phenotypic snapshot of the immune system at a given time. 
-These assays typically measure multiple markers simultaneously on individual cells in a heterogeneous mixture such as whole blood, peripheral blood cell mononuclease (PBMC), or pre-sorted cell populations (\textit{e.g.} T-cells), and are used for immune monitoring of disease, vaccine research, and diagnosis of haematological malignancies~\citep{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}.
+These assays typically measure multiple markers simultaneously on individual cells in a heterogeneous mixture such as whole blood or peripheral blood cell mononuclease (PBMC), and are used for immune monitoring of disease, vaccine research, and diagnosis of haematological malignancies~\citep{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}.
 
 During analysis, cell level marker intensities are typically thresholded as positive or negative so that subsets with different multivariate $+/-$ combinations can be obtained as Boolean combinations. 
 For some assays (\textit{e.g.}, flow cytometry), the positivity thresholds are set based on prior biological knowledge while for others thresholds are given by the assay technology. 
@@ -110,6 +111,7 @@ A motivating example from vaccine research is the flow cytometric intracellular 
 Individual cells are labelled using fluorescently conjugated antibodies against phenotypic markers (CD3, CD4, and CD8), used to subset T-cells, and functional markers (cytokines) used to define antigen specific T-cells~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
 A sufficiently large number of cells must be collected to ensure that the rare cell populations can be detected. 
 Subsequently, each individual cell is classified as either positive or negative for each maker based on predetermined thresholds, then the number of cells matching each subpopulation phenotype is counted. 
+
 These counts are compared between antigen stimulated and unstimulated samples from an subject to identify significant differences. Subjects who generate a response after stimulation are called \textit{responders} whereas subject that do not show any differences are called \textit{non-responders}. 
 In many immunological studies, the size of the functionally distinct subpopulations (\textit{i.e.}, the number of positive cells) is very low (relative to the total number of cells), and real biological differences might be difficult to detect. 
 
@@ -241,19 +243,19 @@ In addition, MIMOSA gave estimates of the observed false discovery rate that are
 \begin{tikzpicture} [auto, node distance=0cm]
 \node at (0,0) (A){
     \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (foo) {\includegraphics[width=.6\columnwidth]{Figures/2}};
+    \node[anchor=south west,inner sep=0] at (0,0) (foo) {\includegraphics[width=\columnwidth]{Figures/2}};
     \begin{scope}[x={(foo.south east)},y={(foo.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {A} ;
-    \node at (0.5,1) [font=\tiny\sffamily] {B} ;
+    \node at (0,1) [font=\small\sffamily] {A} ;
+    \node at (0.5,1) [font=\small\sffamily] {B} ;
     \end{scope}
 \end{tikzpicture}
  };
  \node [below=of A] (B) {
  \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (bar){\includegraphics[width=.6\columnwidth]{Figures/1}};
+    \node[anchor=south west, inner sep=0] at (0,0) (bar){\includegraphics[width=\columnwidth]{Figures/1}};
     \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {C} ;
-    \node at (0.5,1) [font=\tiny\sffamily] {D} ;
+    \node at (0,1) [font=\small\sffamily] {C} ;
+    \node at (0.5,1) [font=\small\sffamily] {D} ;
     \end{scope}
     \end{tikzpicture}
  };
@@ -274,7 +276,7 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_plot1.pdf}};
 \begin{scope} [x={(foo.south east)},y={(foo.north west)}]
-\node at (0,1) [font=\tiny\sffamily] {A} ;
+\node at (0,1) [font=\small\sffamily] {A} ;
 \end{scope}
 \end{tikzpicture}
 };
@@ -282,7 +284,7 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_plot2.pdf}};
 \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
-\node at (-0.1,1.1) [font=\tiny\sffamily] {B} ;
+\node at (-0.1,1.1) [font=\small\sffamily] {B} ;
 \end{scope}
 \end{tikzpicture}
 };
@@ -290,7 +292,7 @@ We applied the MIMOSA model to Fluidigm single-cell gene expression. This time w
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.4\columnwidth]{Figures/FluidigmFisher.pdf}};
 \begin{scope} [x={(baz.south east)},y={(baz.north west)}]
-\node at (0,1) [font=\tiny\sffamily] {C} ;
+\node at (0,1) [font=\small\sffamily] {C} ;
 \end{scope}
 \end{tikzpicture}
 };
@@ -316,7 +318,7 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
 \begin{tikzpicture}
     \node [anchor=south west] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_ROC_5000.pdf}};
     \begin{scope}[x={(foo.south east)},y={(foo.north west)}]
-        \node at (0,1) [font=\tiny\sffamily] {A} ;
+        \node at (0,1) [font=\small\sffamily] {A} ;
         \end{scope}
     \end{tikzpicture}
     };
@@ -324,7 +326,7 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
     \begin{tikzpicture}
     \node [anchor=south west] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
     \begin{scope}[x={(bar.south east)},y={(bar.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {B} ;
+    \node at (0,1) [font=\small\sffamily] {B} ;
     \end{scope}
     \end{tikzpicture}
     };
@@ -332,7 +334,7 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
     \begin{tikzpicture}
     \node [anchor=south west] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_twosided_ROC_5000.pdf}};
     \begin{scope}[x={(c.south east)},y={(c.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {C} ;
+    \node at (0,1) [font=\small\sffamily] {C} ;
     \end{scope}
     \end{tikzpicture}
     };
@@ -340,7 +342,7 @@ For both the constrained and unconstrained simulations, MIMOSA out-performed com
     \begin{tikzpicture}
     \node [anchor=south west] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_onesided_FDR_5000.pdf}};
     \begin{scope}[x={(d.south east)},y={(d.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {D} ;
+    \node at (0,1) [font=\small\sffamily] {D} ;
     \end{scope}
     \end{tikzpicture}
     };
@@ -414,7 +416,7 @@ In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells ex
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5_Unstim_Counts.pdf}};
 \begin{scope} [x={(foo.south east)},y={(foo.north west)}]
-\node at (0,1) [font=\tiny\sffamily] {A} ;
+\node at (0,1) [font=\small\sffamily] {A} ;
 \end{scope}
 \end{tikzpicture}
 };
@@ -422,14 +424,14 @@ In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells ex
 \begin{tikzpicture}
 \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5_Stim_Counts.pdf}};
 \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
-\node at (0,1) [font=\tiny\sffamily] {B} ;
+\node at (0,1) [font=\small\sffamily] {B} ;
 \end{scope}
 \end{tikzpicture}
 };
 %\node [anchor = south west, inner sep=0] at (0,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_Marginalized_BIRC3_CCL5.pdf}};
 %\node [anchor=south west, inner sep=0] at (6.5,-4) {\includegraphics[width=0.4\columnwidth]{Figures/Fluidigm_Multivariate_BIRC3_CCL5.pdf}};
-%\node at (0,0) [font=\tiny\sffamily] {C} ;
-%\node at (6.25,0) [font=\tiny\sffamily] {D} ;
+%\node at (0,0) [font=\small\sffamily] {C} ;
+%\node at (6.25,0) [font=\small\sffamily] {D} ;
 \end{tikzpicture}
 \caption{Counts of cells expressing different combinations of BIRC3 and CCL5 genes in the A) unstimulated and B) stimulated conditions. No difference is observed from the marginalized counts, while multivariate MIMOSA detects a difference between stimulated and unstimulated conditions in 13 of 16 samples. Sample names highlighted in red identify those where MIMOSA did not detect a difference.}
 \label{fig:polyfunctionality}
@@ -446,7 +448,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 \begin{tikzpicture}
     \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_ROC_rev.pdf}};
 \begin{scope} [x={(foo.south east)},y={(foo.north west)}]
-    \node at (0,1) [font=\tiny\sffamily] {A} ;
+    \node at (0,1) [font=\small\sffamily] {A} ;
 \end{scope}
 \end{tikzpicture}
 };
@@ -454,7 +456,7 @@ Since the Fluidigm data has a limited number of observations (100 cells and 16 s
 \begin{tikzpicture}
    \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.4\columnwidth]{Figures/Multivariate_Sims_FDR_rev.pdf}};
    \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
-       \node at (0,1) [font=\tiny\sffamily] {B} ;
+       \node at (0,1) [font=\small\sffamily] {B} ;
 \end{scope}
 \end{tikzpicture}
 };
