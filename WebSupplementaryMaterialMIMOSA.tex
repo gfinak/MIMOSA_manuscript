@@ -88,7 +88,7 @@ where,
 p_i=\frac{w\cdot\mathrm{L_1}}{w\cdot\mathrm{L_1}+(1-w)\cdot\mathrm{L_0}}
 \]
 \end{enumerate}
-For each updated parameter, step 1 above involves the calculation of the following acceptance ratio, with the example below given for $\alpha_u$,
+For each updated parameter, step 1 above involves the calculation of the following acceptance ratio, (e.g. $\alpha_u$, below),
 \[
 \begin{split}
 \frac{\mathrm{L_0}(\alpha^{\text{new}}_u|\cdots)\mathrm{L_1}(\alpha^{\text{new}}_u|\cdots)\pi(\alpha^{\text{new}}_u)}{\mathrm{L_0}(\alpha^{\text{old}}_u|\cdots)\mathrm{L_1}(\alpha^{\text{old}}_u|\cdots)\pi(\alpha^{\text{old}}_u)}\\
@@ -147,7 +147,7 @@ Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\ma
 =&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_s+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
 \end{split}
 \]
-The product over all observations gives the marginal likelihood,
+The product over all $P$ observations gives the marginal likelihood,
 \[
 \mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P \frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_{ui}+\boldsymbol{\alpha}_{u})}{\mathrm{B}(\boldsymbol{\alpha}_{u})}
 \]
@@ -165,7 +165,29 @@ with marginal likelihood:
 \mathrm{L_1}(\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P\frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{ui}+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_{si}+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}
 \]
 \noindent\textbf{MCMC algorithm}\\
-GREG: Look at the what I did above, and do something similar here.
+The MCMC algorithm for the dirichlet--multinomial model is analogous to the beta--binomial, above. The parameter vectors $\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u$ are updated component--wise:
+\begin{enumerate}
+\item  Update each $\alpha_{sk}$, $\alpha_{uk}$ using a Gaussian symmetric proposal distribution with the variance of each proposal tuned using the approach of~\cite{Gelman:2004tc}. 
+\item Update $w$ by Gibbs sampling using the full conditional,
+\[
+(w|\cdots)\sim\mathrm{Beta}(\sum_i z_i,\sum_i(1-z_i))
+\]
+\item For each $i$, update $z_i$ using the full conditional,
+\[
+(z_i|\cdots)\sim \mathrm{B}(1,p_i)
+\]
+where 
+\[
+p_i = \frac{w\cdot\mathrm{L_1}}{w\cdot\mathrm{L_1}+(1-w)\cdot\mathrm{L_0}}
+\]
+For each parameter component updated in step 1 above, compute the acceptance ratio (e.g. $\alpha_{uk}$, below):
+\[
+\frac{\mathrm{L_0}(\alpha^{\text{new}}_{uk}|\cdots)\mathrm{L_1}(\alpha^{\text{new}}_{uk}|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L_0}(\alpha^{\text{old}}_{uk}|\cdots)\mathrm{L_1}(\alpha^{\text{old}}_{uk}|\cdots)\pi(\alpha^{\text{old}}_{uk})}\\
+\]
+
+where $\pi$ is the prior distribution of the parameter. Again, we have used the same exponential prior with mean 1,000 for each parameter.
+\end{enumerate}
+
 \begin{figure} %  figure placement: here, top, bottom, or page
    \centering
 %   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
