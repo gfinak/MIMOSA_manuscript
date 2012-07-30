@@ -32,7 +32,7 @@
 HVTN065 is a phase 1 (safety and immunogenicity) trial of GeoVax HIV/AIDS DNA and MVA vaccine in 120 individuals (100 vaccinees, 20 placebo recipients, parts A and B). CD4 and CD8 T--cell epitope specific immune responses were measured via the ICS assay. 
 % No need to talk about this
 % Other humoral and cellular immune responses were measured via ELISA, and neutralizing antibody assays. 
-Cytokines measured in the ICS assay included IFNg, TNFa, IL2, and IL4, and antigens included three Env, three Gag, and three Pol peptide pools. Results of the trial have been published in \cite{Goonetilleke:2006jk}.
+Cytokines measured in the ICS assay included IFNg, TNFa, IL2, and IL4, and antigens included three Env, three Gag, and three Pol peptide pools. Results of the trial have been published in \cite{Goepfert:2011ci}.
 
 %HVTN054 is a phase 1 (safety and immunogenicity) trial of an adenoviral vector vaccine in individuals without prior immunity~\cite{Peiperl:2010ej}. The vaccine vector expressed Gag, Pol and Env proteins from multiple HIV clades~\cite{Peiperl:2010ej}. Vaccine was given at two increasing doses, as well as a placebo. T--cell responses to antigens in the vaccine were measured via the ICS assay~\cite{Peiperl:2010ej,Horton:2007tsa}. The cytokines measured were IFNg (Interferon--$\gamma$), IL2 (Interleukin--2), TNFa (Tumor necrosis factor--$\alpha$) and IL4 (Interleukin 4)~\cite{Horton:2007tsa}. The sample size consisted of 20 vaccine and four placebo recipients. The original statistical analysis of the positivity calls is described in the associated publication~\cite{Peiperl:2010ej}. The Gag stimulated, IL2 expressing, CD4+ T--cell data from day 28 was used to derive hyper--parameter estimates for the simulation studies. 
 \subsection{Computational details for the beta-binomial model}
@@ -135,8 +135,35 @@ Typically, in ICS data $\alpha_s$ is relatively small leading to relatively few 
 
 \subsection{Computational details for the Dirichlet-multinomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
-Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion.The derivations is described below,
+Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion. For a non--responder, the probability of the observed data (of a single observation) is given by:
 
+\[
+\begin{split}
+Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+=&\int_0^1Pr(\mathbf{n}_s|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+=&\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_u)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+=&\int_0^1 \frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\prod_k p^{n_{sk}}_{uk} \frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\prod_k p^{n_{uk}}_{uk}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\prod_k p_{uk}^{\alpha_{uk}-1}\mathrm{d}\mathbf{p}_u\\
+=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\int_0^1 \prod_k p^{n_{sk}+n_{uk}+\alpha_{uk}-1}_{uk}\mathrm{d}\mathbf{p}_u\\
+=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_s+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
+\end{split}
+\]
+The product over all observations gives the marginal likelihood,
+\[
+\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P \frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_{ui}+\boldsymbol{\alpha}_{u})}{\mathrm{B}(\boldsymbol{\alpha}_{u})}
+\]
+
+For the responder component, again the $\mathbf{n}_s$ are drawn from an independent multinomial distribution, and the $\mathbf{p}_s$ from a dirichlet with hyperparameters $\boldsymbol{\alpha_s}$, giving,
+\[
+\begin{split}
+Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s)=&\int_0^1\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_s)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{Dir}(\boldsymbol{\alpha}_s)\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
+=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}\int_0^1\prod_k p^{n_{uk}+\alpha_{uk}-1}_{uk}\int_0^1 \prod_k p^{n_{sk}+\alpha_{sk}-1}_{sk}\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
+=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_u+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_s+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}
+\end{split}
+\]
+with marginal likelihood:
+\[
+\mathrm{L_1}(\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P\frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{ui}+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_{si}+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}
+\]
 \noindent\textbf{MCMC algorithm}\\
 GREG: Look at the what I did above, and do something similar here.
 \begin{figure} %  figure placement: here, top, bottom, or page

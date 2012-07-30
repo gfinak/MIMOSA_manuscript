@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MIMOSA.aux
 The style file: biom.bst
 Database file #1: MIMOSA.bib
-You've used 29 entries,
+You've used 32 entries,
             2146 wiz_defined-function locations,
-            723 strings with 12648 characters,
-and the built_in function-call counts, 18389 in all, are:
-= -- 1458
-> -- 1688
-< -- 9
-+ -- 594
-- -- 594
-* -- 1992
-:= -- 3407
-add.period$ -- 87
-call.type$ -- 29
-change.case$ -- 342
-chr.to.int$ -- 29
-cite$ -- 29
-duplicate$ -- 435
-empty$ -- 796
-format.name$ -- 627
-if$ -- 3268
+            743 strings with 14047 characters,
+and the built_in function-call counts, 21488 in all, are:
+= -- 1673
+> -- 2068
+< -- 10
++ -- 732
+- -- 732
+* -- 2358
+:= -- 3997
+add.period$ -- 96
+call.type$ -- 32
+change.case$ -- 401
+chr.to.int$ -- 32
+cite$ -- 32
+duplicate$ -- 480
+empty$ -- 885
+format.name$ -- 770
+if$ -- 3803
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 30
-newline$ -- 148
-num.names$ -- 116
-pop$ -- 297
+missing$ -- 33
+newline$ -- 163
+num.names$ -- 128
+pop$ -- 349
 preamble$ -- 1
-purify$ -- 343
+purify$ -- 402
 quote$ -- 0
-skip$ -- 282
+skip$ -- 313
 stack$ -- 0
-substring$ -- 911
-swap$ -- 197
+substring$ -- 1028
+swap$ -- 218
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 172
+type$ -- 190
 warning$ -- 0
-while$ -- 132
+while$ -- 147
 width$ -- 0
-write$ -- 374
+write$ -- 413

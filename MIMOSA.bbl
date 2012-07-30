@@ -76,6 +76,18 @@ Gentleman, R., Carey, V., Bates, D., Bolstad, B., Dettling, M., Dudoit, S.,
   and bioinformatics}.
 \newblock {\em Genome Biology} {\bf 5,} R80.
 
+\bibitem[\protect\citeauthoryear{Goepfert, Elizaga, Sato, Qin, Cardinali, Hay,
+  Hural, DeRosa, DeFawe, Tomaras, Montefiori, Xu, Lai, Kalams, Baden, Frey,
+  Blattner, Wyatt, Moss, Robinson, et~al\mbox{.}}{Goepfert
+  et~al.}{2011}]{Goepfert:2011ci}
+Goepfert, P.~A., Elizaga, M.~L., Sato, A., Qin, L., Cardinali, M., Hay, C.~M.,
+  Hural, J., DeRosa, S.~C., DeFawe, O.~D., Tomaras, G.~D., Montefiori, D.~C.,
+  Xu, Y., Lai, L., Kalams, S.~A., Baden, L.~R., Frey, S.~E., Blattner, W.~A.,
+  Wyatt, L.~S., Moss, B., Robinson, H.~L., et~al. (2011).
+\newblock {Phase 1 Safety and Immunogenicity Testing of DNA and Recombinant
+  Modified Vaccinia Ankara Vaccines Expressing HIV-1 Virus-like Particles}.
+\newblock {\em J Infect Dis} {\bf 203,} 610--619.
+
 \bibitem[\protect\citeauthoryear{Horton, Thomas, Stucky, Frank, Moodie, Huang,
   Chiu, McElrath, and De~Rosa}{Horton et~al.}{2007}]{Horton:2007tsa}
 Horton, H., Thomas, E., Stucky, J., Frank, I., Moodie, Z., Huang, Y., Chiu, Y.,
@@ -84,6 +96,13 @@ Horton, H., Thomas, E., Stucky, J., Frank, I., Moodie, Z., Huang, Y., Chiu, Y.,
   staining (ics) assay to quantify antigen-specific t cells induced by
   vaccination.
 \newblock {\em Journal of immunological methods} {\bf 323,} 39--54.
+
+\bibitem[\protect\citeauthoryear{Ihaka and Gentleman}{Ihaka and
+  Gentleman}{1996}]{Ihaka:1996ud}
+Ihaka, R. and Gentleman, R. (1996).
+\newblock {R: A language for data analysis and graphics}.
+\newblock {\em Journal of Computational and Graphical Statistics} {\bf 5,}
+  299--314.
 
 \bibitem[\protect\citeauthoryear{Inokuma, dela Rosa, Schmitt, Haaland, Siebert,
   Petry, Tang, Suni, Ghanekar, Gladding, Dunne, Maino, Disis, and
@@ -144,6 +163,22 @@ Newton, M.~A., Kendziorski, C.~M., Richmond, C.~S., Blattner, F.~R., and Tsui,
   statistical inference about gene expression changes from microarray data.}
 \newblock {\em Journal of Computational Biology} {\bf 8,} 37--52.
 
+\bibitem[\protect\citeauthoryear{Nilu, Moore, Dally, Winstone, Cebere, Mahmoud,
+  Pinheiro, Gillespie, Brown, Loach, Roberts, Guimaraes-Walker, Hayes,
+  Loughran, Smith, De~Bont, Verlinde, Vooijs, Schmidt, Boaz, Gilmour, Fast,
+  et~al\mbox{.}}{Nilu et~al.}{2006}]{Goonetilleke:2006jk}
+Nilu, G., Moore, S., Dally, L., Winstone, N., Cebere, I., Mahmoud, A.,
+  Pinheiro, S., Gillespie, G., Brown, D., Loach, V., Roberts, J.,
+  Guimaraes-Walker, A., Hayes, P., Loughran, K., Smith, C., De~Bont, J.,
+  Verlinde, C., Vooijs, D., Schmidt, C., Boaz, M., Gilmour, J., Fast, P.,
+  et~al. (2006).
+\newblock {Induction of multifunctional human immunodeficiency virus type 1
+  (HIV-1)-specific T cells capable of proliferation in healthy subjects by
+  using a prime-boost regimen of DNA- and modified vaccinia virus
+  Ankara-vectored vaccines expressing HIV-1 Gag coupled to CD8+ T-cell
+  epitopes.}
+\newblock {\em J Virol} {\bf 80,} 4717--4728.
+
 \bibitem[\protect\citeauthoryear{Peiperl, Morgan, Moodie, Li, Russell, Graham,
   Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
   Network}}{Peiperl et~al.}{2010}]{Peiperl:2010ej}
@@ -180,7 +215,7 @@ Proschan, M.~A. and Nason, M. (2009).
 \bibitem[\protect\citeauthoryear{Raftery}{Raftery}{1996}]{Raftery:1996ws}
 Raftery, A. (1996).
 \newblock {Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia
-  Richardson, D. J. Spiegelhalter - Google Books}.
+  Richardson, D. J. Spiegelhalter}.
 \newblock {\em Markov chain Monte Carlo in practice} .
 
 \bibitem[\protect\citeauthoryear{Raftery and Lewis}{Raftery and
