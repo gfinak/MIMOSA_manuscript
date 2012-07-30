@@ -37,24 +37,64 @@ Cytokines measured in the ICS assay included IFNg, TNFa, IL2, and IL4, and antig
 %HVTN054 is a phase 1 (safety and immunogenicity) trial of an adenoviral vector vaccine in individuals without prior immunity~\cite{Peiperl:2010ej}. The vaccine vector expressed Gag, Pol and Env proteins from multiple HIV clades~\cite{Peiperl:2010ej}. Vaccine was given at two increasing doses, as well as a placebo. T--cell responses to antigens in the vaccine were measured via the ICS assay~\cite{Peiperl:2010ej,Horton:2007tsa}. The cytokines measured were IFNg (Interferon--$\gamma$), IL2 (Interleukin--2), TNFa (Tumor necrosis factor--$\alpha$) and IL4 (Interleukin 4)~\cite{Horton:2007tsa}. The sample size consisted of 20 vaccine and four placebo recipients. The original statistical analysis of the positivity calls is described in the associated publication~\cite{Peiperl:2010ej}. The Gag stimulated, IL2 expressing, CD4+ T--cell data from day 28 was used to derive hyper--parameter estimates for the simulation studies. 
 \subsection{Computational details for the beta-binomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
+The probability of the data, given that it is drawn from the non--responder components for the beta--binomial model is given by:
+\[
+\begin{split}
+\mathrm{Pr}(n_{s},n_{u}|\alpha_0,\beta_0) =&\int_0^1 \mathrm{Pr}(n_{s},n_{u}|p_u,\alpha_0,\beta_0)\mathrm{d}p_u  \text{ : if } z=0 \\
+=& \int_0^1Pr(n_s|p_u)Pr(n_u|p_u)Pr(p_u|\alpha_0,\beta_0) \mathrm{d}p_u\\
+=&\int_0^1 \mathrm{Bin}(N_s,p_u)\mathrm{Bin}(N_u,p_u)\mathrm{Beta}(\alpha_0,\beta_0 ) \mathrm{d}p_u\\
+=&\int_0^1\binom{N_s}{n_s}p_u^{n_s}(1-p_u)^{N_s-n_s}\binom{N_u}{n_u}p_u^{n_u}(1-p_u)^{N_u-n_u}\frac{1}{\mathrm{B}(\alpha_0,\beta_0)}p_u^{\alpha_0-1}(1-p_u)^{\beta_0-1} \mathrm{d}p_u\\
+=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{1}{\mathrm{B}(\alpha_0,\beta_0)}\int_0^1 p_u^{n_s+n_u+\alpha_0-1}(1-p_u)^{N_s+N_u-n_s-n_u+\beta_0-1} \mathrm{d}p_u\\
+=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{\mathrm{B}(n_s+n_u+\alpha_0,N_s+N_u-n_s-n_u+\beta_0)}{\mathrm{B}(\alpha_0,\beta_0)}\\
+\end{split}
+\]
+giving the marginal likelihood function
+\[
+\mathrm{L_0}(\alpha_u,\beta_u|n_{si},n_{ui}) = \prod_{i=1}^P\binom{N_{si}}{n_{si}}\binom{N_{ui}}{n_{ui}}\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_0,N_{si}+N_{ui}-n_{si}-n_{ui}+\beta_0)}{\mathrm{B}(\alpha_0,\beta_0)}\\
+\]
+
+For the responder component, the $n_s$ are drawn from a binomial distribution with parameter $p_s$, giving
+\[
+\begin{split}
+\mathrm{Pr}(n_{s},n_{u}|\alpha_0,\beta_0,\alpha_s,\beta_s) =&\int_0^1\int_0^1 \mathrm{Pr}(n_{s},n_{u}|p_u,p_s,\alpha_0,\beta_0,\alpha_s,\beta_s)\mathrm{d}p_s\mathrm{d}p_u  \text{ : if } z=1 \\
+=& \int_0^1\int_0^1Pr(n_s|p_s)Pr(n_u|p_u)Pr(p_u|\alpha_0,\beta_0)Pr(p_s|\alpha_s,\beta_s)\mathrm{d}p_s \mathrm{d}p_u\\
+=&\int_0^1\int_0^1 \mathrm{Bin}(N_s,p_s)\mathrm{Bin}(N_u,p_u)\mathrm{Beta}(\alpha_0,\beta_0 )\mathrm{Beta}(\alpha_s,\beta_s )\mathrm{d}p_s \mathrm{d}p_u\\
+=&\int_0^1\int_0^1\binom{N_s}{n_s}p_s^{n_s}(1-p_s)^{N_s-n_s}\binom{N_u}{n_u}p_u^{n_u}(1-p_u)^{N_u-n_u}\frac{1}{\mathrm{B}(\alpha_0,\beta_0)}p_u^{\alpha_0-1}(1-p_u)^{\beta_0-1} \cdot\\ 
+&\frac{1}{\mathrm{B}(\alpha_s,\beta_s)}p_s^{\alpha_s-1}(1-p_s)^{\beta_s-1} \mathrm{d}p_s\mathrm{d}p_u\\
+=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{1}{\mathrm{B}(\alpha_0,\beta_0)}\frac{1}{\mathrm{B}(\alpha_s,\beta_s)}\int_0^1 p_u^{n_u+\alpha_0-1}(1-p_u)^{N_u-n_u+\beta_0-1} \cdot\\
+&\int_0^1 p_s^{n_s+\alpha_s-1}(1-p_s)^{N_s-n_s+\beta_s-1}\mathrm{d}p_s\mathrm{d}p_u \\
+=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{\mathrm{B}(n_u+\alpha_0,N_u-n_u+\beta_0)\mathrm{B}(n_s+\alpha_s,N_s-n_s+\beta_s)}{\mathrm{B}(\alpha_0,\beta_0)\mathrm{B}(\alpha_s,\beta_s)}\\
+\end{split}
+\]
+giving marginal likelihood
+\[
+\mathrm{L_0}(\alpha_u,\beta_u,\alpha_s,\beta_s|n_{si},n_{ui}) = \prod_{i=1}^P \binom{N_{si}}{n_{si}}\binom{N_{ui}}{n_{ui}}\frac{\mathrm{B}(n_{ui}+\alpha_0,N_{ui}-n_{ui}+\beta_0)\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_0,\beta_0)\mathrm{B}(\alpha_s,\beta_s)}
+\]
+
 \noindent\textbf{MCMC algorithm}\\
 In what follows, we use $(x|y)$ to denote the conditional distribution of $x$ given $y$. In particular, we use $(x|\cdots)$ to denote the distribution of $x$ conditional on everything else in the model. Our MCMC algorithms cycle through the following steps: 
 \begin{enumerate}
-\item Update each $\alpha_u, \beta_u, \alpha_s$ and $\beta_s$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tune for each parameter using the approach of (Greg add the citation).
+\item Update each $\alpha_u, \beta_u, \alpha_s$ and $\beta_s$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tuned for each parameter using the approach of~\cite{Gelman:2004tc,Raftery:1992vp,Raftery:1996ws}.
 \item Update $w$ by Gibbs sampling using the full conditional,
 \[
-(w|\cdots)\sim
+(w|\cdots)\sim \mathrm{Beta}(\sum_i z_i,\sum_i (1-z_i))
 \]
 \item for each $i$, update $z_i$ by Gibbs sampling using the following full conditional,
 \[
-(z_i|\dots)\sim
+(z_i|\cdots)\sim\mathrm{B(1,p_i)}
+\]
+where,
+\[
+p_i=\frac{w\cdot\mathrm{L_1}}{w\cdot\mathrm{L_1}+(1-w)\cdot\mathrm{L_0}}
 \]
 \end{enumerate}
-For each updated parameter, step 1 above involves the calculation of the following acceptance ratio
+For each updated parameter, step 1 above involves the calculation of the following acceptance ratio, with the example below given for $\alpha_u$,
 \[
-add\ formula.
+\begin{split}
+\frac{\mathrm{L_0}(\alpha^{\text{new}}_u|\cdots)\mathrm{L_1}(\alpha^{\text{new}}_u|\cdots)\pi(\alpha^{\text{new}}_u)}{\mathrm{L_0}(\alpha^{\text{old}}_u|\cdots)\mathrm{L_1}(\alpha^{\text{old}}_u|\cdots)\pi(\alpha^{\text{old}}_u)}\\
+\end{split}
 \]
-where $\pi$ is the prior distribution of the corresponding parameter. In our case each parameter has the same exponential prior with mean $10^3$\footnote{Check that this is correct}.
+where $\pi$ is the prior distribution of $\alpha_u$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha_s,\beta_s,\beta_0$. In our case each parameter has the same exponential prior with mean $1,000$
 \subsection{Constrained beta--binomial model}
 \label{supp:constrained}
 We can define a model where we constrain the stimulated proportions under the alternative model such that $p_s>p_u$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in the main manuscript by (1). Due to the constraint, the normalizing constant of the prior under the alternative (model ${\cal M}_1$) is not given by $\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)$ but requires computing \[
@@ -68,7 +108,6 @@ Using this expression, the constrained alternative marginal likelihood can be wr
 \label{model2:constrained}
 \end{split}
 \end{align}
-
 
 In general, there is no closed form expression for $Z(\cdot)$, and a numerical approximation must be used. Let us denote by $\tilde{Z}(\alpha_u, \beta_u, \alpha_s, \beta_s)$ the approximation. A natural way to estimate $\tilde{Z}$ is to use Monte Carlo integration. Indeed, we can write 
 \begin{equation}
@@ -86,7 +125,7 @@ can be obtained when $\alpha_s$ and $\beta_s$ are integers. In this case, the cd
 F_{\alpha_s,\beta_s}(p_u)=\sum_{j=\beta_s}^{\beta_s+\alpha_s-1} \frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}(1-p_u)^jp_u^{\beta_s+\alpha_s-j}.
 \label{eq:IBident}
 \]
-Then using, this identity, we obtain
+Then using this identity, we obtain
 \begin{align*}
 Z(\alpha_u, \beta_u, \alpha_s, \beta_s)&=\mathrm{B}(\alpha_s,\beta_s)\sum_{j=\beta_s}^{\beta_s+\alpha_s-1}\frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}\int_{0}^1(1-p_u)^{\beta_u-1+j}p_u^{\alpha_u-1+\beta_s+\alpha_s-j}dp_u\\
 &=\mathrm{B}(\alpha_s,\beta_s)\sum_{j=\beta_s}^{\beta_s+\alpha_s-1}\frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}\mathrm{B}(\beta_u+j)\mathrm{B}(\alpha_u+\beta_s+\alpha_s-j).
@@ -250,7 +289,7 @@ GREG: Look at the what I did above, and do something similar here.
    \caption{Unconstrained MIMOSA model fit to data from a model violating model assumptions and to two--sided data with small counts. Data was simulated from a model where proportions were sampled from a truncated normal distribution over $[0,1]$ rather than a Beta distribution.  A) The average ROC from 10 simulation with N=5,000 events. B) The average observed and nominal FDR from 10 simulations with N=5,000 events. C) Average ROC for N=1,000 events D) Average observed and nominal FDR for N=1,000 events. MIMOSA fit to two--sided data were simulated from the standard model with N=1,000 events. E) Average ROC curves from 10 simulations and F) average observed vs nominal FDR from 10 simulations.}
    \label{webfig:simulations_trunc}
 \end{figure}
-\bibliographystyle{mn2e}
+\bibliographystyle{biom}
 \bibliography{MIMOSA}
 
 
