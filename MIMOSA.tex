@@ -103,7 +103,7 @@ This is the case for the Fluidigm technology where genes are recorded as absent 
  After this thresholding step, we obtain a Boolean matrix of dimension $N\times K$ where $N$ is the number of cells recorded and $K$ is number of markers. 
 Using this matrix, one can form $2^K$ putative cell subsets. 
 When $K$ is large there is a combinatorial explosion of the number of subsets, and many of these might be small or even empty. 
-A common statistical problem is, for a given marker combination, to identify subjects for whom the proportion of cells expressing that combination is significantly different between two experimental conditions (\textit{e.g.}, before and after vaccination). 
+A common statistical problem is, for a given marker combination, to identify subjects for whom the proportion of cells expressing that combination is significantly different between two experimental conditions (\textit{e.g.}, before and after vaccination). Note that we use the term 'subject' throughout the paper, but the approaches described are general and can be applied to animal studies, for example.
 
 A motivating example from vaccine research is the flow cytometric intracellular cytokine staining (ICS) assay, which is used to identify and quantify subjects' immune responses to a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T-cells via antigen presenting cells.
  While not all T-cells can recognize all antigens, those that recognize antigens in the vaccine become \emph{activated} and produce a variety of cytokines, further promoting the immune response. 
@@ -115,8 +115,8 @@ Subsequently, each individual cell is classified as either positive or negative 
 These counts are compared between antigen stimulated and unstimulated samples from an subject to identify significant differences. Subjects who generate a response after stimulation are called \textit{responders} whereas subject that do not show any differences are called \textit{non-responders}. 
 In many immunological studies, the size of the functionally distinct subpopulations (\textit{i.e.}, the number of positive cells) is very low (relative to the total number of cells), and real biological differences might be difficult to detect. 
 
-Although there is no standard approach to analyzing single-cell assays, current methods range from ad-hoc rules based on log-fold changes, to permutation tests based on Hotelling's T$^2$ statistics, to exact tests of 2x2 contingency tables (\textit{e.g.}, Fisher's exact test and $\chi^2$ test)~\citep{Trigona:2003,Sinclair:2004hs,Horton:2007tsa,Nason:2006dx,Peiperl:2010ej,Proschan:2009ks}\footnote{Can we match the citations with the methods used}. 
-All of these methods test subjects separately, and no information is shared across subjects\footnote{We should say at some point that here we use subject but the approach is general, could be used with animals, for example} even though one could expect some similarities across responders (\textit{resp.} non-responders). %In addition, these methods generally test one marker at a time or pairwise combinations of markers, raising questions of appropriate multiple testing adjustments, or they perform global tests of significance on multiple markers resulting in decreased power to detect small changes in subsets of cytokines~\cite{Proschan:2009ks,Nason:2006dx}\footnote{What are we trying to say here? Let's update this sentence later}. 
+Although there is no standard approach to analyzing ICS assays, current methods range from ad-hoc rules based on log-fold changes~\citep{Trigona:2003}, to non--parametric methods~\citep{Sinclair:2004hs}, to permutation tests based on Hotelling's T$^2$ statistics~\citep{Nason:2006dx}, to exact tests of 2x2 contingency tables (\textit{e.g.}, Fisher's exact test and $\chi^2$ test)~\citep{Horton:2007tsa,Proschan:2009ks,Peiperl:2010ej,Nason:2006dx}
+All of these methods test subjects separately, and no information is shared across subjects even though one could expect some similarities across responders (\textit{resp.} non-responders). %In addition, these methods generally test one marker at a time or pairwise combinations of markers, raising questions of appropriate multiple testing adjustments, or they perform global tests of significance on multiple markers resulting in decreased power to detect small changes in subsets of cytokines~\cite{Proschan:2009ks,Nason:2006dx}\footnote{What are we trying to say here? Let's update this sentence later}. 
 
 The framework developed in this paper addresses these issues explicitly. In our model, cell counts are modelled by a binomial (or multinomial in the multivariate case) distribution and information is shared across subjects by means of a prior distribution placed on the unknown proportion(s) of the binomial (or multinomial) likelihood. 
 In order to discriminate between responders and non-responders, the prior is written as a mixture of two beta (or Dirichlet in the multivariate case) distributions where the hyper-parameters for each mixture component are shared across subjects. 
@@ -128,7 +128,7 @@ Because our framework is multivariate in nature, multiple cell subsets can be mo
 In this paper we consider two types of immunological single-cell assays: flow cytometry and single-cell gene expression, as described below.
 
 \textit{Flow cytometry}:
-The primary dataset used here is an ICS data set generated as part of a  trial testing the GeoVax DNA and MVA\footnote{Define} vaccines in a prime-boost regimen with 120 subjects \citep{Goonetilleke:2006jk}. 
+The primary dataset used here is an ICS data set generated as part of a  trial testing the GeoVax DNA and MVA (Modified Vaccinia Ankara) HIV vaccine in a prime-boost regimen with 120 subjects \citep{Goonetilleke:2006jk}. 
 The goal of this data set was to assess the immune response to the vaccine across multiple stimulations, time points, cytokines and T-cell subsets. 
 Here, we analyze a subset of the data consisting of 98 subject from the vaccine group at two time points, day 0 and day 182. 
 Three cytokines (IFN$\gamma$, TNF$\alpha$ and IL2) were measured at the single-cell level for each subject and time point, with and without stimulations with an antigen (HIV Envelope peptide pool) matching part of the vaccine. For ease of presentation we restricted ourselves to the CD4+ T-cell subsets. Samples on day 0 were taken just before vaccination and no response is expected there. The corresponding samples can be used as negative controls. Conversely, day 182 (26 weeks) should be close to the immunogenicity peak, and many subjects are expected to respond, for some cytokines at least. 
@@ -219,11 +219,11 @@ Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\le
 \end{split}
 \] 
 The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to 
-$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R\footnote{Add citation to R}'s \textit{optim} function to estimate the remaining parameters.  Starting from some initial values, the EM algorithm iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
+$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  Starting from some initial values, the EM algorithm iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
 \subsection{MCMC algorithm}
 Realizations were generated from the posterior distribution via MCMC algorithms~\citep{Gelfand:1996wc}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were done via Gibbs samplings.
-Details about the algorithms are given in Web Appendix B. We used the method of \cite{Raftery:1992vp,Raftery:1996ws} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities\footnote{Need to check this}. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
+Details about the algorithms are given in Web Appendix B. We used the method of \cite{Raftery:1992vp,Raftery:1996ws} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, this suggested that a sample of no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. Guided by this, and leaving some margin, we used 2,000,000 iterations after 50,000  burn-ins for each dataset explored here. 
 
 
 \section{Results}
@@ -233,9 +233,9 @@ In this section, we apply our MIMOSA model to the data described in Section \ref
 %The constrained model was applied to an ICS data set from a real-world vaccine trial in order to identify responders to antigen stimulation. The unconstrained model was applied to Fluidigm single-cell gene expression data to identify genes differentially expressed between stimulated and unstimulated conditions in populations of single-cells. We also performed simulation studies to assess the performance of the constrained and unconstrained models in a univariate and multivariate settings.
 
 \subsection{ICS}
-Using the ICS data, an ROC (receiver operator characteristic) analysis was performed to assess the sensitivity and specificity of the one-sided MIMOSA model compared to a one-sided Fisher's exact test, log fold-change, and a likelihood ratio test based on the MIMOSA model for identifying vaccine responders and non-responders. Observations at the day 0 time point were treated as true negatives, while observations at the day 182 time point were treated as true positives (potentially underestimating the sensitivity due to non-responders). The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or log fold-change for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065} A. 
+Using the ICS data, an ROC (receiver operator characteristic) analysis was performed to assess the sensitivity and specificity of the one-sided MIMOSA model compared to a one-sided Fisher's exact test, log fold-change, and a likelihood ratio test based on the MIMOSA model for identifying vaccine responders and non-responders. Observations at the day 0 time point were treated as true negatives, while observations at the day 182 time point were treated as true positives (potentially underestimating the sensitivity due to non-responders). The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or log fold-change for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065}, panels A,C,E. 
 At an FDR between 10-20\%, MIMOSA would lead to about 20\% more true positive being detected. Our comparison also show that ranking based on log-fold change alone is not reliable and should not be used.
-In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065} B). Here we presented the results based on IL2 and IFN$\gamma$ alone and the subset IL2 and/or IFN$\gamma$ that were used in the original study\footnote{reference}. These results are consistent for other cytokines and cytokine combinations (see Web Figure A).
+In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065}, panels B,D,F). Here we presented the results based on IL2 and IFN$\gamma$ alone and the subset IL2 and/or IFN$\gamma$ that were used in the original study~\citep{Goepfert:2011ci}. These results are consistent for other cytokines and cytokine combinations (see Web Figure A).
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page
@@ -243,7 +243,7 @@ In addition, MIMOSA gave estimates of the observed false discovery rate that are
 \begin{tikzpicture} [auto, node distance=0cm]
 \node at (0,0) (A){
     \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (foo) {\includegraphics[width=\columnwidth]{Figures/2}};
+    \node[anchor=south west,inner sep=0] at (0,0) (foo) {\includegraphics[width=0.95\columnwidth]{Figures/2}};
     \begin{scope}[x={(foo.south east)},y={(foo.north west)}]
     \node at (0,1) [font=\small\sffamily] {A} ;
     \node at (0.5,1) [font=\small\sffamily] {B} ;
@@ -252,15 +252,24 @@ In addition, MIMOSA gave estimates of the observed false discovery rate that are
  };
  \node [below=of A] (B) {
  \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (bar){\includegraphics[width=\columnwidth]{Figures/1}};
+    \node[anchor=south west, inner sep=0] at (0,0) (bar){\includegraphics[width=0.95\columnwidth]{Figures/1}};
     \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
     \node at (0,1) [font=\small\sffamily] {C} ;
     \node at (0.5,1) [font=\small\sffamily] {D} ;
     \end{scope}
     \end{tikzpicture}
  };
+  \node [below=of B] (E) {
+ \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (baz){\includegraphics[width=0.95\columnwidth]{Figures/15}};
+    \begin{scope} [x={(baz.south east)},y={(baz.north west)}]
+    \node at (0,1) [font=\small\sffamily] {E} ;
+    \node at (0.5,1) [font=\small\sffamily] {F} ;
+    \end{scope}
+    \end{tikzpicture}
+ };
 \end{tikzpicture}
-   \caption{Performance of MIMOSA (EM and MCMC implementations, one-sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T-cells stimulated with A-B) ENV-1-PTEG and expressing IFNg or C-D) ENV-1-PTEG and expressing IL2. ROC and FDR plots of other cytokine combinations can be found in Web Figure A.}
+   \caption{Performance of MIMOSA (EM and MCMC implementations, one-sided model) and competing methods on ICS data from HVTN065. Sensitivity and specificity (ROC analysis) as well as observed and nominal false discovery rates for positivity calls from CD4+ T-cells stimulated with A-B) ENV-1-PTEG and expressing IFNg or C-D) ENV-1-PTEG and expressing IL2. E-F) ENV-1-PTEG and expressing IFNg and/or IL2. ROC and FDR plots of other cytokine combinations can be found in Web Figure A.}
 \label{fig:HVTN065}
 \end{figure}
 
@@ -391,7 +400,7 @@ where $\mathrm{B}$ is the $2^K$-dimensional Beta function defined as $\mathrm{B}
 \mathrm{L}_1(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u) =& \prod_{i=0}^I\frac{\mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}) \mathrm{B}(\boldsymbol{\alpha}_{s}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_s)\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \\ &\frac{N_{ui}!}{\prod_k n_{uik}!}.%\label{eq:postmult}
 \end{split}
 \end{align*}
-The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet are the same as for the beta-binomial model except that the number of parameters to be estimated is larger. The EM algorithm is now initialize with the multivariate Fisher's exact test\footnote{Greg is this correct?}. In our experience, the performance of the EM algorithm greatly deteriorates when $K$ becomes larger than three. It becomes more dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about our multivariate MCMC algorithm is given in Web Appendix D. 
+The estimation procedures (both EM and MCMC based) for the multinonial-Dirichlet are the same as for the beta-binomial model except that the number of parameters to be estimated is larger. The EM algorithm is now initialized with the multivariate Fisher's exact test. In our experience, the performance of the EM algorithm greatly deteriorates when $K$ becomes larger than three. It becomes more dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about our multivariate MCMC algorithm is given in Web Appendix D. 
 
 %\subsection{Parsimonious multivariate model representation}
 %In the case of more than two markers, there is a combinatorial explosion in the number of parameters involved in our multinomial-Dirichlet mixture model. The number of parameters to be estimated is $2^{K+1}+1$, which can become very large even for moderate values of $K$. As an example, $K=4$ leads to 33 parameters, and this would require one to have a large number of individuals to properly estimate all parameters. Here, we propose alternative model parametrizations that could be used to address this problem by reducing the number of required parameters. A simple solution would be to assume that the hyper-parameters are constant across marker combinations, \textit{i.e.} $\alpha_{\{s,u\}k}=\alpha_{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$. As attractive as this might sound, such a model would be unrealistic given that certain stimulations are known to induce expression of certain markers more than others. As a more flexible solution, we propose to define $K$ main effect parameters, denoted $\{\theta_k:k=1,\dots,K\}$, for the $K$ markers and represent co-expression parameters as a function of these main effects. So a combination of dregree $l$, with positive markers, $k_1$, $k_2$, \dots, $k_l$ would have a hyperparameter defined as $\tau_l(\theta_{k_1}\theta_{k_2}\cdots\theta_{k_l})^{1/l}$, which is the geometric mean of the corresponding main marker effects scaled by a degree effect, $\tau_l$. Note that the scaling degree effect would be the same for any combinations with the same number of positive markers. The rationale being that as the degree of polyfunctionality increases, the number of cells might decrease (or increase in some instances) and the corresponding parameters should be adjusted by a scaling factor to allow for such variation. The choice of the geometric mean versus an arithmetic mean is to account for the fact that when a particular combination of degree 1 is empty, \textit{i.e.} the corresponding $\theta$ value is close to zero, it is unlikely that other combination involving that maker would be large. Our specification would account for this since the product would be near zero if one of the $\theta$ is near zero.  Finally, the null combination would have a single parameter equal to $\theta_0$.

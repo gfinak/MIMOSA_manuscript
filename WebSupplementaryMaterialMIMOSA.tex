@@ -144,43 +144,35 @@ GREG: Look at the what I did above, and do something similar here.
 %   \includegraphics[width=.75\columnwidth]{Figures/2}\\ 
 %   \includegraphics[width=.75\columnwidth]{Figures/12} 
 \begin{tikzpicture} [auto, node distance=0cm]
-\node at (0,0) (A){
-\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (a) {\includegraphics[width=.5\columnwidth]{Figures/15}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+ \node at (0,) (A) {
+ \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=.5\columnwidth]{Figures/3}};
+        \begin{scope}[x={(b.south east)},y={(b.north west)}]
         \node at (0,1) [font=\small\sffamily] {A} ;
-        \end{scope}
+                \end{scope}
         \end{tikzpicture}
  };
  \node [right=of A] (B) {
  \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=.5\columnwidth]{Figures/3}};
-        \begin{scope}[x={(b.south east)},y={(b.north west)}]
-        \node at (0,1) [font=\small\sffamily] {B} ;
-                \end{scope}
-        \end{tikzpicture}
- };
- \node [below=of A] (C) {
- \begin{tikzpicture}
     \node[anchor=south west, inner sep=0] at (0,0) (c) {\includegraphics[width=.5\columnwidth]{Figures/5}};
         \begin{scope}[x={(c.south east)},y={(c.north west)}]
-        \node at (0,1) [font=\small\sffamily] {C} ;
+        \node at (0,1) [font=\small\sffamily] {B} ;
         \end{scope}
         \end{tikzpicture}
 };
-\node [below=of B] (D) {
+\node [below=of A] (C) {
 \begin{tikzpicture}
     \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=.5\columnwidth]{Figures/6}};
         \begin{scope}[x={(d.south east)},y={(d.north west)}]
-        \node at (0,1) [font=\small\sffamily] {D} ;
+        \node at (0,1) [font=\small\sffamily] {C} ;
                 \end{scope}
         \end{tikzpicture}
 };
-\node [below=of C] (E) {
+\node [right=of C] (D) {
 \begin{tikzpicture}
     \node[anchor=south west, inner sep=0] at (0,0) (e) {\includegraphics[width=.5\columnwidth]{Figures/7}};
         \begin{scope}[x={(d.south east)},y={(d.north west)}]
-        \node at (0,1) [font=\small\sffamily] {E} ;
+        \node at (0,1) [font=\small\sffamily] {D} ;
                 \end{scope}
         \end{tikzpicture}
  };
