@@ -39,14 +39,14 @@
 
 \title[MIMOSA: Mixture Models or Single-Cell Assays]{Mixture Models for Single-Cell Assays with Application to Vaccine Studies}
 %\author[1]{Greg Finak}
-%\author[2]{SC De Rosa}
+%\author[2]{Steve De Rosa}
 %\author[3]{Mario Roederer}
 %\author[1]{Raphael Gottardo}
 
 %\affil[1]{Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA}
 %\affil[2]{HIV Vaccine Trials Network, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA}
 %\affil[3]{Vaccine Research Center, NIAID, NIH, 40 Convent Drive, Rm 5509, Bethesda, MD 20892}
-\author{Greg Finak$^{1}$, Andrew McDavid$^{1}$, \ldots, SC De Rosa$^{2}$, Mario Roederer$^{3}$, and Raphael Gottardo$^{1,*}$\email{rgottard@fhcrc.org}\\
+\author{Greg Finak$^{1}$, Andrew McDavid$^{1}$, \ldots, Steve De Rosa$^{1,2}$, Mario Roederer$^{3}$, and Raphael Gottardo$^{1,*}$\email{rgottard@fhcrc.org}\\
 $^{1}$Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA\\
 $^{2}$HIV Vaccine Trials Network, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA\\
 $^{3}$Vaccine Research Center, NIAID, NIH, 40 Convent Drive, Rm 5509, Bethesda, MD 20892}
@@ -114,7 +114,7 @@ In many immunological studies, the size of the functionally distinct subpopulati
 Although there is no standard approach to analyzing ICS assays, current methods range from ad-hoc rules based on log-fold changes~\citep{Trigona:2003}, to non--parametric methods~\citep{Sinclair:2004hs}, to permutation tests based on Hotelling's T$^2$ statistics~\citep{Nason:2006dx}, to exact tests of 2x2 contingency tables (\textit{e.g.}, Fisher's exact test and $\chi^2$ test)~\citep{Horton:2007tsa,Proschan:2009ks,Peiperl:2010ej,Nason:2006dx}.
 All of these methods test subjects separately, and no information is shared across subjects even though one could expect some similarities across responders (\textit{resp.} non-responders). %In addition, these methods generally test one marker at a time or pairwise combinations of markers, raising questions of appropriate multiple testing adjustments, or they perform global tests of significance on multiple markers resulting in decreased power to detect small changes in subsets of cytokines~\cite{Proschan:2009ks,Nason:2006dx}\footnote{What are we trying to say here? Let's update this sentence later}. 
 
-The framework developed in this paper addresses these issues explicitly. In our model, cell counts are modelled by a binomial (or multinomial in the multivariate case) distribution and information is shared across subjects by means of a prior distribution placed on the unknown proportion(s) of the binomial (or multinomial) likelihood. 
+The framework developed in this paper, named MIMOSA (Mixture Models for Single Cell Assays), addresses these issues explicitly. In our model, cell counts are modelled by a binomial (or multinomial in the multivariate case) distribution and information is shared across subjects by means of a prior distribution placed on the unknown proportion(s) of the binomial (or multinomial) likelihood. 
 In order to discriminate between responders and non-responders, the prior is written as a mixture of two beta (or Dirichlet in the multivariate case) distributions where the hyper-parameters for each mixture component are shared across subjects. 
 This sharing of information across subjects helps regularize proportion estimates when the cell counts are small, which is typical with single-cell assays, and increase sensitivity and specificity when detecting responders. 
 Because our framework is multivariate in nature, multiple cell subsets can be model simultaneously, which could help detect small biological changes that are spread out across multiple cell subsets~\citep{Nason:2006dx}. Our paper is organized as follows, Section \ref{s:data} introduces the data and notations used in the paper. In Section \ref{s:DEone}, we present our model for testing differential marker expression in the univariate case. Section \ref{s:results} compares our approach to alternative methods and test the robustness of our model. In Section \ref{s:demarkercombos} we present a multvariate extension of our model that can be used to test multivariate marker differential expression and present some results using a single-cell gene expression data. Finally, in Section \ref{s:discussion} we discuss our findings and future work.
@@ -231,7 +231,7 @@ In this section, we apply our MIMOSA model to the data described in Section \ref
 \subsection{ICS}
 Using the ICS data, an ROC (receiver operator characteristic) analysis was performed to assess the sensitivity and specificity of the one-sided MIMOSA model compared to a one-sided Fisher's exact test, log fold-change, and a likelihood ratio test based on the MIMOSA model for identifying vaccine responders and non-responders. Observations at the day 0 time point were treated as true negatives, while observations at the day 182 time point were treated as true positives (potentially underestimating the sensitivity due to non-responders). The MIMOSA model has higher sensitivity and specificity than Fisher's exact test, the likelihood ratio test, or log fold-change for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065}, panels A,C,E. 
 At an FDR between 10-20\%, MIMOSA would lead to about 20\% more true positive being detected. Our comparison also show that ranking based on log-fold change alone is not reliable and should not be used.
-In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065}, panels B,D,F). Here we presented the results based on IL2 and IFN$\gamma$ alone and the subset IL2 and/or IFN$\gamma$ that were used in the original study~\citep{Goepfert:2011ci}. These results are consistent for other cytokines and cytokine combinations (see Web Figure A)\footnote{Add a sentence discussing the AND/OR combination}.
+In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065}, panels B,D,F). Here we presented the results based on IL2 and IFN$\gamma$ alone and the subset IL2 and/or IFN$\gamma$ that were used in the original study~\citep{Goepfert:2011ci}. These results are consistent for other cytokines and cytokine combinations (see Web Figure A).
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page
