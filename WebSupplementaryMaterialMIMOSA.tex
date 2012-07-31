@@ -122,24 +122,24 @@ Typically, in ICS data $\alpha_s$ is relatively small leading to relatively few 
 
 \subsection{Computational details for the Dirichlet-multinomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
-Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion. For a non--responder, the probability of the observed data (of a single observation) is given by:
+Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion. For a non--responder, the null marginal likelihood for a given subject is:
 
 \[
 \begin{split}
-Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
-=&\int_0^1Pr(\mathbf{n}_s|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+=&\int_0^1Pr(\mathbf{n}_s|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
 =&\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_u)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
 =&\int_0^1 \frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\prod_k p^{n_{sk}}_{uk} \frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\prod_k p^{n_{uk}}_{uk}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\prod_k p_{uk}^{\alpha_{uk}-1}\mathrm{d}\mathbf{p}_u\\
 =&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\int_0^1 \prod_k p^{n_{sk}+n_{uk}+\alpha_{uk}-1}_{uk}\mathrm{d}\mathbf{p}_u\\
 =&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_s+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
 \end{split}
 \]
-The product over all $P$ observations gives the marginal likelihood,
-\[
-\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P \frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_{ui}+\boldsymbol{\alpha}_{u})}{\mathrm{B}(\boldsymbol{\alpha}_{u})}
-\]
+%The product over all $P$ observations gives the marginal likelihood,
+%\[
+%\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P \frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_{ui}+\boldsymbol{\alpha}_{u})}{\mathrm{B}(\boldsymbol{\alpha}_{u})}
+%\]
 
-For the responder component, again the $\mathbf{n}_s$ are drawn from an independent multinomial distribution, and the $\mathbf{p}_s$ from a dirichlet with hyperparameters $\boldsymbol{\alpha_s}$, giving,
+Similarly, the alternative marginal likelihood for a given subject is:
 \[
 \begin{split}
 Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s)=&\int_0^1\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_s)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{Dir}(\boldsymbol{\alpha}_s)\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
@@ -165,14 +165,18 @@ The MCMC algorithm for the dirichlet--multinomial model is analogous to the beta
 \]
 where 
 \[
-p_i = \frac{w\cdot\mathrm{L_1}}{w\cdot\mathrm{L_1}+(1-w)\cdot\mathrm{L_0}}
+p_i = \frac{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)}{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)+(1-w)\cdot\mathrm{L_0}(\boldsymbol{\alpha}_{u},|\mathbf{n}_s,\mathbf{n}_u)}
 \]
 For each parameter component updated in step 1 above, compute the acceptance ratio (e.g. $\alpha_{uk}$, below):
 \[
-\frac{\mathrm{L_0}(\alpha^{\text{new}}_{uk}|\cdots)\mathrm{L_1}(\alpha^{\text{new}}_{uk}|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L_0}(\alpha^{\text{old}}_{uk}|\cdots)\mathrm{L_1}(\alpha^{\text{old}}_{uk}|\cdots)\pi(\alpha^{\text{old}}_{uk})}\\
+\frac{\mathrm{L}(\alpha^{\text{new}}_{uk},\boldsymbol{\theta}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha_{uk})}\\
 \]
 
-where $\pi$ is the prior distribution of the parameter. Again, we have used the same exponential prior with mean 1,000 for each parameter.
+where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\theta}_u = \{\alpha_{uj} : (j \in \mathbb{Z}) (1\leq j \leq K) (j\neq k)\}$. Again, we have used the same exponential prior with mean 1,000 for each parameter. $\mathrm{L}$ is the complete marginal likelihood conditional on $\mathbf{z}$, defined as
+\[
+\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u,\mathbf{z}) = \prod_i \mathrm{L}_{z_i}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)
+\]
+
 \end{enumerate}
 
 \begin{figure} %  figure placement: here, top, bottom, or page
