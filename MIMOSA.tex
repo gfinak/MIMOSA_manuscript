@@ -187,16 +187,16 @@ where $z_i$ is an indicator variable equal to one if subject $i$ is a responder,
 Our estimation algorithms make direct use of the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after integrating out the $p_{\{s,u\}i}$'s for the null and alternative models, which greatly simplify our calculations. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed-forms (Web Appendix B), and are given by,
  \begin{align*}
  \begin{split}
-  	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y})
-	=&\prod_{i=1}^P\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}
+  	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y}_i)
+	=&\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}
 	\end{split}
  \end{align*} 
  
 and
 \begin{align}
 	\begin{split}
-\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}) 
-=&\prod_{i=1}^P\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\cdot \\ &\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}
+\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}_i) 
+=&\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\cdot\\ &\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\cdot \\ &\frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}
 \label{model2:unconstrained}
 \end{split}
 \end{align}
