@@ -85,7 +85,7 @@ where $L$ is the complete marginal likelihood conditional on $\mathbf{z}$ define
 \mathrm{L}(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{n}_u,\mathbf{n}_s,\mathbf{z})=\prod_i\mathrm{L}_{z_i}(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{n}_u,\mathbf{n}_s)
 \]
 and $\pi$ is the prior distribution of $\alpha_u$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha_s,\beta_s,\beta_u$. In our case each parameter has the same exponential prior with mean $1,000$
-\subsection{Constrained beta--binomial model}
+\subsection{Constrained beta-binomial model}
 \label{supp:constrained}
 We can define a model where we constrain the stimulated proportions under the alternative model such that $p_s>p_u$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in the main manuscript by (1). Due to the constraint, the normalizing constant of the prior under the alternative (model ${\cal M}_1$) is not given by $\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)$ but requires computing \[
 Z(\alpha_u, \beta_u, \alpha_s, \beta_s)=\int_{0}^1{p_u}^{\alpha_u-1}(1-p_u)^{\beta_u-1}\int_{p_u}^1 p_s^{\alpha_s-1}(1-p_s)^{\beta_s-1}dp_sdp_u.
@@ -122,16 +122,14 @@ Typically, in ICS data $\alpha_s$ is relatively small leading to relatively few 
 
 \subsection{Computational details for the Dirichlet-multinomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
-Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion. For a non--responder, the null marginal likelihood for a given subject is:
-
+Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion. 
+For a given subject, the null marginal likelihood is defined as
 \[
 \begin{split}
-Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
-=&\int_0^1Pr(\mathbf{n}_s|\boldsymbol{\alpha}_u,\mathbf{p}_u)Pr(\mathbf{n}_u|\boldsymbol{\alpha}_u,\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
-=&\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_u)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
-=&\int_0^1 \frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\prod_k p^{n_{sk}}_{uk} \frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\prod_k p^{n_{uk}}_{uk}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\prod_k p_{uk}^{\alpha_{uk}-1}\mathrm{d}\mathbf{p}_u\\
-=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\int_0^1 \prod_k p^{n_{sk}+n_{uk}+\alpha_{uk}-1}_{uk}\mathrm{d}\mathbf{p}_u\\
-=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_s+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
+\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_{si},\mathbf{n}_{ui})=&\idotsint\mathrm{Pr}(\mathbf{n}_{si},\mathbf{n}_{ui}|\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
+=&\idotsint \frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\prod_k p^{n_{sik}}_{uk} \frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\prod_k p^{n_{uik}}_{uk}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\prod_k p_{uk}^{\alpha_{uk}-1}\mathrm{d}\mathbf{p}_u\\
+=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\int_0^1 \prod_k p^{n_{sik}+n_{uik}+\alpha_{uk}-1}_{uk}\mathrm{d}\mathbf{p}_u\\
+=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
 \end{split}
 \]
 %The product over all $P$ observations gives the marginal likelihood,
@@ -139,20 +137,17 @@ Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u)=&\int_0^1Pr(\mathbf{n}_s,\ma
 %\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P \frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_{ui}+\boldsymbol{\alpha}_{u})}{\mathrm{B}(\boldsymbol{\alpha}_{u})}
 %\]
 
-Similarly, the alternative marginal likelihood for a given subject is:
+\noindent Similarly, the alternative marginal likelihood for a given subject is:
 \[
 \begin{split}
-Pr(\mathbf{n}_s,\mathbf{n}_u|\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s)=&\int_0^1\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_s)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{Dir}(\boldsymbol{\alpha}_s)\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
-=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}\int_0^1\prod_k p^{n_{uk}+\alpha_{uk}-1}_{uk}\int_0^1 \prod_k p^{n_{sk}+\alpha_{sk}-1}_{sk}\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
-=&\frac{\mathbf{N}_s!}{\prod_k \mathbf{n}_{sk}!}\frac{\mathbf{N}_u!}{\prod_k \mathbf{n}_{uk}!}\frac{\mathrm{B}(\mathbf{n}_u+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_s+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}
+\mathrm{L_1}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{ui},\mathbf{n}_{si})
+%=&\int_0^1\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_s)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{Dir}(\boldsymbol{\alpha}_s)\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
+=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}\idotsint\prod_k p^{n_{uik}+\alpha_{uk}-1}_{uk}\idotsint \prod_k p^{n_{sik}+\alpha_{sk}-1}_{sk}\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
+=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{ui}+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_{si}+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}.
 \end{split}
 \]
-with marginal likelihood:
-\[
-\mathrm{L_1}(\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u|\mathbf{n}_s,\mathbf{n}_u)=\prod_{i=0}^P\frac{\mathbf{N}_{si}!}{\prod_k \mathbf{n}_{sik}!}\frac{\mathbf{N}_{ui}!}{\prod_k \mathbf{n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{ui}+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_{si}+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}
-\]
 \noindent\textbf{MCMC algorithm}\\
-The MCMC algorithm for the dirichlet--multinomial model is analogous to the beta--binomial, above. The parameter vectors $\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u$ are updated component--wise:
+The MCMC algorithm for the Dirichlet-multinomial model is analogous to the beta-binomial, above. The parameter vectors $\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u$ are updated component-wise:
 \begin{enumerate}
 \item  Update each $\alpha_{sk}$, $\alpha_{uk}$ using a Gaussian symmetric proposal distribution with the variance of each proposal tuned using the approach of~\cite{Gelman:2004tc}. 
 \item Update $w$ by Gibbs sampling using the full conditional,
@@ -165,16 +160,16 @@ The MCMC algorithm for the dirichlet--multinomial model is analogous to the beta
 \]
 where 
 \[
-p_i = \frac{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)}{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)+(1-w)\cdot\mathrm{L_0}(\boldsymbol{\alpha}_{u},|\mathbf{n}_s,\mathbf{n}_u)}
+p_i = \frac{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui})}{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui})+(1-w)\cdot\mathrm{L_0}(\boldsymbol{\alpha}_{u}|\mathbf{n}_{si},\mathbf{n}_{ui})}
 \]
 For each parameter component updated in step 1 above, compute the acceptance ratio (e.g. $\alpha_{uk}$, below):
 \[
-\frac{\mathrm{L}(\alpha^{\text{new}}_{uk},\boldsymbol{\theta}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha_{uk})}\\
+\frac{\mathrm{L}(\alpha^{\text{new}}_{uk},\boldsymbol{\alpha}_{u\{-k\}},\boldsymbol{\alpha}_s|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha_{uk})}\\
 \]
 
-where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\theta}_u = \{\alpha_{uj} : (j \in \mathbb{Z}) (1\leq j \leq K) (j\neq k)\}$. Again, we have used the same exponential prior with mean 1,000 for each parameter. $\mathrm{L}$ is the complete marginal likelihood conditional on $\mathbf{z}$, defined as
+where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}_{u\{-k\}} = \{\alpha_{uj} :  j\neq k\}$. Again, we have used the same exponential prior with mean 1,000 for each parameter. $\mathrm{L}$ is the complete marginal likelihood conditional on $\mathbf{z}$, defined as
 \[
-\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u,\mathbf{z}) = \prod_i \mathrm{L}_{z_i}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_s,\mathbf{n}_u)
+\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui},\mathbf{z}) = \prod_i \mathrm{L}_{z_i}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui}).
 \]
 
 \end{enumerate}
@@ -318,7 +313,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\theta}
     \end{tikzpicture}
     };
  \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to data from a model violating model assumptions and to two--sided data with small counts. Data was simulated from a model where proportions were sampled from a truncated normal distribution over $[0,1]$ rather than a Beta distribution.  A) The average ROC from 10 simulation with N=5,000 events. B) The average observed and nominal FDR from 10 simulations with N=5,000 events. C) Average ROC for N=1,000 events D) Average observed and nominal FDR for N=1,000 events. MIMOSA fit to two--sided data were simulated from the standard model with N=1,000 events. E) Average ROC curves from 10 simulations and F) average observed vs nominal FDR from 10 simulations.}
+   \caption{Unconstrained MIMOSA model fit to data from a model violating model assumptions and to two-sided data with small counts. Data was simulated from a model where proportions were sampled from a truncated normal distribution over $[0,1]$ rather than a Beta distribution.  A) The average ROC from 10 simulation with N=5,000 events. B) The average observed and nominal FDR from 10 simulations with N=5,000 events. C) Average ROC for N=1,000 events D) Average observed and nominal FDR for N=1,000 events. MIMOSA fit to two-sided data were simulated from the standard model with N=1,000 events. E) Average ROC curves from 10 simulations and F) average observed vs nominal FDR from 10 simulations.}
    \label{webfig:simulations_trunc}
 \end{figure}
 \bibliographystyle{biom}
