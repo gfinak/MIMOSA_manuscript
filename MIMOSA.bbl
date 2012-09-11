@@ -17,6 +17,11 @@ Bendall, S., Simonds, E., Qiu, P., Amir, E., Krutzik, P., Finck, R., Bruggner,
   Across a Human Hematopoietic Continuum}.
 \newblock {\em Science (New York, NY)} {\bf 332,} 687.
 
+\bibitem[\protect\citeauthoryear{Bernardo}{Bernardo}{1996}]{Bernardo:1996tl}
+Bernardo, J.~M. (1996).
+\newblock {The concept of exchangeability and its applications}.
+\newblock {\em Far East Journal of Mathematical Sciences} .
+
 \bibitem[\protect\citeauthoryear{Betts, Nason, West, De~Rosa, Migueles,
   Abraham, Lederman, Benito, Goepfert, Connors, Roederer, and Koup}{Betts
   et~al.}{2006}]{Betts:2006dw}
@@ -162,22 +167,6 @@ Newton, M.~A., Kendziorski, C.~M., Richmond, C.~S., Blattner, F.~R., and Tsui,
 \newblock {On differential variability of expression ratios: improving
   statistical inference about gene expression changes from microarray data.}
 \newblock {\em Journal of Computational Biology} {\bf 8,} 37--52.
-
-\bibitem[\protect\citeauthoryear{Nilu, Moore, Dally, Winstone, Cebere, Mahmoud,
-  Pinheiro, Gillespie, Brown, Loach, Roberts, Guimaraes-Walker, Hayes,
-  Loughran, Smith, De~Bont, Verlinde, Vooijs, Schmidt, Boaz, Gilmour, Fast,
-  et~al\mbox{.}}{Nilu et~al.}{2006}]{Goonetilleke:2006jk}
-Nilu, G., Moore, S., Dally, L., Winstone, N., Cebere, I., Mahmoud, A.,
-  Pinheiro, S., Gillespie, G., Brown, D., Loach, V., Roberts, J.,
-  Guimaraes-Walker, A., Hayes, P., Loughran, K., Smith, C., De~Bont, J.,
-  Verlinde, C., Vooijs, D., Schmidt, C., Boaz, M., Gilmour, J., Fast, P.,
-  et~al. (2006).
-\newblock {Induction of multifunctional human immunodeficiency virus type 1
-  (HIV-1)-specific T cells capable of proliferation in healthy subjects by
-  using a prime-boost regimen of DNA- and modified vaccinia virus
-  Ankara-vectored vaccines expressing HIV-1 Gag coupled to CD8+ T-cell
-  epitopes.}
-\newblock {\em J Virol} {\bf 80,} 4717--4728.
 
 \bibitem[\protect\citeauthoryear{Peiperl, Morgan, Moodie, Li, Russell, Graham,
   Tomaras, De~Rosa, McElrath, and {the NIAID HIV Vaccine Trials
