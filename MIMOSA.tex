@@ -151,7 +151,7 @@ Three cytokines (IFN-$\gamma$, TNF$\alpha$ and IL2) were measured at the single-
 
 \textit{Fluidigm single-cell gene expression}: This is a single-cell gene expression data set of sorted CD8$+$ T-cells from sixteen subjects. T-cells isolated by flow cytometry from sixteen subjects were stimulated in blocks of four subjects with four different antigens (HIV Gag, HIV Nef, CMV pp65 tm10, and CMV pp65 nlv5) and gene expression post-stimulation measured at the single-cell level using the BioMark system (Fluidigm) $96 \times 96$ well arrays. The expression from the simulated samples  was compared to paired, unstimulated controls.
 
-Although the immunological experiments described above will often look at multiple antigens or stimulations, in the models presented here we consider only one stimulation (i.e. antigen or condition) at a time vs. unstimulated. 
+Although the immunological experiments described above will often look at multiple antigens or stimulations, in the models presented here we consider only one stimulation (i.e. antigen or condition) at a time vs. unstimulated.
 
 \section{Differential expression with one biomarker}
 \label{s:DEone}
@@ -246,7 +246,12 @@ $\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions e
 
 \noindent\textbf{MCMC algorithm}\\
 We generated realizations from the posterior distribution via MCMC algorithms~\citep{Gelfand:1996wc}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs samplings.
-Details about the algorithms are given in Web Appendix A. We used the method of \cite{Raftery:1992vp} and \cite{Raftery:1996ws} to determine the number of iterations, based on a short pilot run of the sampler. For each dataset presented here, we calculated that no more than about 1,000,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. To leave some margin, we used 2,000,000 iterations after 50,000 burn-in iterations for each dataset explored here.
+Details about the algorithms are given in Web Appendix A. We used the
+method of \cite{Raftery:1992vp} and \cite{Raftery:1996ws} to determine
+the number of iterations, based on a short pilot run of the
+sampler. For each dataset presented here, we calculated that no more
+than about 500,000 iterations with 50,000 burn-in iterations (thinning
+interval of 50) was sufficient to estimate standard posterior quantities. To leave some margin, we used 1,000,000 iterations after 50,000 burn-in iterations for each dataset explored here.
 
 
 \section{Results}
