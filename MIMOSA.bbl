@@ -93,6 +93,13 @@ Goepfert, P.~A., Elizaga, M.~L., Sato, A., Qin, L., Cardinali, M., Hay, C.~M.,
   Modified Vaccinia Ankara Vaccines Expressing HIV-1 Virus-like Particles}.
 \newblock {\em J Infect Dis} {\bf 203,} 610--619.
 
+\bibitem[\protect\citeauthoryear{Gottardo, Raftery, Ka~Yee, and
+  Bumgarner}{Gottardo et~al.}{2006}]{Gottardo:2006}
+Gottardo, R., Raftery, A.~E., Ka~Yee, Y., and Bumgarner, R. (2006).
+\newblock Bayesian robust inference for differential gene expression in
+  microarrays with multiple samples.
+\newblock {\em Biometrics} {\bf 62,} 10--18.
+
 \bibitem[\protect\citeauthoryear{Horton, Thomas, Stucky, Frank, Moodie, Huang,
   Chiu, McElrath, and De~Rosa}{Horton et~al.}{2007}]{Horton:2007tsa}
 Horton, H., Thomas, E., Stucky, J., Frank, I., Moodie, Z., Huang, Y., Chiu, Y.,
@@ -119,13 +126,12 @@ Inokuma, M., dela Rosa, C., Schmitt, C., Haaland, P., Siebert, J., Petry, D.,
   patients have a distinct phenotype and cytokine signature.}
 \newblock {\em J Immunol} {\bf 179,} 2627--2633.
 
-\bibitem[\protect\citeauthoryear{Kendziorski, Newton, and Lan}{Kendziorski
-  et~al.}{2003}]{Kendziorski:2003uw}
-Kendziorski, C., Newton, M., and Lan, H. (2003).
-\newblock {On parametric empirical Bayes methods for comparing multiple groups
-  using replicated gene expression profiles - Kendziorski - 2003 - Statistics
-  in Medicine - Wiley Online Library}.
-\newblock {\em Statistics in {\ldots}} .
+\bibitem[\protect\citeauthoryear{Kendziorski, Newton, Lan, and
+  Gould}{Kendziorski et~al.}{2003}]{Kendziorski:2003uw}
+Kendziorski, C.~M., Newton, M.~A., Lan, H., and Gould, M.~N. (2003).
+\newblock On parametric empirical bayes methods for comparing multiple groups
+  using replicated gene expression profiles.
+\newblock {\em Statistics in Medicine} {\bf 22,} 3899--3914.
 
 \bibitem[\protect\citeauthoryear{McKinstry, Strutt, and Swain}{McKinstry
   et~al.}{2010}]{McKinstry:2010ei}

@@ -60,7 +60,7 @@ For a given subject $i$, the null marginal likelihood is obtained after integrat
 \noindent\textbf{MCMC algorithm}\\
 In what follows, we use $(x|y)$ to denote the conditional distribution of $x$ given $y$. In particular, we use $(x|\cdots)$ to denote the distribution of $x$ conditional on everything else in the model. Our MCMC algorithms cycles through the following steps: 
 \begin{enumerate}
-\item Update each $\alpha_u, \beta_u, \alpha_s$ and $\beta_s$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tuned for each parameter using the approach of~\cite{Gelman:2004tc,Raftery:1992vp,Raftery:1996ws}.
+\item Update each $\alpha_u, \beta_u, \alpha_s$ and $\beta_s$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tuned for each parameter using the approach of~\cite{Gelman:2004tc}.
 \item Update $w$ by Gibbs sampling using the full conditional,
 \[
 (w|\cdots)\sim \mathrm{Beta}(\sum_i z_i,\sum_i (1-z_i)).
@@ -181,7 +181,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 \begin{tikzpicture} [auto, node distance=0cm]
  \node at (0,) (A) {
  \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=.5\columnwidth]{Figures/3.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (b) {\includegraphics[width=.5\columnwidth]{Figures/3.pdf}};
         \begin{scope}[x={(b.south east)},y={(b.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {A} ;
                 \end{scope}
@@ -189,7 +189,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
  };
  \node [right=of A] (B) {
  \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (c) {\includegraphics[width=.5\columnwidth]{Figures/5.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (c) {\includegraphics[width=.5\columnwidth]{Figures/5.pdf}};
         \begin{scope}[x={(c.south east)},y={(c.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {B} ;
         \end{scope}
@@ -197,7 +197,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 };
 \node [below=of A] (C) {
 \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=.5\columnwidth]{Figures/6.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=.5\columnwidth]{Figures/6.pdf}};
         \begin{scope}[x={(d.south east)},y={(d.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {C} ;
                 \end{scope}
@@ -205,7 +205,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 };
 \node [right=of C] (D) {
 \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (e) {\includegraphics[width=.5\columnwidth]{Figures/7.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (e) {\includegraphics[width=.5\columnwidth]{Figures/7.pdf}};
         \begin{scope}[x={(d.south east)},y={(d.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {D} ;
                 \end{scope}
@@ -266,7 +266,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 %    };
     \node at (0,0) (A) {
     \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.ps}};
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_5000.pdf}};
          \begin{scope} [x={(c.south east)},y={(c.north west)}]
                  \node at (0,1) [font=\tiny\sffamily] {A} ;
 	\end{scope}
@@ -274,7 +274,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
      };
      \node [right=of A] (B) {
      \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_5000.pdf}};
         \begin{scope} [x={(d.south east)},y={(d.north west)}]
             \node at (0,1) [font=\tiny\sffamily] {B} ;
 \end{scope}
@@ -282,7 +282,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     };
   \node [below=of A] (C) {
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_1000.ps}};
+    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_1000.pdf}};
     \begin{scope} [x={(e.south east)},y={(e.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {C} ;
     \end{scope}
@@ -290,30 +290,42 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     };
     \node [right=of C] (D) {
     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_1000.ps}};
+    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_1000.pdf}};
         \begin{scope} [x={(f.south east)},y={(f.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {D} ;
         \end{scope}
     \end{tikzpicture}
     };
-    \node [below=of C] (E) {
-    \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (g) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_1000.ps}};
-         \begin{scope} [x={(g.south east)},y={(g.north west)}]
-                 \node at (0,1) [font=\tiny\sffamily] {E} ;
-	\end{scope}
-     \end{tikzpicture}
-     };
-     \node [right=of E] (F) {
-     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (h) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_1000.ps}};
-        \begin{scope} [x={(h.south east)},y={(h.north west)}]
-            \node at (0,1) [font=\tiny\sffamily] {F} ;
-\end{scope}
-    \end{tikzpicture}
-    };
+%     \node [below=of C] (E) {
+%     \begin{tikzpicture}
+%      \node[anchor=south west,inner sep=0] at (0,0) (g) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_ROC_1000.pdf}};
+%          \begin{scope} [x={(g.south east)},y={(g.north west)}]
+%                  \node at (0,1) [font=\tiny\sffamily] {E} ;
+% 	\end{scope}
+%      \end{tikzpicture}
+%      };
+%      \node [right=of E] (F) {
+%      \begin{tikzpicture}
+%     \node[anchor=south west, inner sep=0] at (0,0) (h) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Twosided_FDR_1000.pdf}};
+%         \begin{scope} [x={(h.south east)},y={(h.north west)}]
+%             \node at (0,1) [font=\tiny\sffamily] {F} ;
+% \end{scope}
+%     \end{tikzpicture}
+%     };
  \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to data from a model violating model assumptions and to two-sided data with small counts. Data was simulated from a model where proportions were sampled from a truncated normal distribution over $[0,1]$ rather than a Beta distribution.  A) The average ROC from 10 simulation with N=5,000 events. B) The average observed and nominal FDR from 10 simulations with N=5,000 events. C) Average ROC for N=1,000 events D) Average observed and nominal FDR for N=1,000 events. MIMOSA fit to two-sided data were simulated from the standard model with N=1,000 events. E) Average ROC curves from 10 simulations and F) average observed vs nominal FDR from 10 simulations. This figure appears in color in the electronic version of this article.}
+   \caption{Unconstrained MIMOSA model fit to data from a model
+     violating model assumptions and to two-sided data with small
+     counts. Data was simulated from a model where proportions were
+     sampled from a truncated normal distribution over $[0,1]$ rather
+     than a Beta distribution.  A) The average ROC from 10 simulation
+     with N=5,000 events. B) The average observed and nominal FDR from
+     10 simulations with N=5,000 events. C) Average ROC for N=1,000
+     events D) Average observed and nominal FDR for N=1,000 events.
+% MIMOSA fit to two-sided data were simulated from the standard model
+% with N=1,000 events. E) Average ROC curves from 10 simulations and
+% F) average observed vs nominal FDR from 10 simulations. This figure
+% appears in color in the electronic version of this article.
+}
    \label{webfig:simulations_trunc}
 \end{figure}
 \bibliographystyle{biom}

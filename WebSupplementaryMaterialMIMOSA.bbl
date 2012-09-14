@@ -6,17 +6,4 @@ Gelman, A., Carlin, J.~B., Stern, H.~S., and Rubin, D.~B. (2004).
 \newblock {\em {Bayesian Data Analysis}}.
 \newblock Chapman {\&} Hall/CRC.
 
-\bibitem[\protect\citeauthoryear{Raftery}{Raftery}{1996}]{Raftery:1996ws}
-Raftery, A. (1996).
-\newblock {Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia
-  Richardson, D. J. Spiegelhalter}.
-\newblock {\em Markov chain Monte Carlo in practice} .
-
-\bibitem[\protect\citeauthoryear{Raftery and Lewis}{Raftery and
-  Lewis}{1992}]{Raftery:1992vp}
-Raftery, A.~E. and Lewis, S.~M. (1992).
-\newblock {[Practical Markov Chain Monte Carlo]: Comment: One Long Run with
-  Diagnostics: Implementation Strategies for Markov Chain Monte Carlo}.
-\newblock {\em STATISTICAL SCIENCE} {\bf 7,} 493--497.
-
 \end{thebibliography}
