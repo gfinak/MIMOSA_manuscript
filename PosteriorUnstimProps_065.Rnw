@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\begin{document}
+<<load>>=
+require(MIMOSA)
+require(ggplot2)
+setwd("~/Documents/manuscripts/PositivityCallsHypothesisTesting/MIMOSA_Paper/")
+hvtn<-read.csv("~/Documents/Projects/HVTNTrials/v065_ics_3cyt_counts.csv")
+hvtn$fcsfile <- "FOO"
+colnames(hvtn)[1] <- "ID"
+hvtn$ID <- factor(hvtn$ID)
+hvtn.data <- ICS(hvtn,extra.identifiers="visitno")
+@
+
+<<userfuncs>>=
+merge.icsdata <- function(x,y,...){
+    z <- rbind(x,y)
+    z <- setpData(z,rbind(getpData(x),getpData(y)))
+    z
+}
+@
+
+
+<<ifng>>=
+v12 <- extractData(ics=hvtn.data,control="negctrl",stim="ENV-1-PTEG",subset=c("12","cd3+/cd4+","IFN+"),subset.mapping=c("visitno","parent","cytokine"))
+v2 <- extractData(ics=hvtn.data,control="negctrl",stim="ENV-1-PTEG",subset=c("2","cd3+/cd4+","IFN+"),subset.mapping=c("visitno","parent","cytokine"))
+d <- merge.icsdata(v2,v12)
+fit.env.ifn <- MIMOSA:::.fitMCMC(d,MDMix(d,initonly=TRUE),210000,10000,1,FAST=TRUE)
+fit.env.ifn$params <- fit.env$getmcmc()
+
+
+v12 <- extractData(ics=hvtn.data,control="negctrl",stim="GAG-1-PTEG",subset=c("12","cd3+/cd4+","IFN+"),subset.mapping=c("visitno","parent","cytokine"))
+v2 <- extractData(ics=hvtn.data,control="negctrl",stim="GAG-1-PTEG",subset=c("2","cd3+/cd4+","IFN+"),subset.mapping=c("visitno","parent","cytokine"))
+d <- merge.icsdata(v2,v12)
+fit.gag.ifn <- MIMOSA:::.fitMCMC(d,MDMix(d,initonly=TRUE),210000,10000,1,FAST=TRUE)
+fit.gag.ifn$params <- fit.gag$getmcmc()
+
+
+pd.ifn <- data.frame(getpData.icsdata(fit.env.ifn),empirical.p=prop.table(as.matrix(fit.env.ifn$n.unstim),margin=1)[,2])
+env.params.ifn <- apply(fit.env.ifn$params,2,function(x){x <- density(x);x$x[which.max(x$y)]})
+density.env.ifn <- dbeta(seq(0,5e-4,l=1000),shape2=env.params.ifn[3],shape1=env.params.ifn[4])
+
+d1 <- density(apply(fit.env.ifn$params,1,function(x){
+    rbeta(100,shape2=x[3],shape1=x[2])
+}))
+
+#average density
+ggplot(data=pd.ifn)+geom_histogram(aes(x=empirical.p,y=..density..),alpha=0.25,fill="gray",col="black",binwidth=2.25e-5)+theme_bw()+facet_wrap(~antigen)+geom_line(aes(x=x,y=y),data=data.frame(x=c(d1$x),y=c(d1$y),antigen=c("ENV-1-PTEG")[gl(1,512)]),col="blue",lty=4,lwd=1)+scale_x_continuous(expression(Empirical~~hat(p)[u]))+scale_y_continuous(name="Density")+theme(axis.text.y=element_text(size=8),axis.text.x  = element_text(size=8))
+
+@
+
+
+<<post_density_plots,fig.width=86/24.5,fig.height=110/24.5>>=
+
+ggplot(data=pd.ifn)+geom_histogram(aes(x=empirical.p,y=..density..),alpha=0.25,fill="gray",col="black",binwidth=2.25e-5)+theme_bw()+facet_wrap(~antigen)+geom_line(aes(x=x,y=y),data=data.frame(x=seq(0,5e-4,l=1000),y=c(density.env.ifn),antigen=c("ENV-1-PTEG")[gl(1,1000)]),col="blue",lty=4,lwd=1)+scale_x_continuous(expression(Empirical~~hat(p)[u]))+scale_y_continuous(name="Density")+theme(axis.text.y=element_text(size=8),axis.text.x  = element_text(size=8))
+
+dev.copy2pdf(file="Figures/post_density_plots.pdf")
+@
+\end{document}
