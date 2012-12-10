@@ -1,9 +1,9 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{99}
 
-\bibitem[\protect\citeauthoryear{Gelman, Carlin, Stern, and Rubin}{Gelman
-  et~al.}{2004}]{Gelman:2004tc}
-Gelman, A., Carlin, J.~B., Stern, H.~S., and Rubin, D.~B. (2004).
-\newblock {\em {Bayesian Data Analysis}}.
-\newblock Chapman {\&} Hall/CRC.
+\bibitem[Gelman \emph{and others}(2004)Gelman, Carlin, Stern and
+  Rubin]{Gelman:2004tc}
+\textsc{Gelman, Andrew, Carlin, John~B, Stern, Hal~S and Rubin, Donald~B}.
+  (2004).
+\newblock {\em {Bayesian Data Analysis}\/}. Chapman {\&} Hall/CRC.
 
 \end{thebibliography}
