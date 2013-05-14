@@ -42,49 +42,49 @@
 
 \subsection{Constrained beta-binomial model}
 \label{supp:constrained}
-We can define a model where we constrain the stimulated proportions under the alternative model such that $p_s>p_u$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in the main manuscript by (1). Due to the constraint, the normalizing constant of the prior under the alternative (model ${\cal M}_1$) is not given by $\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)$ but requires computing \[
-Z(\alpha_u, \beta_u, \alpha_s, \beta_s)=\int_{0}^1{p_u}^{\alpha_u-1}(1-p_u)^{\beta_u-1}\int_{p_u}^1 p_s^{\alpha_s-1}(1-p_s)^{\beta_s-1}dp_sdp_u.
+We can define a model where we constrain the stimulated proportions under the alternative model such that $p^{(s)}>p^{(u)}$. In this case, the only changes required are for the alternative marginal likelihood $\mathrm{L}_1$ defined in the main manuscript by (1). Due to the constraint, the normalizing constant of the prior under the alternative (model ${\cal M}_1$) is not given by $\mathrm{B}(\alpha^{(u)},\beta^{(u)})\mathrm{B}(\alpha^{(s)},\beta^{(s)})$ but requires computing \[
+Z(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})=\int_{0}^1{p^{(u)}}^{\alpha^{(u)}-1}(1-p^{(u)})^{\beta^{(u)}-1}\int_{p^{(u)}}^1 p^{(s)\alpha^{(s)}-1}(1-p^{(s)})^{\beta^{(s)}-1}dp^{(s)}dp^{(u)}.
 \]
 Using this expression, the constrained alternative marginal likelihood can be written as
 \[
-\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}_i)
-=\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\frac{Z(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u,n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{Z(\alpha_u,\beta_u,\alpha_s,\beta_s)}.
+\mathrm{L}_1(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{y}_i)
+=\binom{N^{(u)}_{i}}{n^{(u)}_{i}} \binom{N^{(s)}_{i}}{n^{(s)}_{i}}\frac{Z(n^{(u)}_{i}+\alpha^{(u)},N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)},n^{(s)}_{i}+\alpha^{(s)},N^{(s)}_{i}-n^{(s)}_{i}+\beta^{(s)})}{Z(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)})}.
 \label{model2:constrained}
 \]
-In general, there is no closed-form expression for $Z(\cdot)$, and a numerical approximation must be used. Let us denote by $\tilde{Z}(\alpha_u, \beta_u, \alpha_s, \beta_s)$ the approximation. A natural way to estimate $\tilde{Z}$ is to use Monte Carlo integration. Indeed, we can write
+In general, there is no closed-form expression for $Z(\cdot)$, and a numerical approximation must be used. Let us denote by $\tilde{Z}(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})$ the approximation. A natural way to estimate $\tilde{Z}$ is to use Monte Carlo integration. Indeed, we can write
 \begin{equation}
-\tilde{Z}(\alpha_u, \beta_u, \alpha_s, \beta_s)=\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)\int_{0}^1\frac{{p_u}^{\alpha_u-1}(1-p_u)^{\beta_u-1}}{\mathrm{B}(\alpha_u,\beta_u)}[1-F_{\alpha_s,\beta_s}(p_u)]dp_u
+\tilde{Z}(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})=\mathrm{B}(\alpha^{(u)},\beta^{(u)})\mathrm{B}(\alpha^{(s)},\beta^{(s)})\int_{0}^1\frac{{p^{(u)}}^{\alpha^{(u)}-1}(1-p^{(u)})^{\beta^{(u)}-1}}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}[1-F_{\alpha^{(s)},\beta^{(s)}}(p^{(u)})]dp^{(u)}
 \label{equ:normZ}
 \end{equation}
-where $F_{\alpha_s,\beta_s}$ is the cumulative distribution function of a beta random variable with parameters $\alpha_s$ and $\beta_s$. Using this identity, it can be seen that $\tilde{Z}(\alpha_u, \beta_u, \alpha_s, \beta_s)$ can be approximated by
+where $F_{\alpha^{(s)},\beta^{(s)}}$ is the cumulative distribution function of a beta random variable with parameters $\alpha^{(s)}$ and $\beta^{(s)}$. Using this identity, it can be seen that $\tilde{Z}(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})$ can be approximated by
 \[
-\tilde{Z}(\alpha_u, \beta_u, \alpha_s, \beta_s)\approx\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)\sum_{k=1}^K[1-F_{\alpha_s,\beta_s}(X_k)]
+\tilde{Z}(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})\approx\mathrm{B}(\alpha^{(u)},\beta^{(u)})\mathrm{B}(\alpha^{(s)},\beta^{(s)})\sum_{k=1}^K[1-F_{\alpha^{(s)},\beta^{(s)}}(X_k)]
 \]
-where the $X_k$'s are \textit{iid} beta distributed random variables with parameters $\alpha_s$, $\beta_s$ and $K$ is the number of terms used in the Monte Carlo approximation. This approximation works relatively well with our EM implementation and does not significantly increase the computing time.
+where the $X_k$'s are \textit{iid} beta distributed random variables with parameters $\alpha^{(s)}$, $\beta^{(s)}$ and $K$ is the number of terms used in the Monte Carlo approximation. This approximation works relatively well with our EM implementation and does not significantly increase the computing time.
 Unfortunately, the number of terms (\textit{i.e.} value of $K$) required for the approximation to be good might be large and computing such a normalizing constant at each iteration would significantly slow down our MCMC implementation. As it tuns out, a better approximation
-can be obtained when $\alpha_s$ and $\beta_s$ are integers. In this case, the cdf function in \eqref{equ:normZ} can be calculated exactly using integration by parts, as follows,
+can be obtained when $\alpha^{(s)}$ and $\beta^{(s)}$ are integers. In this case, the cdf function in \eqref{equ:normZ} can be calculated exactly using integration by parts, as follows,
 \[
-F_{\alpha_s,\beta_s}(p_u)=\sum_{j=\beta_s}^{\beta_s+\alpha_s-1} \frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}(1-p_u)^jp_u^{\beta_s+\alpha_s-j}.
+F_{\alpha^{(s)},\beta^{(s)}}(p^{(u)})=\sum_{j=\beta^{(s)}}^{\beta^{(s)}+\alpha^{(s)}-1} \frac{(\beta^{(s)}+\alpha^{(s)}-1)!}{j!(\beta^{(s)}+\alpha^{(s)}-j)!}(1-p^{(u)})^jp^{(u)\beta^{(s)}+\alpha^{(s)}-j}.
 \label{eq:IBident}
 \]
 Then using this identity, we obtain
 \begin{align*}
-Z(\alpha_u, \beta_u, \alpha_s, \beta_s)&=\mathrm{B}(\alpha_s,\beta_s)\sum_{j=\beta_s}^{\beta_s+\alpha_s-1}\frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}\int_{0}^1(1-p_u)^{\beta_u-1+j}p_u^{\alpha_u-1+\beta_s+\alpha_s-j}dp_u\\
-&=\mathrm{B}(\alpha_s,\beta_s)\sum_{j=\beta_s}^{\beta_s+\alpha_s-1}\frac{(\beta_s+\alpha_s-1)!}{j!(\beta_s+\alpha_s-j)!}\mathrm{B}(\beta_u+j)\mathrm{B}(\alpha_u+\beta_s+\alpha_s-j).
+Z(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)})&=\mathrm{B}(\alpha^{(s)},\beta^{(s)})\sum_{j=\beta^{(s)}}^{\beta^{(s)}+\alpha^{(s)}-1}\frac{(\beta^{(s)}+\alpha^{(s)}-1)!}{j!(\beta^{(s)}+\alpha^{(s)}-j)!}\int_{0}^1(1-p^{(u)})^{\beta^{(u)}-1+j}p^{(u)\alpha^{(u)}-1+\beta^{(s)}+\alpha^{(s)}-j}dp^{(u)}\\
+&=\mathrm{B}(\alpha^{(s)},\beta^{(s)})\sum_{j=\beta}^{(s)\beta^{(s)}+\alpha^{(s)}-1}\frac{(\beta^{(s)}+\alpha^{(s)}-1)!}{j!(\beta^{(s)}+\alpha^{(s)}-j)!}\mathrm{B}(\beta^{(u)}+j)\mathrm{B}(\alpha^{(u)}+\beta^{(s)}+\alpha^{(s)}-j).
 \label{equ:normZ}
 \end{align*}
-Typically, in ICS data $\alpha_s$ is relatively small leading to relatively few terms in the sum. However, the use of this exact identity in our MCMC algorithm requires the use of discrete priors on $\alpha_s$ and $\beta_s$, which can be restrictive in terms of fit (\textit{e.g.},  if the true $\alpha_s$ is less than one) and can render mixing in the MCMC more difficult. In addition, even though the computation is exact and much faster for small values of $\alpha_s$, which is typically the case with ICS data, it is still more demanding than the unconstrained model. In our case, we have decided to use the unconstrained model and simply fix the $z_i$ to zero if the empirical proportion for the un-stimulated sample, $p_u$, is greater than that of the stimulation sample, $p_s$. Indeed, in the one-sided case, if $p_u>p_s$ the associated individual should be a non-responder and thus $z_i=0$. In our experience, this computational shortcut performs just as well as the true one-sided implementation while being computationally much less demanding.
+Typically, in ICS data $\alpha^{(u)}$ is relatively small leading to relatively few terms in the sum. However, the use of this exact identity in our MCMC algorithm requires the use of discrete priors on $\alpha^{(s)}$ and $\beta^{(s)}$, which can be restrictive in terms of fit (\textit{e.g.},  if the true $\alpha^{(s)}$ is less than one) and can render mixing in the MCMC more difficult. In addition, even though the computation is exact and much faster for small values of $\alpha^{(s)}$, which is typically the case with ICS data, it is still more demanding than the unconstrained model. In our case, we have decided to use the unconstrained model and simply fix the $z_i$ to zero if the empirical proportion for the un-stimulated sample, $p^{(u)}$, is greater than that of the stimulation sample, $p^{(s)}$. Indeed, in the one-sided case, if $p^{(u)}>p^{(s)}$ the associated individual should be a non-responder and thus $z_i=0$. In our experience, this computational shortcut performs just as well as the true one-sided implementation while being computationally much less demanding.
 
 \subsection{Computational details for the beta-binomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
 For a given subject $i$, the null marginal likelihood is obtained after integrating out the prior from the likelihood for model ${\cal M}_0$, as follows,
 \[
 \begin{split}
-\mathrm{L_0}(\alpha_u,\beta_u|n_{si},n_{ui}) =&\int_0^1 \mathrm{Pr}(n_{si},n_{ui}|p_u)\pi(p_u|\alpha_u,\beta_u)\mathrm{d}p_u\\
-=& \int_0^1Pr(n_s|p_u)Pr(n_u|p_u)\pi(p_u|\alpha_u,\beta_u) \mathrm{d}p_u\\
-=&\int_0^1\binom{N_s}{n_s}p_u^{n_s}(1-p_u)^{N_s-n_s}\binom{N_u}{n_u}p_u^{n_u}(1-p_u)^{N_u-n_u}\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_u^{\alpha_u-1}(1-p_u)^{\beta_u-1} \mathrm{d}p_u\\
-=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}\int_0^1 p_u^{n_s+n_u+\alpha_u-1}(1-p_u)^{N_s+N_u-n_s-n_u+\beta_u-1} \mathrm{d}p_u\\
-=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{\mathrm{B}(n_s+n_u+\alpha_u,N_s+N_u-n_s-n_u+\beta_0)}{\mathrm{B}(\alpha_u,\beta_u)}.
+\mathrm{L_0}(\alpha^{(u)},\beta^{(u)}|n^{(s)}_{i},n^{(u)}_{i}) =&\int_0^1 \mathrm{Pr}(n^{(s)}_{i},n^{(u)}_{i}|p^{(u)})\pi(p^{(u)}|\alpha^{(u)},\beta^{(u)})\mathrm{d}p^{(u)}\\
+=& \int_0^1Pr(n^{(s)}|p^{(u)})Pr(n^{(u)}|p^{(u)})\pi(p^{(u)}|\alpha^{(u)},\beta^{(u)}) \mathrm{d}p^{(u)}\\
+=&\int_0^1\binom{N^{(s)}}{n^{(s)}}p^{(s)n^{(s)}}(1-p^{(u)})^{N^{(s)}-n^{(s)}}\binom{N^{(u)}}{n^{(u)}}p^{(u)n^{(u)}}(1-p^{(u)})^{N^{(u)}-n^{(u)}}\cdot \\&\frac{1}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}p^{(u)\alpha^{(u)}-1}(1-p^{(u)})^{\beta^{(u)}-1} \mathrm{d}p^{(u)}\\
+=&\binom{N^{(s)}}{n^{(s)}}\binom{N^{(u)}}{n^{(u)}}\frac{1}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}\int_0^1 p^{(u)n^{(s)}+n^{(u)}+\alpha^{(u)}-1}(1-p^{(u)})^{N^{(s)}+N^{(u)}-n^{(s)}-n^{(u)}+\beta^{(u)}-1} \mathrm{d}p^{(u)}\\
+=&\binom{N^{(s)}}{n^{(s)}}\binom{N^{(u)}}{n^{(u)}}\frac{\mathrm{B}(n^{(s)}+n^{(u)}+\alpha^{(u)},N^{(s)}+N^{(u)}-n^{(s)}-n^{(u)}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}.
 \end{split}
 \]
 
@@ -92,12 +92,12 @@ For a given subject $i$, the null marginal likelihood is obtained after integrat
 \noindent Similarly, the alternative marginal likelihood for a given subject is defined as,
 \[
 \begin{split}
-\mathrm{L_1}(\alpha_u,\beta_u,\alpha_s,\beta_s|n_{si},n_{ui}) =&\int_0^1\int_0^1 \mathrm{Pr}(n_{si},n_{ui}|p_u,p_s)\pi(p_u,p_s|\alpha_u,\beta_u,\alpha_s,\beta_s)\mathrm{d}p_s\mathrm{d}p_u \\
-=&\int_0^1\int_0^1\binom{N_s}{n_s}p_s^{n_s}(1-p_s)^{N_s-n_s}\binom{N_u}{n_u}p_u^{n_u}(1-p_u)^{N_u-n_u}\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}p_u^{\alpha_u-1}(1-p_u)^{\beta_u-1} \cdot\\
-&\frac{1}{\mathrm{B}(\alpha_s,\beta_s)}p_s^{\alpha_s-1}(1-p_s)^{\beta_s-1} \mathrm{d}p_s\mathrm{d}p_u\\
-=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{1}{\mathrm{B}(\alpha_u,\beta_u)}\frac{1}{\mathrm{B}(\alpha_s,\beta_s)}\int_0^1 p_u^{n_u+\alpha_u-1}(1-p_u)^{N_u-n_u+\beta_u-1} \cdot\\
-&\int_0^1 p_s^{n_s+\alpha_s-1}(1-p_s)^{N_s-n_s+\beta_s-1}\mathrm{d}p_s\mathrm{d}p_u \\
-=&\binom{N_s}{n_s}\binom{N_u}{n_u}\frac{\mathrm{B}(n_u+\alpha_u,N_u-n_u+\beta_u)\mathrm{B}(n_s+\alpha_s,N_s-n_s+\beta_s)}{\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)}.
+\mathrm{L_1}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|n^{(s)}_{i},n^{(u)}_{i}) =&\int_0^1\int_0^1 \mathrm{Pr}(n^{(s)}_{i},n^{(u)}_{i}|p^{(u)},p^{(s)})\pi(p^{(u)},p^{(s)}|\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)})\mathrm{d}p^{(s)}\mathrm{d}p^{(u)} \\
+=&\int_0^1\int_0^1\binom{N^{(s)}}{n^{(s)}}p^{(s)n^{(s)}}(1-p^{(s)})^{N^{(s)}-n^{(s)}}\binom{N^{(u)}}{n^{(u)}}p^{(u)n^{(u)}}(1-p^{(u)})^{N^{(u)}-n^{(u)}} \cdot\\  &\frac{1}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}p^{(u)\alpha^{(u)}-1}(1-p^{(u)})^{\beta^{(u)}-1}
+\frac{1}{\mathrm{B}(\alpha^{(s)},\beta^{(s)})}p^{(s)\alpha^{(s)}-1}(1-p^{(s)})^{\beta^{(s)}-1} \mathrm{d}p^{(s)}\mathrm{d}p^{(u)}\\
+=&\binom{N^{(s)}}{n^{(s)}}\binom{N^{(u)}}{n^{(u)}}\frac{1}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}\frac{1}{\mathrm{B}(\alpha^{(s)},\beta^{(s)})}\int_0^1 p^{(u)n^{(u)}+\alpha^{(u)}-1}(1-p^{(u)})^{N^{(u)}-n^{(u)}+\beta^{(u)}-1} \cdot\\
+&\int_0^1 p^{(s)n^{(s)}+\alpha^{(s)}-1}(1-p^{(s)})^{N^{(s)}-n^{(s)}+\beta^{(s)}-1}\mathrm{d}p^{(s)}\mathrm{d}p^{(u)} \\
+=&\binom{N^{(s)}}{n^{(s)}}\binom{N^{(u)}}{n^{(u)}}\frac{\mathrm{B}(n^{(u)}+\alpha^{(u)},N^{(u)}-n^{(u)}+\beta^{(u)})\mathrm{B}(n^{(s)}+\alpha^{(s)},N^{(s)}-n^{(s)}+\beta^{(s)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})\mathrm{B}(\alpha^{(s)},\beta^{(s)})}.
 \end{split}
 \]
 %and taking the product over subjects leads to
@@ -108,7 +108,7 @@ For a given subject $i$, the null marginal likelihood is obtained after integrat
 \noindent\textbf{MCMC algorithm}\\
 In what follows, we use $(x|y)$ to denote the conditional distribution of $x$ given $y$. In particular, we use $(x|\cdots)$ to denote the distribution of $x$ conditional on everything else in the model. Our MCMC algorithms cycles through the following steps:
 \begin{enumerate}
-\item Update each $\alpha_u, \beta_u, \alpha_s$ and $\beta_s$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tuned for each parameter using the approach of~\cite{Gelman:2004tc}.
+\item Update each $\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}$ and $\beta^{(s)}$ by Metropolis-Hastings using a Gaussian symmetric proposal where the variance of the proposal is tuned for each parameter using the approach of~\cite{Gelman:2004tc}.
 \item Update $w$ by Gibbs sampling using the full conditional,
 \[
 (w|\cdots)\sim \mathrm{Beta}(\sum_i z_i,\sum_i (1-z_i)).
@@ -119,20 +119,20 @@ In what follows, we use $(x|y)$ to denote the conditional distribution of $x$ gi
 \]
 where,
 \[
-p_i=\frac{w\cdot\mathrm{L_1}(\alpha_u,\beta_u,\alpha_s,\beta_s| n_{ui},n_{si})}{w\cdot\mathrm{L_1}(\alpha_u,\beta_u,\alpha_s,\beta_s|n_{ui},n_{si})+(1-w)\cdot\mathrm{L_0}(\alpha_u,\beta_u|n_{ui},n_{si})}.
+p_i=\frac{w\cdot\mathrm{L_1}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}| n^{(u)}_{i},n^{(s)}_{i})}{w\cdot\mathrm{L_1}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|n^{(u)}_{i},n^{(s)}_{i})+(1-w)\cdot\mathrm{L_0}(\alpha^{(u)},\beta^{(u)}|n^{(u)}_{i},n^{(s)}_{i})}.
 \]
 \end{enumerate}
-For each updated parameter, step 1 above involves the calculation of the following acceptance ratio, (e.g. $\alpha_u$, below),
+For each updated parameter, step 1 above involves the calculation of the following acceptance ratio, (e.g. $\alpha^{(u)}$, below),
 \[
 \begin{split}
-\frac{\mathrm{L}(\alpha^{\text{new}}_u,\beta_u,\alpha_s,\beta_s|\cdots)\pi(\alpha^{\text{new}}_u)}{\mathrm{L}(\alpha_u,\beta_u,\alpha_s,\beta_s|\cdots)\pi(\alpha_u)}\\
+\frac{\mathrm{L}(\alpha^{(u)\text{new}},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\cdots)\pi(\alpha^{(u)\text{new}})}{\mathrm{L}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\cdots)\pi(\alpha^{(u)})}\\
 \end{split}
 \]
 where $L$ is the complete marginal likelihood conditional on $\mathbf{z}$ defined as,
 \[
-\mathrm{L}(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{n}_u,\mathbf{n}_s,\mathbf{z})=\prod_i\mathrm{L}_{z_i}(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{n}_u,\mathbf{n}_s)
+\mathrm{L}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{n}^{(u)},\mathbf{n}^{(s)},\mathbf{z})=\prod_i\mathrm{L}_{z_i}(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{n}^{(u)},\mathbf{n}^{(s)})
 \]
-and $\pi$ is the prior distribution of $\alpha_u$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha_s,\beta_s,\beta_u$. In our case each parameter has the same exponential prior with mean $1,000$
+and $\pi$ is the prior distribution of $\alpha^{(u)}$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha^{(s)},\beta^{(s)},\beta^{(u)}$. In our case each parameter has the same exponential prior with mean $1,000$
 
 \subsection{Computational details for the Dirichlet-multinomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
@@ -140,10 +140,10 @@ Because our Dirichlet-multinomial is a direct extension of the beta-binomial mod
 For a given subject, the null marginal likelihood is defined as
 \[
 \begin{split}
-\mathrm{L_0}(\boldsymbol{\alpha}_u|\mathbf{n}_{si},\mathbf{n}_{ui})=&\idotsint\mathrm{Pr}(\mathbf{n}_{si},\mathbf{n}_{ui}|\mathbf{p}_u)\pi(\mathbf{p}_u|\boldsymbol{\alpha}_u)\mathrm{d}\mathbf{p}_u\\
-=&\idotsint \frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\prod_k p^{n_{sik}}_{uk} \frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\prod_k p^{n_{uik}}_{uk}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\prod_k p_{uk}^{\alpha_{uk}-1}\mathrm{d}\mathbf{p}_u\\
-=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)}\int_0^1 \prod_k p^{n_{sik}+n_{uik}+\alpha_{uk}-1}_{uk}\mathrm{d}\mathbf{p}_u\\
-=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{si}+\mathbf{n}_u+\boldsymbol{\alpha}_u)}{\mathrm{B}(\boldsymbol{\alpha}_u)}
+\mathrm{L_0}(\boldsymbol{\alpha}^{(u)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i})=&\idotsint\mathrm{Pr}(\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i}|\mathbf{p}^{(u)})\pi(\mathbf{p}^{(u)}|\boldsymbol{\alpha}^{(u)})\mathrm{d}\mathbf{p}^{(u)}\\
+=&\idotsint \frac{\mathbf{N}^{(s)}!}{\prod_k {n}^{(s)}_{ik}!}\prod_k p^{(u)n^{(s)}_{ik}}_{k} \frac{\mathbf{N}^{(u)}!}{\prod_k {n}^{(u)}_{ik}!}\prod_k p^{(u)n^{(u)}_{ik}}_{k}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})}\prod_k p^{(u)\alpha^{(u)}_{k}-1}_{k}\mathrm{d}\mathbf{p}^{(u)}\\
+=&\frac{\mathbf{N}^{(s)}!}{\prod_k {n}^{(s)}_{ik}!}\frac{\mathbf{N}^{(u)}!}{\prod_k {n}^{(u)}_{ik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})}\int_0^1 \prod_k p^{(u)n^{(s)}_{ik}+n^{(u)}_{ik}+\alpha^{(u)}_{k}-1}_{k}\mathrm{d}\mathbf{p}^{(u)}\\
+=&\frac{\mathbf{N}^{(s)}!}{\prod_k {n}^{(s)}_{ik}!}\frac{\mathbf{N}^{(u)}!}{\prod_k {n}^{(u)}_{ik}!}\frac{\mathrm{B}(\mathbf{n}^{(s)}_{i}+\mathbf{n}^{(u)}+\boldsymbol{\alpha}^{(u)})}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})}
 \end{split}
 \]
 %The product over all $P$ observations gives the marginal likelihood,
@@ -154,16 +154,16 @@ For a given subject, the null marginal likelihood is defined as
 \noindent Similarly, the alternative marginal likelihood for a given subject is:
 \[
 \begin{split}
-\mathrm{L_1}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{ui},\mathbf{n}_{si})
+\mathrm{L_1}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\mathbf{n}^{(u)}_{i},\mathbf{n}^{(s)}_{i})
 %=&\int_0^1\int_0^1 \mathcal{M}(\mathbf{N}_u,\mathbf{p}_u)\mathcal{M}(\mathbf{N}_s,\mathbf{p}_s)\mathrm{Dir}(\boldsymbol{\alpha}_u)\mathrm{Dir}(\boldsymbol{\alpha}_s)\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
-=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}\idotsint\prod_k p^{n_{uik}+\alpha_{uk}-1}_{uk}\idotsint \prod_k p^{n_{sik}+\alpha_{sk}-1}_{sk}\mathrm{d}\mathbf{p}_u\mathrm{d}\mathbf{p}_s\\
-=&\frac{\mathbf{N}_s!}{\prod_k {n}_{sik}!}\frac{\mathbf{N}_u!}{\prod_k {n}_{uik}!}\frac{\mathrm{B}(\mathbf{n}_{ui}+\boldsymbol{\alpha}_u)\mathrm{B}(\mathbf{n}_{si}+\boldsymbol{\alpha}_s)}{\mathrm{B}(\boldsymbol{\alpha}_u)\mathrm{B}(\boldsymbol{\alpha}_s)}.
+=&\frac{\mathbf{N}^{(s)}!}{\prod_k {n}^{(s)}_{ik}!}\frac{\mathbf{N}^{(u)}!}{\prod_k {n}^{(u)}_{ik}!}\frac{1}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})\mathrm{B}(\boldsymbol{\alpha}^{(s)})}\idotsint\prod_k p^{(u)n^{(u)}_{ik}+\alpha^{(u)}_{k}-1}_{k}\idotsint \prod_k p^{(s)n^{(s)}_{ik}+\alpha^{(s)}_{k}-1}_{k}\mathrm{d}\mathbf{p}^{(u)}\mathrm{d}\mathbf{p}^{(s)}\\
+=&\frac{\mathbf{N}^{(s)}!}{\prod_k {n}^{(s)}_{ik}!}\frac{\mathbf{N}^{(u)}!}{\prod_k {n}^{(u)}_{ik}!}\frac{\mathrm{B}(\mathbf{n}^{(u)}_{i}+\boldsymbol{\alpha}^{(u)})\mathrm{B}(\mathbf{n}^{(s)}_{i}+\boldsymbol{\alpha}^{(s)})}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})\mathrm{B}(\boldsymbol{\alpha}^{(s)})}.
 \end{split}
 \]
 \noindent\textbf{MCMC algorithm}\\
-The MCMC algorithm for the Dirichlet-multinomial model is analogous to the beta-binomial, above. The parameter vectors $\boldsymbol{\alpha}_s,\boldsymbol{\alpha}_u$ are updated component-wise:
+The MCMC algorithm for the Dirichlet-multinomial model is analogous to the beta-binomial, above. The parameter vectors $\boldsymbol{\alpha}^{(s)},\boldsymbol{\alpha}^{(u)}$ are updated component-wise:
 \begin{enumerate}
-\item  Update each $\alpha_{sk}$, $\alpha_{uk}$ using a Gaussian symmetric proposal distribution with the variance of each proposal tuned using the approach of~\cite{Gelman:2004tc}.
+\item  Update each $\alpha^{(s)}_{k}$, $\alpha^{(u)}_{k}$ using a Gaussian symmetric proposal distribution with the variance of each proposal tuned using the approach of~\cite{Gelman:2004tc}.
 \item Update $w$ by Gibbs sampling using the full conditional,
 \[
 (w|\cdots)\sim\mathrm{Beta}(\sum_i z_i,\sum_i(1-z_i))
@@ -174,16 +174,16 @@ The MCMC algorithm for the Dirichlet-multinomial model is analogous to the beta-
 \]
 where
 \[
-p_i = \frac{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui})}{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}_{u},\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui})+(1-w)\cdot\mathrm{L_0}(\boldsymbol{\alpha}_{u}|\mathbf{n}_{si},\mathbf{n}_{ui})}
+p_i = \frac{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i})}{w\cdot\mathrm{L_1}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i})+(1-w)\cdot\mathrm{L_0}(\boldsymbol{\alpha}^{(u)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i})}
 \]
-For each parameter component updated in step 1 above, compute the acceptance ratio (e.g. $\alpha_{uk}$, below):
+For each parameter component updated in step 1 above, compute the acceptance ratio (e.g. $\alpha^{(u)}_{k}$, below):
 \[
-\frac{\mathrm{L}(\alpha^{\text{new}}_{uk},\boldsymbol{\alpha}_{u\{-k\}},\boldsymbol{\alpha}_s|\cdots)\pi(\alpha^{\text{new}}_{uk})}{\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\cdots)\pi(\alpha_{uk})}\\
+\frac{\mathrm{L}(\alpha^{(u)\text{new}}_{k},\boldsymbol{\alpha}^{(u)}_{\{-k\}},\boldsymbol{\alpha}^{(s)}|\cdots)\pi(\alpha^{(u)\text{new}}_{k})}{\mathrm{L}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\cdots)\pi(\alpha^{(u)}_{k})}\\
 \]
 
-where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}_{u\{-k\}} = \{\alpha_{uj} :  j\neq k\}$. Again, we have used the same exponential prior with mean 1,000 for each parameter. $\mathrm{L}$ is the complete marginal likelihood conditional on $\mathbf{z}$, defined as
+where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}^{(u)}_{\{-k\}} = \{\alpha^{(u)}_{j} :  j\neq k\}$. Again, we have used the same exponential prior with mean 1,000 for each parameter. $\mathrm{L}$ is the complete marginal likelihood conditional on $\mathbf{z}$, defined as
 \[
-\mathrm{L}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui},\mathbf{z}) = \prod_i \mathrm{L}_{z_i}(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_s|\mathbf{n}_{si},\mathbf{n}_{ui}).
+\mathrm{L}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i},\mathbf{z}) = \prod_i \mathrm{L}_{z_i}(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i}).
 \]
 
 \end{enumerate}
@@ -273,7 +273,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     \end{tikzpicture}
     \caption{Histogram of the empirical proportions of unstimulated cells
       and overlaid posterior densities of the beta distribution with
-      $\alpha_u$ and $\beta_u$ estimated from the data for ENV-1-PTEG
+      $\alpha^{(u)}$ and $\beta^{(u)}$ estimated from the data for ENV-1-PTEG
       stimulated, IFN--$\gamma$+, CD4+ T--cells, demonstrating that the assumption of a common distribution for $p_{iu}$ across subjects is reasonable. }
    \label{fig:empiricalpdist}
  \end{figure}

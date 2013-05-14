@@ -136,7 +136,7 @@ Because our framework is multivariate in nature, multiple cell subsets can be mo
 \section{Notation and Data}
 \label{s:data}
 
-In the remainder of the paper, we use the following notation to describe our model.  We assume that we observe cell counts from $I$ subjects in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a biomarker. Given a set of $K$ biomarkers, the measured cells can be classified into $2^K$ positive/negative biomarker combinations. We denote by $n_{sik}$ and $n_{uik}$, $k=1,\dots, 2^K, i=1,\dots,I$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples, respectively. We denote by $N_{si}=\sum_k n_{sik}$ and $N_{ui}=\sum_k n_{uik}$ the total number of cells measured for subject $i$ in each sample, respectively. For ease of notation, we denote by $\mathbf{y}_i$ the vector of observed counts for subject $i$, \textit{i.e.}, $\mathbf{y}_{i}=(\mathbf{n}_{si}, \mathbf{n}_{ui})$ where $\mathbf{n}_{si}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{ui}=\{n_{uik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
+In the remainder of the paper, we use the following notation to describe our model.  We assume that we observe cell counts from $I$ subjects in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a biomarker. Given a set of $K$ biomarkers, the measured cells can be classified into $2^K$ positive/negative biomarker combinations. We denote by $n^{(s)}_{ik}$ and $n^{(u)}_{ik}$, $i=1,\dots,I,k=1,\dots, 2^K$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples, respectively. We denote by $N^{(s)}_{i}=\sum_k n^{(s)}_{ik}$ and $N^{(u)}_{i}=\sum_k n^{(u)}_{ik}$ the total number of cells measured for subject $i$ in each sample, respectively. For ease of notation, we denote by $\mathbf{y}_i$ the vector of observed counts for subject $i$, \textit{i.e.}, $\mathbf{y}_{i}=(\mathbf{n}^{(s)}_{i}, \mathbf{n}^{(u)}_{i})$ where $\mathbf{n}^{(s)}_{i}=\{n^{(s)}_{ik}: k=1,\dots,2^K\}$ and $\mathbf{n}^{(u)}_{i}=\{n^{(u)}_{ik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
 
 We consider two types of immunological single-cell assays: flow cytometry and single-cell gene expression, as described below.
 
@@ -180,60 +180,60 @@ For a given subject and stimulation, we consider a biomarker to be differentiall
 For a given subject $i$, the positive cell counts for the stimulated and un-stimulated samples are jointly modeled as follows:
 
 \begin{equation*}
-(n_{si}|p_{si}) \sim \mathrm{Bin}(N_{si},p_{si})\quad \text{and}\quad (n_{ui}|p_{ui}) \sim \mathrm{Bin}(N_{ui},p_{ui})\label{eq:bino_likelihood}
+(n_{si}|p_{si}) \sim \mathrm{Bin}(N^{(s)}_{i},p^{(s)}_{i})\quad \text{and}\quad (n^{(u)}_{i}|p^{(u)}_{i}) \sim \mathrm{Bin}(N^{(u)}_{i},p^{(u)}_{i})\label{eq:bino_likelihood}
 \end{equation*}
-where $p_{si}$, $p_{ui}$ are the unknown proportions for the stimulated and un-stimulated paired samples, respectively. In order to detect responding subjects, we consider two competing models:
+where $p^{(s)}_{i}$, $p^{(u)}_{i}$ are the unknown proportions for the stimulated and un-stimulated paired samples, respectively. In order to detect responding subjects, we consider two competing models:
 \begin{equation*}
-{\cal M}_0: p_{ui}=p_{si}\quad \text{and}\quad {\cal M}_1: p_{ui}\ne p_{si}. \label{eq:models}
+{\cal M}_0: p^{(u)}_{i}=p^{(s)}_{i}\quad \text{and}\quad {\cal M}_1: p^{(u)}_{i}\ne p^{(s)}_{i}. \label{eq:models}
 \end{equation*}
-Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal (yet the cell counts can differ). Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the subject $i$ is a responder. In some studies, such as the ICS data used here, the proportion of positive cells is expected to only increase after stimulation, in which case the alternative model should be defined as $p_s>p_u$. This alternative parametrization is described in Appendix A of the Supplementary Material, and we refer to it as the one-sided model.
+Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal (yet the cell counts can differ). Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the subject $i$ is a responder. In some studies, such as the ICS data used here, the proportion of positive cells is expected to only increase after stimulation, in which case the alternative model should be defined as $p^{(s)}>p^{(u)}$. This alternative parametrization is described in Appendix A of the Supplementary Material, and we refer to it as the one-sided model.
 
 \subsection{Priors}
 \label{ss:priors}
 Our model shares information across all subjects using exchangeable Beta priors on the unknown proportions, as follows:
  \begin{align*}
-(p_{ui} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha_u, \beta_u)\\
-(p_{ui}|z_{i}=1) \sim \mathrm{Beta}(\alpha_u,
-\beta_u) \quad\mathrm{and}\quad (p_{si} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha_s,\beta_s),
+(p^{(u)}_{i} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha^{(u)}, \beta^{(u)})\\
+(p^{(u)}_{i}|z_{i}=1) \sim \mathrm{Beta}(\alpha^{(u)},
+\beta^{(u)}) \quad\mathrm{and}\quad (p^{(s)}_{i} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha^{(s)},\beta^{(s)}),
  \end{align*}
-where $z_i$ is an indicator variable equal to one if subject $i$ is a responder, \textit{i.e.}, ${\cal M}_1$ is true, and zero otherwise, and $\alpha_u, \beta_u, \alpha_s,\beta_s$ are unknown hyper-parameters shared across all subjects.
-Note that the parameters $\alpha_u \text{ and } \beta_u$ are explicitly shared across the two models, whereas $\alpha_s \text{ and } \beta_s$ are only present in the alternative model.
+where $z_i$ is an indicator variable equal to one if subject $i$ is a responder, \textit{i.e.}, ${\cal M}_1$ is true, and zero otherwise, and $\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}$ are unknown hyper-parameters shared across all subjects.
+Note that the parameters $\alpha^{(u)} \text{ and } \beta^{(u)}$ are explicitly shared across the two models, whereas $\alpha^{(s)} \text{ and } \beta^{(s)}$ are only present in the alternative model.
 Finally, we assume that $z_i\sim \mathrm{Be}(w)$ are independent draws from a Bernoulli distribution with probability $w$, where $w$ represents the (unknown) proportion of responders.
-It follows that marginally, \textit{i.e.}, after integrating $z_i$, the $p_{ui}$ and $p_{si}$ are then jointly distributed as a mixture of a one dimensional Beta distribution and a product of two Beta distributions (with a possible constraint), with mixing parameter $w$.
-Treating the $z_i$'s as missing data, the unknown parameter vector $\boldsymbol\theta\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ can be estimated in an Empirical-Bayes fashion using Expectation-Maximization algorithm~\citep{Dempster:1977ul} as described in Section \ref{s:estimation}.
-As an alternative, we also describe a fully Bayesian model, where the hyperparameters $\alpha_u, \beta_u$, $\alpha_s,\text{ and }\beta_s$ are each given vague exponential priors with mean $10^3$, and $w$ is assumed to be drawn from a uniform distribution between 0 and 1.
+It follows that marginally, \textit{i.e.}, after integrating $z_i$, the $p^{(u)}_{i}$ and $p^{(s)}_{i}$ are then jointly distributed as a mixture of a one dimensional Beta distribution and a product of two Beta distributions (with a possible constraint), with mixing parameter $w$.
+Treating the $z_i$'s as missing data, the unknown parameter vector $\boldsymbol\theta\equiv(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}, w)$ can be estimated in an Empirical-Bayes fashion using Expectation-Maximization algorithm~\citep{Dempster:1977ul} as described in Section \ref{s:estimation}.
+As an alternative, we also describe a fully Bayesian model, where the hyperparameters $\alpha^{(u)}, \beta^{(u)}$, $\alpha^{(s)},\text{ and }\beta^{(s)}$ are each given vague exponential priors with mean $10^3$, and $w$ is assumed to be drawn from a uniform distribution between 0 and 1.
 In this case, all parameters will be estimated via a Markov chain Monte Carlo algorithm as described in Section \ref{s:estimation}.
 
 \subsection{Parameter estimation}
 \label{s:estimation}
-In our proposed EM and MCMC algorithms, we greatly simplify our calculations by directly utilizing the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after marginalizing $p_{si}$ and $p_{ui}$ from the null and alternative likelihoods. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed-forms (Appendix B, Supplementary Material), and are given by,
+In our proposed EM and MCMC algorithms, we greatly simplify our calculations by directly utilizing the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after marginalizing $p^{(s)}_{i}$ and $p^{(u)}_{i}$ from the null and alternative likelihoods. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed-forms (Appendix B, Supplementary Material), and are given by,
 
  \begin{equation*}
-  	\mathrm{L}_0(\alpha_u,\beta_u|\mathbf{y}_i)
-=\binom{N_{ui}}{n_{ui}}\binom{N_{si}}{n_{si}}\cdot \frac{\mathrm{B}(n_{si}+n_{ui}+\alpha_u,N_{si}-n_{si}+N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}
+  	\mathrm{L}_0(\alpha^{(u)},\beta^{(u)}|\mathbf{y}_i)
+=\binom{N^{(u)}_{i}}{n^{(u)}_{i}}\binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+n^{(u)}_{i}+\alpha^{(u)},N^{(s)}_{i}-n^{(s)}_{i}+N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}
  \end{equation*}
 
 and
 \begin{equation}
-\mathrm{L}_1(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{y}_i)
-=\binom{N_{ui}}{n_{ui}} \binom{N_{si}}{n_{si}}\cdot\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)}{\mathrm{B}(\alpha_u,\beta_u)}\cdot \frac{\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_s,\beta_s)}
+\mathrm{L}_1(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{y}_i)
+=\binom{N^{(u)}_{i}}{n^{(u)}_{i}} \binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot\frac{\mathrm{B}(n^{(u)}_{i}+\alpha^{(u)},N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+\alpha^{(s)},N^{(s)}_{i}-n^{(s)}_{i}+\beta^{(s)})}{\mathrm{B}(\alpha^{(s)},\beta^{(s)})}
 \label{model2:unconstrained}
 \end{equation}
 Above, $\mathrm{B}$ is the Beta function. Assuming that the missing data, $z_i, i=1,\dots,I$, are known, we define the complete data log-likelihood:
 \begin{equation}
 \begin{split}
-l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha_u, \beta_u|\mathbf{y}_i) +(1-z_i) l_1(\alpha_u, \beta_u, \alpha_s, \beta_s|\mathbf{y}_i)+z_i\log(w)+(1-z_i)\log(1-w),\label{eq:cll}
+l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha^{(u)}, \beta^{(u)}|\mathbf{y}_i) +(1-z_i) l_1(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)}|\mathbf{y}_i)+z_i\log(w)+(1-z_i)\log(1-w),\label{eq:cll}
 \end{split}
 \end{equation}
-where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha_u, \beta_u, \alpha_s,\beta_s, w)$ is the vector of parameters to be estimated. In the one-sided case, the alternative prior specification must satisfy the constraint $p_s>p_u$, and the marginal likelihood derivation involves the calculation of a normalizing constant that is not available in closed-form but can easily be estimated. All calculations for the one-sided case are described in Appendix A of the Supplementary Material.
+where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}, w)$ is the vector of parameters to be estimated. In the one-sided case, the alternative prior specification must satisfy the constraint $p^{(s)}>p^{(u)}$, and the marginal likelihood derivation involves the calculation of a normalizing constant that is not available in closed-form but can easily be estimated. All calculations for the one-sided case are described in Appendix A of the Supplementary Material.
 
 \noindent\textbf{EM algorithm}\\
-Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,\tilde{w}\right\}$ and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
+Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},\tilde{w}\right\}$ and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
 \[
-\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s,|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}_u,\tilde{\beta}_u|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}_u,\tilde{\beta}_u,\tilde{\alpha}_s,\tilde{\beta}_s|\mathbf{y}_i)}.
+\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)}|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)}|\mathbf{y}_i)}.
 \]
 The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to
-$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  Starting from some initial values, the EM algorithm iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p_{ui}$'s and $p_{si}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
+$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  Starting from some initial values, the EM algorithm iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p^{(u)}_{i}$'s and $p^{(s)}_{i}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
 \noindent\textbf{MCMC algorithm}\\
 We generated realizations from the posterior distribution via MCMC algorithms~\citep{Gelfand:1996wc}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs samplings.
@@ -289,10 +289,10 @@ In addition, MIMOSA gave estimates of the observed false discovery rate that are
 %\label{fig:HVTN065}
 %\end{figure}
 
-We verified the assumption of a common distribution for the $p_{iu}$
-across subjects by examining the empirical estimates of $p_{iu}$ and the
-density of the Beta distribution with parameters $\hat{\alpha}_u,
-\hat{\beta}_u$ fitted to ENV-1-PTEG stimulated
+We verified the assumption of a common distribution for the $p^{(u)}_{i}$
+across subjects by examining the empirical estimates of $p^{(u)}_{i}$ and the
+density of the Beta distribution with parameters $\hat{\alpha}^{(u)},
+\hat{\beta}^{(u)}$ fitted to ENV-1-PTEG stimulated
 CD4+/IFN--$\gamma$+ T--cell ICS data (Supplementary Figure 2).
 
 \subsection{Single-cell gene expression}
@@ -334,7 +334,7 @@ We applied the MIMOSA model to a Fluidigm single-cell gene expression data set. 
 %
 \subsection{Simulation Studies}
 
-We examined the performance of the constrained ($p_s>p_u$) and unconstrained ($p_s \ne p_u$) beta-binomial mixture models via simulations. For the simulation, we used hyper--parameters estimated from a one-sided MIMOSA model fit to ICS data (IL2 univariate) from the primary immunogenicity time point. We simulated data from this constrained model with 200 observations, a response rate of 60\%, $N=$ 1,000, 5,000, and 10,000 events, with ten independent realizations of data for each $N$. We fit the one-sided MIMOSA model to this data. We evaluated the sensitivity and specificity of the model's ability to correctly identify observations from the ``responder'' and ``non-responder'' groups through analysis of ROC curves, and compared against Fisher's exact test, the likelihood ratio test, and log fold-change. We repeated this procedure for the two-sided models fit to two-sided data (Figure~\ref{fig:simulations} A,C). In addition, we examined the nominal \textit{vs.} observed FDR to assess the ability of each method to properly estimate the FDR (Figure~\ref{fig:simulations} B,D).
+We examined the performance of the constrained ($p^{(s)}>p^{(u)}$) and unconstrained ($p^{(s)} \ne p^{(u)}$) beta-binomial mixture models via simulations. For the simulation, we used hyper--parameters estimated from a one-sided MIMOSA model fit to ICS data (IL2 univariate) from the primary immunogenicity time point. We simulated data from this constrained model with 200 observations, a response rate of 60\%, $N=$ 1,000, 5,000, and 10,000 events, with ten independent realizations of data for each $N$. We fit the one-sided MIMOSA model to this data. We evaluated the sensitivity and specificity of the model's ability to correctly identify observations from the ``responder'' and ``non-responder'' groups through analysis of ROC curves, and compared against Fisher's exact test, the likelihood ratio test, and log fold-change. We repeated this procedure for the two-sided models fit to two-sided data (Figure~\ref{fig:simulations} A,C). In addition, we examined the nominal \textit{vs.} observed FDR to assess the ability of each method to properly estimate the FDR (Figure~\ref{fig:simulations} B,D).
 
 For both the constrained and unconstrained simulations, MIMOSA was superior to competing methods, including Fisher's exact test, with respect to sensitivity and specificity even at small values of $N$ (Figure~\ref{fig:simulations} A and C). Additionally, the estimated FDR for MIMOSA more closely reflected the nominal FDR compared to Fisher's exact test and competing methods (Figure~\ref{fig:simulations}, panels B, D).
 
@@ -384,38 +384,38 @@ To assess the sensitivity of the model to deviations from model assumptions, we 
 
 \section{Differential expression across biomarker combinations}
 \label{s:demarkercombos}
-Our beta-binomial model described in Section \ref{s:DE} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple biomarker combinations. As described in the data section, we now have counts for each biomarker combination, denoted by  $\mathbf{n}_{si}=\{n_{sik}: k=1,\dots,2^K\}$ and $\mathbf{n}_{ui}=\{n_{uik}: k=1,\dots,2^K\}$.
+Our beta-binomial model described in Section \ref{s:DE} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple biomarker combinations. As described in the data section, we now have counts for each biomarker combination, denoted by  $\mathbf{n}^{(s)}_{i}=\{n^{(s)}_{ik}: k=1,\dots,2^K\}$ and $\mathbf{n}^{(u)}_{i}=\{n^{(u)}_{ik}: k=1,\dots,2^K\}$.
 
 \subsection{Model}
 
 In our multivariate model, the beta distribution is replaced by a multinomial distribution, as follows:
 \begin{equation*}
- (\mathbf{n}_{ui}|\mathbf{p}_{ui},) \sim \mathcal{M}(N_{ui},\mathbf{p}_{ui})\quad\text{and}\quad (\mathbf{n}_{si}|\mathbf{p}_{si}) \sim \mathcal{M}(N_{si},\mathbf{p}_{si})\label{eq:mult_likeliehood}
+ (\mathbf{n}^{(u)}_{i}|\mathbf{p}^{(u)}_{i},) \sim \mathcal{M}(N^{(u)}_{i},\mathbf{p}^{(u)}_{i})\quad\text{and}\quad (\mathbf{n}^{(s)}_{i}|\mathbf{p}^{(s)}_{i}) \sim \mathcal{M}(N^{(s)}_{i},\mathbf{p}^{(s)}_{i})\label{eq:mult_likeliehood}
  \end{equation*}
 
-where $N_{\{s,u\}i}=\sum\limits_{k=1}\limits^{2^K} n_{\{s,u\}ik}$ are the number of cells collected and $\mathbf{p}_{ui}$ and $\mathbf{p}_{si}$ are the unknown proportions for the un-stimulated and stimulated samples, respectively.
+where $N^{\{s,u\}}_{i}=\sum\limits_{k=1}\limits^{2^K} n^{\{s,u\}}_{ik}$ are the number of cells collected and $\mathbf{p}^{(u)}_{i}$ and $\mathbf{p}^{(s)}_{i}$ are the unknown proportions for the un-stimulated and stimulated samples, respectively.
 
 \subsection{Prior}
 As in the one-biomarker case, we share information across subjects using an exchangeable prior on the unknown proportions. This time the beta priors are replaced by Dirichlet priors, such that
 \begin{align*}
-(\mathbf{p}_{ui}|z_i=0) &\sim \mathrm{Dir}(\boldsymbol{\alpha}_u),\\\nonumber
- (\mathbf{p}_{si}|z_i=1) \sim \mathrm{Dir}(\boldsymbol{\alpha}_s) \quad \text{and}\quad (\mathbf{p}_{ui}|z_i=1) &\sim \mathrm{Dir}(\boldsymbol{\alpha}_u),\end{align*}
-where the indicator variable $z_i$ is defined in Section \ref{ss:priors}, \textit{i.e.}, $z_i\sim\mathrm{Be}(w)$. As in the beta-binomial case, both an EM and MCMC algorithms can be used for parameter estimation. When using a fully Bayesian approach via MCMC, we use the same priors for $\boldsymbol{\alpha}_{\{u,s\}}$ and $w$ as for the beta-binomial model.
+(\mathbf{p}^{(u)}_{i}|z_i=0) &\sim \mathrm{Dir}(\boldsymbol{\alpha}^{(u)}),\\\nonumber
+ (\mathbf{p}^{(s)}_{i}|z_i=1) \sim \mathrm{Dir}(\boldsymbol{\alpha}^{(s)}) \quad \text{and}\quad (\mathbf{p}^{(u)}_{i}|z_i=1) &\sim \mathrm{Dir}(\boldsymbol{\alpha}^{(u)}),\end{align*}
+where the indicator variable $z_i$ is defined in Section \ref{ss:priors}, \textit{i.e.}, $z_i\sim\mathrm{Be}(w)$. As in the beta-binomial case, both an EM and MCMC algorithms can be used for parameter estimation. When using a fully Bayesian approach via MCMC, we use the same priors for $\boldsymbol{\alpha}^{\{u,s\}}$ and $w$ as for the beta-binomial model.
 
 \subsection{Parameter estimation}
 Again, to simplify the estimation problem, we make use of the marginal likelihoods that can be obtained in closed forms (see Appendix C of the Supplementary Material). For the null component, the marginal likelihood $\mathrm{L}_0$ is given by,
 \begin{align*}
-\mathrm{L}_0(\boldsymbol{\alpha}_u|\mathbf{n}_{si},\mathbf{n}_{ui}) &= \frac{ \mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \cdot \frac{N_{ui}!}{\prod_k n_{uik}!},
+\mathrm{L}_0(\boldsymbol{\alpha}^{(u)}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i}) &= \frac{ \mathrm{B}(\boldsymbol{\alpha}^{(u)}+\mathbf{n}^{(u)}_{i}+\mathbf{n}^{(s)}_{i})}{\mathrm{B}(\boldsymbol{\alpha}^{(u)})} \cdot \frac{N^{(s)}_{i}!}{\prod_k n^{(s)}_{ik}!} \cdot \frac{N^{(u)}_{i}!}{\prod_k n^{(u)}_{ik}!},
 \end{align*}
 where $\mathrm{B}$ is the $2^K$-dimensional Beta function defined as $\mathrm{B}(\boldsymbol{\alpha})=\prod_k\Gamma(\alpha_k)/\Gamma(\sum_k\alpha_k)$. Similarly the marginal likelihood for the alternative model is given by
 \[
-\mathrm{L}_1(\boldsymbol{\alpha}_u,\boldsymbol{\alpha}_{si}|\mathbf{n}_{si},\mathbf{n}_{ui}) =\frac{\mathrm{B}(\boldsymbol{\alpha}_{u}+\mathbf{n}_{ui}) \mathrm{B}(\boldsymbol{\alpha}_{s}+\mathbf{n}_{si})}{\mathrm{B}(\boldsymbol{\alpha}_s)\mathrm{B}(\boldsymbol{\alpha}_u)} \cdot \frac{N_{si}!}{\prod_k n_{sik}!} \frac{N_{ui}!}{\prod_k n_{uik}!}.
+\mathrm{L}_1(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}_{i}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i}) =\frac{\mathrm{B}(\boldsymbol{\alpha}^{(u)}+\mathbf{n}^{(u)}_{i}) \mathrm{B}(\boldsymbol{\alpha}^{(s)}+\mathbf{n}^{(s)}_{i})}{\mathrm{B}(\boldsymbol{\alpha}^{(s)})\mathrm{B}(\boldsymbol{\alpha}^{(u)})} \cdot \frac{N^{(s)}_{i}!}{\prod_k n^{(s)}_{ik}!} \frac{N^{(u)}_{i}!}{\prod_k n^{(u)}_{ik}!}.
 \]
 The estimation procedures (both EM and MCMC based) for the Dirichlet--multinomial distribution are the same as for the beta-binomial model except that the number of parameters to estimate is larger. We initialize the $z_i$ in the EM algorithm with the positivity calls from the multivariate Fisher's exact test. In our experience, the performance of the EM algorithm greatly deteriorates for $K>3$, and is more dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about our multivariate MCMC algorithm is given in Appendix C of the Supplementary Material.
 
 \subsection{Polyfunctionality in Fluidigm Single-Cell Gene Expression Data}
-As a proof-of-concept, we applied our multivariate MIMOSA model for two specific genes in the Fluidigm data, namely BIRC3 and CCL5. For this example, $K=2$, and we have four possible combinations.
-In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the BIRC3 and CCL5 genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and its expression increases upon stimulation. The typical approach to analyzing poly-functional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations  as in IL2$+$ and/or IFN-$\gamma+$) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is, the number of BIRC3-/CCL5+ cells decreases upon stimulation, while the number of BIRC3+/CCL5+ cells increases. When marginalizing over these cell populations, no difference is apparent in any of the samples. In contrast, the multivariate MIMOSA model tests all polyfunctional cell subpopulations simultaneously, and detects significant differences between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D, black labels). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the subject combinations, which requires multiplicity adjustment and a potential loss of power.
+As a proof-of-concept, we applied our multivariate MIMOSA model for two specific genes in the Fluidigm data, namely CCR7 and GZMK. For this example, $K=2$, and we have four possible combinations.
+In Figure~\ref{fig:polyfunctionality} we show heatmaps of the counts of cells expressing all combinations of the CCR7 and GZMK genes in unstimulated and stimulated samples (Figure~\ref{fig:polyfunctionality} A,B). Only CCL5 positive cells express BIRC3, and its expression increases upon stimulation. The typical approach to analyzing poly-functional populations from intracellular cytokine staining data (summing the counts over all possible polyfunctional cell populations  as in IL2$+$ and/or IFN-$\gamma+$) would not be appropriate in this case, since changes in the counts of these different cell populations occur in both directions. That is, the number of BIRC3-/CCL5+ cells decreases upon stimulation, while the number of BIRC3+/CCL5+ cells increases. When marginalizing over these cell populations, no difference is apparent in any of the samples. In contrast, the multivariate MIMOSA model tests all polyfunctional cell subpopulations simultaneously, and detects significant differences between stimulated and unstimulated conditions in 13 of the 16 samples (Figure~\ref{fig:polyfunctionality} D, black labels). Testing all combinations simultaneously is an advantage over performing multiple univariate tests on the subject combinations, which requires multiplicity adjustment and a potential loss of power.
 
 %\begin{figure}
 %\centering
@@ -479,7 +479,7 @@ Since the Fluidigm data set has a limited number of observations (100 cells and 
 \label{s:discussion}
 Experimentalists already have access to a myriad of single-cell assays such as flow cytometry, mass cytometry and multiplexed quantitative-PCR. The development of effective statistical methods to detect differences in gene or protein expression at the single-cell level is becoming increasingly important as single-cell assays will become more routine and  sequencing at the single-cell level eventually becomes practical~\citep{Ramskold:2012gj}. Current approaches for single-cell assays such as the t-test, $\chi^2$ test and Fisher's exact test are for the most part simplistic, and resulting inference can be quite sub-optimal, especially when the cell counts are small. Most importantly, these methods do not share information across samples, resulting in less power to detect true differences than empirical-Bayes and hierarchical modeling approaches, which are widely applied in the microarray literature~\citep{Kendziorski:2003uw,Newton:2001go,Smyth:2005iy,Gottardo:2006}. In addition, most of these methods are univariate in nature and inappropriate for high--dimensional, next--generation single-cell assays.
 
-The MIMOSA model presented here uses a mixture model framework of beta-binomial or Dirichlet-multinomial distributions to model counts in experimental subjects across multiple conditions (\textit{i.e.}, vaccine responders and non-responders). Information is shared across responders and non-responders through exchangeable beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Supplementary Figure 3). The univariate MIMOSA model based on the Beta-Binomial distribution allows us to constrain the alternative hypothesis to the case $p_s > p_u$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. This has proven to be useful for the ICS data where stimulation induced changes are expected to be one-sided.
+The MIMOSA model presented here uses a mixture model framework of beta-binomial or Dirichlet-multinomial distributions to model counts in experimental subjects across multiple conditions (\textit{i.e.}, vaccine responders and non-responders). Information is shared across responders and non-responders through exchangeable beta or Dirichlet priors, increasing the power to detect true differences between treatment and control conditions compared to Fisher's exact test, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Supplementary Figure 3). The univariate MIMOSA model based on the Beta-Binomial distribution allows us to constrain the alternative hypothesis to the case $p^{(s)} > p^{(u)}$, where the proportion of cells in the stimulated sample is strictly greater than the proportion of cells in the matched unstimulated sample. This has proven to be useful for the ICS data where stimulation induced changes are expected to be one-sided.
 
 Although we used two single-cell assay platforms as motivating examples, our MIMOSA model can be applied to any type of single-cell assay where cells are dichotomized into positive and negative sets, counted and compared across different conditions.
 In the case of the Fluidigm data, most analysis methods have been focused on identifying differences in the continuous part of the signal ignoring cells that are undetected (\textit{i.e.}, the gene is not expressed in the cell), or the information is used for pre-filtering~\citep{Flatz:2011jb}.
@@ -501,7 +501,7 @@ Unfortunately, the limited number of samples in the Fluidigm data prevented us f
 In the case of more than two biomarkers, the number of parameters to estimate for our Dirichlet--multinomial model is $2^{K+1}+1$, which is large even for moderate values of K. As an example, we would need both, a large number of subjects and a large number of events (cells) collected, to properly estimate the 33 parameters for $K=4$.
 
 A solution would be to explore alternative model parameterizations that could be used to reduce the number of required parameters.
-For example, one could assume that the hyper-parameters are constant across biomarker combinations, \textit{i.e.}, $\alpha_{\{s,u\}k}=\alpha_{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$.
+For example, one could assume that the hyper-parameters are constant across biomarker combinations, \textit{i.e.}, $\alpha^{\{s,u\}}_{k}=\alpha^{\{s,u\}}$ for all $k$, and the number of parameters would be reduced to $3$ for any $K$.
 As attractive as this might sound, such a model would be unrealistic given that certain stimulations are known to induce expression of certain biomarkers more than others.
 More exploratory work will need to be done in this area once high dimensional single-cell level data with large number of samples become available.
 
@@ -532,8 +532,8 @@ This work was supported by the Intramural Research Program of the  National Inst
 \multicolumn{2}{c}{Biomarker}\\
  & Negative & Positive \\
   \hline
-Stimulated &   $N_{si} - n_{si}$ &   $n_{si}$ \\
-Unstimulated &   $N_{ui}-n_{ui}$ &   $n_{ui}$ \\
+Stimulated &   $N^{(s)}_{i} - n^{(s)}_{i}$ &   $n^{(s)}_{i}$ \\
+Unstimulated &   $N^{(u)}_{i}-n^{(u)}_{i}$ &   $n^{(u)}_{i}$ \\
    \hline
 \end{tabular}
 }
