@@ -23,7 +23,7 @@
 };
 \node [right=of A] (B) {
 \begin{tikzpicture}
-\node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.5\columnwidth]{Figures/Fluidigm_plot2.pdf}};
+\node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.5\columnwidth]{Figures/FluidigmEmpiricalProps.pdf}};
 \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
 \node at (-0.1,1.1) [font=\tiny\sffamily] {B} ;
 \end{scope}
@@ -31,11 +31,20 @@
 };
 \node [below=of A] (C) {
 \begin{tikzpicture}
-\node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.5\columnwidth]{Figures/FluidigmFisher.pdf}};
+\node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.5\columnwidth]{Figures/FluidigmCombinedFit.pdf}};
 \begin{scope} [x={(baz.south east)},y={(baz.north west)}]
 \node at (-0.05,1) [font=\tiny\sffamily] {C} ;
 \end{scope}
 \end{tikzpicture}
 };
+\node [below=of B] (D) {
+\begin{tikzpicture}
+\node[anchor=south west, inner sep=0] at (0,0) (baz) {\includegraphics[width=0.5\columnwidth]{Figures/FluidigmFisher.pdf}};
+\begin{scope} [x={(baz.south east)},y={(baz.north west)}]
+\node at (-0.05,1) [font=\tiny\sffamily] {D} ;
+\end{scope}
+\end{tikzpicture}
+};
+
 \end{tikzpicture}
 \end{document}
