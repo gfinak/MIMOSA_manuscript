@@ -15,7 +15,7 @@
   \begin{tikzpicture} [auto, node distance=0cm]
    \node at (0,0) (A) {
 \begin{tikzpicture}
-    \node [anchor=south west] at (0,0) (foo) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_Onesided_ROC_5000.pdf}};
+    \node [anchor=south west] at (0,0) (foo) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_OneSided_ROC_50K.pdf}};
     \begin{scope}[x={(foo.south east)},y={(foo.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {A} ;
         \end{scope}
@@ -23,7 +23,7 @@
     };
     \node [right=of A] (B) {
     \begin{tikzpicture}
-    \node [anchor=south west] at (0,0) (bar) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_Onesided_FDR_5000.pdf}};
+    \node [anchor=south west] at (0,0) (bar) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_OneSided_FDR_50K.pdf}};
     \begin{scope}[x={(bar.south east)},y={(bar.north west)}]
     \node at (0,1) [font=\tiny\sffamily] {B} ;
     \end{scope}
@@ -31,7 +31,7 @@
     };
         \node [below=of A] (C) {
     \begin{tikzpicture}
-    \node [anchor=south west] at (0,0) (c) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_Twosided_ROC_5000.pdf}};
+    \node [anchor=south west] at (0,0) (c) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_TwoSided_ROC_50K.pdf}};
     \begin{scope}[x={(c.south east)},y={(c.north west)}]
     \node at (0,1) [font=\tiny\sffamily] {C} ;
     \end{scope}
@@ -39,7 +39,7 @@
     };
     \node [right=of C] (D) {
     \begin{tikzpicture}
-    \node [anchor=south west] at (0,0) (d) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_Twosided_FDR_5000.pdf}};
+    \node [anchor=south west] at (0,0) (d) {\includegraphics[width=0.5\columnwidth]{Figures/Sim_TwoSided_FDR_50K.pdf}};
     \begin{scope}[x={(d.south east)},y={(d.north west)}]
     \node at (0,1) [font=\tiny\sffamily] {D} ;
     \end{scope}
