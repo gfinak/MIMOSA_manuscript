@@ -385,6 +385,31 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
    \label{webfig:simulations_Nobs}
 \end{figure}
 \clearpage
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture} [auto,node distance=0cm]
+    \node at (0,0) (A) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/competeROC.pdf}};
+         \begin{scope} [x={(c.south east)},y={(c.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {A} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+     \node [below=of A] (B) {
+     \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/competeROCfdr.pdf}};
+        \begin{scope} [x={(d.south east)},y={(d.north west)}]
+            \node at (0,1) [font=\tiny\sffamily] {B} ;
+\end{scope}
+    \end{tikzpicture}
+    };
+  \end{tikzpicture}
+   \caption{Effect of deviations of the assumptions of 100\% true responders at the post-vaccine time point on A) ROC and B) FDR curves. The true response rate is shown in the gray box above each plot.
+}
+   \label{webfig:simulations_Nobs}
+\end{figure}
+\clearpage
 
 \bibliographystyle{biorefs}
 \bibliography{MIMOSA}
