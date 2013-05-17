@@ -352,15 +352,37 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
      counts. Data was simulated from a model where proportions were
      sampled from a truncated normal distribution over $[0,1]$ rather
      than a Beta distribution.  A) The average ROC from 10 simulation
-     with N=5,000 events. B) The average observed and nominal FDR from
-     10 simulations with N=5,000 events. C) Average ROC for N=1,000
-     events D) Average observed and nominal FDR for N=1,000 events.
-% MIMOSA fit to two-sided data were simulated from the standard model
-% with N=1,000 events. E) Average ROC curves from 10 simulations and
-% F) average observed vs nominal FDR from 10 simulations. This figure
-% appears in color in the electronic version of this article.
+     with N=50,000 events. B) The average observed and nominal FDR from
+     10 simulations with N=50,000 events. C) Average ROC for N=10,000
+     events D) Average observed and nominal FDR for N=10,000 events.
 }
    \label{webfig:simulations_trunc}
+\end{figure}
+\clearpage
+
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture} [auto,node distance=0cm]
+    \node at (0,0) (A) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/Sim_OneSided_ROC_varyNobs.pdf}};
+         \begin{scope} [x={(c.south east)},y={(c.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {A} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+     \node [below=of A] (B) {
+     \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/Sim_OneSided_FDR_varyNobs.pdf}};
+        \begin{scope} [x={(d.south east)},y={(d.north west)}]
+            \node at (0,1) [font=\tiny\sffamily] {B} ;
+\end{scope}
+    \end{tikzpicture}
+    };
+  \end{tikzpicture}
+   \caption{One--sided MIMOSA model fit to simulated data with 50K events and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
+}
+   \label{webfig:simulations_Nobs}
 \end{figure}
 \clearpage
 
