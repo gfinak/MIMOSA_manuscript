@@ -1,47 +1,49 @@
-This is BibTeX, Version 0.99d (TeX Live 2010)
+This is BibTeX, Version 0.99d (TeX Live 2012)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MIMOSA.aux
 The style file: biorefs.bst
 Database file #1: MIMOSA.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 32 entries,
+Warning--no number and no volume in McDavid2012
+You've used 33 entries,
             3361 wiz_defined-function locations,
-            932 strings with 14875 characters,
-and the built_in function-call counts, 25466 in all, are:
-= -- 1981
-> -- 2227
+            935 strings with 15228 characters,
+and the built_in function-call counts, 26340 in all, are:
+= -- 2043
+> -- 2321
 < -- 0
-+ -- 699
-- -- 762
-* -- 2718
-:= -- 4538
-add.period$ -- 128
-call.type$ -- 32
-change.case$ -- 383
-chr.to.int$ -- 32
-cite$ -- 32
-duplicate$ -- 512
-empty$ -- 1317
-format.name$ -- 944
-if$ -- 4655
++ -- 732
+- -- 788
+* -- 2828
+:= -- 4689
+add.period$ -- 132
+call.type$ -- 33
+change.case$ -- 399
+chr.to.int$ -- 33
+cite$ -- 34
+duplicate$ -- 528
+empty$ -- 1352
+format.name$ -- 984
+if$ -- 4818
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 34
-newline$ -- 161
-num.names$ -- 320
-pop$ -- 296
+missing$ -- 35
+newline$ -- 166
+num.names$ -- 330
+pop$ -- 309
 preamble$ -- 1
-purify$ -- 545
+purify$ -- 566
 quote$ -- 0
-skip$ -- 508
+skip$ -- 525
 stack$ -- 0
-substring$ -- 1292
-swap$ -- 126
+substring$ -- 1311
+swap$ -- 130
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 496
-warning$ -- 0
-while$ -- 213
+type$ -- 512
+warning$ -- 1
+while$ -- 210
 width$ -- 0
-write$ -- 513
+write$ -- 529
+(There was 1 warning)

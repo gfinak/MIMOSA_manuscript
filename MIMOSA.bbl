@@ -126,6 +126,15 @@
   using replicated gene expression profiles.
 \newblock {\em Statistics in Medicine\/}~\textbf{22}(24), 3899--3914.
 
+\bibitem[McDavid \emph{and others}(2012)McDavid, Finak, Chattopadyay,
+  Dominguez, Lamoreaux, Ma, Roederer and Gottardo]{McDavid2012}
+\textsc{McDavid, Andrew, Finak, Greg, Chattopadyay, Pratip~K., Dominguez,
+  Maria, Lamoreaux, Laurie, Ma, Steven~S., Roederer, Mario and Gottardo,
+  Raphael}. (2012, October).
+\newblock {Data Exploration, Quality Control and Testing in Single-Cell
+  qPCR-Based Gene Expression Experiments}.
+\newblock {\em Bioinformatics\/}, 9.
+
 \bibitem[McKinstry \emph{and others}(2010)McKinstry, Strutt and
   Swain]{McKinstry:2010ei}
 \textsc{McKinstry, K~Kai, Strutt, Tara~M and Swain, Susan~L}. (2010, May).
@@ -168,6 +177,14 @@
 \newblock {On differential variability of expression ratios: improving
   statistical inference about gene expression changes from microarray data.}
 \newblock {\em Journal of Computational Biology\/}~\textbf{8}(1), 37--52.
+
+\bibitem[Newton \emph{and others}(2004)Newton, Noueiry, Sarkar and
+  Ahlquist]{Newton2004}
+\textsc{Newton, Michael~A, Noueiry, Amine, Sarkar, Deepayan and Ahlquist,
+  Paul}. (2004, April).
+\newblock {Detecting differential gene expression with a semiparametric
+  hierarchical mixture method.}
+\newblock {\em Biostatistics (Oxford, England)\/}~\textbf{5}(2), 155--76.
 
 \bibitem[Peiperl \emph{and others}(2010)Peiperl, Morgan, Moodie, Li, Russell,
   Graham, Tomaras, De~Rosa, McElrath and {the NIAID HIV Vaccine Trials
@@ -240,12 +257,6 @@
 \newblock {Use of within-array replicate spots for assessing differential
   expression in microarray experiments.}
 \newblock {\em Bioinformatics (Oxford, England)\/}~\textbf{21}(9), 2067--2075.
-
-\bibitem[Storey(2002)Storey]{Storey:2002vj}
-\textsc{Storey, John}. (2002).
-\newblock {A Direct Approach to False Discovery Rates}.
-\newblock {\em Journal of the Royal Statistical Society. Series B, Statistical
-  Methodology\/}~\textbf{64}(3), 479--498.
 
 \bibitem[Trigona \emph{and others}(2003)Trigona, Clair, Persaud, Punt,
   Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu and Shiver]{Trigona:2003}
