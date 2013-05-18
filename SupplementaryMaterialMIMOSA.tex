@@ -411,6 +411,24 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 \end{figure}
 \clearpage
 
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture} [auto,node distance=0cm]
+    \node at (0,0) (A) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/volcanoplots.pdf}};
+         \begin{scope} [x={(c.south east)},y={(c.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {A} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+    \end{tikzpicture}
+   \caption{Volcano plots of effect size vs posterior probability of response for each model fit to each cytokine in the ICS data set. Green points indicate subjects called responders for that cytokine and stimulation at a 1\% FDR threshold (adjusted across subjects within cytokine subset). Red points indicate non-responders.
+}
+   \label{webfig:simulations_Nobs}
+\end{figure}
+\clearpage
+
 \bibliographystyle{biorefs}
 \bibliography{MIMOSA}
 
