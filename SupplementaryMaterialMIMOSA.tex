@@ -241,6 +241,31 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 \label{webfig:HVTN065Results}
 \end{figure}
 
+
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture} [auto,node distance=0cm]
+    \node at (0,0) (A) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/competeROC.pdf}};
+         \begin{scope} [x={(c.south east)},y={(c.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {A} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+     \node [below=of A] (B) {
+     \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/competeROCfdr.pdf}};
+        \begin{scope} [x={(d.south east)},y={(d.north west)}]
+            \node at (0,1) [font=\tiny\sffamily] {B} ;
+\end{scope}
+    \end{tikzpicture}
+    };
+  \end{tikzpicture}
+   \caption{Effect of deviations of the assumptions of 100\% true responders at the post-vaccine time point on A) ROC and B) FDR curves. The true response rate is shown in the gray box above each plot.
+}
+   \label{webfig:simulations_competeroc}
+\end{figure}
 %\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
 %   \centering
 %%   \includegraphics[width=.75\columnwidth]{Figures/2}\\
@@ -277,6 +302,34 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
       stimulated, IFN--$\gamma$+, CD4+ T--cells, demonstrating that the assumption of a common distribution for $p_{iu}$ across subjects is reasonable. }
    \label{fig:empiricalpdist}
  \end{figure}
+
+
+
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tikzpicture} [auto,node distance=0cm]
+    \node at (0,0) (A) {
+    \begin{tikzpicture}
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/Sim_OneSided_ROC_varyNobs.pdf}};
+         \begin{scope} [x={(c.south east)},y={(c.north west)}]
+                 \node at (0,1) [font=\tiny\sffamily] {A} ;
+	\end{scope}
+     \end{tikzpicture}
+     };
+     \node [below=of A] (B) {
+     \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/Sim_OneSided_FDR_varyNobs.pdf}};
+        \begin{scope} [x={(d.south east)},y={(d.north west)}]
+            \node at (0,1) [font=\tiny\sffamily] {B} ;
+\end{scope}
+    \end{tikzpicture}
+    };
+  \end{tikzpicture}
+   \caption{One--sided MIMOSA model fit to simulated data with 50K events and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
+}
+   \label{webfig:simulations_Nobs}
+\end{figure}
+\clearpage
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page
@@ -360,56 +413,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 \end{figure}
 \clearpage
 
-\begin{figure} %  figure placement: here, top, bottom, or page
-   \centering
-\begin{tikzpicture} [auto,node distance=0cm]
-    \node at (0,0) (A) {
-    \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/Sim_OneSided_ROC_varyNobs.pdf}};
-         \begin{scope} [x={(c.south east)},y={(c.north west)}]
-                 \node at (0,1) [font=\tiny\sffamily] {A} ;
-	\end{scope}
-     \end{tikzpicture}
-     };
-     \node [below=of A] (B) {
-     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/Sim_OneSided_FDR_varyNobs.pdf}};
-        \begin{scope} [x={(d.south east)},y={(d.north west)}]
-            \node at (0,1) [font=\tiny\sffamily] {B} ;
-\end{scope}
-    \end{tikzpicture}
-    };
-  \end{tikzpicture}
-   \caption{One--sided MIMOSA model fit to simulated data with 50K events and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
-}
-   \label{webfig:simulations_Nobs}
-\end{figure}
-\clearpage
-\begin{figure} %  figure placement: here, top, bottom, or page
-   \centering
-\begin{tikzpicture} [auto,node distance=0cm]
-    \node at (0,0) (A) {
-    \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.75	\columnwidth]{Figures/competeROC.pdf}};
-         \begin{scope} [x={(c.south east)},y={(c.north west)}]
-                 \node at (0,1) [font=\tiny\sffamily] {A} ;
-	\end{scope}
-     \end{tikzpicture}
-     };
-     \node [below=of A] (B) {
-     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.75\columnwidth]{Figures/competeROCfdr.pdf}};
-        \begin{scope} [x={(d.south east)},y={(d.north west)}]
-            \node at (0,1) [font=\tiny\sffamily] {B} ;
-\end{scope}
-    \end{tikzpicture}
-    };
-  \end{tikzpicture}
-   \caption{Effect of deviations of the assumptions of 100\% true responders at the post-vaccine time point on A) ROC and B) FDR curves. The true response rate is shown in the gray box above each plot.
-}
-   \label{webfig:simulations_Nobs}
-\end{figure}
-\clearpage
+
 
 \begin{figure} %  figure placement: here, top, bottom, or page
    \centering
