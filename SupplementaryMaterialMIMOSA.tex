@@ -325,7 +325,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     \end{tikzpicture}
     };
   \end{tikzpicture}
-   \caption{One--sided MIMOSA model fit to simulated data with 50K events and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
+   \caption{One--sided MIMOSA model fit to simulated data with 50K cells and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
 }
    \label{webfig:simulations_Nobs}
 \end{figure}
@@ -353,7 +353,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 %    };
     \node at (0,0) (A) {
     \begin{tikzpicture}
-     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_50K.pdf}};
+     \node[anchor=south west,inner sep=0] at (0,0) (c) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_10K.pdf}};
          \begin{scope} [x={(c.south east)},y={(c.north west)}]
                  \node at (0,1) [font=\tiny\sffamily] {A} ;
 	\end{scope}
@@ -361,7 +361,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
      };
      \node [right=of A] (B) {
      \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_50K.pdf}};
+    \node[anchor=south west, inner sep=0] at (0,0) (d) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_10K.pdf}};
         \begin{scope} [x={(d.south east)},y={(d.north west)}]
             \node at (0,1) [font=\tiny\sffamily] {B} ;
 \end{scope}
@@ -369,7 +369,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     };
   \node [below=of A] (C) {
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_10K.pdf}};
+    \node[anchor=south west,inner sep=0] at (0,0) (e) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_ROC_50K.pdf}};
     \begin{scope} [x={(e.south east)},y={(e.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {C} ;
     \end{scope}
@@ -377,7 +377,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     };
     \node [right=of C] (D) {
     \begin{tikzpicture}
-    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_10K.pdf}};
+    \node[anchor=south west, inner sep=0] at (0,0) (f) {\includegraphics[width=0.4\columnwidth]{Figures/Sim_Truncated_FDR_50K.pdf}};
         \begin{scope} [x={(f.south east)},y={(f.north west)}]
         \node at (0,1) [font=\tiny\sffamily] {D} ;
         \end{scope}
@@ -400,14 +400,14 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 %     \end{tikzpicture}
 %     };
  \end{tikzpicture}
-   \caption{Unconstrained MIMOSA model fit to data from a model
-     violating model assumptions and to two-sided data with small
-     counts. Data was simulated from a model where proportions were
+   \caption{Unconstrained MIMOSA model fit to two-sided data with small
+     counts  and to  data from a model
+     violating model assumptions.  For two-sided data A) the average ROC from 10 simulation
+     with N=10,000 cells. B) the average observed and nominal FDR from
+     10 simulations with N=10,000 cells. Data was simulated from a model where proportions were
      sampled from a truncated normal distribution over $[0,1]$ rather
-     than a Beta distribution.  A) The average ROC from 10 simulation
-     with N=50,000 events. B) The average observed and nominal FDR from
-     10 simulations with N=50,000 events. C) Average ROC for N=10,000
-     events D) Average observed and nominal FDR for N=10,000 events.
+     than a Beta distribution. C) Average ROC for N=50,000
+     cells D) Average observed and nominal FDR for N=50,000 cells.
 }
    \label{webfig:simulations_trunc}
 \end{figure}
