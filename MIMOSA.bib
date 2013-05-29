@@ -26,8 +26,10 @@ arxivId = {1210.1226},
 author = {McDavid, Andrew and Finak, Greg and Chattopadyay, Pratip K. and Dominguez, Maria and Lamoreaux, Laurie and Ma, Steven S. and Roederer, Mario and Gottardo, Raphael},
 eprint = {1210.1226},
 journal = {Bioinformatics},
-month = oct,
+month = dec,
 pages = {9},
+volume={29},
+number={4},
 title = {{Data Exploration, Quality Control and Testing in Single-Cell qPCR-Based Gene Expression Experiments}},
 url = {http://bioinformatics.oxfordjournals.org/content/early/2012/12/20/bioinformatics.bts714.long},
 year = {2012}
@@ -131,13 +133,6 @@ author = "Alexander van Oudenaarden"
 }
 
 
-@book{Gelfand:1996wc,
-author = {Gelfand, AE},
-title = {{Markov Chain Monte Carlo in practice, edited by Gilks WR}},
-publisher = {Richardson S.},
-year = {1996}
-}
-
 
 @article{Goonetilleke:2006jk,
 author = {Goonetilleke Nilu and Moore, Stephen and Dally, Len and Winstone, Nicola and Cebere, Inese and Mahmoud, Abdul and Pinheiro, Susana and Gillespie, Geraldine and Brown, Denise and Loach, Vanessa and Roberts, Joanna and Guimaraes-Walker, Ana and Hayes, Peter and Loughran, Kelley and Smith, Carole and De Bont, Jan and Verlinde, Carl and Vooijs, Danii and Schmidt, Claudia and Boaz, Mark and Gilmour, Jill and Fast, Pat and others},
@@ -153,9 +148,9 @@ month = may
 
 
 
-@book{Raftery:1996ws,
-author = {Raftery, AE},
-title = {{Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia Richardson, D. J. Spiegelhalter}},
+@book{Walter1996,
+author = {Gilks, Walter R and Richardson, Sylvia and Spiegelhalter, D. J.},
+title = {{Markov Chain Monte Carlo in Practice}},
 publisher = {Chapman Hall / CRC Press},
 year = {1996},
 edition = {First CRC Press Reprint},
@@ -226,6 +221,28 @@ year = {2012},
 volume = {792},
 pages = {173--183}
 }
+
+    @article{Benjamini1995,
+     jstor_articletype = {research-article},
+     title = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},
+     author = {Benjamini, Yoav and Hochberg, Yosef},
+     journal = {Journal of the Royal Statistical Society. Series B (Methodological)},
+     jstor_issuetitle = {},
+     volume = {57},
+     number = {1},
+     jstor_formatteddate = {1995},
+     pages = {pp. 289-300},
+     url = {http://www.jstor.org/stable/2346101},
+     ISSN = {00359246},
+     abstract = {The common approach to the multiplicity problem calls for controlling the familywise error rate (FWER). This approach, though, has faults, and we point out a few. A different approach to problems of multiple significance testing is presented. It calls for controlling the expected proportion of falsely rejected hypotheses-the false discovery rate. This error rate is equivalent to the FWER when all hypotheses are true but is smaller otherwise. Therefore, in problems where the control of the false discovery rate rather than that of the FWER is desired, there is potential for a gain in power. A simple sequential Bonferroni-type procedure is proved to control the false discovery rate for independent test statistics, and a simulation study shows that the gain in power is substantial. The use of the new procedure and the appropriateness of the criterion are illustrated with examples.},
+     language = {English},
+     year = {1995},
+     publisher = {Wiley for the Royal Statistical Society},
+     copyright = {Copyright © 1995 Royal Statistical Society},
+    }
+
+
+
 @article{Newton2004,
 abstract = {Mixture modeling provides an effective approach to the differential expression problem in microarray data analysis. Methods based on fully parametric mixture models are available, but lack of fit in some examples indicates that more flexible models may be beneficial. Existing, more flexible, mixture models work at the level of one-dimensional gene-specific summary statistics, and so when there are relatively few measurements per gene these methods may not provide sensitive detectors of differential expression. We propose a hierarchical mixture model to provide methodology that is both sensitive in detecting differential expression and sufficiently flexible to account for the complex variability of normalized microarray data. EM-based algorithms are used to fit both parametric and semiparametric versions of the model. We restrict attention to the two-sample comparison problem; an experiment involving Affymetrix microarrays and yeast translation provides the motivating case study. Gene-specific posterior probabilities of differential expression form the basis of statistical inference; they define short gene lists and false discovery rates. Compared to several competing methodologies, the proposed methodology exhibits good operating characteristics in a simulation study, on the analysis of spike-in data, and in a cross-validation calculation.},
 author = {Newton, Michael A and Noueiry, Amine and Sarkar, Deepayan and Ahlquist, Paul},

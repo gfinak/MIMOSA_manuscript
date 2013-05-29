@@ -15,6 +15,13 @@
   Across a Human Hematopoietic Continuum}.
 \newblock {\em Science (New York, NY)\/}~\textbf{332}(6030), 687.
 
+\bibitem[Benjamini and Hochberg(1995)Benjamini and Hochberg]{Benjamini1995}
+\textsc{Benjamini, Yoav and Hochberg, Yosef}. (1995).
+\newblock Controlling the false discovery rate: A practical and powerful
+  approach to multiple testing.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/}~\textbf{57}(1), pp. 289--300.
+
 \bibitem[Betts \emph{and others}(2006)Betts, Nason, West, De~Rosa, Migueles,
   Abraham, Lederman, Benito, Goepfert, Connors, Roederer and
   Koup]{Betts:2006dw}
@@ -62,11 +69,6 @@
 \newblock {\em Proceedings of the National Academy of
   Sciences\/}~\textbf{108}(14), 5724--5729.
 
-\bibitem[Gelfand(1996)Gelfand]{Gelfand:1996wc}
-\textsc{Gelfand, AE}. (1996).
-\newblock {\em {Markov Chain Monte Carlo in practice, edited by Gilks WR}\/}.
-  Richardson S.
-
 \bibitem[Gentleman \emph{and others}(2004)Gentleman, Carey, Bates, Bolstad,
   Dettling, Dudoit, Ellis, Gautier, Ge and Gentry]{Gentleman:2004tt}
 \textsc{Gentleman, R, Carey, V, Bates, D, Bolstad, B, Dettling, M, Dudoit, S,
@@ -74,6 +76,13 @@
 \newblock {Bioconductor: open software development for computational biology
   and bioinformatics}.
 \newblock {\em Genome Biology\/}~\textbf{5}(10), R80.
+
+\bibitem[Gilks \emph{and others}(1996)Gilks, Richardson and
+  Spiegelhalter]{Walter1996}
+\textsc{Gilks, Walter~R, Richardson, Sylvia and Spiegelhalter, D.~J.} (1996).
+\newblock {\em {Markov Chain Monte Carlo in Practice}\/}, First CRC Press
+  Reprint edition. 2000 N.W. Corporate Blvd. Boca Raton, Florida, 33431:
+  Chapman Hall / CRC Press.
 
 \bibitem[Goepfert \emph{and others}(2011)Goepfert, Elizaga, Sato, Qin,
   Cardinali, Hay, Hural, DeRosa, DeFawe, Tomaras, Montefiori, Xu, Lai, Kalams,
@@ -130,10 +139,10 @@
   Dominguez, Lamoreaux, Ma, Roederer and Gottardo]{McDavid2012}
 \textsc{McDavid, Andrew, Finak, Greg, Chattopadyay, Pratip~K., Dominguez,
   Maria, Lamoreaux, Laurie, Ma, Steven~S., Roederer, Mario and Gottardo,
-  Raphael}. (2012, October).
+  Raphael}. (2012, December).
 \newblock {Data Exploration, Quality Control and Testing in Single-Cell
   qPCR-Based Gene Expression Experiments}.
-\newblock {\em Bioinformatics\/}, 9.
+\newblock {\em Bioinformatics\/}~\textbf{29}(4), 9.
 
 \bibitem[McKinstry \emph{and others}(2010)McKinstry, Strutt and
   Swain]{McKinstry:2010ei}
@@ -219,12 +228,6 @@
 \textsc{Proschan, Michael~A and Nason, Martha}. (2009, March).
 \newblock {Conditioning in 2 x 2 tables.}
 \newblock {\em Biometrics\/}~\textbf{65}(1), 316--322.
-
-\bibitem[Raftery(1996)Raftery]{Raftery:1996ws}
-\textsc{Raftery, AE}. (1996).
-\newblock {\em {Markov Chain Monte Carlo in Practice - Walter R. Gilks, Sylvia
-  Richardson, D. J. Spiegelhalter}\/}, First CRC Press Reprint edition. 2000
-  N.W. Corporate Blvd. Boca Raton, Florida, 33431: Chapman Hall / CRC Press.
 
 \bibitem[Raftery and Lewis(1992)Raftery and Lewis]{Raftery:1992vp}
 \textsc{Raftery, Adrian~E and Lewis, Steven~M}. (1992, November).

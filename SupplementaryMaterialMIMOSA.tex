@@ -245,7 +245,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
    % \node at (0,-11.75) [font=\small\sffamily] {I} ;
    % \node at (8,-11.75) [font=\small\sffamily] {J} ;
     \end{tikzpicture}
-   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial. This figure appears in color in the electronic version of this article.}
+   \caption{Comparison of MIMOSA on other cytokines and cytokine combinations for ENV-1-PTEG stimulated CD4+ T-cells from the HVTN065 trial.}
 \label{webfig:HVTN065Results}
 \end{figure}
 
@@ -333,8 +333,7 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
     \end{tikzpicture}
     };
   \end{tikzpicture}
-   \caption{One--sided MIMOSA model fit to simulated data with 50K cells and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. This figure appears in color in the electronic version of this article.
-}
+   \caption{One--sided MIMOSA model fit to simulated data with 50K cells and varying values of I (number of observations). A) Average ROC curves from 10 simulations for 20, 50 and 100 observations. B) Average observed and nominal FDR from 10 simulations for 20, 50, and 100 observations. }
    \label{webfig:simulations_Nobs}
 \end{figure}
 \clearpage
@@ -421,6 +420,30 @@ where $\pi$ is the prior distribution of the parameter, and $\boldsymbol{\alpha}
 \end{figure}
 \clearpage
 
+\begin{figure} %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics{TIKZFig5.eps}
+%\begin{tikzpicture} [auto, node distance=0cm]
+%\node at (0,0) (A) {
+%\begin{tikzpicture}
+%    \node[anchor=south west, inner sep=0] at (0,0) (foo) {\includegraphics[width=0.47\columnwidth]{Figures/Multivariate_Sims_ROC_rev.pdf}};
+%\begin{scope} [x={(foo.south east)},y={(foo.north west)}]
+%    \node at (0,1) [font=\small\sffamily] {A} ;
+%\end{scope}
+%\end{tikzpicture}
+%};
+%\node [right=of A] (B) {
+%\begin{tikzpicture}
+%   \node[anchor=south west, inner sep=0] at (0,0) (bar) {\includegraphics[width=0.47\columnwidth]{Figures/Multivariate_Sims_FDR_rev.pdf}};
+%   \begin{scope} [x={(bar.south east)},y={(bar.north west)}]
+%       \node at (0,1) [font=\small\sffamily] {B} ;
+%\end{scope}
+%\end{tikzpicture}
+%};
+%\end{tikzpicture}
+   \caption{Multivariate simulations from a two-sided model. Ten, eight-dimensional data sets were simulated from a two-sided model with an effect sizes of $2.5\times 10^{-3}$ and $-2.5\times 10^{-3}$ in two of the eight dimensions (N=1,500). Multivariate MIMOSA was compared against Fisher's exact test, and the likelihood ratio test. A) Average ROC curves for the competing methods over 10 simulations. B) Average observed and nominal false discovery rate for each method over 10 simulations. This figure appears in color in the electronic version of this article.}
+   \label{fig:mvsimulations}
+\end{figure}
 
 
 \begin{figure} %  figure placement: here, top, bottom, or page

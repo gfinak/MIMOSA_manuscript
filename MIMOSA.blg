@@ -4,46 +4,44 @@ The top-level auxiliary file: MIMOSA.aux
 The style file: biorefs.bst
 Database file #1: MIMOSA.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Warning--no number and no volume in McDavid2012
 You've used 33 entries,
             3361 wiz_defined-function locations,
-            935 strings with 15228 characters,
-and the built_in function-call counts, 26340 in all, are:
-= -- 2043
-> -- 2321
+            939 strings with 15314 characters,
+and the built_in function-call counts, 26683 in all, are:
+= -- 2085
+> -- 2348
 < -- 0
-+ -- 732
-- -- 788
-* -- 2828
-:= -- 4689
++ -- 748
+- -- 797
+* -- 2887
+:= -- 4729
 add.period$ -- 132
 call.type$ -- 33
-change.case$ -- 399
+change.case$ -- 403
 chr.to.int$ -- 33
-cite$ -- 34
+cite$ -- 33
 duplicate$ -- 528
-empty$ -- 1352
-format.name$ -- 984
-if$ -- 4818
+empty$ -- 1364
+format.name$ -- 1007
+if$ -- 4890
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 35
-newline$ -- 166
+missing$ -- 34
+newline$ -- 167
 num.names$ -- 330
-pop$ -- 309
+pop$ -- 308
 preamble$ -- 1
-purify$ -- 566
+purify$ -- 569
 quote$ -- 0
-skip$ -- 525
+skip$ -- 527
 stack$ -- 0
-substring$ -- 1311
-swap$ -- 130
+substring$ -- 1344
+swap$ -- 131
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 512
-warning$ -- 1
-while$ -- 210
+type$ -- 520
+warning$ -- 0
+while$ -- 204
 width$ -- 0
-write$ -- 529
-(There was 1 warning)
+write$ -- 530
