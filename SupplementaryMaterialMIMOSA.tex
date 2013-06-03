@@ -134,6 +134,13 @@ where $L$ is the complete marginal likelihood conditional on $\mathbf{z}$ define
 \]
 and $\pi$ is the prior distribution of $\alpha^{(u)}$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha^{(s)},\beta^{(s)},\beta^{(u)}$. In our case each parameter has the same exponential prior with mean $1,000$
 
+
+\noindent\textbf{Implementation Details for MCMC Algorithm}\\
+We used the method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
+the number of iterations, based on a short pilot run of the
+sampler. For each dataset presented in the manuscript, we calculated that no more
+than about 100,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. To leave some margin, we used 200,000 iterations after 50,000 burn-in iterations for each dataset explored here.
+
 \subsection{Computational details for the Dirichlet-multinomial model}
 \noindent\textbf{Marginal likelihood derivations}\\
 Because our Dirichlet-multinomial is a direct extension of the beta-binomial model, the marginal likelihoods are obtained in the exact same fashion.

@@ -59,7 +59,7 @@
  \author{GREG FINAK$^{1\ast}$, 
  ANDREW MCDAVID$^{1}$,
  PRATIP CHATTOPADHYAY$^{3}$,
- MARIA DOMINQUEZ$^{3}$,
+ MARIA DOMINGUEZ$^{3}$,
  STEVE DE ROSA$^{1,2}$,
  MARIO ROEDERER$^{3}$,\\
  RAPHAEL GOTTARDO$^{1}$
@@ -83,7 +83,7 @@
 
 \begin{abstract}
 {Blood and tissue are composed of many functionally distinct cell subsets. In immunological studies, these can only be measured accurately using single-cell assays. The characterization of these small cell subsets is crucial to decipher system level biological changes. For this reason, an increasing number of studies rely on assays that provide single-cell measurements of multiple genes and proteins from bulk cell samples. A common problem in the analysis of such data is to identify biomarkers (or combinations of biomarkers) that are differentially expressed between two biological conditions (\textit{e.g.}, before/after stimulation), where expression is defined as the proportion of cells expressing that biomarker (or biomarker combination) in the cell subset(s) of interest.
-Here, we present a Bayesian hierarchical framework based on a beta-binomial mixture model for testing for differential biomarker expression using single-cell assays. Our model allows the inference to be subject specific, as is typically required when accessing vaccine responses, while borrowing strength across subjects through common prior distributions. We propose two approaches for parameter estimation: an empirical-Bayes approach using an Expectation-Maximization algorithm and a fully Bayesian one based on a Markov chain Monte Carlo algorithm. We compare our method against classical approaches for single-cell assays including Fisher's exact test, a likelihood ratio test, and basic log-fold changes. Using several experimental assays measuring proteins or genes at the single-cell level and simulations, we show that our method has higher sensitivity and specificity than alternative methods. Additional simulations show that our framework is also robust to model misspecification. Finally, we demonstrate how our approach can be extended to testing multivariate differential expression across multiple biomarker combinations using a Dirichlet-multinomial model and illustrate this approach using single-cell gene expression data and simulations.}{Expectations-Maximization, Markov Chain Monte Carlo,
+Here, we present a Bayesian hierarchical framework based on a beta-binomial mixture model for testing for differential biomarker expression using single-cell assays. Our model allows the inference to be subject specific, as is typically required when assessing vaccine responses, while borrowing strength across subjects through common prior distributions. We propose two approaches for parameter estimation: an empirical-Bayes approach using an Expectation-Maximization algorithm and a fully Bayesian one based on a Markov chain Monte Carlo algorithm. We compare our method against classical approaches for single-cell assays including Fisher's exact test, a likelihood ratio test, and basic log-fold changes. Using several experimental assays measuring proteins or genes at the single-cell level and simulations, we show that our method has higher sensitivity and specificity than alternative methods. Additional simulations show that our framework is also robust to model misspecification. Finally, we demonstrate how our approach can be extended to testing multivariate differential expression across multiple biomarker combinations using a Dirichlet-multinomial model and illustrate this approach using single-cell gene expression data and simulations.}{Expectations-Maximization, Markov Chain Monte Carlo,
 Marginal Likelihood, Bayesian Modeling, Hierarchical Modeling,
 Immunology, Flow Cytometry, Single-Cell Gene Expression, MIMOSA}
 \end{abstract}
@@ -93,7 +93,7 @@ Immunology, Flow Cytometry, Single-Cell Gene Expression, MIMOSA}
 \clearpage
 \section{Introduction}
 \label{s:intro}
-Cell populations, particularly in the immune system, are never truly homogeneous. Individual cells may be in different biochemical states that define functional but measurable differences between them. This single-cell heterogeneity is informative, but lost in assays that measure cell mixtures (\textit{e.g.,} gene expression of bulk samples). For this reason, single-cell assays (\textit{e.g.,} flow, mass cytometry, single-cell gene expression) are an important tool in immunology, providing a functional and phenotypic snapshot of the immune system at a given time. These assays typically measure multiple (from tens to 100's) of biomarkers (\textit{e.g.,} DNA content, RNA or protein expression levels, or protein phosphorylation) simultaneously on individual cells in a heterogeneous mixture such as whole blood or peripheral blood mononuclear cells  (PBMC), and are used for immune monitoring of disease, vaccine research, and diagnosis of hematological malignancies~\citep{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}. \citet{McDavid2012} review the special considerations for analyzing single cell assay data. In general, special treatment of single-cell level data is warranted in order to preserve information about cell population heterogeneity.
+Cell populations, particularly in the immune system, are never truly homogeneous. Individual cells may be in different biochemical states that define functional but measurable differences between them. This single-cell heterogeneity is informative, but lost in assays that measure cell mixtures (\textit{e.g.,} bulk gene expression). For this reason, single-cell assays (\textit{e.g.,} flow, mass cytometry, single-cell gene expression) are an important tool in immunology, providing a functional snapshot of the immune system at a given time. These assays typically measure multiple biomarkers (\textit{e.g.,} DNA content, RNA or protein expression levels, or protein phosphorylation) simultaneously on individual cells in a heterogeneous mixture such as whole blood or peripheral blood mononuclear cells  (PBMC), and are used for immune monitoring of disease, vaccine research, and diagnosis of hematological malignancies~\citep{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}. \citet{McDavid2012} review the special considerations for analyzing single cell assay data. In general, special treatment of single-cell level data is warranted in order to preserve information about cell population heterogeneity.
 %
 %Cell populations, particularly in the immune system, are never truly homogeneous; individual cells may be in different biochemical states that define functional but measurable differences between them.
 %This single-cell heterogeneity is informative, but lost in assays that measure cell mixtures.
@@ -109,28 +109,29 @@ Cell populations, particularly in the immune system, are never truly homogeneous
 %For this reason, single-cell assays are an important tool in immunology, providing a functional and phenotypic snapshot of the immune system at a given time.
 %These assays typically measure multiple biomarkers simultaneously on individual cells in a heterogeneous mixture such as whole blood or peripheral blood mononuclear cells  (PBMC), and are used for immune monitoring of disease, vaccine research, and diagnosis of haematological malignancies~\citep{Altman:1996wf,Betts:2006dw,Inokuma:2007tn}.
 
-During data analysis, cell-level biomarker measurements are typically thresholded as positive or negative so that subsets with different multivariate $+/-$ combinations can be obtained as Boolean combinations.
+Typically, cell-level measurements are thresholded as positive or negative so that subsets with different multivariate $+/-$ biomarkers can be obtained as Boolean combinations.
 For some assays (\textit{e.g.}, flow cytometry), the positivity thresholds are set based on prior biological knowledge while for others, thresholds are given by the assay technology.
-This is the case for the Fluidigm qPCR-based single-cell gene expression technology, where genes are recorded as absent (not expressed) or present (expressed) at the single-cell level~\citep{McDavid2012}.
- After this thresholding step, we obtain a Boolean matrix of dimension $N\times K$, where $N$ is the number of cells recorded and $K$ is number of biomarkers.
-Using this matrix, one can form $2^K$ putative cell subsets obtained as Boolean combinations.
+This is the case for the Fluidigm's qPCR-based single-cell gene expression technology, where genes are recorded as expressed or not, at the single-cell level~\citep{McDavid2012}.
+ After thresholding, we obtain a Boolean matrix of $N$ cells $\times$ $K$ biomarkers and we can form $2^K$ putative cell subsets.
 When $K$ is large there is a combinatorial explosion of the number of subsets, and many of these might be small or even empty.
-A common statistical problem is, for a given biomarker combination, to identify subjects for whom the proportion of cells expressing that combination is significantly different between two experimental conditions (\textit{e.g.}, before and after stimulation). 
+A common statistical problem is to identify subjects for whom the proportion of cells expressing a specific combination is significantly different between two experimental conditions (\textit{e.g.}, before and after stimulation). 
 
 %Another motivating example from vaccine research is the flow cytometric intracellular cytokine staining (ICS) assay, which is used to identify and quantify subjects' immune responses to a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T-cells via antigen presenting cells.
 A motivating example from vaccine research is the need to assess the immunogenicity of a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T-cells via antigen presenting cells.
- While not all T-cells can recognize all antigens, those that recognize antigens in the vaccine become \emph{activated} and produce cytokines that potentiate the immune response.
- After activation, this antigen-specific subpopulation proliferates and can persist in the immune system for some time providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. Measuring these antigen--specific T-cell subpopulations is a challenge because they
- constitute a very small fraction of the total number of CD4 and CD8 T-cells (on the order of 0.01\%--0.1\% for HIV vaccine studies like the one considered here). 
- 
- The intracellular cytokine staining (ICS) assay can measure the number of antigen-specific T-cells in PBMC or whole blood by measuring cytokine production in response to cell activation following stimulation by an antigen that closely matches what was present in the original vaccine.
-Individual cells are labelled using fluorescently conjugated antibodies against cell-surface biomarkers (CD3, CD4, and CD8), used to subset T--cells, and functional biomarkers (cytokines) used to define antigen specific T--cells~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
-A sufficiently large number of cells must be collected (on the order of 50,000 to 100,000 T--cells) to ensure that the rare cell populations and small biological effect sizes can be reliably detected.
-Subsequently, each individual cell is classified as either positive or negative for each maker based on predetermined thresholds, then the number of cells matching each subpopulation phenotype is counted.
+T-cells that recognize the antigen become \emph{activated}, produce cytokines that potentiate the immune response, and proliferate and persist in the immune system providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. This vaccine memory can be interrogated through the intracellular cytokine staining (ICS) assay, by measuring cytokine production in antigen-specific T-cells in response to antigen stimulation~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
+ %While not all T-cells can recognize all antigens, those that recognize antigens in the vaccine become \emph{activated} and produce cytokines that potentiate the immune response.
+ %After activation, this antigen-specific subpopulation proliferates and can persist in the immune system for some time providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. 
 
-These counts are compared between antigen stimulated and unstimulated samples from a subject to identify significant differences. Subjects who generate a response after stimulation are called \textit{responders}, whereas subjects that do not show any differences are called \textit{non-responders}. 
-Vaccine--specific response is determined when a subject has no response at a pre--vaccine time point and a response at a post--vaccine time point. 
-Specificity is further assessed by measuring response in placebo recipients. Importantly, to avoid confounding vaccine effect with time of blood draw and because baseline samples are not always available, comparisons between stimulated and unstimulated samples are typically done within a time point rather than directly between pre--and post--vaccine time points. 
+The antigen--specific subpopulations constitute a very small fraction of the total number of CD4 and CD8 T-cells (as low as 0.01\%--0.1\%).  
+% The intracellular cytokine staining (ICS) assay measures the number of antigen-specific T-cells in PBMC or whole blood by measuring intracellular cytokine production in response to cell activation following stimulation by an antigen that closely matches what was present in the original vaccine.
+%Individual cells are labelled using fluorescently conjugated antibodies against cell-surface biomarkers (CD3, CD4, and CD8), used to subset T--cells, and functional biomarkers (cytokines) used to define antigen specific T--cells~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
+Thus, a sufficiently large number of cells must be collected (on the order of 50,000 to 100,000 T--cells) to ensure that changes in these rare cell populations can be reliably detected.
+Subsequently, each individual cell is classified as either positive or negative for each cytokine based on predetermined thresholds, and the number of cells matching each subpopulation phenotype is counted.
+
+Cell counts are compared between antigen stimulated and unstimulated samples from a subject to identify significant differences. \emph{Responders} are subjects whose T-cells exhibit a response to stimulation, and the response is vaccine-specific if it exists at the post-vaccine time point but not the pre-vaccine time point.
+%Response is vaccine--specific when a subject responds at a post--vaccine time point but not at a pre--vaccine time point. 
+%Response in placebo recipients is further used to assess vaccine-specificity. 
+These comparisons are typically performed within a time point  in order to avoid confounding vaccine effects with time of blood draw and because baseline samples are not always available. 
 %In many immunological studies, the number of positive cells in the functionally distinct subpopulations is very small (on the order of 10s of cells), with correspondingly small effect sizes, thus real biological differences are difficult to detect.
 
 Although there is no standard approach to analyzing ICS assays, current methods range from ad-hoc rules based on log-fold changes~\citep{Trigona:2003}, to non--parametric methods~\citep{Sinclair:2004hs}, to exact tests of 2x2 contingency tables (\textit{e.g.}, Fisher's exact test and $\chi^2$ test)~\citep{Horton:2007tsa,Proschan:2009ks,Peiperl:2010ej,Nason:2006dx}.
@@ -144,23 +145,23 @@ Because our framework is multivariate in nature, multiple cell subsets can be mo
 \section{Notation and Data}
 \label{s:data}
 
-In the remainder of the paper, we use the following notation to describe our model.  We assume that we observe cell counts from $I$ subjects in two conditions: stimulated and un-stimulated. Each cell can either be positive or negative for a biomarker. Given a set of $K$ biomarkers, the measured cells can be classified into $2^K$ positive/negative biomarker combinations. We denote by $n^{(s)}_{ik}$ and $n^{(u)}_{ik}$, $i=1,\dots,I,k=1,\dots, 2^K$, the observed counts for the $2^K$ combinations in the stimulated and un-stimulated samples, respectively. We denote by $N^{(s)}_{i}=\sum_k n^{(s)}_{ik}$ and $N^{(u)}_{i}=\sum_k n^{(u)}_{ik}$ the total number of cells measured for subject $i$ in each sample, respectively. For ease of notation, we denote by $\mathbf{y}_i$ the vector of observed counts for subject $i$, \textit{i.e.}, $\mathbf{y}_{i}=(\mathbf{n}^{(s)}_{i}, \mathbf{n}^{(u)}_{i})$ where $\mathbf{n}^{(s)}_{i}=\{n^{(s)}_{ik}: k=1,\dots,2^K\}$ and $\mathbf{n}^{(u)}_{i}=\{n^{(u)}_{ik}: k=1,\dots,2^K\}$. Finally, we define $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
+We use the following notation to describe our model.  We assume that we observe cell counts from $I$ subjects in two conditions: stimulated and unstimulated. Each cell can either be positive or negative for a biomarker. Given a set of $K$ biomarkers, the measured cells can be classified into $2^K$ positive/negative biomarker combinations. We denote by $n^{(s)}_{ik}$ and $n^{(u)}_{ik}$, $i=1,\dots,I,k=1,\dots, 2^K$, the observed counts for the $2^K$ combinations in the stimulated and unstimulated samples, respectively. We denote by $N^{(s)}_{i}=\sum_k n^{(s)}_{ik}$ and $N^{(u)}_{i}=\sum_k n^{(u)}_{ik}$ the total number of cells measured for subject $i$ in each sample. For ease of notation, we denote by $\mathbf{y}_i$ the vector of observed counts for subject $i$, \textit{i.e.}, $\mathbf{y}_{i}=(\mathbf{n}^{(s)}_{i}, \mathbf{n}^{(u)}_{i})$ where $\mathbf{n}^{(s)}_{i}=\{n^{(s)}_{ik}: k=1,\dots,2^K\}$ and $\mathbf{n}^{(u)}_{i}=\{n^{(u)}_{ik}: k=1,\dots,2^K\}$, and finally $\mathbf{y}=(\mathbf{y}_1,\dots,\mathbf{y}_I)$.
 
-We consider two types of immunological single-cell assays: flow cytometry and single-cell gene expression, as described below.
+We consider two types of immunological single-cell assays.
 
 \textit{Flow cytometry}:
-The primary dataset used here is an ICS data set generated as part of a  trial testing the GeoVax DNA and MVA (Modified Vaccinia Ankara) HIV vaccine in a prime-boost regimen (prime at zero and two months, boost at four and six months)~\citep{Goepfert:2011ci}.
-The goal of this data set was to assess the immune response to the vaccine across multiple antigen stimulations, time points, cytokines and T-cell subsets.
-Here, we analyze a subset of the data consisting of 98 subjects from the vaccine group at two time points: day 0 and day 182.
-Three cytokines (IFN-$\gamma$, TNF$\alpha$ and IL2) were measured for each subject and time point, each with and without antigen stimulation (here we focus on the HIV Envelope peptide pool). For ease of presentation we restricted ourselves to the CD4+ T-cell subsets. Samples on day 0 were taken before vaccination and no response is expected there. Conversely, day 182 (26 weeks) is close to the immunogenicity peak, and many subjects are expected to respond, for some cytokines at least. In this data set a median of 51K and 58K T--cells were collected for the stimulated and unstimulated samples, respectively (IQR $\approx$ 37K and 43K, respectively). The effect sizes (differences in the proportions of stimulated and unstimulated cells) were on the order of $10^{-4}$, with the number of positive cells typically ranging from 1--70, depending on the cytokine, with a few samples exhibiting larger numbers of positive events.
+Our primary dataset is ICS data generated as part of a  trial testing the GeoVax DNA and MVA (Modified Vaccinia Ankara) HIV vaccine in a prime-boost regimen~\citep{Goepfert:2011ci}.
+The study goal was to assess the immunogenicity of different prime-boost regimens.
+Here, we analyze a subset of the data consisting of 98 vaccine and placebo recipients at days 0 (pre-vaccine) and 182 (two weeks post-vaccine), focusing on CD4+ T-cell response to stimulation with HIV Envelope peptide.
+Three cytokines (IFN-$\gamma$, TNF$\alpha$ and IL2) were measured for each subject and time point, each with and without antigen stimulation. No response is expected at day 0, while day 182 is close to the immunogenicity peak and many vaccinees are expected to respond for at least some cytokines. A median of 51K and 58K T--cells were collected for the stimulated and unstimulated samples, respectively (IQR $\approx$ 37K and 43K, respectively). The empirical differences in the proportions of stimulated and unstimulated cells were on the order of $10^{-4}$, with the number of positive cells typically ranging from 1--70, depending on cytokine subset. 
 
-\textit{Fluidigm single-cell gene expression}: This is a single-cell gene expression data set of sorted CD8$+$ T-cells from sixteen subjects. T-cells isolated by flow cytometry from sixteen subjects were stimulated in blocks of four subjects with four different antigens (HIV Gag, HIV Nef, CMV pp65 tm10, and CMV pp65 nlv5) and gene expression post-stimulation measured at the single-cell level using the BioMark system (Fluidigm) $96 \times 96$ well arrays. The expression from stimulated samples  was compared to paired, unstimulated controls. In this data set, we have approximately 90 single cells per subject per stimulation condition with 96 gene expression measurements per cell.
+\textit{Fluidigm single-cell gene expression}: Tetramer-sorted CD8$+$ T-cells from sixteen subjects. T-cells isolated by flow cytometry from sixteen subjects were stimulated in blocks of four subjects with four different antigens (HIV Gag, HIV Nef, CMV pp65 tm10, and CMV pp65 nlv5) and gene expression post-stimulation was measured at the single-cell level using the BioMark system (Fluidigm) $96 \times 96$ well arrays. The expression from stimulated samples  was compared to paired, unstimulated controls. In this data set, we have approximately 90 single cells per subject per stimulation condition with 96 gene expression measurements per cell.
 
 %Although the immunological experiments described above will often look at multiple antigens or stimulations, in the models presented here we consider only one stimulation (i.e. antigen or condition) at a time vs. unstimulated.
 
 \section{Differential expression with one biomarker}
 \label{s:DEone}
-Datasets like the ones presented here are usually analyzed in a univariate fashion to avoid being underpowered due to the large number of combinations and the potential for very small cell counts in many of the combinations. By univariate, we mean that we have only one positive cell subset. This cell subset can be defined by considering the expression of one biomarker alone (marginalizing over all other measured biomarkers) such as A$+$ (\textit{vs.} A$-$), or considering a specific positive biomarker combination (and marginalizing over everything else) such as A$+$ or B$+$ (\textit{vs.} A$-$/B$-$). Without loss of generality, we treat the univariate case as a one biomarker case (\textit{i.e.}, $K=1$). In this case, for a given subject, the data can be summarized in a contingency table of $+/-$ cell counts across the un-stimulated and stimulated samples as depicted in Table \ref{tab:twobytwo}.
+Datasets like those presented here are usually analyzed in a univariate fashion to avoid being underpowered due to the large number of combinations and the potential for very small cell counts in many combinations. By univariate, we mean that we have only one positive cell subset. This cell subset can be defined by considering the expression of one biomarker alone (marginalizing over all other measured biomarkers) such as A$+$ (\textit{vs.} A$-$), or considering a specific positive biomarker combination (and marginalizing over everything else) such as A$+$ or B$+$ (\textit{vs.} A$-$/B$-$). Without loss of generality, we treat the univariate case as a one biomarker case (\textit{i.e.}, $K=1$). In this case, for a given subject, the data can be summarized in a contingency table of $+/-$ cell counts across the unstimulated and stimulated samples (Table \ref{tab:twobytwo}).
 
 %\begin{table}
 %\centering
@@ -181,46 +182,47 @@ Datasets like the ones presented here are usually analyzed in a univariate fashi
 %}
 %\end{table}
 
-For a given subject and stimulation, we consider a biomarker to be differentially expressed if the proportion of positive cells in the stimulated samples is different from the proportion of positive cells in the un-stimulated sample. Subjects that show differential expression will be called responders for that biomarker. In this section, we are concerned with identifying differential expression one biomarker at a time, using a beta-binomial mixture model.
+For a given subject and stimulation, we consider a biomarker to be differentially expressed if the proportion of positive cells in the stimulated samples is different from the proportion of positive cells in the unstimulated sample. Subjects that show differential expression will be called responders for that biomarker. In this section, we are concerned with identifying differential expression one biomarker at a time, using a beta-binomial mixture model.
 
 \subsection{Beta-binomial model}
 \label{s:DE}
-For a given subject $i$, the positive cell counts for the stimulated and un-stimulated samples are jointly modeled as $(n_{si}|p_{si}) \sim \mathrm{Bin}(N^{(s)}_{i},p^{(s)}_{i})\quad \text{and}\quad (n^{(u)}_{i}|p^{(u)}_{i}) \sim \mathrm{Bin}(N^{(u)}_{i},p^{(u)}_{i})\label{eq:bino_likelihood}$ where $p^{(s)}_{i}$, $p^{(u)}_{i}$ are the unknown proportions for the stimulated and un-stimulated paired samples, respectively. In order to detect responding subjects, we consider two competing models,
+For a given subject $i$, the positive cell counts for the stimulated and unstimulated samples are jointly modeled as $(n_{si}|p_{si}) \sim \mathrm{Bin}(N^{(s)}_{i},p^{(s)}_{i})\quad \text{and}\quad (n^{(u)}_{i}|p^{(u)}_{i}) \sim \mathrm{Bin}(N^{(u)}_{i},p^{(u)}_{i})\label{eq:bino_likelihood}$ where $p^{(s)}_{i}$, $p^{(u)}_{i}$ are the unknown proportions for the stimulated and unstimulated paired samples, respectively. In order to detect responding subjects, we consider two competing models,
 ${\cal M}_0: p^{(u)}_{i}=p^{(s)}_{i}\quad \text{and}\quad {\cal M}_1: p^{(u)}_{i}\ne p^{(s)}_{i}. \label{eq:models}$
-Under the null model, ${\cal M}_0$, there is no difference between the stimulated and un-stimulated samples, and the proportions are equal (yet the cell counts can differ). Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the subject $i$ is a responder. In some studies, such as the ICS data used here, the proportion of positive cells is expected to only increase after stimulation, in which case the alternative model should be defined as $p^{(s)}>p^{(u)}$. This alternative parametrization is described in Appendix A of the Supplementary Material, and we refer to it as the one-sided model.
+Under the null model, ${\cal M}_0$, there is no difference between the stimulated and unstimulated samples, and the proportions are equal (yet the cell counts can differ). Under the alternative model, ${\cal M}_1$, there is a difference in proportions between the two samples and the subject $i$ is a responder. In some studies, such as the ICS data used here, the proportion of positive cells is expected to only increase after stimulation, in which case the alternative model should be defined as $p^{(s)}>p^{(u)}$. This alternative parametrization is described in Appendix A of the Supplementary Material, and we refer to it as the one-sided model.
 
 \subsection{Priors}
 \label{ss:priors}
-Our model shares information across all subjects using exchangeable Beta priors on the unknown proportions, as follows:
- \begin{align*}
-(p^{(u)}_{i} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha^{(u)}, \beta^{(u)})\\
-(p^{(u)}_{i}|z_{i}=1) \sim \mathrm{Beta}(\alpha^{(u)},
-\beta^{(u)}) \quad\mathrm{and}\quad (p^{(s)}_{i} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha^{(s)},\beta^{(s)}),
- \end{align*}
-where $z_i$ is an indicator variable equal to one if subject $i$ is a responder, \textit{i.e.}, ${\cal M}_1$ is true, and zero otherwise, and $\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}$ are unknown hyper-parameters shared across all subjects.
-Note that the parameters $\alpha^{(u)} \text{ and } \beta^{(u)}$ are explicitly shared across the two models, whereas $\alpha^{(s)} \text{ and } \beta^{(s)}$ are only present in the alternative model.
+Our model shares information across all subjects using exchangeable Beta priors on the unknown proportions. For non-responders, $(p^{(u)}_{i} | z_{i}=0)  \sim \mathrm{Beta}(\alpha^{(u)}, \beta^{(u)})$, and for responders $(p^{(u)}_{i}|z_{i}=1) \sim \mathrm{Beta}(\alpha^{(u)}, \beta^{(u)}) \quad\mathrm{and}\quad (p^{(s)}_{i} | z_{i}=1)  \sim \mathrm{Beta}(\alpha^{(s)},\beta^{(s)})$, %, as follows:
+% \begin{align*}
+%(p^{(u)}_{i} | z_{i}=0)  &\sim \mathrm{Beta}(\alpha^{(u)}, \beta^{(u)})\\
+%(p^{(u)}_{i}|z_{i}=1) \sim \mathrm{Beta}(\alpha^{(u)},
+%\beta^{(u)}) \quad\mathrm{and}\quad (p^{(s)}_{i} | z_{i}=1)  &\sim \mathrm{Beta}(\alpha^{(s)},\beta^{(s)}),
+ %\end{align*}
+ where $z_i$ is an indicator variable equal to one if subject $i$ is a responder, \textit{i.e.}, ${\cal M}_1$ is true, and zero otherwise, and $\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}$ are unknown hyper-parameters shared across all subjects.
+Note that the parameters $\alpha^{(u)} \text{ and } \beta^{(u)}$ are  shared across both models, whereas $\alpha^{(s)} \text{ and } \beta^{(s)}$ are only present in the alternative model.
 Finally, we assume that $z_i\sim \mathrm{Be}(w)$ are independent draws from a Bernoulli distribution with probability $w$, where $w$ represents the (unknown) proportion of responders.
 It follows that marginally, \textit{i.e.}, after integrating $z_i$, the $p^{(u)}_{i}$ and $p^{(s)}_{i}$ are then jointly distributed as a mixture of a one dimensional Beta distribution and a product of two Beta distributions (with a possible constraint), with mixing parameter $w$.
 Treating the $z_i$'s as missing data, the unknown parameter vector $\boldsymbol\theta\equiv(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}, w)$ can be estimated in an Empirical-Bayes fashion using an Expectation-Maximization algorithm~\citep{Dempster:1977ul} as described in Section \ref{s:estimation}.
-As an alternative, we also describe a fully Bayesian model, where the hyperparameters $\alpha^{(u)}, \beta^{(u)}$, $\alpha^{(s)},\text{ and }\beta^{(s)}$ are each given vague exponential priors with mean $10^3$, and $w$ is assumed to be drawn from a uniform distribution between 0 and 1.
+We also describe a fully Bayesian model where the hyperparameters $\alpha^{(u)}, \beta^{(u)}$, $\alpha^{(s)},\text{ and }\beta^{(s)}$ are each given vague exponential priors with mean $10^3$, and $w$ is assumed to be drawn from a uniform distribution between 0 and 1.
 In this case, all parameters will be estimated via a Markov chain Monte Carlo algorithm as described in Section \ref{s:estimation}.
 
 \subsection{Parameter estimation}
 \label{s:estimation}
-In our proposed EM and MCMC algorithms, we greatly simplify our calculations by directly utilizing the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after marginalizing $p^{(s)}_{i}$ and $p^{(u)}_{i}$ from the null and alternative likelihoods. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed-forms (Appendix B, Supplementary Material), and are given by,
+In our proposed EM and MCMC algorithms, we greatly simplify our calculations by directly utilizing the marginal likelihoods, $\mathrm{L}_0$ and $\mathrm{L}_1$, obtained after marginalizing $p^{(s)}_{i}$ and $p^{(u)}_{i}$ from the null and alternative likelihoods. Given the conjugacy of the priors, the marginal likelihoods $\mathrm{L}_0$ and $\mathrm{L}_1$ are available in closed-forms (Appendix B, Supplementary Material).%, and are given by,
 
- \begin{equation*}
-  	\mathrm{L}_0(\alpha^{(u)},\beta^{(u)}|\mathbf{y}_i)
-=\binom{N^{(u)}_{i}}{n^{(u)}_{i}}\binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+n^{(u)}_{i}+\alpha^{(u)},N^{(s)}_{i}-n^{(s)}_{i}+N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}
- \end{equation*}
-
-and
-\begin{equation}
-\mathrm{L}_1(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{y}_i)
-=\binom{N^{(u)}_{i}}{n^{(u)}_{i}} \binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot\frac{\mathrm{B}(n^{(u)}_{i}+\alpha^{(u)},N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+\alpha^{(s)},N^{(s)}_{i}-n^{(s)}_{i}+\beta^{(s)})}{\mathrm{B}(\alpha^{(s)},\beta^{(s)})}
-\label{model2:unconstrained}
-\end{equation}
-Above, $\mathrm{B}$ is the Beta function. Assuming that the missing data, $z_i,i=1,\dots,I$, are known, we define the complete data log-likelihood:
+% \begin{equation*}
+%  	\mathrm{L}_0(\alpha^{(u)},\beta^{(u)}|\mathbf{y}_i)
+%=\binom{N^{(u)}_{i}}{n^{(u)}_{i}}\binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+n^{(u)}_{i}+\alpha^{(u)},N^{(s)}_{i}-n^{(s)}_{i}+N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}
+% \end{equation*}
+%
+%and
+%\begin{equation}
+%\mathrm{L}_1(\alpha^{(u)},\beta^{(u)},\alpha^{(s)},\beta^{(s)}|\mathbf{y}_i)
+%=\binom{N^{(u)}_{i}}{n^{(u)}_{i}} \binom{N^{(s)}_{i}}{n^{(s)}_{i}}\cdot\frac{\mathrm{B}(n^{(u)}_{i}+\alpha^{(u)},N^{(u)}_{i}-n^{(u)}_{i}+\beta^{(u)})}{\mathrm{B}(\alpha^{(u)},\beta^{(u)})}\cdot \frac{\mathrm{B}(n^{(s)}_{i}+\alpha^{(s)},N^{(s)}_{i}-n^{(s)}_{i}+\beta^{(s)})}{\mathrm{B}(\alpha^{(s)},\beta^{(s)})}
+%\label{model2:unconstrained}
+%\end{equation}
+%Above, $\mathrm{B}$ is the Beta function. 
+Assuming that the missing data, $z_i,i=1,\dots,I$, are known, we define the complete data log-likelihood:
 \begin{equation}
 \begin{split}
 l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha^{(u)}, \beta^{(u)}|\mathbf{y}_i) +(1-z_i) l_1(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)}, \beta^{(s)}|\mathbf{y}_i)+z_i\log(w)+(1-z_i)\log(1-w),\label{eq:cll}
@@ -234,24 +236,26 @@ Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\le
 \tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)}|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)}|\mathbf{y}_i)}.
 \]
 The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to
-$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  Starting from some initial values, the EM algorithm iterates between the E and M steps until convergence. In our case, we initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative model components. We then use the estimated $z_i$'s to estimate the $p^{(u)}_{i}$'s and $p^{(s)}_{i}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
+$\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  We initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative components and then use the estimated $z_i$'s to estimate the $p^{(u)}_{i}$'s and $p^{(s)}_{i}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
 \noindent\textbf{MCMC algorithm}\\
-We generated realizations from the posterior distribution via MCMC algorithms~\citep{Walter1996}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs samplings.
-Details about the algorithms are given in Appendix B of the Supplementary Material. We used the
-method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
-the number of iterations, based on a short pilot run of the
-sampler. For each dataset presented here, we calculated that no more
-than about 100,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. To leave some margin, we used 200,000 iterations after 50,000 burn-in iterations for each dataset explored here.
+We generated realizations from the posterior distribution via MCMC algorithms~\citep{Walter1996}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs sampling.
+Details about the algorithms and implementation for the data presented here are given in Appendix B of the Supplementary Material. 
+%We used the
+%method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
+%the number of iterations, based on a short pilot run of the
+%sampler. For each dataset presented here, we calculated that no more
+%than about 100,000 iterations with 50,000 burn-in iterations was sufficient to estimate standard posterior quantities. To leave some margin, we used 200,000 iterations after 50,000 burn-in iterations for each dataset explored here.
 
 \section{Results}
 \label{s:results}
-In this section, we apply our MIMOSA model to the data described in Section \ref{s:data}, and present the results of a simulation study based on the ICS data. We evaluated and compared the performance of MIMOSA against Fisher's exact test, the likelihood ratio test, and log fold-change by ROC (receiver operator characteristic) curve analysis and by comparing the \textit{observed FDR} (false discovery rate) against the \textit{nominal FDR} (expected false discovery rate) for each data set where a false discovery (for the ICS data) is a day 0 sample or placebo recipient (expected non--responder) that is incorrectly identified as a responder. For MIMOSA, the FDR was computed using the approach of~\citet{Newton2004} whereas for all other methods FDR control was done using the approach of~\citet{Benjamini1995}.
+We evaluated and compared the performance of MIMOSA against Fisher's exact test, a likelihood ratio test, and log fold-change by ROC (receiver operator characteristic) curve analysis and by compared the \textit{observed FDR} (false discovery rate) against the \textit{nominal FDR} (expected false discovery rate) for the ICS data.  A false discovery is defined as a day 0 sample or a sample from a placebo recipient (expected non-responders) that is identified as a responder by an algorithm. For MIMOSA, the FDR was computed using the approach of~\citet{Newton2004} whereas for all other methods FDR control was done using the approach of~\citet{Benjamini1995}.
 
 \subsection{ICS}
-In the ICS data we considered observations from vaccinees and placebos at the day 0 time point and day 182 time point as true negatives, and observations from vaccinees at the day 182 time point as true positives. This assumption was required, since we do not have independent, external measurement of the true response for the day 182 vaccinees. Under these assumptions, the MIMOSA model has higher sensitivity and specificity than method compared here for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065}, panels A,C,E.
+\label{s:ics}
+In the ICS data we considered observations from vaccinees at day 0 or from placebos at day 0 or 182 as \emph{true negatives} in that we do not expect to observe a response in those samples. Observations from vaccinees at day 182 were considered \emph{true positives} in that a response is expected assuming a 100\% response rate. This assumption was required, since we do not have independent, external measurement of the true response. Under these assumptions, the MIMOSA model has higher sensitivity and specificity than method compared here for discriminating vaccine responders and non-responders  as shown by the ROC curves on Figure~\ref{fig:HVTN065}, panels A,C,E.
 At an FDR between 10-20\%, MIMOSA would lead to about 20\% more true positives being detected.
-In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065}, panels B,D,F). Here we present the results based on IL2 and IFN-$\gamma$ alone as well as the subset expressing IL2 or IFN-$\gamma$ that were used in the original study~\citep{Goepfert:2011ci}. These results are consistent for other cytokines and cytokine combinations, including higher order combinations  (see Supplementary Figure 1).  We also evaluated, through simulation, what would happen to the ROC curves when our assumptions about true responders and non-responders did not hold (\textit{i.e.,} when not all day 182 vaccinees are true responders, Supplementary Figure 2), and found that we are potentially underestimating the sensitivity of all methods considered here due to real non-responders at day 182. Nonetheless, the ranking of the methods is consistent and the conclusions from the ROC analysis still hold.
+In addition, MIMOSA gave estimates of the observed false discovery rate that are better or comparable to competing methods (Figure~\ref{fig:HVTN065}, panels B,D,F). Here we present the results based on IL2 and IFN-$\gamma$ alone as well as the subset expressing IL2 or IFN-$\gamma$ that were used in the original study~\citep{Goepfert:2011ci}. These results are consistent for other cytokines and cytokine combinations, including higher order combinations  (Supplementary Figure 1).  We also evaluated, through simulation, what would happen to the ROC curves when our assumption of 100\% response rate was false (\textit{i.e.,} when not all day 182 vaccinees are responders, Supplementary Figure 2), and found that we are potentially underestimating the sensitivity of all methods considered here due to non-responders at day 182. Nonetheless, the ranking of the methods remained consistent and the conclusions from the ROC analysis still hold.
 
 
 %\begin{figure} %  figure placement: here, top, bottom, or page
@@ -297,7 +301,7 @@ density of the Beta distribution with parameters $\hat{\alpha}^{(u)},
 CD4+/IFN--$\gamma$+ T--cell ICS data (Supplementary Figure 3). The effect of information sharing on the sensitivity and specificity of the model was also investigated by varying the number of subjects in simulations (Supplementary Figure 4). Our model performed well when as few as 20 subjects were included, although the nominal false discovery rate overestimated observed false discovery rate.
 
 \subsection{Single-cell gene expression}
-We applied the MIMOSA model to a Fluidigm single-cell gene expression data set. We used the two-sided MIMOSA model because genes could be regulated upward or downward upon stimulation. In order to detect stimulation specific changes of expression, we fit our model to each gene within each stimulation. The results presented in Figure~\ref{fig:fluidigm} show that MIMOSA identifies stimulation-specific differences in the proportions of cells expressing each gene while preserving inter-subject variability (Figure~\ref{fig:fluidigm} A). These patterns are evident in the  posterior probabilities (Figure~\ref{fig:fluidigm} A) and closely match the empirical estimates of the differences of proportions (Figure~\ref{fig:fluidigm} B). As a comparison, we also fit the model across all stimulations (Figure~\ref{fig:fluidigm} C). Although this leads to a sensible clustering by stimulation, the observed patterns do not agree as well with the empirical differences. A similar analysis using a two-sided Fisher's exact test and clustering the signed FDR adjust q-values (Figure~\ref{fig:fluidigm} D) does not reveal stimulation-specific patterns, with the exception of CMV pp65 nlv5 stimulation. At an FDR of 10\%, Fisher's exact test identified 13 significant genes, while MIMOSA identified 46 significant genes. The 13 genes identified by Fisher's method were a subset of those identified by MIMOSA. These results suggest that fitting a stimulation--specific model is the right approach since information is shared across subjects that are expected to exhibit similar behavior.
+We applied the MIMOSA model to the Fluidigm single-cell gene expression data set. We used the two-sided MIMOSA model because genes could be regulated upward or downward upon stimulation. In order to detect stimulation specific changes of expression, we fit our model separately to each gene within each stimulation. The results show that MIMOSA identifies stimulation-specific differences in the proportions of cells expressing each gene while preserving inter-subject variability (Figure~\ref{fig:fluidigm} A). These patterns evident in the  posterior probabilities (Figure~\ref{fig:fluidigm} A) closely match the empirical estimates of the differences in proportions (Figure~\ref{fig:fluidigm} B). As a comparison, we also fit the model combining information across all stimulations (Figure~\ref{fig:fluidigm} C). Although this leads to a sensible clustering by stimulation, the observed pattern does not agree as well with the empirical differences. A similar analysis applying a two-sided Fisher's exact test to each sample and gene, and clustering the signed FDR adjust q-values (Figure~\ref{fig:fluidigm} D) does not reveal stimulation-specific patterns, with the exception of CMV pp65 nlv5 stimulation. At an FDR of 10\%, Fisher's exact test identified 13 significant genes, while MIMOSA identified 46 significant genes. The 13 genes identified by Fisher's method were a subset of those identified by MIMOSA. These results suggest that fitting a stimulation--specific model is the right approach since information is shared across subjects that are expected to exhibit similar behavior.
 
 
 %\begin{figure}
@@ -335,9 +339,8 @@ We applied the MIMOSA model to a Fluidigm single-cell gene expression data set. 
 %
 \subsection{Simulation Studies}
 
-We examined the performance of the constrained ($p^{(s)}>p^{(u)}$) and unconstrained ($p^{(s)} \ne p^{(u)}$) beta-binomial mixture models via simulations. For the simulation, we used hyper--parameters estimated from a one-sided MIMOSA model fit to ICS data (IL2 univariate) from the primary immunogenicity time point. We simulated data from this constrained model with 200 subjects, a response rate of 50\%, $N=$ 10,000, 25,000, and 50,000 cells, with ten independent realizations of data for each $N$. We fit the one-sided MIMOSA model to this data. We evaluated the sensitivity and specificity of the model's ability to correctly identify  subjects from the ``responder'' and ``non-responder'' groups through analysis of ROC curves, and compared against Fisher's exact test, the likelihood ratio test, and log fold-change. We repeated this procedure for the two-sided models fit to two-sided data (Figure~\ref{fig:simulations} A, C). In addition, we examined the nominal \textit{vs.} observed FDR to assess the ability of each method to properly estimate the FDR (Figure~\ref{fig:simulations} B,D).
-
-For both the constrained and unconstrained simulations, MIMOSA was superior to competing methods, including Fisher's exact test, with respect to sensitivity and specificity even fewer subjects and smaller cell counts (Supplementary Figures 4 A,B and 5 A,B). Additionally, the estimated FDR for MIMOSA more closely reflected the nominal FDR compared to Fisher's exact test and competing methods (Figure~\ref{fig:simulations}, panels B, D). 
+We examined the performance of the constrained ($p^{(s)}>p^{(u)}$) and unconstrained ($p^{(s)} \ne p^{(u)}$) beta-binomial mixture models via simulations. For the simulation, we used hyper--parameters estimated from a one-sided MIMOSA model fit to ICS data (univariate IL2+) from the primary immunogenicity time point. We simulated data from this constrained model with 200 subjects, a response rate of 50\%, $N=$ 10,000, 25,000, and 50,000 cells, and ten independent realizations of data for each $N$. We fit the one-sided MIMOSA model to this data and evaluated the sensitivity and specificity to identify responders and non-responders through ROC analysis. MIMOSA was compared against the same methods as in section~\ref{s:ics}. We repeated this procedure for the two-sided models fit to two-sided data, and compared the ability of each method to properly control the FDR.
+For both the constrained and unconstrained simulations, MIMOSA exhibited superior sensitivity and specificity than competing methods, even with fewer subjects and smaller cell counts (Figure~\ref{fig:simulations} A,C, and Supplementary Figures 4 A and 5 A). MIMOSA also provided better control of the FDR than competing approaches (Figure~\ref{fig:simulations}, panels B, D, Supplementary Figures 4 B and 5 B). 
 
 
 %\begin{figure} %  figure placement: here, top, bottom, or page
@@ -381,29 +384,30 @@ For both the constrained and unconstrained simulations, MIMOSA was superior to c
 %   \caption{Comparison of positivity detection methods on data simulated from the one-sided and two--sided models. Ten simulations were generated at an $N$ of 5,000 total counts using hyper-parameter estimates from real ICS data (IFN-$\gamma$ expressing CD4+ T-cells stimulated with ENV-1-PTEG from HVTN065) with a five-fold effect size between responder and non-responder components. A) Average ROC curve over the 10 simulated data sets (N=5,000), one--sided B) Average observed and nominal false discovery rate over 10 simulated data sets (N=5,000), one--sided. C) Average ROC curves, two--sided model. D) Average observed and nominal FDR, two--sided model. Curves are shown for MIMOSA, Fisher's exact test, the likelihood ratio test, and log fold-change. Results for MIMOSA fit to a model violating model assumptions, as well as other values of N are in Supplementary Figure 3. This figure appears in color in the electronic version of this article.}\label{fig:simulations}
 %\end{figure}
 
-To assess the sensitivity of the model to deviations from model assumptions, we repeated the simulations with the event (cell) proportions drawn from  truncated normal distributions with support $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the maximum likelihood estimates of the beta distributions defined by the hyper--parameters  $\alpha$ and $\beta$ estimated from the ICS data set (see Supplementary Figure 5 panels C and D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed Fisher's exact test.
+To assess the sensitivity of the model to deviations from model assumptions, we simulated data with the cell proportions drawn from  truncated normal distributions with support $(0,1)$, rather than beta distributions. The means and variances of the truncated normal distributions were set to the MLE of the beta distributions defined by the hyper--parameters  $\alpha$ and $\beta$ estimated from the ICS data set (Supplementary Figure 5 C,D). Even under these departures from the model assumptions, the unconstrained MIMOSA model outperformed competing methods.
 
 \section{Differential expression across biomarker combinations}
 \label{s:demarkercombos}
 Our beta-binomial model described in Section \ref{s:DE} can be generalized to a Dirichlet-multinomial model to assess differential expression across multiple biomarker combinations. As described in the data section, we now have counts for each biomarker combination, denoted by  $\mathbf{n}^{(s)}_{i}=\{n^{(s)}_{ik}: k=1,\dots,2^K\}$ and $\mathbf{n}^{(u)}_{i}=\{n^{(u)}_{ik}: k=1,\dots,2^K\}$.
 
-\subsection{Model}
+%\subsection{Model}
+In our multivariate model, the beta distribution is replaced by a multinomial distribution. Thus the observed data are drawn from $(\mathbf{n}^{(u)}_{i}|\mathbf{p}^{(u)}_{i},) \sim \mathcal{M}(N^{(u)}_{i},\mathbf{p}^{(u)}_{i})$ and $(\mathbf{n}^{(s)}_{i}|\mathbf{p}^{(s)}_{i}) \sim \mathcal{M}(N^{(s)}_{i},\mathbf{p}^{(s)}_{i})$, where $N^{\{s,u\}}_{i}=\sum\limits_{k=1}\limits^{2^K} n^{\{s,u\}}_{ik}$ are the number of cells collected and $\mathbf{p}^{(u)}_{i}$ and $\mathbf{p}^{(s)}_{i}$ are the unknown proportions for the unstimulated and stimulated samples, respectively.
 
-In our multivariate model, the beta distribution is replaced by a multinomial distribution.
-\begin{equation*}
- (\mathbf{n}^{(u)}_{i}|\mathbf{p}^{(u)}_{i},) \sim \mathcal{M}(N^{(u)}_{i},\mathbf{p}^{(u)}_{i})\quad\text{and}\quad (\mathbf{n}^{(s)}_{i}|\mathbf{p}^{(s)}_{i}) \sim \mathcal{M}(N^{(s)}_{i},\mathbf{p}^{(s)}_{i})\label{eq:mult_likeliehood}
- \end{equation*}
+%\quad\text{and}\quad (\mathbf{n}^{(s)}_{i}|\mathbf{p}^{(s)}_{i}) \sim \mathcal{M}(N^{(s)}_{i},\mathbf{p}^{(s)}_{i})\label{eq:mult_likeliehood}
 
-where $N^{\{s,u\}}_{i}=\sum\limits_{k=1}\limits^{2^K} n^{\{s,u\}}_{ik}$ are the number of cells collected and $\mathbf{p}^{(u)}_{i}$ and $\mathbf{p}^{(s)}_{i}$ are the unknown proportions for the un-stimulated and stimulated samples, respectively.
+%\begin{equation*}
+ %(\mathbf{n}^{(u)}_{i}|\mathbf{p}^{(u)}_{i},) \sim \mathcal{M}(N^{(u)}_{i},\mathbf{p}^{(u)}_{i})\quad\text{and}\quad (\mathbf{n}^{(s)}_{i}|\mathbf{p}^{(s)}_{i}) \sim \mathcal{M}(N^{(s)}_{i},\mathbf{p}^{(s)}_{i})\label{eq:mult_likeliehood}
+% \end{equation*}
 
-\subsection{Prior}
+
+%\subsection{Prior}
 As in the one-biomarker case, we share information across subjects using an exchangeable prior on the unknown proportions. The beta priors in  \ref{ss:priors} are replaced by Dirichlet distributions.
 %\begin{align*}
 %(\mathbf{p}^{(u)}_{i}|z_i=0) &\sim \mathrm{Dir}(\boldsymbol{\alpha}^{(u)}),\\\nonumber
  %(\mathbf{p}^{(s)}_{i}|z_i=1) \sim \mathrm{Dir}(\boldsymbol{\alpha}^{(s)}) \quad \text{and}\quad (\mathbf{p}^{(u)}_{i}|z_i=1) &\sim \mathrm{Dir}(\boldsymbol{\alpha}^{(u)}),\end{align*}
 The indicator variable $z_i$ is defined as in Section \ref{ss:priors}, \textit{i.e.}, $z_i\sim\mathrm{Be}(w)$. As in the beta-binomial case, both an EM and MCMC algorithms can be used for parameter estimation. When using a fully Bayesian approach via MCMC, we use the same priors for $\boldsymbol{\alpha}^{\{u,s\}}$ and $w$ as for the beta-binomial model.
 
-\subsection{Parameter estimation}
+%\subsection{Parameter estimation}
 Again, to simplify the estimation problem, we make use of the marginal likelihoods that can be obtained in closed forms (see Appendix C of the Supplementary Material). 
 %For the null component, the marginal likelihood $\mathrm{L}_0$ is given by,
 %\begin{align*}
@@ -413,7 +417,7 @@ Again, to simplify the estimation problem, we make use of the marginal likelihoo
 %\[
 %\mathrm{L}_1(\boldsymbol{\alpha}^{(u)},\boldsymbol{\alpha}^{(s)}_{i}|\mathbf{n}^{(s)}_{i},\mathbf{n}^{(u)}_{i}) =\frac{\mathrm{B}(\boldsymbol{\alpha}^{(u)}+\mathbf{n}^{(u)}_{i}) \mathrm{B}(\boldsymbol{\alpha}^{(s)}+\mathbf{n}^{(s)}_{i})}{\mathrm{B}(\boldsymbol{\alpha}^{(s)})\mathrm{B}(\boldsymbol{\alpha}^{(u)})} \cdot \frac{N^{(s)}_{i}!}{\prod_k n^{(s)}_{ik}!} \frac{N^{(u)}_{i}!}{\prod_k n^{(u)}_{ik}!}.
 %\]
-The estimation procedures (both EM and MCMC based) for the Dirichlet--multinomial distribution are the same as for the beta-binomial model except that the number of parameters to estimate is larger. We initialize the $z_i$ in the EM algorithm with the positivity calls from the multivariate Fisher's exact test. In our experience, the performance of the EM algorithm greatly deteriorates for $K>3$, and is more dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details about our multivariate MCMC algorithm is given in Appendix C of the Supplementary Material.
+The estimation procedures (both EM and MCMC based) for the Dirichlet--multinomial distribution are the same as for the beta-binomial model except that the number of parameters to estimate is larger. We initialize the $z_i$ in the EM algorithm with the positivity calls from the multivariate Fisher's exact test. In our experience, the performance of the EM algorithm greatly deteriorates for $K>3$, and is more dependent on the initial values and can fail to converge in many instances. Although our MCMC algorithm is slightly more computational, it does not suffer from this problem and provides a robust alternative when $K$ is large. More details are given in Appendix C of the Supplementary Material.
 
 \subsection{Polyfunctionality in Fluidigm Single-Cell Gene Expression Data}
 As a proof-of-concept, we applied our multivariate MIMOSA model for two specific genes in the Fluidigm data, namely CCR7 and GZMK. For this example, $K=2$, and we have four possible combinations.
@@ -518,7 +522,7 @@ This work was supported by the Intramural Research Program of NIAID and NIH, gra
 \bibliographystyle{biorefs}
 %\bibliographystyle{unsrtnat}
 \bibliography{MIMOSA}
-
+\clearpage
 \begin{table}[ht]
 \centering
 \parbox{0.8\linewidth}{
