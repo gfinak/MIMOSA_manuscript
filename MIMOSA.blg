@@ -3,45 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MIMOSA.aux
 The style file: biorefs.bst
 Database file #1: MIMOSA.bib
+Warning--entry type for "Gelfand1990" isn't style-file defined
+--line 12 of file MIMOSA.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 23 entries,
+You've used 25 entries,
             3361 wiz_defined-function locations,
-            866 strings with 12580 characters,
-and the built_in function-call counts, 19168 in all, are:
-= -- 1489
-> -- 1727
+            880 strings with 13060 characters,
+and the built_in function-call counts, 20923 in all, are:
+= -- 1644
+> -- 1879
 < -- 0
-+ -- 558
-- -- 586
-* -- 2099
-:= -- 3399
-add.period$ -- 92
-call.type$ -- 23
-change.case$ -- 292
-chr.to.int$ -- 23
-cite$ -- 23
-duplicate$ -- 368
-empty$ -- 955
-format.name$ -- 740
-if$ -- 3506
++ -- 611
+- -- 653
+* -- 2274
+:= -- 3716
+add.period$ -- 99
+call.type$ -- 25
+change.case$ -- 316
+chr.to.int$ -- 25
+cite$ -- 25
+duplicate$ -- 398
+empty$ -- 1033
+format.name$ -- 821
+if$ -- 3814
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 24
-newline$ -- 117
-num.names$ -- 230
-pop$ -- 227
+newline$ -- 127
+num.names$ -- 250
+pop$ -- 243
 preamble$ -- 1
-purify$ -- 408
+purify$ -- 441
 quote$ -- 0
-skip$ -- 369
+skip$ -- 401
 stack$ -- 0
-substring$ -- 953
-swap$ -- 91
+substring$ -- 1041
+swap$ -- 100
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 360
+type$ -- 400
 warning$ -- 0
-while$ -- 137
+while$ -- 161
 width$ -- 0
-write$ -- 370
+write$ -- 400
+(There was 1 warning)

@@ -225,12 +225,13 @@ l(\boldsymbol{\theta}|\mathbf{y},\mathbf{z})=\sum_i z_i l_0(\alpha^{(u)}, \beta^
 where $l_0$ and $l_1$ are the log marginal-likelihoods and $\boldsymbol{\theta}\equiv(\alpha^{(u)}, \beta^{(u)}, \alpha^{(s)},\beta^{(s)}, w)$ is the vector of parameters to be estimated. In the one-sided case, the alternative prior specification must satisfy the constraint $p^{(s)}>p^{(u)}$, and the marginal likelihood derivation involves the calculation of a normalizing constant that is not available in closed-form but can easily be estimated. All calculations for the one-sided case are described in Appendix A of the Supplementary Material.
 
 \noindent\textbf{EM algorithm:} Given an estimate of the model parameter vector $\tilde{\boldsymbol{\theta}}=\left\{\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},\tilde{w}\right\}$ and the data $\mathbf{y}$, the E step consists of calculating the posterior probabilities of differential expression, defined by
-$\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})$; see Appendix B in Supplementary Material for details.
-%=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)}|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)}|\mathbf{y}_i)}.\]
+$\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})$:
+\[
+ \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)}|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)}|\mathbf{y}_i)}.\]
 The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to
 $\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  We initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative components and then use the estimated $z_i$'s to estimate the $p^{(u)}_{i}$'s and $p^{(s)}_{i}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
-\noindent\textbf{MCMC algorithm:} We generated realizations from the posterior distribution via MCMC algorithms. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs sampling.
+\noindent\textbf{MCMC algorithm:} We generated realizations from the posterior distribution via MCMC algorithms~\citep{Gelfand1990}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs sampling.
 Details about the algorithms and implementation are given in Appendix B of the Supplementary Material. 
 %We used the
 %method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
@@ -513,7 +514,7 @@ This work was supported by the Intramural Research Program of NIAID and NIH, gra
 \bibliographystyle{biorefs}
 %\bibliographystyle{unsrtnat}
 \bibliography{MIMOSA}
-\clearpage
+
 \begin{table}[ht]
 \centering
 \parbox{0.8\linewidth}{
