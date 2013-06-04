@@ -61,14 +61,14 @@
  PRATIP CHATTOPADHYAY$^{3}$,
  MARIA DOMINGUEZ$^{3}$,
  STEVE DE ROSA$^{1,2}$,
- MARIO ROEDERER$^{3}$,\\
+ MARIO ROEDERER$^{3}$,
  RAPHAEL GOTTARDO$^{1\ast}$
  \\[4pt]
 \textit{ $^{1}$Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA\\
  $^{2}$HIV Vaccine Trials Network, Fred Hutchinson Cancer Research Center (FHCRC), Seattle, WA\\
  $^{3}$Vaccine Research Center, NIAID, NIH, 40 Convent Drive, Rm 5509, Bethesda, MD 20892}
  \\[2pt]
- {gfinak@fhcrc.org}}
+ {rgottard@fhcrc.org}}
 
 \date{}
 \begin{document}
@@ -118,11 +118,7 @@ A common statistical problem is to identify subjects for whom the proportion of 
 
 %Another motivating example from vaccine research is the flow cytometric intracellular cytokine staining (ICS) assay, which is used to identify and quantify subjects' immune responses to a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T-cells via antigen presenting cells.
 A motivating example from vaccine research is the need to assess the immunogenicity of a vaccine. Upon vaccination, antigen in the vaccine is taken up and presented to CD4 or CD8 T-cells via antigen presenting cells.
-T-cells that recognize the antigen become \emph{activated}, produce cytokines that potentiate the immune response, and proliferate and persist in the immune system providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. This vaccine memory can be interrogated through the intracellular cytokine staining (ICS) assay, by measuring cytokine production in antigen-specific T-cells in response to antigen stimulation~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
- %While not all T-cells can recognize all antigens, those that recognize antigens in the vaccine become \emph{activated} and produce cytokines that potentiate the immune response.
- %After activation, this antigen-specific subpopulation proliferates and can persist in the immune system for some time providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. 
-
-The antigen-specific subpopulations constitute a small fraction of the total number of CD4 and CD8 T-cells (as low as 0.01\%--0.1\%), 
+T-cells that recognize the antigen become \emph{activated}, produce cytokines that potentiate the immune response, and proliferate and persist in the immune system providing \emph{memory} that can more rapidly recognize the same antigen in the future~\citep{McKinstry:2010ei}. This vaccine memory can be interrogated through the intracellular cytokine staining (ICS) assay, by measuring antigen-specific cytokine production in response to stimulation~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}. The antigen-specific subpopulations constitute a small fraction of the total number of CD4 and CD8 T-cells (as low as 0.01\%--0.1\%), 
 % The intracellular cytokine staining (ICS) assay measures the number of antigen-specific T-cells in PBMC or whole blood by measuring intracellular cytokine production in response to cell activation following stimulation by an antigen that closely matches what was present in the original vaccine.
 %Individual cells are labelled using fluorescently conjugated antibodies against cell-surface biomarkers (CD3, CD4, and CD8), used to subset T--cells, and functional biomarkers (cytokines) used to define antigen specific T--cells~\citep{Horton:2007tsa,DeRosa:2004wp,Betts:2006dw}.
 and a large number of cells must be collected (on the order of 50,000 to 100,000 T-cells) to ensure that changes in these cell populations can be reliably detected.
@@ -234,8 +230,8 @@ $\tilde z_{i} \equiv \mathrm{Pr}(z_i=1|\mathbf{y},\tilde{\boldsymbol{\theta}})$;
 The M-step then consist of optimizing the complete-data log-likelihood over $\boldsymbol{\theta}$ after replacing $z_i$ by $\tilde{z}_{i}$ in \eqref{eq:cll}. Straightforward calculations lead to
 $\tilde w = \sum_i{\tilde{z_i}}/I$, but unfortunately no closed form solutions exist for the remaining parameters. We use numerical optimization as implemented in R's \textit{optim} function to estimate the remaining parameters~\citep{Ihaka:1996ud}.  We initialize the $z_{i}$'s using Fisher's exact test to assign each observation to either the null or alternative components and then use the estimated $z_i$'s to estimate the $p^{(u)}_{i}$'s and $p^{(s)}_{i}$'s and use these to set the hyper-parameters to their method-of-moments estimates.
 
-\noindent\textbf{MCMC algorithm:} We generated realizations from the posterior distribution via MCMC algorithms~\citep{Walter1996}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs sampling.
-Details about the algorithms and implementation for the data presented here are given in Appendix B of the Supplementary Material. 
+\noindent\textbf{MCMC algorithm:} We generated realizations from the posterior distribution via MCMC algorithms \citep{Gelfand1990}. All updates were done via Metropolis-Hastings sampling except for the $z_i$'s and $w$ that were performed via Gibbs sampling.
+Details about the algorithms and implementation are given in Appendix B of the Supplementary Material. 
 %We used the
 %method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
 %the number of iterations, based on a short pilot run of the
@@ -482,9 +478,9 @@ The development of effective statistical methods to detect differences in gene o
 
 The MIMOSA model uses a mixture framework to model counts in experimental subjects across multiple conditions. Information is shared across subjects through exchangeable priors, increasing the power to detect true differences compared to competing methods, even when the underlying model assumptions are violated (Figures~\ref{fig:simulations} and Supplementary Figure 5 B). Although in some instances the FDR was not well controlled by any method tested (Supplementary Figure 1A), volcano plots of effect size vs posterior probability of response show these false positives are pre--vaccine subjects exhibiting response  to stimulation (Supplementary Figure 7). Such variability is occasionally expected due to assay failures or biological variation. 
 
-MIMOSA is fit to dichotomized data  (cells are either positive or negative). While this is the standard approach for ICS data analysis, it is believed that the magnitude (fluorescence intensity) of the signal also carries information. For single-cell gene expression data, most methods have focused on differences in the continuous part of the signal while using the discrete on/off nature for pre-filtering~\citep{Flatz:2011jb}. 
+MIMOSA is fit to dichotomized data (cells are positive or negative). While this is the standard approach for ICS data analysis, it is believed that the magnitude (fluorescence intensity) of the signal also carries information. For single-cell gene expression data, most methods have focused on differences in the continuous part of the signal while using the discrete on/off nature for pre-filtering~\citep{Flatz:2011jb}. 
 The ability of MIMOSA to identify stimulation-specific expression patterns in the Fluidigm data demonstrates not only the broader utility of the method, but demonstrates that biologically relevant signal is present in the frequency of gene expression (Figure~\ref{fig:fluidigm}). 
-We have shown elsewhere that changes in both the frequency of expression and expression level are informative~\citep{McDavid2012}, and extensions of the model that incorporate the continuous component (MFI or gene expression) are warranted in the future. 
+We have shown elsewhere that changes in both the frequency of expression and expression level are informative~\citep{McDavid2012}, and extensions of the model that incorporate the continuous component are warranted in the future. 
 Although we used two single-cell assay platforms as motivating examples, our MIMOSA model can be applied to any type of single-cell assay where cells are dichotomized into positive and negative subsets.
 
 %In the case of the Fluidigm data, most analysis methods have been focused on identifying differences in the continuous part of the signal ignoring cells that are undetected (\textit{i.e.}, the gene is not expressed in the cell), or the information is used for pre-filtering~\citep{Flatz:2011jb}.
@@ -498,7 +494,7 @@ First, univariate tests on marginal populations are performed, then specific cel
 However, this iterative (univariate) approach might not be satisfactory due to the large number of combinations that need to be tested. A multivariate approach might be preferable.
 In that case,  as others have pointed out, in order to have the most power to detect a true difference, the statistical test should only take into account the cytokine combinations of interest~\citep{Nason:2006dx}.
 
-When changes are two--sided (as with Fluidigm), differences in poly-functional cell populations are not always detectable  since differences may cancel in the marginal populations (Figure~\ref{fig:polyfunctionality} B).
+When changes are two-sided (as with Fluidigm), differences in poly-functional cell populations are not always detectable  since differences may cancel in the marginal populations (Figure~\ref{fig:polyfunctionality} B).
 In this case, the use of multivariate models, as our Dirichlet-multinomial model, will be important (Figure~\ref{fig:polyfunctionality} A).
 Unfortunately, the limited number of samples in the Fluidigm data prevented us from looking at co-expression involving more than two genes.
 In the case of more than two biomarkers, the number of parameters for our model is $2^{K+1}+1$, which is large even for moderate values of K. Even for  $K=4$, we would need a large number of subjects and cells to properly estimate the 33 parameters. A solution would be to explore alternative model parameterizations that could be used to reduce the number of required parameters.
