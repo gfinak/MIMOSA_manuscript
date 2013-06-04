@@ -134,6 +134,7 @@ where $L$ is the complete marginal likelihood conditional on $\mathbf{z}$ define
 \]
 and $\pi$ is the prior distribution of $\alpha^{(u)}$. The obvious changes in the above expression are made for the acceptance ratios of $\alpha^{(s)},\beta^{(s)},\beta^{(u)}$. In our case each parameter has the same exponential prior with mean $1,000$
 
+Finally, $\tilde{z}_i$ is calculated as $\frac{\sum_{b+1}^T z^{t}_i}{T}$, where $T$ is the number of MCMC iterations and $b$ is the number of burn-in iterations.
 
 \noindent\textbf{Implementation Details for MCMC Algorithm}\\
 We used the method of \cite{Raftery:1992vp} and Raftery \citep{Walter1996} to determine
