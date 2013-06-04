@@ -105,6 +105,13 @@ For a given subject $i$, the null marginal likelihood is obtained after integrat
 %\mathrm{L_1}(\alpha_u,\beta_u,\alpha_s,\beta_s|\mathbf{n}_{s},\mathbf{n}_{u}) = \prod_{i=1}^P \binom{N_{si}}{n_{si}}\binom{N_{ui}}{n_{ui}}\frac{\mathrm{B}(n_{ui}+\alpha_u,N_{ui}-n_{ui}+\beta_u)\mathrm{B}(n_{si}+\alpha_s,N_{si}-n_{si}+\beta_s)}{\mathrm{B}(\alpha_u,\beta_u)\mathrm{B}(\alpha_s,\beta_s)}
 %\]
 
+We compute $\tilde{z}_i$ as:
+\[
+\begin{split}
+\tilde{z}_i=\frac{\tilde{w} \cdot \mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)},|\mathbf{y}_i)}{(1-\tilde{w})\cdot\mathrm{L}_0(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)}|\mathbf{y}_i)+\tilde{w}\cdot\mathrm{L}_1(\tilde{\alpha}^{(u)},\tilde{\beta}^{(u)},\tilde{\alpha}^{(s)},\tilde{\beta}^{(s)}|\mathbf{y}_i)}.
+\end{split}
+\]
+
 \noindent\textbf{MCMC algorithm}\\
 In what follows, we use $(x|y)$ to denote the conditional distribution of $x$ given $y$. In particular, we use $(x|\cdots)$ to denote the distribution of $x$ conditional on everything else in the model. Our MCMC algorithms cycles through the following steps:
 \begin{enumerate}

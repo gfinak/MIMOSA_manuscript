@@ -7,14 +7,6 @@
 \newblock {Phenotypic analysis of antigen-specific T lymphocytes.}
 \newblock {\em Science (New York, NY)\/}~\textbf{274}(5284), 94--96.
 
-\bibitem[Bendall \emph{and others}(2011)Bendall, Simonds, Qiu, Amir, Krutzik,
-  Finck, Bruggner, Melamed, Trejo and Ornatsky]{Bendall:2011wf}
-\textsc{Bendall, SC, Simonds, EF, Qiu, P, Amir, ED, Krutzik, PO, Finck, R,
-  Bruggner, RV, Melamed, R, Trejo, A and Ornatsky, OI}. (2011).
-\newblock {Single-Cell Mass Cytometry of Differential Immune and Drug Responses
-  Across a Human Hematopoietic Continuum}.
-\newblock {\em Science (New York, NY)\/}~\textbf{332}(6030), 687.
-
 \bibitem[Benjamini and Hochberg(1995)Benjamini and Hochberg]{Benjamini1995}
 \textsc{Benjamini, Yoav and Hochberg, Yosef}. (1995).
 \newblock Controlling the false discovery rate: A practical and powerful
@@ -32,16 +24,6 @@
 \newblock Hiv nonprogressors preferentially maintain highly functional
   hiv-specific cd8+ t cells.
 \newblock {\em Blood\/}~\textbf{107}(12), 4781--4789.
-
-\bibitem[Darrah \emph{and others}(2007)Darrah, Patel, De~Luca, Lindsay, Davey,
-  Flynn, Hoff, Andersen, Reed, Morris, Roederer and Seder]{Darrah:2007ih}
-\textsc{Darrah, Patricia~A, Patel, Dipti~T, De~Luca, Paula~M, Lindsay, Ross
-  W~B, Davey, Dylan~F, Flynn, Barbara~J, Hoff, S{\o}ren~T, Andersen, Peter,
-  Reed, Steven~G, Morris, Sheldon~L, Roederer, Mario} \emph{and others}. (2007,
-  July).
-\newblock {Multifunctional TH1 cells define a correlate of vaccine-mediated
-  protection against Leishmania major.}
-\newblock {\em Nature Medicine\/}~\textbf{13}(7), 843--850.
 
 \bibitem[De~Rosa \emph{and others}(2004)De~Rosa, Lu, Yu, Perfetto, Falloon,
   Moser, Evans, Koup, Miller and Roederer]{DeRosa:2004wp}
@@ -68,14 +50,6 @@
   CD8 T cells elicited by different gene-based vaccines.}
 \newblock {\em Proceedings of the National Academy of
   Sciences\/}~\textbf{108}(14), 5724--5729.
-
-\bibitem[Gentleman \emph{and others}(2004)Gentleman, Carey, Bates, Bolstad,
-  Dettling, Dudoit, Ellis, Gautier, Ge and Gentry]{Gentleman:2004tt}
-\textsc{Gentleman, R, Carey, V, Bates, D, Bolstad, B, Dettling, M, Dudoit, S,
-  Ellis, B, Gautier, L, Ge, Y and Gentry, J}. (2004).
-\newblock {Bioconductor: open software development for computational biology
-  and bioinformatics}.
-\newblock {\em Genome Biology\/}~\textbf{5}(10), R80.
 
 \bibitem[Gilks \emph{and others}(1996)Gilks, Richardson and
   Spiegelhalter]{Walter1996}
@@ -128,13 +102,6 @@
   patients have a distinct phenotype and cytokine signature.}
 \newblock {\em J Immunol\/}~\textbf{179}(4), 2627--2633.
 
-\bibitem[Kendziorski \emph{and others}(2003)Kendziorski, Newton, Lan and
-  Gould]{Kendziorski:2003uw}
-\textsc{Kendziorski, C.~M., Newton, M.~A., Lan, H. and Gould, M.~N.} (2003).
-\newblock On parametric empirical bayes methods for comparing multiple groups
-  using replicated gene expression profiles.
-\newblock {\em Statistics in Medicine\/}~\textbf{22}(24), 3899--3914.
-
 \bibitem[McDavid \emph{and others}(2012)McDavid, Finak, Chattopadyay,
   Dominguez, Lamoreaux, Ma, Roederer and Gottardo]{McDavid2012}
 \textsc{McDavid, Andrew, Finak, Greg, Chattopadyay, Pratip~K., Dominguez,
@@ -159,18 +126,6 @@
   cells identified by coexpression of CD56, CD7, and CD4.}
 \newblock {\em Blood\/}~\textbf{114}(23), 4823--4831.
 
-\bibitem[Narsinh \emph{and others}(2011)Narsinh, Sun, Sanchez-Freire, Lee,
-  Almeida, Hu, Jan, Wilson, Leong, Rosenberg, Yao, Robbins and
-  Wu]{Narsinh:2011gn}
-\textsc{Narsinh, Kazim~H, Sun, Ning, Sanchez-Freire, Veronica, Lee, Andrew~S,
-  Almeida, Patricia, Hu, Shijun, Jan, Taha, Wilson, Kitchener~D, Leong, Denise,
-  Rosenberg, Jarrett, Yao, Mylene, Robbins, Robert~C} \emph{and others}. (2011,
-  March).
-\newblock {Single cell transcriptional profiling reveals heterogeneity of human
-  induced pluripotent stem cells.}
-\newblock {\em Journal of Clinical Investigation\/}~\textbf{121}(3),
-  1217--1221.
-
 \bibitem[Nason(2006)Nason]{Nason:2006dx}
 \textsc{Nason, M}. (2006, August).
 \newblock {Patterns of Immune Response to a Vaccine or Virus as Measured by
@@ -178,14 +133,6 @@
   Comparison of Groups}.
 \newblock {\em Journal of Biopharmaceutical Statistics\/}~\textbf{16}(4),
   483--498.
-
-\bibitem[Newton \emph{and others}(2001)Newton, Kendziorski, Richmond, Blattner
-  and Tsui]{Newton:2001go}
-\textsc{Newton, M~A, Kendziorski, C~M, Richmond, C~S, Blattner, F~R and Tsui,
-  K~W}. (2001).
-\newblock {On differential variability of expression ratios: improving
-  statistical inference about gene expression changes from microarray data.}
-\newblock {\em Journal of Computational Biology\/}~\textbf{8}(1), 37--52.
 
 \bibitem[Newton \emph{and others}(2004)Newton, Noueiry, Sarkar and
   Ahlquist]{Newton2004}
@@ -206,12 +153,6 @@
   054).
 \newblock {\em PLoS ONE\/}~\textbf{5}(10), e13579.
 
-\bibitem[Pieprzyk(2009)Pieprzyk]{Pieprzyk:2009uc}
-\textsc{Pieprzyk, M}. (2009, July).
-\newblock {Fluidigm Dynamic Arrays provide a platform for single-cell gene
-  expression analysis }.
-\newblock {\em Nature Methods\/}~\textbf{6}, iv.
-
 \bibitem[Precopio \emph{and others}(2007)Precopio, Betts, Parrino, Price,
   Gostick, Ambrozak, Asher, Douek, Harari, Pantaleo, Bailer, Graham, Roederer
   and Koup]{Precopio:2007ht}
@@ -228,12 +169,6 @@
 \textsc{Proschan, Michael~A and Nason, Martha}. (2009, March).
 \newblock {Conditioning in 2 x 2 tables.}
 \newblock {\em Biometrics\/}~\textbf{65}(1), 316--322.
-
-\bibitem[Raftery and Lewis(1992)Raftery and Lewis]{Raftery:1992vp}
-\textsc{Raftery, Adrian~E and Lewis, Steven~M}. (1992, November).
-\newblock {[Practical Markov Chain Monte Carlo]: Comment: One Long Run with
-  Diagnostics: Implementation Strategies for Markov Chain Monte Carlo}.
-\newblock {\em STATISTICAL SCIENCE\/}~\textbf{7}(4), 493--497.
 
 \bibitem[Ramsk{\"o}ld \emph{and others}(2012)Ramsk{\"o}ld, Luo, Wang, Li, Deng,
   Faridani, Daniels, Khrebtukova, Loring, Laurent, Schroth and
@@ -255,12 +190,6 @@
   proliferation responses in healthy CMV-seropositive individuals.}
 \newblock {\em Viral immunology\/}~\textbf{17}(3), 445--454.
 
-\bibitem[Smyth \emph{and others}(2005)Smyth, Michaud and Scott]{Smyth:2005iy}
-\textsc{Smyth, Gordon~K, Michaud, Jo{\"e}lle and Scott, Hamish~S}. (2005, May).
-\newblock {Use of within-array replicate spots for assessing differential
-  expression in microarray experiments.}
-\newblock {\em Bioinformatics (Oxford, England)\/}~\textbf{21}(9), 2067--2075.
-
 \bibitem[Trigona \emph{and others}(2003)Trigona, Clair, Persaud, Punt,
   Bachinsky, Sadasivan-Nair, Dubey, Tussey, Fu and Shiver]{Trigona:2003}
 \textsc{Trigona, Wendy~L, Clair, James~H, Persaud, Natasha, Punt, Kara,
@@ -272,11 +201,5 @@
 \newblock {\em Journal of interferon {\&} cytokine research : the official
   journal of the International Society for Interferon and Cytokine
   Research\/}~\textbf{23}(7), 369--377.
-
-\bibitem[van Oudenaarden(2009)van Oudenaarden]{vanOudenaarden200915a}
-\textsc{van Oudenaarden, Alexander}. (2009).
-\newblock Nature, nurture, or just blind chance: Stochastic gene expression and
-  its consequences.
-\newblock {\em Biophysical Journal\/}~\textbf{96}(3, Supplement 1), 15a --.
 
 \end{thebibliography}
