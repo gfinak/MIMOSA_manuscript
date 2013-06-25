@@ -507,6 +507,8 @@ ggplot(data.frame(p.hat=prop.table(as.matrix(res@result@n.unstim),1)[,2]))+geom_
 
 #'Unconstrained MIMOSA fit to data violating model assumptions
 #'-----
+#'Top row shows results for MIMOSA fit to data simulated from a model violating model assumptions.
+#'Bottorm row shows results of two-sided MIMOSA fit to data with low counts (10K events).
 #+ violated.assumptions, cache=FALSE,echo=FALSE,fig.width=20,fig.height=10
 sims<-TwoSidedSimsTruncated(hvtn.result.mcmc)
 violated.roc<-ggplot(subset(sims$sim.ROC,Num==50000))+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from Two-Sided Simulations Violating Model Assumptions")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Num)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
@@ -542,6 +544,8 @@ sims.50K$sim.FDR$method<-factor(sims.50K$sim.FDR$method,labels=levs)
 levs<-levels(sims.50K$sim.ROC$method)
 levs[2]<-"MIMOSA (one sided)"
 sims.50K$sim.ROC$method<-factor(sims.50K$sim.ROC$method,labels=levs)
+
+#+eval=TRUE
 p5<-ggplot(subset(sims.50K$sim.FDR,Nobs!=200))+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA (one sided)")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
 p6<-ggplot(subset(sims.50K$sim.ROC,Nobs!=200))+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA (one sided)")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
 #+eval=FALSE
@@ -551,10 +555,6 @@ dev.off()
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSided_FDR_varyNobs.pdf",width=8,height=3)
 p5
 dev.off()
-#'### One-sided simulations, 50K events. N=20,50,100
-#+echo=FALSE
-p6
-p5
 
 #'### Figure of effect size vs probability of response
 pd<-do.call(rbind,lapply(hvtn.result.mcmc,function(x)pData(x)))

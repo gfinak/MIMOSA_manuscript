@@ -598,6 +598,8 @@ Histogram of the empirical proportions of unstimulated cells and overlaid poster
 
 Unconstrained MIMOSA fit to data violating model assumptions
 -----
+Top row shows results for MIMOSA fit to data simulated from a model violating model assumptions.
+Bottorm row shows results of two-sided MIMOSA fit to data with low counts (10K events).
 
 ![plot of chunk violated.assumptions](figure/violated.assumptions.png) 
 
@@ -632,6 +634,10 @@ sims.50K$sim.FDR$method <- factor(sims.50K$sim.FDR$method, labels = levs)
 levs <- levels(sims.50K$sim.ROC$method)
 levs[2] <- "MIMOSA (one sided)"
 sims.50K$sim.ROC$method <- factor(sims.50K$sim.ROC$method, labels = levs)
+
+```
+
+```r
 p5 <- ggplot(subset(sims.50K$sim.FDR, Nobs != 200)) + geom_line(aes(x = fdr.hat, 
     y = true.fdr.hat, col = relevel(method, "MIMOSA (one sided)")), direction = "vh", 
     lwd = 1.5, alpha = 0.8) + theme_bw() + scale_x_continuous("Nominal FDR") + 
@@ -657,18 +663,6 @@ pdf(file = "/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSide
     width = 8, height = 3)
 p5
 dev.off()
-```
-
-
-### One-sided simulations, 50K events. N=20,50,100
-
-
-```
-## Error: object 'p6' not found
-```
-
-```
-## Error: object 'p5' not found
 ```
 
 
@@ -705,7 +699,7 @@ Median cell counts for T-cell subsets.
 -----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 15:05:40 2013 -->
+<!-- Tue Jun 25 15:48:53 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 66873 </TD> <TD align="right"> 42645 </TD> </TR>
@@ -722,7 +716,7 @@ Median cell proportions for ICS data.
 ----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 15:05:41 2013 -->
+<!-- Tue Jun 25 15:48:54 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 0.00022 </TD> <TD align="right"> 0.0000017 </TD> </TR>
