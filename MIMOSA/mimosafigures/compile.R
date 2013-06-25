@@ -1,0 +1,5 @@
+library(knitr)
+library(knitrBootstrap)
+knitr::spin("manuscriptFigures.R",FALSE)
+knit_bootstrap("manuscriptFigures.Rmd")
+system("cp manuscriptFigures.html /home/gfinak/Dropbox/Public/MIMOSA/manuscriptFigures.html")
