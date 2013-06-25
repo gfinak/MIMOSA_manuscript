@@ -1,5 +1,5 @@
 ### The code repository for the MIMOSA manuscript.
-The [figures](http://gfinak.github.com/MIMOSA_manuscript/manuscriptFigures.html) are on gh-pages.
+The [figures](http://gfinak.github.com/MIMOSA_manuscript/MIMOSA/mimosafigures/manuscriptFigures.html) are on gh-pages.
 
 In the interest of reproducible research, we're making all the code for the data analysis and simulations found in the MIMOSA manuscript, which has been submitted to Biostatistics, available online.  
 The knitr document reproduces the figures in the manuscript with the knitrBootstrap package.   
