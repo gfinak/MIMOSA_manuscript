@@ -89,6 +89,7 @@ for(i in seq_along(f1levs)){
   pdf(file=sprintf("/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/%s",fnames[i]),width=10,height=3)
   grid.arrange(fi.1,fi.2,ncol=2,nrow=1)
   dev.off()
+  grid.arrange(fi.1,fi.2,ncol=2,nrow=1)
  }
 
 #'Process the fluidigm data to construct an expression set for MIMOSA
@@ -139,6 +140,7 @@ pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/FluidigmCombi
 foo2<-apply(foo,2,function(x)MIMOSA:::fdr(cbind(1-x,x)))
 heatmap.2((S*(foo))[apply(foo2,1,function(x)sum(x<0.1)>=1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),cexRow=0.75,hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 dev.off()
+heatmap.2((S*(foo))[apply(foo2,1,function(x)sum(x<0.1)>=1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),cexRow=0.75,hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 
 #'Heatmap of posterior differences of proportions fit by gene for all samples.
 #'----
@@ -172,6 +174,7 @@ pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Fluidigm_plot
 foo2<-apply(foo,2,function(x)MIMOSA:::fdr(cbind(1-x,x)))
 heatmap.2((S*(foo))[apply(foo2,1,function(x)sum(x<0.1)>=1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),cexRow=0.75,hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 dev.off()
+heatmap.2((S*(foo))[apply(foo2,1,function(x)sum(x<0.1)>=1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),cexRow=0.75,hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 
 
 #'Heatmap of posterior differences in proportions for fit of samples by stimulation and by gene. 
@@ -208,6 +211,7 @@ colnames(adj.fisher)<-colnames(fisher)
 rownames(adj.fisher)<-rownames(fisher)
 heatmap.2((((adj.fisher))*S)[apply(adj.fisher,1,function(x)sum(x<0.1)>1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 dev.off()
+heatmap.2((((adj.fisher))*S)[apply(adj.fisher,1,function(x)sum(x<0.1)>1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 
 #'Figure 2C empirical proportions
 #+eval=FALSE,echo=FALSE
@@ -220,6 +224,7 @@ colnames(emprop)<-colnames(fisher)
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/FluidigmEmpiricalProps.pdf")
 heatmap.2(emprop[geneinds,hmaporder],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),Colv=NULL,denscol="black",tracecol="black",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)[hmaporder]])
 dev.off()
+heatmap.2(emprop[geneinds,hmaporder],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),Colv=NULL,denscol="black",tracecol="black",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)[hmaporder]])
 
 #'Multivariate MIMOSA on fluidigm data looking at interactions
 #'---------
@@ -227,8 +232,10 @@ dev.off()
 #+cache=FALSE
 fl.comb<-combine(fluidigm[[1]],fluidigm[[2]],fluidigm[[3]],fluidigm[[4]])
 melted<-melt(fl.comb)
-require(glmnet)
-require(Matrix)
+suppressPackageStartupMessages({
+  require(glmnet)
+  require(Matrix)
+})
 melted$Et.bin<-as.numeric(as.logical(melted$Et))
 #setnames(melted,"__wellKey","wellKey")
 melted<-within(melted,group<-Patient.ID:Stim.Agent)
@@ -297,7 +304,7 @@ sapply(list.files(pattern=c("\\.dat")),unlink)
 
 #'Figure 4
 #+eval=FALSE,echo=FALSE
-library(gridExtra)
+suppressPackageStartupMessages(library(gridExtra))
 missed<-!MIMOSA:::fdr(flres$z)<0.05
 toplot$variable<-factor(toplot$variable,labels=c("CCR7-GZMK-","CCR7-GZMK+","CCR7+GZMK-","CCR7+GZMK+"))
 toplot2$variable<-factor(toplot2$variable,labels=c("CCR7-GZMK-","CCR7+ or GZMK+"))
@@ -306,9 +313,11 @@ p2<-ggplot(toplot2)+geom_tile(aes(x=variable,y=id,fill=log2(value)),interpolate=
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/revised_Fluidigm_Multivariate_CCR7_GZMK.pdf",width=6,height=4)
 grid.arrange(p1,ncol=1)
 dev.off()
+grid.arrange(p1,ncol=1)
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/revised_Fluidigm_Marginal_CCR7_GZMK.pdf",width=6,height=4)
 grid.arrange(p2,ncol=1)
 dev.off()
+grid.arrange(p2,ncol=1)
 
 
 
@@ -328,12 +337,18 @@ ggplot(A)+geom_point(aes(x=`Effect Size`,y=`Pr(response)`,shape=factor(ID)))+fac
 #'We'll use the model fit from IFNg+ for ENV-1-PTEG based on the ROC and FDR plots
 #'Note that MIMOSA has greater sensitivity and specificity than Fisher's exact test or the Likelihood ratio test. When there are 5 observations, the methods being to perform equivalently.
 #+ simulations,cache=FALSE,echo=FALSE,fig.width=5,fig.height=5
-sims.50K<-OneSidedSims(hvtn.result.mcmc,N=50000)
-sims.25K<-OneSidedSims(hvtn.result.mcmc,N=25000)
-sims.10K<-OneSidedSims(hvtn.result.mcmc,N=10000)
-cache('sims.50K')
-cache('sims.25K')
-cache('sims.10K')
+if(!file.exists("cache/sims.50K.RData")){
+  sims.50K<-OneSidedSims(hvtn.result.mcmc,N=50000)
+  sims.25K<-OneSidedSims(hvtn.result.mcmc,N=25000)
+  sims.10K<-OneSidedSims(hvtn.result.mcmc,N=10000)
+  cache('sims.50K')
+  cache('sims.25K')
+  cache('sims.10K')
+}else{
+  load("cache/sims.10K.RData")
+  load("cache/sims.25K.RData")
+  load("cache/sims.50K.RData")
+}
 ggplot(sims.50K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
 ggplot(sims.50K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
 ggplot(sims.25K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
@@ -344,12 +359,18 @@ ggplot(sims.10K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(meth
 #'Two-sided
 #'--------
 #+ two.sided.sims, cache=FALSE, echo=FALSE,fig.width=5,fig.height=5
+if(!file.exists("cache/sims2.10K.RData")){
 sims2.50K<-TwoSidedSims(hvtn.result.mcmc,N=50000)
 sims2.25K<-TwoSidedSims(hvtn.result.mcmc,N=25000)
 sims2.10K<-TwoSidedSims(hvtn.result.mcmc,N=10000)
 cache('sims2.50K')
 cache('sims2.25K')
 cache('sims2.10K')
+}else{
+  load("cache/sims2.10K.RData")
+  load("cache/sims2.25K.RData")
+  load("cache/sims2.50K.RData")
+}
 ggplot(sims2.50K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from Two-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
 ggplot(sims2.50K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from Two-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
 ggplot(sims2.25K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from Two-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
@@ -380,16 +401,19 @@ p2.2<-ggplot(subset(sims2.50K$sim.FDR,Nobs==200))+geom_line(aes(x=fdr.hat,y=true
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSided_ROC_50K.pdf",width=6,height=4)
 p1.1
 dev.off()
+p1.1
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_TwoSided_ROC_50K.pdf",width=6,height=4)
 p2.1
 dev.off()
+p2.1
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_TwoSided_FDR_50K.pdf",width=6,height=4)
 p2.2
 dev.off()
+p2.2
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSided_FDR_50K.pdf",width=6,height=4)
 p1.2
 dev.off()
-
+p1.2
 #'Multivariate Simulations
 #'-----
 #'Average ROC for 10 multivariate simulations with effect size of 2.5x10-3 and -2.5x10-3 in two of eight components (N=4743 events).
@@ -449,13 +473,15 @@ comproc[[2]]$true.resp.rate<-as.numeric(as.character(comproc[[2]]$q))*2
 p8<-ggplot(comproc[[1]])+geom_line(aes(x=fdr.hat,y=true.fdr.hat,color=method))+facet_wrap(~true.resp.rate,ncol=5)+theme_bw()+geom_abline(1,lty=3)+labs(title="Observed vs True FDR when \ntrue response rate varies but is assumed to be 100%")+theme(axis.text.x=element_text(angle=90))
 p9<-ggplot(comproc[[2]])+geom_line(aes(x=FPR.hat,y=TPR.hat,color=method))+facet_wrap(~true.resp.rate,ncol=5)+theme_bw()+labs(title="ROC curves when \ntrue response rate varies but is assumed to be 100%")+scale_x_continuous("False Positive Rate")+scale_y_continuous("True Positive Rate")+theme(axis.text.x=element_text(angle=90))
 
-library(gridExtra)
+suppressPackageStartupMessages(library(gridExtra))
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROC.pdf",width=10,height=3)
 p9
 dev.off()
+p9
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROCfdr.pdf",width=10,height=3)
 p8
 dev.off()
+p8
 
 #'Supplementary Figure 2
 #'------
@@ -489,6 +515,10 @@ dev.off()
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_Truncated_FDR_10K.pdf",width=5,height=3)
 p4
 dev.off()
+p1
+p2
+p3
+p4
 
 #rerun one sided sims at 50K, more than 10 reps
 sims.50K<-OneSidedSims(hvtn.result.mcmc,N=50000)
@@ -503,10 +533,11 @@ p6<-ggplot(subset(sims.50K$sim.ROC,Nobs!=200))+geom_line(aes(x=FPR.hat,y=TPR.hat
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSided_ROC_varyNobs.pdf",width=9,height=3)
 p6
 dev.off()
+p6
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/Sim_OneSided_FDR_varyNobs.pdf",width=8,height=3)
 p5
 dev.off()
-
+p5
 #'Figure of effect size vs probability of response
 pd<-do.call(rbind,lapply(hvtn.result.mcmc,function(x)pData(x)))
 pd<-cbind(pd,do.call(rbind,lapply(hvtn.result.mcmc,function(x)data.frame(response=MIMOSA:::fdr(x@z)<0.01,Prob.resp=x@z[,2],effect=do.call(c,lapply(x@result@p,function(x)diff(rev(x[,2]))))))))
@@ -514,6 +545,7 @@ pd$VACCINE<-factor(pd$RX_CODE%in%c("T1","T2","T3","T4"))
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/volcanoplots.pdf",width=15,height=10)
 ggplot(subset(pd,TCELLSUB%in%"cd3+/cd4+"))+geom_point(aes(x=effect,y=Prob.resp,color=response,shape=VISITNO:VACCINE))+facet_wrap(TCELLSUB~CYTOKINE,scale="free_x")+theme(axis.text.x=element_text(angle=90))+scale_color_discrete("Response",labels=c("No","Yes"))+theme_bw()
 dev.off()
+ggplot(subset(pd,TCELLSUB%in%"cd3+/cd4+"))+geom_point(aes(x=effect,y=Prob.resp,color=response,shape=VISITNO:VACCINE))+facet_wrap(TCELLSUB~CYTOKINE,scale="free_x")+theme(axis.text.x=element_text(angle=90))+scale_color_discrete("Response",labels=c("No","Yes"))+theme_bw()
 
 #'How many CD4 and CD8 T-cells?
 #'-----
@@ -535,7 +567,7 @@ print(xtable(d[,-1L],display=c("fg","fg","fg")),type="html",include.rownames=FAL
 #'Magnitude of the proportions for the HVTN data
 #'----
 #+ echo=FALSE, message=FALSE, warning=FALSE, result='hide',fig.width=5,fig.height=2.5
-require(scales)
+suppressPackageStartupMessagesrequire(scales))
 df<-data.frame(tcellsub="CD4",treatment=gl(2,nrow(hvtn.result.mcmc[[1]]@result@n.stim)/2,labels=c("stim","unstim")),melt(data.frame(stim=prop.table(as.matrix(hvtn.result.mcmc[[1]]@result@n.stim),1)[,2],unstim=prop.table(as.matrix(hvtn.result.mcmc[[1]]@result@n.unstim),1)[,2])[,2]))
 df<-rbind(df,data.frame(tcellsub="CD8",treatment=gl(2,nrow(hvtn.result.mcmc[[30]]@result@n.unstim)/2,labels=c("stim","unstim")),proportion=melt(data.frame(stim=prop.table(as.matrix(hvtn.result.mcmc[[30]]@result@n.stim),1)[,2],unstim=prop.table(as.matrix(hvtn.result.mcmc[[30]]@result@n.unstim),1)[,2])[,2])))
 ggplot(df)+geom_density(aes(x=value,fill=tcellsub),alpha=0.75,position="identity")+theme_bw()+scale_x_continuous(name="Cell Count",labels=scientific)+facet_wrap(~tcellsub,scales="free")

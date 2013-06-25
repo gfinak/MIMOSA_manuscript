@@ -56,7 +56,8 @@ if (!file.exists("hvtnMCMCfit.rds")) {
     hvtn.result.mcmc <- MIMOSA(NSUB + CYTNUM ~ ASSAYID + VISITNO + PTID + RX_CODE + 
         RefTreat | TCELLSUB + ANTIGEN + CYTOKINE, hvtndata, ref = RefTreat %in% 
         "Reference" & ANTIGEN %in% "ENV-1-PTEG", subset = RefTreat %in% "Treatment" & 
-        ANTIGEN %in% "ENV-1-PTEG", method = "mcmc", run.parallel = TRUE)
+        ANTIGEN %in% "ENV-1-PTEG", method = "mcmc", run.parallel = TRUE, pXi = 0.1, 
+        getP = TRUE)
     saveRDS(hvtn.result.mcmc, file = "hvtnMCMCfit.rds")
 } else {
     hvtn.result.mcmc <- readRDS("hvtnMCMCfit.rds")
@@ -106,24 +107,36 @@ We see that MIMOSA performs as well or better than competing methods. The MCMC r
 
 ```r
 ROC$Method <- relevel(ROC$Method, "MIMOSA (EM)")
-ggplot(subset(ROC, TCELLSUB %in% "cd3+/cd4+")) + geom_line(aes(x = FPR, y = TPR, 
-    color = Method)) + theme_bw() + facet_wrap(~CYTOKINE) + geom_text(aes(x = x, 
+levs <- c("IFN-IL2-TNF+", "IFN-IL2+TNF-", "IFN-IL2+TNF+", "IFN+IL2-TNF-", "IFN+IL2-TNF+", 
+    "IFN+IL2+TNF-", "IFN+IL2+TNF+", "IFNg+", "IFNg+IL2+", "IFNg+TNF+", "IL2+", 
+    "IL2-IFNg+", "IL2+ OR IFNg+", "IL2+IFNg-", "IL2+IFNg+", "IL2+TNF+", "TNF+")
+ROC$CYTOKINE <- factor(ROC$CYTOKINE, labels = levs)
+AUC$CYTOKINE <- factor(AUC$CYTOKINE, labels = levs)
+rocplots <- ggplot(subset(ROC, TCELLSUB %in% "cd3+/cd4+")) + geom_line(aes(x = FPR, 
+    y = TPR, color = Method)) + theme_bw() + facet_wrap(~CYTOKINE) + geom_text(aes(x = x, 
     y = y, label = sprintf("AUC=%s", signif(AUC, 2)), col = Method), size = 3, 
     data = AUC, show_guide = FALSE) + theme(axis.text.x = element_text(angle = 90, 
     hjust = 1))
 ```
 
-![The TNF expressing cytokine specific cells have high background as evidenced by the poor performance of all methods fit to TNF+ subsets of cells, with the exception of the triple-positive cell subset. As the number of simultaneously expressed cytokines being examined increases, the background decreases.](figure/unnamed-chunk-9.png) 
-
 ```r
 FDR$Method <- relevel(FDR$Method, "MIMOSA (EM)")
-ggplot(subset(FDR, TCELLSUB %in% c("cd3+/cd4+"))) + geom_line(aes(y = true.fdr, 
+levs <- levels(FDR$CYTOKINE)
+levs <- c("IFN-IL2-TNF+", "IFN-IL2+TNF-", "IFN-IL2+TNF+", "IFN+IL2-TNF-", "IFN+IL2-TNF+", 
+    "IFN+IL2+TNF-", "IFN+IL2+TNF+", "IFNg+", "IFNg+IL2+", "IFNg+TNF+", "IL2+", 
+    "IL2-IFNg+", "IL2+ OR IFNg+", "IL2+IFNg-", "IL2+IFNg+", "IL2+TNF+", "TNF+")
+FDR$CYTOKINE <- factor(FDR$CYTOKINE, labels = levs)
+fdrplots <- ggplot(subset(FDR, TCELLSUB %in% c("cd3+/cd4+"))) + geom_line(aes(y = true.fdr, 
     x = fdr, color = Method)) + geom_abline(1, lty = 3) + theme_bw() + scale_x_continuous(name = "Nominal FDR") + 
     scale_y_continuous(name = "Observed FDR") + facet_wrap(~CYTOKINE) + theme(axis.text.x = element_text(angle = 90, 
     hjust = 1))
 ```
 
-![The FDR is well controlled for cytokine subsets with low background. The TNF expressing subsets have high background and consequently positive assay results in the "Visit 2" samples, which are labelled as "true negatives" in this scheme. The result is observed as a large observed false discovery rate for all methods.](figure/unnamed-chunk-10.png) 
+
+Figure 1 and S1. Write to Figures folder.
+Don't evaluate here.
+
+
 
 
 Process the fluidigm data to construct an expression set for MIMOSA
@@ -194,14 +207,19 @@ S[S == 0] <- 1
 colnames(S) <- pData(fluidigm.fits.by.stim.allgenes[[1]][[1]])[, c("Patient.ID")]
 stim <- pData(fluidigm.fits.by.stim.allgenes[[1]][[1]])$Stim
 rownames(S) <- do.call(rbind, lapply(fluidigm.fits.by.stim.allgenes[[1]], function(x) as.character(unique(pData(x)$Gene))))
-heatmap.2((S * foo)[apply(foo, 1, function(x) sum(x > 0.1) >= 2), ], col = colorpanel(n = 10, 
-    high = "green", low = "red", mid = "white"), margins = c(6, 5), cexRow = 0.5, 
+heatmap.2((S * (foo))[apply(foo, 1, function(x) sum(x > 0.6) >= 1), ], col = colorpanel(n = 10, 
+    high = "yellow", low = "blue", mid = "white"), margins = c(6, 5), cexRow = 0.5, 
     hclustfun = function(x) hclust(x, method = "complete"), trace = "none", 
     symbreaks = TRUE, ColSideColors = c("red", "orange", "yellow", "green")[as.numeric(stim)], 
     Colv = TRUE, main = "signed Posterior Probabilities\n(fit by gene, all stimulations)")
 ```
 
 ![plot of chunk heatmap.probs.bygene](figure/heatmap.probs.bygene.png) 
+
+
+Figure 2 C, (fit of all samples simultaneously)
+
+
 
 
 Heatmap of posterior differences of proportions fit by gene for all samples.
@@ -213,7 +231,7 @@ Heatmap of posterior differences of proportions fit by gene for all samples.
 ```r
 colnames(props) <- colnames(S)
 rownames(props) <- rownames(S)
-heatmap.2(S * sqrt(abs(props)), col = colorpanel(n = 10, high = "green", low = "red", 
+heatmap.2(S * sqrt(abs(props)), col = colorpanel(n = 10, high = "yellow", low = "blue", 
     mid = "white"), margins = c(6, 5), cexRow = 0.5, hclustfun = function(x) hclust(x, 
     method = "complete"), trace = "none", symbreaks = TRUE, ColSideColors = c("red", 
     "orange", "yellow", "green")[as.numeric(stim)], Colv = TRUE, main = "Posterior Differences in Proportions\n(fit by gene all stimulations)")
@@ -240,14 +258,24 @@ S[S == 0] <- 1
 stim <- as.numeric(factor(do.call(c, lapply(fluidigm.fits.by.stim.bygene, function(x) as.character(pData(x[[1]])$Stim)))))
 colnames(S) <- do.call(c, lapply(fluidigm.fits.by.stim.bygene, function(x) as.character(pData(x[[1]])$Patient.ID)))
 rownames(S) <- do.call(cbind, lapply(fluidigm.fits.by.stim.bygene[[1]], function(x) as.character(unique(pData(x)$Gene))))
-heatmap.2((S * foo)[apply(foo, 1, function(x) sum(x > 0.1) >= 1), ], col = colorpanel(n = 10, 
-    high = "green", low = "red", mid = "white"), margins = c(6, 5), cexRow = 0.5, 
+h <- heatmap.2((S * foo)[apply(foo, 1, function(x) sum(x > 0.6) >= 1), ], col = colorpanel(n = 10, 
+    high = "yellow", low = "blue", mid = "white"), margins = c(6, 5), cexRow = 0.5, 
     hclustfun = function(x) hclust(x, method = "complete"), trace = "none", 
     symbreaks = TRUE, ColSideColors = c("red", "orange", "yellow", "green")[as.numeric(stim)], 
     main = "Signed Posterior Probabilities\n(fit by gene and stimulation).")
 ```
 
 ![plot of chunk heatmap.probs.bystim.bygene](figure/heatmap.probs.bystim.bygene.png) 
+
+```r
+hmaporder <- h$colInd
+geneinds <- apply(foo, 1, function(x) sum(x > 0.6) >= 1)
+```
+
+
+Figure 2 A
+
+
 
 
 Heatmap of posterior differences in proportions for fit of samples by stimulation and by gene. 
@@ -258,7 +286,7 @@ Heatmap of posterior differences in proportions for fit of samples by stimulatio
 ```r
 colnames(props) <- colnames(S)
 rownames(props) <- rownames(S)
-heatmap.2(sqrt(abs(props)) * S, col = colorpanel(n = 10, high = "green", low = "red", 
+heatmap.2(sqrt(abs(props)) * S, col = colorpanel(n = 10, high = "yellow", low = "blue", 
     mid = "white"), margins = c(6, 5), cexRow = 0.5, hclustfun = function(x) hclust(x, 
     method = "complete"), trace = "none", symbreaks = TRUE, ColSideColors = c("red", 
     "orange", "yellow", "green")[as.numeric(stim)], Colv = TRUE, main = "Posterior differences in proportions\n(fit by gene and stimulations)")
@@ -281,6 +309,7 @@ fisher <- do.call(rbind, lapply(fluidigm.fits.by.stim.allgenes[[1]], function(x)
     }
     p
 }))
+adj.fisher <- matrix(p.adjust(fisher, "fdr"), nrow = 96)
 S <- sign(lapply(fluidigm.fits.by.stim.allgenes, function(x) do.call(rbind, 
     lapply(x, function(x) (prop.table(as.matrix(x@result@n.stim), 1) - prop.table(as.matrix(x@result@n.unstim), 
         1))[, 2])))[[1]])
@@ -289,13 +318,23 @@ colnames(fisher) <- gsub("_B3GAT1_Treatment", "", colnames(S))
 rownames(fisher) <- do.call(rbind, lapply(fluidigm.fits.by.stim.allgenes[[1]], 
     function(x) as.character(unique(pData(x)$Gene))))
 stim <- pData(fluidigm.fits.by.stim.allgenes[[1]][[1]])$Stim
-heatmap.2(fisher * S, col = colorpanel(n = 10, high = "green", low = "red", 
+heatmap.2(fisher * S, col = colorpanel(n = 10, high = "yellow", low = "blue", 
     mid = "white"), margins = c(6, 5), cexRow = 0.5, hclustfun = function(x) hclust(x, 
     method = "complete"), trace = "none", symbreaks = TRUE, ColSideColors = c("red", 
     "orange", "yellow", "green")[as.numeric(stim)], Colv = TRUE, main = "-log10(p-values)\nfrom Fisher's Exact Test")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+
+
+Figure 2 D
+
+
+
+
+Figure 2C empirical proportions
+
+
 
 
 Multivariate MIMOSA on fluidigm data looking at interactions
@@ -307,6 +346,37 @@ There is a difference when comparing stimulations and looking at the multivariat
 fl.comb <- combine(fluidigm[[1]], fluidigm[[2]], fluidigm[[3]], fluidigm[[4]])
 melted <- melt(fl.comb)
 require(glmnet)
+```
+
+```
+## Loading required package: glmnet
+```
+
+```
+## Loading required package: Matrix
+```
+
+```
+## Attaching package: 'Matrix'
+```
+
+```
+## The following object is masked from 'package:pracma':
+## 
+## expm, lu, tril, triu
+```
+
+```
+## The following object is masked from 'package:reshape':
+## 
+## expand
+```
+
+```
+## Loaded glmnet 1.9-3
+```
+
+```r
 require(Matrix)
 melted$Et.bin <- as.numeric(as.logical(melted$Et))
 # setnames(melted,'__wellKey','wellKey')
@@ -386,14 +456,10 @@ toplot$id <- rep(unlist(lapply(strsplit(as.character(subset(C, Stim.Condition %i
 colnames(toplot)[1:4] <- gsub("X", "", paste(g1, g2, colnames(toplot)[1:4], 
     sep = ":"))
 toplot <- melt(toplot, id = c("id", "stim"))
-ggplot(toplot) + geom_raster(aes(x = variable, y = id, fill = value)) + theme_bw() + 
-    theme(axis.text.x = element_text(angle = 90)) + facet_wrap(~stim) + scale_fill_continuous(na.value = "gray", 
-    breaks = round(seq(0, 96, l = 10)))
-```
+p1 <- ggplot(toplot) + geom_tile(aes(x = variable, y = id, fill = log2(value)), 
+    interpolate = FALSE) + theme_bw() + theme(axis.text.x = element_text(angle = 90)) + 
+    facet_wrap(~stim) + scale_fill_continuous(na.value = "gray")
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) 
-
-```r
 
 DD <- CC
 DD[[1]] <- cbind(CC[[1]][, 1], rowSums(CC[[1]][, 2:4]))
@@ -405,13 +471,16 @@ toplot2$id <- rep(unlist(lapply(strsplit(as.character(subset(C, Stim.Condition %
 colnames(toplot2)[1:2] <- gsub("X", "", paste(g1, g2, colnames(toplot2)[1:2], 
     sep = ":"))
 toplot2 <- melt(toplot2, id = c("id", "stim"))
-ggplot(toplot2) + geom_raster(aes(x = variable, y = id, fill = value)) + theme_bw() + 
-    theme(axis.text.x = element_text(angle = 90)) + facet_wrap(~stim) + scale_fill_continuous(na.value = "gray", 
-    breaks = round(seq(0, 96, l = 10)))
+p2 <- ggplot(toplot2) + geom_tile(aes(x = variable, y = id, fill = log2(value)), 
+    interpolate = FALSE) + theme_bw() + theme(axis.text.x = element_text(angle = 90)) + 
+    facet_wrap(~stim) + scale_fill_continuous(na.value = "gray")
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
-![plot of chunk fitmulti](figure/fitmulti.png) 
+
+
+Figure 4
+
+
 
 
 Simulations
@@ -421,13 +490,18 @@ One sided
 We'll use the model fit from IFNg+ for ENV-1-PTEG based on the ROC and FDR plots
 Note that MIMOSA has greater sensitivity and specificity than Fisher's exact test or the Likelihood ratio test. When there are 5 observations, the methods being to perform equivalently.
 
-![plot of chunk simulations](figure/simulations1.png) ![plot of chunk simulations](figure/simulations2.png) 
+![plot of chunk simulations](figure/simulations1.png) ![plot of chunk simulations](figure/simulations2.png) ![plot of chunk simulations](figure/simulations3.png) ![plot of chunk simulations](figure/simulations4.png) ![plot of chunk simulations](figure/simulations5.png) ![plot of chunk simulations](figure/simulations6.png) 
 
 
 Two-sided
 --------
 
-![plot of chunk two.sided.sims](figure/two.sided.sims1.png) ![plot of chunk two.sided.sims](figure/two.sided.sims2.png) 
+![plot of chunk two.sided.sims](figure/two.sided.sims1.png) ![plot of chunk two.sided.sims](figure/two.sided.sims2.png) ![plot of chunk two.sided.sims](figure/two.sided.sims3.png) ![plot of chunk two.sided.sims](figure/two.sided.sims4.png) ![plot of chunk two.sided.sims](figure/two.sided.sims5.png) ![plot of chunk two.sided.sims](figure/two.sided.sims6.png) 
+
+
+Figure 3
+
+
 
 
 Multivariate Simulations
@@ -461,16 +535,16 @@ for (i in 1:ncol(mdsim)) {
     }
 }
 
-FDR <- function(x, truth) {
+ROCfun <- function(x, truth) {
     o <- order(x, decreasing = FALSE)
     cbind(tpr = cumsum(truth[o])/sum(truth), fpr = cumsum(!truth[o])/sum(!truth))
 }
 
 fisher.p.adj <- lapply(fisher.p, function(x) p.adjust(x, "fdr"))
-fisher.roc <- do.call(rbind, by(cbind(do.call(rbind, lapply(fisher.p.adj, function(i) FDR(i, 
+fisher.roc <- do.call(rbind, by(cbind(do.call(rbind, lapply(fisher.p.adj, function(i) ROCfun(i, 
     gl(2, 50) == 2)))), rep(gl(100, 1), 10), function(x) colMeans(x)))
 mimosa.adj <- lapply(1:ncol(mdsim), function(i) MIMOSA:::fdr(mdsim[, i]$z))
-MIMOSA.roc <- do.call(rbind, by(do.call(rbind, lapply(mimosa.adj, function(i) FDR(i, 
+MIMOSA.roc <- do.call(rbind, by(do.call(rbind, lapply(mimosa.adj, function(i) ROCfun(i, 
     gl(2, 50) == 2))), rep(gl(100, 1), 10), function(x) colMeans(x)))
 foo <- data.frame(as.data.frame(rbind(fisher.roc, MIMOSA.roc)), Method = gl(2, 
     100, labels = c("Fisher", "MIMOSA")))
@@ -484,12 +558,131 @@ foo <- data.frame(as.data.frame(rbind(fisher.roc, MIMOSA.roc)), Method = gl(2,
 
 ```r
 sz <- element_text(size = 18)
-ggplot(foo) + geom_line(aes(x = fpr, y = tpr, col = Method)) + scale_y_continuous("TPR") + 
+p1 <- ggplot(foo) + geom_line(aes(x = fpr, y = tpr, col = Method)) + scale_y_continuous("TPR") + 
     scale_x_continuous("FPR") + theme_bw() + theme(axis.title.x = sz, axis.title.y = sz, 
     axis.text.x = sz, axis.text.y = sz)
+# FDR
+mim.fdr <- as.data.frame(cbind(do.call(rbind, lapply(mimosa.adj, function(x) fdrCurves(x, 
+    gl(2, 50) == 2))), rep = gl(100, 1)))
+ddply(mim.fdr, .(rep), summarize, true.fdr.hat = mean(true.fdr), fdr.hat = mean(fdr))
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+```
+##     rep true.fdr.hat   fdr.hat
+## 1     1     0.000000 2.151e-11
+## 2     2     0.000000 6.751e-11
+## 3     3     0.000000 1.269e-10
+## 4     4     0.000000 3.763e-10
+## 5     5     0.000000 7.297e-10
+## 6     6     0.000000 1.227e-09
+## 7     7     0.000000 1.807e-09
+## 8     8     0.000000 3.499e-09
+## 9     9     0.000000 5.601e-09
+## 10   10     0.000000 9.302e-09
+## 11   11     0.000000 1.328e-08
+## 12   12     0.000000 1.753e-08
+## 13   13     0.000000 2.218e-08
+## 14   14     0.000000 2.778e-08
+## 15   15     0.000000 3.609e-08
+## 16   16     0.000000 4.670e-08
+## 17   17     0.000000 5.763e-08
+## 18   18     0.000000 7.252e-08
+## 19   19     0.000000 8.945e-08
+## 20   20     0.000000 1.103e-07
+## 21   21     0.000000 1.332e-07
+## 22   22     0.000000 1.610e-07
+## 23   23     0.000000 1.930e-07
+## 24   24     0.000000 2.305e-07
+## 25   25     0.000000 2.775e-07
+## 26   26     0.000000 3.437e-07
+## 27   27     0.000000 4.299e-07
+## 28   28     0.000000 5.294e-07
+## 29   29     0.000000 6.484e-07
+## 30   30     0.000000 7.961e-07
+## 31   31     0.000000 1.022e-06
+## 32   32     0.000000 1.310e-06
+## 33   33     0.000000 1.680e-06
+## 34   34     0.000000 2.123e-06
+## 35   35     0.000000 2.692e-06
+## 36   36     0.000000 3.728e-06
+## 37   37     0.000000 4.944e-06
+## 38   38     0.000000 6.661e-06
+## 39   39     0.000000 9.095e-06
+## 40   40     0.000000 1.227e-05
+## 41   41     0.000000 1.616e-05
+## 42   42     0.000000 2.270e-05
+## 43   43     0.000000 4.244e-05
+## 44   44     0.000000 7.107e-05
+## 45   45     0.000000 1.250e-04
+## 46   46     0.000000 2.132e-04
+## 47   47     0.000000 3.859e-04
+## 48   48     0.000000 7.987e-04
+## 49   49     0.002041 1.728e-03
+## 50   50     0.012000 8.023e-03
+## 51   51     0.021569 2.032e-02
+## 52   52     0.038462 3.652e-02
+## 53   53     0.056604 5.379e-02
+## 54   54     0.074074 7.099e-02
+## 55   55     0.090909 8.774e-02
+## 56   56     0.107143 1.039e-01
+## 57   57     0.122807 1.196e-01
+## 58   58     0.137931 1.348e-01
+## 59   59     0.152542 1.495e-01
+## 60   60     0.166667 1.636e-01
+## 61   61     0.180328 1.773e-01
+## 62   62     0.193548 1.906e-01
+## 63   63     0.206349 2.034e-01
+## 64   64     0.218750 2.159e-01
+## 65   65     0.230769 2.280e-01
+## 66   66     0.242424 2.397e-01
+## 67   67     0.253731 2.510e-01
+## 68   68     0.264706 2.620e-01
+## 69   69     0.275362 2.727e-01
+## 70   70     0.285714 2.831e-01
+## 71   71     0.295775 2.932e-01
+## 72   72     0.305556 3.030e-01
+## 73   73     0.315068 3.126e-01
+## 74   74     0.324324 3.218e-01
+## 75   75     0.333333 3.309e-01
+## 76   76     0.342105 3.397e-01
+## 77   77     0.350649 3.483e-01
+## 78   78     0.358974 3.566e-01
+## 79   79     0.367089 3.648e-01
+## 80   80     0.375000 3.727e-01
+## 81   81     0.382716 3.805e-01
+## 82   82     0.390244 3.880e-01
+## 83   83     0.397590 3.954e-01
+## 84   84     0.404762 4.026e-01
+## 85   85     0.411765 4.096e-01
+## 86   86     0.418605 4.165e-01
+## 87   87     0.425287 4.232e-01
+## 88   88     0.431818 4.297e-01
+## 89   89     0.438202 4.361e-01
+## 90   90     0.444444 4.424e-01
+## 91   91     0.450549 4.485e-01
+## 92   92     0.456522 4.545e-01
+## 93   93     0.462366 4.604e-01
+## 94   94     0.468085 4.661e-01
+## 95   95     0.473684 4.718e-01
+## 96   96     0.479167 4.773e-01
+## 97   97     0.484536 4.826e-01
+## 98   98     0.489796 4.879e-01
+## 99   99     0.494949 4.931e-01
+## 100 100     0.500000 4.982e-01
+```
+
+```r
+fisher.fdr <- as.data.frame(cbind(do.call(rbind, lapply(fisher.p.adj, function(x) fdrCurves(x, 
+    gl(2, 50) == 2))), rep = gl(100, 1)))
+plot(ddply(mim.fdr, .(rep), summarize, true.fdr.hat = mean(true.fdr), fdr.hat = mean(fdr)))
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21.png) 
+
+
+Figure 5
+
+
 
 
 Competing ROC curves to evaluate the effect of inaccuracies in the true positives and false positives.
@@ -502,19 +695,63 @@ comproc <- CompareROC(hvtn.result.mcmc)
 comproc[[1]]$true.resp.rate <- as.numeric(as.character(comproc[[1]]$q)) * 2
 comproc[[2]]$true.resp.rate <- as.numeric(as.character(comproc[[2]]$q)) * 2
 
-ggplot(comproc[[1]]) + geom_line(aes(x = fdr.hat, y = true.fdr.hat, color = method)) + 
-    facet_wrap(~true.resp.rate) + theme_bw() + geom_abline(1, lty = 3) + labs(title = "Observed vs True FDR when \ntrue response rate varies but is assumed to be 100%")
+p8 <- ggplot(comproc[[1]]) + geom_line(aes(x = fdr.hat, y = true.fdr.hat, color = method)) + 
+    facet_wrap(~true.resp.rate, ncol = 5) + theme_bw() + geom_abline(1, lty = 3) + 
+    labs(title = "Observed vs True FDR when \ntrue response rate varies but is assumed to be 100%") + 
+    theme(axis.text.x = element_text(angle = 90))
+p9 <- ggplot(comproc[[2]]) + geom_line(aes(x = FPR.hat, y = TPR.hat, color = method)) + 
+    facet_wrap(~true.resp.rate, ncol = 5) + theme_bw() + labs(title = "ROC curves when \ntrue response rate varies but is assumed to be 100%") + 
+    scale_x_continuous("False Positive Rate") + scale_y_continuous("True Positive Rate") + 
+    theme(axis.text.x = element_text(angle = 90))
+
+library(gridExtra)
+pdf(file = "/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROC.pdf", 
+    width = 10, height = 3)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-151.png) 
+```
+## Error: cannot open file
+## '/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROC.pdf'
+```
 
 ```r
-ggplot(comproc[[2]]) + geom_line(aes(x = FPR.hat, y = TPR.hat, color = method)) + 
-    facet_wrap(~true.resp.rate) + theme_bw() + labs(title = "ROC curves when \ntrue response rate varies but is assumed to be 100%") + 
-    scale_x_continuous("False Positive Rate") + scale_y_continuous("True Positive Rate")
+p9
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-152.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
+
+```r
+dev.off()
+```
+
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
+
+```r
+p9
+```
+
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-233.png) 
+
+```r
+pdf(file = "/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROCfdr.pdf", 
+    width = 10, height = 3)
+```
+
+```
+## Error: cannot open file
+## '/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/competeROCfdr.pdf'
+```
+
+```r
+p8
+```
+
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-234.png) 
+
+```r
+dev.off()
+p8
+```
 
 
 Supplementary Figure 2
@@ -530,37 +767,103 @@ Unconstrained MIMOSA fit to data violating model assumptions
 ![plot of chunk violated.assumptions](figure/violated.assumptions1.png) ![plot of chunk violated.assumptions](figure/violated.assumptions2.png) 
 
 
+Figure S3
+
+
+
+
+Figure of effect size vs probability of response
+
+
+```r
+pd <- do.call(rbind, lapply(hvtn.result.mcmc, function(x) pData(x)))
+pd <- cbind(pd, do.call(rbind, lapply(hvtn.result.mcmc, function(x) data.frame(response = MIMOSA:::fdr(x@z) < 
+    0.01, Prob.resp = x@z[, 2], effect = do.call(c, lapply(x@result@p, function(x) diff(rev(x[, 
+    2]))))))))
+pd$VACCINE <- factor(pd$RX_CODE %in% c("T1", "T2", "T3", "T4"))
+pdf(file = "/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/volcanoplots.pdf", 
+    width = 15, height = 10)
+```
+
+```
+## Error: cannot open file
+## '/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/volcanoplots.pdf'
+```
+
+```r
+ggplot(subset(pd, TCELLSUB %in% "cd3+/cd4+")) + geom_point(aes(x = effect, y = Prob.resp, 
+    color = response, shape = VISITNO:VACCINE)) + facet_wrap(TCELLSUB ~ CYTOKINE, 
+    scale = "free_x") + theme(axis.text.x = element_text(angle = 90)) + scale_color_discrete("Response", 
+    labels = c("No", "Yes")) + theme_bw()
+```
+
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25.png) 
+
+```r
+dev.off()
+```
+
+```
+## pdf 
+##   2
+```
+
+```r
+ggplot(subset(pd, TCELLSUB %in% "cd3+/cd4+")) + geom_point(aes(x = effect, y = Prob.resp, 
+    color = response, shape = VISITNO:VACCINE)) + facet_wrap(TCELLSUB ~ CYTOKINE, 
+    scale = "free_x") + theme(axis.text.x = element_text(angle = 90)) + scale_color_discrete("Response", 
+    labels = c("No", "Yes")) + theme_bw()
+```
+
+
 How many CD4 and CD8 T-cells?
 -----
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 
+
+```
+## Error: arguments imply differing number of rows: 1, 224, 205
+```
+
+```
+## Error: attempt to replicate an object of type 'closure'
+```
+
+```
+## Error: ggplot2 doesn't know how to deal with data of class function
+```
 
 
 Table of median cell counts for different subsets
 -----
 
-<!-- html table generated in R 3.0.0 by xtable 1.7-1 package -->
-<!-- Tue May  7 20:07:53 2013 -->
-<TABLE border=1>
-<TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
-  <TR> <TD align="right"> 63526 </TD> <TD align="right"> 42645 </TD> </TR>
-   </TABLE>
+
+```
+## Error: error in evaluating the argument 'data' in selecting a method for
+## function 'melt': Error in if (empty(.data)) return(.data) : missing value
+## where TRUE/FALSE needed
+```
+
+```
+## Error: error in evaluating the argument 'x' in selecting a method for
+## function 'print': Error in xtable(d[, -1L], display = c("fg", "fg", "fg"))
+## : object 'd' not found
+```
 
 
 Magnitude of the proportions for the HVTN data
 ----
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png) 
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png) 
 
 
 Table of median cell proportions for HVTN data
 ----
 
-<!-- html table generated in R 3.0.0 by xtable 1.7-1 package -->
-<!-- Tue May  7 20:07:53 2013 -->
+<!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
+<!-- Tue Jun 25 09:05:06 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
-  <TR> <TD align="right"> 0.00037 </TD> <TD align="right"> 0.0000017 </TD> </TR>
+  <TR> <TD align="right"> 0.00022 </TD> <TD align="right"> 0.0000017 </TD> </TR>
    </TABLE>
 
 

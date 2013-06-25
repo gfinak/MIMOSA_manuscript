@@ -1,0 +1,250 @@
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(knitr)
+> knitr::spin("manuscriptFigures.R",FALSE)
+[1] "manuscriptFigures.Rmd"
+> knit2html("manuscriptFigures.Rmd")
+
+
+processing file: manuscriptFigures.Rmd
+  |                                                                         |                                                                 |   0%  |                                                                         |.                                                                |   1%
+  ordinary text without R code
+
+  |                                                                         |..                                                               |   3%
+label: unnamed-chunk-1
+  |                                                                         |...                                                              |   4%
+label: unnamed-chunk-2 (with options) 
+List of 1
+ $ echo: logi FALSE
+
+  |                                                                         |...                                                              |   5%
+  ordinary text without R code
+
+  |                                                                         |....                                                             |   7%
+label: unnamed-chunk-3 (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |.....                                                            |   8%
+  ordinary text without R code
+
+  |                                                                         |......                                                           |   9%
+label: unnamed-chunk-4 (with options) 
+List of 1
+ $ cache: logi FALSE
+
+  |                                                                         |.......                                                          |  11%
+  ordinary text without R code
+
+  |                                                                         |........                                                         |  12%
+label: unnamed-chunk-5 (with options) 
+List of 1
+ $ cache: logi FALSE
+
+  |                                                                         |.........                                                        |  13%
+  ordinary text without R code
+
+  |                                                                         |.........                                                        |  14%
+label: unnamed-chunk-6
+  |                                                                         |..........                                                       |  16%
+  ordinary text without R code
+
+  |                                                                         |...........                                                      |  17%
+label: unnamed-chunk-7 (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |............                                                     |  18%
+  ordinary text without R code
+
+  |                                                                         |.............                                                    |  20%
+label: unnamed-chunk-8
+  |                                                                         |..............                                                   |  21%
+  ordinary text without R code
+
+  |                                                                         |...............                                                  |  22%
+label: unnamed-chunk-9 (with options) 
+List of 4
+ $ cache     : logi TRUE
+ $ fig.width : num 10
+ $ fig.height: num 8
+ $ fig.cap   : chr "The TNF expressing cytokine specific cells have high background as evidenced by the poor performance of all methods fit to TNF+"| __truncated__
+
+  |                                                                         |...............                                                  |  24%
+label: unnamed-chunk-10 (with options) 
+List of 3
+ $ fig.width : num 10
+ $ fig.height: num 8
+ $ fig.cap   : chr "The FDR is well controlled for cytokine subsets with low background. The TNF expressing subsets have high background and conseq"| __truncated__
+
+  |                                                                         |................                                                 |  25%
+  ordinary text without R code
+
+  |                                                                         |.................                                                |  26%
+label: unnamed-chunk-11 (with options) 
+List of 2
+ $ echo: logi FALSE
+ $ eval: logi FALSE
+
+  |                                                                         |..................                                               |  28%
+  ordinary text without R code
+
+  |                                                                         |...................                                              |  29%
+label: unnamed-chunk-12 (with options) 
+List of 2
+ $ warning: logi FALSE
+ $ cache  : logi TRUE
+
+  |                                                                         |....................                                             |  30%
+  ordinary text without R code
+
+  |                                                                         |.....................                                            |  32%
+label: fluidigm.fit (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |.....................                                            |  33%
+  ordinary text without R code
+
+  |                                                                         |......................                                           |  34%
+label: heatmap.probs.bygene (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |.......................                                          |  36%
+  ordinary text without R code
+
+  |                                                                         |........................                                         |  37%
+label: unnamed-chunk-13 (with options) 
+List of 2
+ $ eval: logi FALSE
+ $ echo: logi FALSE
+
+  |                                                                         |.........................                                        |  38%
+  ordinary text without R code
+
+  |                                                                         |..........................                                       |  39%
+label: heatmap.props.bygene (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |...........................                                      |  41%
+  ordinary text without R code
+
+  |                                                                         |...........................                                      |  42%
+label: heatmap.probs.bystim.bygene (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |............................                                     |  43%
+  ordinary text without R code
+
+  |                                                                         |.............................                                    |  45%
+label: unnamed-chunk-14 (with options) 
+List of 2
+ $ eval: logi FALSE
+ $ echo: logi FALSE
+
+  |                                                                         |..............................                                   |  46%
+  ordinary text without R code
+
+  |                                                                         |...............................                                  |  47%
+label: heatmap.props.bystim.bygene (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |................................                                 |  49%
+  ordinary text without R code
+
+  |                                                                         |................................                                 |  50%
+label: unnamed-chunk-15 (with options) 
+List of 1
+ $ cache: logi TRUE
+
+  |                                                                         |.................................                                |  51%
+  ordinary text without R code
+
+  |                                                                         |..................................                               |  53%
+label: unnamed-chunk-16 (with options) 
+List of 2
+ $ eval: logi FALSE
+ $ echo: logi FALSE
+
+  |                                                                         |...................................                              |  54%
+  ordinary text without R code
+
+  |                                                                         |....................................                             |  55%
+label: unnamed-chunk-17 (with options) 
+List of 2
+ $ eval: logi FALSE
+ $ echo: logi FALSE
+
+  |                                                                         |.....................................                            |  57%
+  ordinary text without R code
+
+  |                                                                         |......................................                           |  58%
+label: unnamed-chunk-18 (with options) 
+List of 1
+ $ cache: logi FALSE
+
+Note: method with signature 'DataLayer#DataLayer' chosen for function 'combine',
+ target signature 'SingleCellAssay#SingleCellAssay'.
+ "SingleCellAssay#ANY" would also be valid
+  |                                                                         |......................................                           |  59%
+label: fitmulti (with options) 
+List of 5
+ $ echo   : logi FALSE
+ $ message: logi FALSE
+ $ warning: logi FALSE
+ $ error  : logi FALSE
+ $ results: chr "hide"
+
+  |                                                                         |.......................................                          |  61%
+  ordinary text without R code
+
+  |                                                                         |........................................                         |  62%
+label: unnamed-chunk-19 (with options) 
+List of 2
+ $ eval: logi FALSE
+ $ echo: logi FALSE
+
+  |                                                                         |.........................................                        |  63%
+  ordinary text without R code
+
+  |                                                                         |..........................................                       |  64%
+label: simulations (with options) 
+List of 4
+ $ cache     : logi FALSE
+ $ echo      : logi FALSE
+ $ fig.width : num 5
+ $ fig.height: num 5
+
+  |                                                                         |...........................................                      |  66%
+  ordinary text without R code
+
+  |                                                                         |............................................                     |  67%
+label: two.sided.sims (with options) 
+List of 4
+ $ cache     : logi FALSE
+ $ echo      : logi FALSE
+ $ fig.width : num 5
+ $ fig.height: num 5
+
+Terminated

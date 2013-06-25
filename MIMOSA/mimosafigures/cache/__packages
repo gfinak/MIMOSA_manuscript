@@ -11,6 +11,7 @@ gdata
 ggplot2
 glmnet
 gplots
+gridExtra
 gtools
 iterators
 KernSmooth
