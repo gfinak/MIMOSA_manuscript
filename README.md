@@ -8,6 +8,8 @@ The repository includes that knitr cache and various rds files that save interme
 The code is located in MIMOSA_manuscript/MIMOSA/manuscriptfigures/.
 The latex code for the manuscript is in MIMOSA_manuscript/.
 
+The code can be run by sourcing the compile.R script.
+
 The latex files for the manuscript itself are also available here.
 
 ### Requirements
