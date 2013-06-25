@@ -1,8 +1,0 @@
-library(knitr)
-knitr::spin("manuscriptFigures.R",FALSE)
-knit2html("manuscriptFigures.Rmd")
-#system("pandoc --jsmath manuscriptFigures.md>manuscriptFigures.html")
-system("(echo '<head><script src=\"https://raw.github.com/Polychart/polychart2/develop/polychart2.standalone.js\"></script><script src=\"\"></script></head>'; cat manuscriptFigures.html)>manuscriptFigures2.html")
-system("sed 's/&quot;/\"/g' < manuscriptFigures2.html>manuscriptFigures.html")
-system("cp manuscriptFigures.html /Users/gfinak/Dropbox/Public/MIMOSA/manuscriptFigures.html")
-system("cp -r figure /Users/gfinak/Dropbox/Public/MIMOSA/")
