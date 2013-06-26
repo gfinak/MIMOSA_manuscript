@@ -4,6 +4,7 @@
 .DS*
 *.docx
 *.doc
+*.gz
 
 TSWLatexian*
 .Rproj.user
@@ -13,3 +14,4 @@ MIMOSA.synctex.gz
 TIKZFig2-eps-converted-to.pdf
 TIKZFig3-eps-converted-to.pdf
 TIKZFig4-eps-converted-to.pdf
+Biostatistics_Decision_Major_Rev.pdf
