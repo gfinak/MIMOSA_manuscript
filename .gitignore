@@ -2,6 +2,8 @@
 *.log
 *.blg
 .DS*
+*.docx
+*.doc
 
 TSWLatexian*
 .Rproj.user
