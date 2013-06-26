@@ -130,7 +130,7 @@ fdrplots
 ![The FDR is well controlled for cytokine subsets with low background. The TNF expressing subsets have high background and consequently positive assay results in the "Visit 2" samples, which are labelled as "true negatives" in this scheme. The result is observed as a large observed false discovery rate for all methods.](figure/unnamed-chunk-102.png) 
 
 
-### Figure 1 and S1. 
+### Figure 1 and Supplementary Figure 1. 
 
 
 
@@ -454,6 +454,11 @@ Simulations
 Simulations for the one-sided and two-sided MIMOSA model.
 We'll use the model fit from IFNg+ for ENV-1-PTEG based on the ROC and FDR plots
 
+![plot of chunk simulations](figure/simulations1.png) ![plot of chunk simulations](figure/simulations2.png) 
+
+
+### Supplementary Figure 4
+One-sided simulations with varying values of I (number of subjects).
 
 
 
@@ -553,6 +558,7 @@ grid.arrange(p1, p2)
 ![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png) 
 
 
+### Supplementary Figure 6
 Competing ROC curves to evaluate the effect of inaccuracies in the true positives and false positives.
 -----
 Simulate from models with 20,35,50,65,80 percent response rates but treat the ROC evaluation as 100% response.
@@ -589,13 +595,14 @@ dev.off()
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-291.png) ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-292.png) 
 
 
-Supplementary Figure 2
-------
-Histogram of the empirical proportions of unstimulated cells and overlaid posterior densities of the beta distribution with $\alpha_s$ and $\alpha_u$ estimated from the data for ENV-1-PTEG stimulated, IFN-$\gamma$+ CD4+ T-cells, demonstrating that the assumption of a common distribution for piu across subjects is reasonable.
+### Supplementary Figure 2
 
 ![plot of chunk supp.fig.2](figure/supp.fig.2.png) 
 
 
+Supplementary Figure 3 
+------
+Histogram of the empirical proportions of unstimulated cells and overlaid posterior densities of the beta distribution with $\alpha_s$ and $\alpha_u$ estimated from the data for ENV-1-PTEG stimulated, IFN-$\gamma$+ CD4+ T-cells, demonstrating that the assumption of a common distribution for piu across subjects is reasonable.
 Unconstrained MIMOSA fit to data violating model assumptions
 -----
 Top row shows results for MIMOSA fit to data simulated from a model violating model assumptions.
@@ -604,7 +611,7 @@ Bottorm row shows results of two-sided MIMOSA fit to data with low counts (10K e
 ![plot of chunk violated.assumptions](figure/violated.assumptions.png) 
 
 
-### Figure S3
+### Supplementary Figure 5
 
 
 
@@ -689,7 +696,8 @@ dev.off()
 ![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36.png) 
 
 
-Distribution of total CD4 and CD8 T-cell counts?
+### Supplementary Figure 7
+Distribution of total CD4 and CD8 T-cell counts.
 -----
 
 ![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
@@ -699,7 +707,7 @@ Median cell counts for T-cell subsets.
 -----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 17:48:20 2013 -->
+<!-- Tue Jun 25 18:19:43 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 66873 </TD> <TD align="right"> 42645 </TD> </TR>
@@ -716,7 +724,7 @@ Median cell proportions for ICS data.
 ----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 17:48:21 2013 -->
+<!-- Tue Jun 25 18:19:44 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 0.00022 </TD> <TD align="right"> 0.0000017 </TD> </TR>

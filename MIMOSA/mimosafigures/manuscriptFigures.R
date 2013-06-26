@@ -73,7 +73,7 @@ FDR$CYTOKINE<-factor(FDR$CYTOKINE,labels=levs)
 fdrplots<-ggplot(subset(FDR,TCELLSUB%in%c("cd3+/cd4+")))+geom_line(aes(y=true.fdr,x=fdr,color=Method))+geom_abline(1,lty=3)+theme_bw()+scale_x_continuous(name="Nominal FDR")+scale_y_continuous(name="Observed FDR")+facet_wrap(~CYTOKINE)+theme(axis.text.x=element_text(angle=90,hjust=1))
 rocplots
 fdrplots
-#'### Figure 1 and S1. 
+#'### Figure 1 and Supplementary Figure 1. 
 #+echo=FALSE,eval=FALSE
 suppressPackageStartupMessages(library(gridExtra))
 f1levs<-levs[c(8,11,13,17,15,16,10,7)]
@@ -346,7 +346,7 @@ ggplot(A)+geom_point(aes(x=`Effect Size`,y=`Pr(response)`,shape=factor(ID)))+fac
 #'==========
 #'Simulations for the one-sided and two-sided MIMOSA model.
 #'We'll use the model fit from IFNg+ for ENV-1-PTEG based on the ROC and FDR plots
-#+ simulations,cache=FALSE,echo=FALSE,fig.width=5,fig.height=5,include=FALSE
+#+ simulations,cache=FALSE,echo=FALSE,fig.width=5,fig.height=5,include=TRUE
 if(!file.exists("cache/sims.10K.RData")){
 sims.50K<-OneSidedSims(hvtn.result.mcmc,N=50000)
 sims.25K<-OneSidedSims(hvtn.result.mcmc,N=25000)
@@ -361,12 +361,13 @@ load("cache/sims.50K.RData")
 }
 ggplot(sims.50K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
 ggplot(sims.50K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
-ggplot(sims.25K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
-ggplot(sims.25K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
-ggplot(sims.10K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
-ggplot(sims.10K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
+#ggplot(sims.25K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
+#ggplot(sims.25K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
+#ggplot(sims.10K$sim.ROC)+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Average ROC for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
+#ggplot(sims.10K$sim.FDR)+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from One-Sided Simulations")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Nobs)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
 
-
+#'### Supplementary Figure 4
+#'One-sided simulations with varying values of I (number of subjects).
 #+ two.sided.sims, cache=FALSE, echo=FALSE,fig.width=5,fig.height=5,include=FALSE
 if(!file.exists("cache/sims2.10K.RData")){
 sims2.50K<-TwoSidedSims(hvtn.result.mcmc,N=50000)
@@ -474,6 +475,7 @@ fisher.fdr<-ddply(fisher.fdr,.(rep),summarize,true.fdr.hat=mean(true.fdr),fdr.ha
 foo<-data.frame(rbind(fisher.fdr,mim.fdr),Method=gl(2,100,labels=c("Fisher","MIMOSA")))
 p2<-ggplot(foo)+geom_line(aes(y=true.fdr.hat,x=fdr.hat,col=Method))+scale_y_continuous("observed fdr")+scale_x_continuous("nominal fdr")+theme_bw()+theme(axis.title.x=sz,axis.title.y=sz,axis.text.x=sz,axis.text.y=sz)+geom_abline(1,lty=3)
 grid.arrange(p1,p2)
+#'### Supplementary Figure 6
 #'Competing ROC curves to evaluate the effect of inaccuracies in the true positives and false positives.
 #'-----
 #'Simulate from models with 20,35,50,65,80 percent response rates but treat the ROC evaluation as 100% response.
@@ -497,13 +499,15 @@ dev.off()
 #+echo=FALSE,fig.width=12,fig.height=6
 p8
 p9
+#'### Supplementary Figure 2
 
-#'Supplementary Figure 2
-#'------
-#'Histogram of the empirical proportions of unstimulated cells and overlaid posterior densities of the beta distribution with $\alpha_s$ and $\alpha_u$ estimated from the data for ENV-1-PTEG stimulated, IFN-$\gamma$+ CD4+ T-cells, demonstrating that the assumption of a common distribution for piu across subjects is reasonable.
 #+supp.fig.2,message=FALSE,echo=FALSE
 res<-hvtn.result.mcmc[[7]]
 ggplot(data.frame(p.hat=prop.table(as.matrix(res@result@n.unstim),1)[,2]))+geom_histogram(aes(x=p.hat,y=..density..),col="black",fill="gray")+theme_bw()+scale_x_continuous(name=expression(hat(p)[u]))+geom_line(data=data.frame(x=seq(0,3e-4,l=10000),y=dbeta(seq(0,3e-4,l=10000),res@result@params[2,4],res@result@params[2,3]),stim="ENV-1-PTEG"),aes(x=x,y=y),col="blue",lwd=2,lty=3)+facet_wrap(~stim)+theme(strip.text.x=element_text(size=24),axis.text.x=element_text(size=18),axis.text.y=element_text(size=18),axis.title.x=element_text(size=24),axis.title.y=element_text(size=24))
+
+#'Supplementary Figure 3 
+#'------
+#'Histogram of the empirical proportions of unstimulated cells and overlaid posterior densities of the beta distribution with $\alpha_s$ and $\alpha_u$ estimated from the data for ENV-1-PTEG stimulated, IFN-$\gamma$+ CD4+ T-cells, demonstrating that the assumption of a common distribution for piu across subjects is reasonable.
 
 #'Unconstrained MIMOSA fit to data violating model assumptions
 #'-----
@@ -515,7 +519,7 @@ violated.roc<-ggplot(subset(sims$sim.ROC,Num==50000))+geom_line(aes(x=FPR.hat,y=
 violated.fdr<-ggplot(subset(sims$sim.FDR,Num==50000))+geom_line(aes(x=fdr.hat,y=true.fdr.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+labs(title="Observed vs Nominal FDR for 10 Data Sets from Two-Sided Simulations Violating Model Assumptions")+scale_x_continuous("Nominal FDR")+scale_y_continuous("Observed FDR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Num)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))+geom_abline(1,lty=3)
 grid.arrange(violated.roc,violated.fdr,smlcnts.roc,smlcnts.fdr)
 
-#'### Figure S3
+#'### Supplementary Figure 5
 #+eval=TRUE,echo=FALSE
 p1<-ggplot(subset(sims$sim.ROC,Num==50000))+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Num)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
 p2<-ggplot(subset(sims$sim.ROC,Num==10000))+geom_line(aes(x=FPR.hat,y=TPR.hat,col=relevel(method,"MIMOSA")),direction="vh",lwd=1.5,alpha=0.8)+theme_bw()+scale_x_continuous("FPR")+scale_y_continuous("TPR")+coord_cartesian(xlim=c(-0.01,1.01),ylim=c(-0.01,1.01))+scale_color_discrete("Method")+facet_wrap(~Num)+theme(strip.text.x=element_text(size=18),axis.title.x=element_text(size=18),axis.title.y=element_text(size=18),axis.text.x=element_text(angle=90))
@@ -566,8 +570,8 @@ ggplot(subset(pd,TCELLSUB%in%"cd3+/cd4+"))+geom_point(aes(x=effect,y=Prob.resp,c
 dev.off()
 #+echo=FALSE,fig.width=15
 ggplot(subset(pd,TCELLSUB%in%"cd3+/cd4+"))+geom_point(aes(x=effect,y=Prob.resp,color=response,shape=VISITNO:VACCINE))+facet_wrap(TCELLSUB~CYTOKINE,scale="free_x")+theme(axis.text.x=element_text(angle=90))+scale_color_discrete("Response",labels=c("No","Yes"))+theme_bw()
-
-#'Distribution of total CD4 and CD8 T-cell counts?
+#'### Supplementary Figure 7
+#'Distribution of total CD4 and CD8 T-cell counts.
 #'-----
 #+echo=FALSE,message=FALSE,warning=FALSE,result='hide',fig.width=5,fig.height=2.5
 suppressPackageStartupMessages(require(scales))
