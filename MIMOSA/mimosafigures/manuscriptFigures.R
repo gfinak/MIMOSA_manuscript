@@ -135,7 +135,7 @@ rownames(S)<-do.call(rbind,lapply(fluidigm.fits.by.stim.allgenes[[1]],function(x
 foo2<-apply(foo,2,function(x)MIMOSA:::fdr(cbind(1-x,x)))
 heatmap.2((S*(foo))[apply(foo2,1,function(x)sum(x<0.1)>=1),],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),cexRow=0.75,hclustfun=function(x)hclust(x,method="complete"),trace="none",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)],Colv=TRUE,denscol="black")
 
-#'### Figure 2 B, (fit of all samples simultaneously)
+#'### Figure 2 C, (fit of all samples simultaneously)
 #+eval=FALSE,echo=FALSE
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/FluidigmCombinedFit.pdf")
 foo2<-apply(foo,2,function(x)MIMOSA:::fdr(cbind(1-x,x)))
@@ -228,7 +228,7 @@ colnames(emprop)<-colnames(fisher)
 #+echo=FALSE,warning=FALSE
 heatmap.2(emprop[geneinds,hmaporder],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),Colv=NULL,denscol="black",tracecol="black",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)[hmaporder]])
 
-#'### Figure 2C empirical proportions.
+#'### Figure 2 B empirical proportions.
 #+eval=FALSE
 pdf(file="/Users/gfinak/Documents/manuscripts/MIMOSA_Paper/Figures/FluidigmEmpiricalProps.pdf")
 heatmap.2(emprop[geneinds,hmaporder],col=colorpanel(n=100,high="yellow",low="blue",mid="white"),margins=c(6,5),Colv=NULL,denscol="black",tracecol="black",symbreaks=TRUE,ColSideColors=c("red","orange","yellow","green")[as.numeric(stim)[hmaporder]])

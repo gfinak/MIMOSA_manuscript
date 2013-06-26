@@ -217,7 +217,7 @@ heatmap.2((S * (foo))[apply(foo2, 1, function(x) sum(x < 0.1) >= 1), ], col = co
 ![plot of chunk heatmap.probs.bygene](figure/heatmap.probs.bygene.png) 
 
 
-### Figure 2 B, (fit of all samples simultaneously)
+### Figure 2 C, (fit of all samples simultaneously)
 
 
 
@@ -325,7 +325,7 @@ heatmap.2((((adj.fisher)) * S)[apply(adj.fisher, 1, function(x) sum(x < 0.1) >
 ![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png) 
 
 
-### Figure 2C empirical proportions.
+### Figure 2 B empirical proportions.
 
 
 ```r
@@ -699,7 +699,7 @@ Median cell counts for T-cell subsets.
 -----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 15:48:53 2013 -->
+<!-- Tue Jun 25 17:48:20 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 66873 </TD> <TD align="right"> 42645 </TD> </TR>
@@ -716,7 +716,7 @@ Median cell proportions for ICS data.
 ----
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Tue Jun 25 15:48:54 2013 -->
+<!-- Tue Jun 25 17:48:21 2013 -->
 <TABLE border=1>
 <TR> <TH> CD4 </TH> <TH> CD8 </TH>  </TR>
   <TR> <TD align="right"> 0.00022 </TD> <TD align="right"> 0.0000017 </TD> </TR>
